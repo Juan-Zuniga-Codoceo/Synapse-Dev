@@ -1,11 +1,20 @@
 .navbar {
-    background: #102532;
-    padding: 20px 20px; /* Aumentar el padding para que el navbar sea más alto */
+    padding: 30px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    z-index: 1;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar.transparent {
+    background: transparent;
+  }
+  
+  .navbar.solid {
+    background: rgba(16, 37, 50, 0.8); /* Fondo con transparencia */
   }
   
   .navbar-container {
@@ -14,19 +23,16 @@
     align-items: center;
     width: 100%;
     max-width: 1200px;
-    position: relative;
-    z-index: 2;
   }
   
   .navbar-logo img {
     height: 150px; /* Ajustar el tamaño del logo */
     width: auto;  /* Mantener la proporción del logo */
     position: absolute;
-    top: 140%; /* Ajustar la posición del logo */
+    top: 80%; /* Ajustar la posición del logo */
     transform: translateY(-50%);
     z-index: 3;
   }
-  
   .navbar-menu {
     list-style: none;
     display: flex;
@@ -40,7 +46,7 @@
   
   .navbar-item a {
     color: white;
-    font-size: 16px; /* Aumentar el tamaño de la fuente para que se vea proporcional al navbar */
+    font-size: 16px;
     text-transform: uppercase;
     transition: color 0.3s ease;
   }
