@@ -1,0 +1,51 @@
+.navbar {
+    background: #102532;
+    padding: 20px 20px; /* Aumentar el padding para que el navbar sea más alto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .navbar-logo img {
+    height: 150px; /* Ajustar el tamaño del logo */
+    width: auto;  /* Mantener la proporción del logo */
+    position: absolute;
+    top: 140%; /* Ajustar la posición del logo */
+    transform: translateY(-50%);
+    z-index: 3;
+  }
+  
+  .navbar-menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-item {
+    margin: 0 15px;
+  }
+  
+  .navbar-item a {
+    color: white;
+    font-size: 16px; /* Aumentar el tamaño de la fuente para que se vea proporcional al navbar */
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+  }
+  
+  .navbar-item a:hover {
+    color: #ff6600;
+  }
+  

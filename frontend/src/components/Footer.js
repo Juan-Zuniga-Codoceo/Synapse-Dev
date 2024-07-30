@@ -1,9 +1,10 @@
 import React from 'react';
+import '../css/Footer.css';
 
 const Footer = () => {
   return (
-    <footer>
-      <p>© 2024 Synapse Dev. All rights reserved.</p>
+    <footer className="footer">
+      <p>© 2024 Synapse Dev. Todos los derechos reservados.</p>
     </footer>
   );
 };

@@ -1,0 +1,28 @@
+.services-page {
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .services-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .service-item {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    margin: 10px;
+  }
+  
+  .service-item h2 {
+    margin-bottom: 10px;
+  }
+  
+  .service-item p {
+    color: #666;
+  }
+  
