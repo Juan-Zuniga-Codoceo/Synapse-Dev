@@ -1,28 +1,95 @@
-.services-page {
-    padding: 50px 20px;
-    text-align: center;
-  }
-  
-  .services-list {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .service-item {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 250px;
-    margin: 10px;
-  }
-  
-  .service-item h2 {
-    margin-bottom: 10px;
-  }
-  
-  .service-item p {
-    color: #666;
-  }
-  
+.services-header {
+  background: url('../img/service1.jpg') no-repeat center center/cover;
+  color: white;
+  padding: 80px 20px; /* Aumenta el padding para hacer la sección más grande */
+  margin-bottom: 40px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  min-height: 60vh; /* Establece una altura mínima para la sección */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.services-header h1 {
+  font-size: 48px; /* Aumenta el tamaño de la fuente */
+  margin-bottom: 20px;
+}
+
+.services-header p {
+  font-size: 24px; /* Aumenta el tamaño de la fuente */
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-card {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+  text-align: left;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.plan-details h4 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #333;
+}
+
+.plan-details p {
+  font-size: 16px;
+  color: #666;
+}
+.plans-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.service-item {
+  flex: 1;
+  margin: 10px;
+  max-width: 23%; /* Ajusta el tamaño de las tarjetas para que queden 4 por fila */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+
+.service-item img {
+  width: 150px; /* Ajusta el tamaño de la imagen */
+  height: auto; /* Mantiene la proporción de la imagen */
+  margin-right: 20px;
+  border-radius: 8px;
+}
+
+

@@ -1,0 +1,49 @@
+.services-section {
+  padding: 60px 20px;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.services-section h2 {
+  font-size: 32px;
+  margin-bottom: 40px;
+  color: #102532;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajusta el tamaño mínimo */
+  gap: 30px;
+  justify-items: center;
+}
+
+.service-item {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+  width: 100%; /* Asegura que ocupe todo el espacio disponible */
+  max-width: 350px; /* Limita el tamaño máximo */
+}
+
+.service-item:hover {
+  transform: translateY(-10px);
+}
+
+.service-item svg {
+  margin-bottom: 20px;
+  color: #102532;
+}
+
+.service-item h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.service-item p {
+  font-size: 16px;
+  color: #666;
+}
