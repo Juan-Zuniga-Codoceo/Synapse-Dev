@@ -86,9 +86,10 @@
 
 
 .service-item img {
-  width: 150px; /* Ajusta el tamaño de la imagen */
-  height: auto; /* Mantiene la proporción de la imagen */
-  margin-right: 20px;
+  width: 100%; /* Ajusta el ancho para que ocupe todo el contenedor */
+  height: 200px; /* Establece una altura fija */
+  object-fit: cover; /* Recorta la imagen para que se ajuste al contenedor */
+  margin-bottom: 20px;
   border-radius: 8px;
 }
 

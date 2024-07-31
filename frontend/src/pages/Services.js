@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../css/Services.css';
+import TechnologiesSection from '../components/TechnologiesSection';
 import landingPageImg from '../img/landing-page.jpg';
 import empresaServiciosImg from '../img/empresa-servicios.jpg';
 import ecommerceImg from '../img/ecommerce.jpg';
@@ -84,6 +85,7 @@ const Services = () => {
           </div>
         </div>
       )}
+      <TechnologiesSection />
     </div>
   );
 };

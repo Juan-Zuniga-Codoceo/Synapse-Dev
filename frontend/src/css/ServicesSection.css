@@ -47,3 +47,56 @@
   font-size: 16px;
   color: #666;
 }
+/* Especificidad para ServicesSection */
+.services-section .services-grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.services-section .service-item {
+  flex: 1;
+  margin: 10px;
+  max-width: 30%; /* Ajusta el tamaño de las tarjetas */
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.services-section .service-item:hover {
+  transform: translateY(-10px);
+}
+
+.services-section .service-item svg {
+  margin-bottom: 20px;
+  color: #102532;
+}
+
+.services-section .service-item h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.services-section .service-item p {
+  font-size: 16px;
+  color: #666;
+}
+.cta-button {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 15px; /* Espacio entre el botón y el contenido anterior */
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #ff4500;
+}
