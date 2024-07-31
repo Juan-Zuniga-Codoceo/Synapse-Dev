@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/Home.css';
 import ServicesSection from '../components/ServicesSection'; // Importamos el componente de servicios
 import { Link } from 'react-router-dom';
+import TechnologiesSection from '../components/TechnologiesSection';
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
         </div>
       </header>
       <ServicesSection /> {/* Integramos el componente de servicios */}
+      <TechnologiesSection />
     </div>
   );
 };
