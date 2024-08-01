@@ -32,7 +32,7 @@ const Services = () => {
           <img src={landingPageImg} alt="Landing Page" />
           <h2>Landing Page</h2>
           <p>Diseño y desarrollo de páginas de aterrizaje atractivas y optimizadas para conversiones.</p>
-          <button className="cta-button" onClick={() => togglePlan('basic')}>Detalle</button>
+          <button className="cta-button-1" onClick={() => togglePlan('basic')}>Detalle</button>
         </div>
 
         <div className="service-item">
@@ -46,7 +46,7 @@ const Services = () => {
           <img src={ecommerceImg} alt="Web Ecommerce" />
           <h2>Web Ecommerce</h2>
           <p>Soluciones de comercio electrónico para llevar tu tienda en línea al siguiente nivel.</p>
-          <button className="cta-button" onClick={() => togglePlan('ecommerce')}>Detalle</button>
+          <button className="cta-button-1" onClick={() => togglePlan('ecommerce')}>Detalle</button>
         </div>
 
         <div className="service-item">
