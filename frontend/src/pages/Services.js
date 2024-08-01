@@ -6,6 +6,8 @@ import landingPageImg from '../img/landing-page.jpg';
 import empresaServiciosImg from '../img/empresa-servicios.jpg';
 import ecommerceImg from '../img/ecommerce.jpg';
 import corredoraPropiedadesImg from '../img/corredora-propiedades.jpg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 
 const Services = () => {
   const [activePlan, setActivePlan] = useState(null);
@@ -55,37 +57,83 @@ const Services = () => {
         </div>
       </div>
 
-      {activePlan && (
+      {activePlan === 'basic' && (
         <div className="popup-overlay" onClick={closePopup}>
           <div className="popup-card" onClick={(e) => e.stopPropagation()}>
             <button className="close-button" onClick={closePopup}>X</button>
-            {activePlan === 'basic' && (
-              <div className="plan-details">
-                <h4>Landing Page</h4>
-                <p>Detalles completos sobre la creación y optimización de Landing Pages.</p>
+            <div className="plan-details">
+              <div className="plan-card">
+                <h5>Landing page 1</h5>
+                <p><strong>$120.000 CLP / $146 USD</strong></p>
+                <ul>
+                  <li>Menú Navegable</li>
+                  <li>1 Sección de contenido</li>
+                  <li>1 imagen</li>
+                  <li>Formulario de contacto</li>
+                </ul>
               </div>
-            )}
-            {activePlan === 'advanced' && (
-              <div className="plan-details">
-                <h4>Web Empresas y Servicios</h4>
-                <p>Detalles completos sobre el desarrollo de sitios web corporativos.</p>
+              <div className="plan-card">
+                <h5>Landing page 2</h5>
+                <p><strong>$150.000 CLP / $183 USD</strong></p>
+                <ul>
+                  <li>Menú Navegable</li>
+                  <li>2 Secciones de contenido</li>
+                  <li>1 imagen</li>
+                  <li>Formulario de contacto</li>
+                </ul>
               </div>
-            )}
-            {activePlan === 'ecommerce' && (
-              <div className="plan-details">
-                <h4>Web Ecommerce</h4>
-                <p>Detalles completos sobre soluciones de comercio electrónico.</p>
+              <div className="plan-card">
+                <h5>Landing page 3</h5>
+                <p><strong>$170.000 CLP / $207 USD</strong></p>
+                <ul>
+                  <li>Menú Navegable</li>
+                  <li>3 Secciones de contenido</li>
+                  <li>1 imagen</li>
+                  <li>Formulario de contacto</li>
+                </ul>
               </div>
-            )}
-            {activePlan === 'custom' && (
-              <div className="plan-details">
-                <h4>Web Corredora de Propiedades</h4>
-                <p>Detalles completos sobre el desarrollo de plataformas para corredoras de propiedades.</p>
+              <div className="plan-card">
+                <h5>Landing page 4</h5>
+                <p><strong>$200.000 CLP / $244 USD</strong></p>
+                <ul>
+                  <li>Menú Navegable</li>
+                  <li>4 Secciones de contenido</li>
+                  <li>1 imagen</li>
+                  <li>Formulario de contacto</li>
+                </ul>
               </div>
-            )}
+              <p><em>*Estos precios no incluyen impuestos de tu país</em></p>
+
+              <div className="service-buttons">
+                <a href="#contact" className="cta-button">Contactar</a>
+                <a href="https://wa.me/123456789" className="whatsapp-button">
+                  <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}
+
+      {activePlan === 'advanced' && (
+        <div className="plan-details">
+          <h4>Web Empresas y Servicios</h4>
+          <p>Detalles completos sobre el desarrollo de sitios web corporativos.</p>
+        </div>
+      )}
+      {activePlan === 'ecommerce' && (
+        <div className="plan-details">
+          <h4>Web Ecommerce</h4>
+          <p>Detalles completos sobre soluciones de comercio electrónico.</p>
+        </div>
+      )}
+      {activePlan === 'custom' && (
+        <div className="plan-details">
+          <h4>Web Corredora de Propiedades</h4>
+          <p>Detalles completos sobre el desarrollo de plataformas para corredoras de propiedades.</p>
+        </div>
+      )}
+
       <TechnologiesSection />
       <ContactSection />
     </div>

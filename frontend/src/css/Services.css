@@ -34,15 +34,18 @@
 }
 
 .popup-card {
-  background: white;
+  background: #102532;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  max-width: 500px;
+  max-width: 600px;
+  max-height: 80vh; /* Limitar la altura máxima del popup */
+  overflow-y: auto; /* Habilitar el scroll vertical */
   width: 100%;
   text-align: left;
   position: relative;
 }
+
 
 .close-button {
   position: absolute;
@@ -94,3 +97,85 @@
 }
 
 
+/* Cards de planes */
+.plan-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacio entre las cards */
+  padding: 20px;
+}
+
+.plan-card {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 300px;
+  flex: 1;
+}
+
+.plan-card h5 {
+  margin-top: 15px;
+}
+
+.plan-card ul {
+  margin-left: 20px;
+  list-style-type: disc;
+}
+
+.plan-card p {
+  font-size: 16px;
+  color: #666;
+}
+
+.service-buttons {
+  display: flex;
+  justify-content: space-around; /* Separar los botones en ambos lados */
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.cta-button {
+  background-color: #ff6600;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 180px;
+}
+
+.whatsapp-button {
+  background-color: #25d366;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 180px;
+  margin-top: 17px;
+}
+
+.cta-button:hover {
+  background-color: #ff4500;
+}
+
+.whatsapp-button:hover {
+  background-color: #1ebe54;
+}
+
+.whatsapp-button svg {
+  margin-right: 8px;
+  vertical-align: middle;
+}
