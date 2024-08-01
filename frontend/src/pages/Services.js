@@ -61,6 +61,7 @@ const Services = () => {
         <div className="popup-overlay" onClick={closePopup}>
           <div className="popup-card" onClick={(e) => e.stopPropagation()}>
             <button className="close-button" onClick={closePopup}>X</button>
+            <h4 className="plans-title">PLANES PARA LANDING PAGES </h4>
             <div className="plan-details">
               <div className="plan-card">
                 <h5>Landing page 1</h5>
@@ -115,24 +116,169 @@ const Services = () => {
         </div>
       )}
 
-      {activePlan === 'advanced' && (
-        <div className="plan-details">
-          <h4>Web Empresas y Servicios</h4>
-          <p>Detalles completos sobre el desarrollo de sitios web corporativos.</p>
+
+{activePlan === 'advanced' && (
+  <div className="popup-overlay" onClick={closePopup}>
+    <div className="popup-card" onClick={(e) => e.stopPropagation()}>
+      <button className="close-button" onClick={closePopup}>X</button>
+      <h4 className="plans-title">Planes para Web Empresas y Servicios</h4>
+      <div className="plan-details">
+        <div className="plan-card">
+          <h5>Plan Básico</h5>
+          <p><strong>$250.000 CLP / $305 USD</strong></p>
+          <ul>
+            <li>Inicio - Nosotros - Servicios - Detalle de servicios - Blog - Contacto</li>
+            <li>Galería de fotos de servicios</li>
+            <li>Buscador de servicios</li>
+            <li>Registro e inicio de sesión de clientes</li>
+          </ul>
         </div>
-      )}
-      {activePlan === 'ecommerce' && (
-        <div className="plan-details">
-          <h4>Web Ecommerce</h4>
-          <p>Detalles completos sobre soluciones de comercio electrónico.</p>
+        <div className="plan-card">
+          <h5>Plan Avanzado</h5>
+          <p><strong>$270.000 CLP / $329 USD</strong></p>
+          <ul>
+            <li>Inicio - Nosotros - Servicios - Detalle de servicios - Blog - Contacto</li>
+            <li>Galería de fotos de servicios</li>
+            <li>Buscador de servicios</li>
+            <li>Registro e inicio de sesión de clientes</li>
+            <li>Sistema reserva de horas</li>
+          </ul>
         </div>
-      )}
-      {activePlan === 'custom' && (
-        <div className="plan-details">
-          <h4>Web Corredora de Propiedades</h4>
-          <p>Detalles completos sobre el desarrollo de plataformas para corredoras de propiedades.</p>
+        <div className="plan-card">
+          <h5>Plan Experto</h5>
+          <p><strong>$280.000 CLP / $341 USD</strong></p>
+          <ul>
+            <li>Inicio - Nosotros - Servicios - Detalle de servicios - Blog - Contacto</li>
+            <li>Galería de fotos de servicios</li>
+            <li>Buscador de servicios</li>
+            <li>Registro e inicio de sesión de clientes</li>
+            <li>Sistema reserva de horas</li>
+            <li>Pago de abono para reserva</li>
+            <li>Webpay - Khipu - Flow - Transferencias - Paypal</li>
+          </ul>
         </div>
-      )}
+      </div>
+      <p><em>*Estos precios no incluyen impuestos de tu país</em></p>
+      <div className="service-buttons">
+        <a href="#contact" className="cta-button">Contactar</a>
+        <a href="https://wa.me/123456789" className="whatsapp-button">
+          <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
+
+{activePlan === 'ecommerce' && (
+  <div className="popup-overlay" onClick={closePopup}>
+    <div className="popup-card" onClick={(e) => e.stopPropagation()}>
+      <button className="close-button" onClick={closePopup}>X</button>
+      <h4 className="plans-title">Planes para Web Ecommerce</h4>
+      <div className="plan-details">
+        <div className="plan-card">
+          <h5>Plan Básico</h5>
+          <p><strong>$250.000 CLP / $270.000 (productos con tallas)</strong></p>
+          <ul>
+            <li>Inicio - Nosotros - Productos - Detalle de productos - Blog - Contacto</li>
+            <li>Categorías y subcategorías de productos</li>
+            <li>Galería de fotos de productos</li>
+            <li>Buscador de productos</li>
+            <li>Registro e inicio de sesión de clientes</li>
+            <li>Carro de compras</li>
+            <li>Métodos de pago: Webpay - Khipu - Flow - Transferencias - Paypal</li>
+            <li>Control de stock</li>
+            <li>Gastos de envío administrables</li>
+          </ul>
+        </div>
+        <div className="plan-card">
+          <h5>Plan Avanzado</h5>
+          <p><strong>$280.000 CLP / $300.000 (productos con tallas)</strong></p>
+          <ul>
+            <li>Inicio - Nosotros - Productos - Detalle de productos - Blog - Contacto</li>
+            <li>Categorías y subcategorías de productos</li>
+            <li>Galería de fotos de productos</li>
+            <li>Buscador de productos</li>
+            <li>Registro e inicio de sesión de clientes</li>
+            <li>Carro de compras</li>
+            <li>Métodos de pago: Webpay - Khipu - Flow - Transferencias - Paypal</li>
+            <li>Control de stock</li>
+            <li>Gastos de envío administrables</li>
+            <li>Sistema de cupones de descuento</li>
+            <li>Opción de habilitar ventas mayoristas</li>
+          </ul>
+        </div>
+        <div className="plan-card">
+          <h5>Plan Experto</h5>
+          <p><strong>$300.000 CLP / $320.000 (productos con tallas)</strong></p>
+          <ul>
+            <li>Inicio - Nosotros - Productos - Detalle de productos - Blog - Contacto</li>
+            <li>Categorías y subcategorías de productos</li>
+            <li>Galería de fotos de productos</li>
+            <li>Buscador de productos</li>
+            <li>Registro e inicio de sesión de clientes</li>
+            <li>Carro de compras</li>
+            <li>Métodos de pago: Webpay - Khipu - Flow - Transferencias - MercadoPago - Paypal</li>
+            <li>Control de stock</li>
+            <li>Gastos de envío administrables</li>
+            <li>Sistema de cupones de descuento</li>
+            <li>Opción de habilitar ventas mayoristas</li>
+            <li>Sincroniza productos con Mercadolibre</li>
+            <li>Cotizador Chilexpress para delivery</li>
+          </ul>
+        </div>
+      </div>
+      <p><em>*Estos precios no incluyen impuestos de tu país</em></p>
+      <div className="service-buttons">
+        <a href="#contact" className="cta-button">Contactar</a>
+        <a href="https://wa.me/123456789" className="whatsapp-button">
+          <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+)}
+
+
+
+
+
+{activePlan === 'custom' && (
+  <div className="popup-overlay" onClick={closePopup}>
+    <div className="popup-card" onClick={(e) => e.stopPropagation()}>
+      <button className="close-button" onClick={closePopup}>X</button>
+      <h4 className="plans-title">Planes para Corredoras de Propiedades</h4>
+      <div className="plan-details-1">
+        <div className="plan-card-1">
+          <h5>Plan Único</h5>
+          <p><strong>$250.000 CLP / $305 USD</strong></p>
+          <ul>
+            <li>Sección inicio con Slideshow</li>
+            <li>Sección Quienes somos (3 párrafos, 3 títulos, 3 imágenes administrables)</li>
+            <li>Sección de propiedades dividido en ventas y arriendo</li>
+            <li>Detalle de propiedad (galería de fotos, agenda visita, consulta de propiedades)</li>
+            <li>Confíanos tu propiedad (Formulario para registro de nuevos clientes)</li>
+            <li>Formulario de contacto, mapa de google y botón de WhatsApp</li>
+            <li>Sección de noticias o blog</li>
+            <li>Interfaz gráfica modelada con Bootstrap</li>
+            <li>Meta description y title administrables</li>
+            <li>Capacitación incluida para uso de la plataforma</li>
+          </ul>
+        </div>
+      </div>
+      <p><em>*Estos precios no incluyen impuestos de tu país</em></p>
+      <div className="service-buttons">
+        <a href="#contact" className="cta-button">Contactar</a>
+        <a href="https://wa.me/123456789" className="whatsapp-button">
+          <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+)}
+
 
       <TechnologiesSection />
       <ContactSection />
