@@ -186,8 +186,9 @@
   height: 45px; /* Mantener altura uniforme */
   width: 180px; /* Mantener ancho uniforme */
   margin-top: 45px;
-
+  border: none; /* Eliminar borde negro */
 }
+
 
 .whatsapp-button {
   background-color: #25d366;
