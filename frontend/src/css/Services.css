@@ -11,13 +11,35 @@
   align-items: center;
 }
 
+.services-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 87%;
+    background-color: rgba(0, 0, 0, 0.5); /* Capa negra con transparencia */
+    z-index: 1;
+ }
+
 .services-header h1 {
-  font-size: 48px;
-  margin-bottom: 20px;
+  position: relative;
+  z-index: 2; /* Asegura que el texto esté encima de la capa negra */
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  max-width: 80%;
+  font-size: 60px;
 }
 
 .services-header p {
-  font-size: 24px;
+  position: relative;
+  z-index: 2; /* Asegura que el texto esté encima de la capa negra */
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  max-width: 80%;
+  font-size: 20px;
 }
 
 .popup-overlay {
