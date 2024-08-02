@@ -10,11 +10,13 @@ const Portfolio = () => {
   return (
     <div>
         <header className="portfolio-header">
+        <div className="portfolio-hero">
         <h1>Portafolio</h1>
         <p>
           Explora nuestros proyectos recientes y descubre cómo hemos ayudado a
           nuestros clientes a alcanzar sus metas.
         </p>
+        </div>
       </header>
 
     <div className="portfolio-page">

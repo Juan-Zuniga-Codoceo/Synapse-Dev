@@ -1,0 +1,66 @@
+.last-projects {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .last-projects h2 {
+    color: #ff6600;
+    margin-bottom: 30px;
+    font-size: 32px;
+  }
+  
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .project-item {
+    position: relative;
+    background-color: #f4f4f4;
+    padding: 10px; /* Ajusta el padding para hacer las cards más pequeñas */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .project-item img {
+    width: 80%; /* Ajusta el tamaño de la imagen dentro de la card */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .project-item h3 {
+    font-size: 18px; /* Reduce el tamaño de la fuente del título */
+    margin-bottom: 8px;
+    color: #ff6600;
+  }
+  
+  .project-item .link-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+  }
+  
+  .project-item:hover .link-overlay {
+    opacity: 1;
+  }
+  
+  .link-overlay a {
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+  }
+  
