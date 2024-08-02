@@ -12,7 +12,7 @@ const Home = () => {
           <h1>Bienvenido a Synapse Dev</h1>
           <p>Tu socio en soluciones innovadoras de desarrollo web.</p>
           <Link to="/about">
-            <button className="cta-button">Conócenos</button>
+            <button className="cta-button-hero">Conócenos</button>
           </Link>
         </div>
       </header>

@@ -106,9 +106,10 @@
 
 .plan-details-1 {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center; /* Centra las tarjetas en el contenedor */
 }
 
 .plan-card {
@@ -134,6 +135,25 @@
   margin: 0 auto;
 }
 
+.plan-card-1 h5 {
+  margin-top: 15px;
+}
+
+.plan-card-1 ul {
+  flex-grow: 1; /* Hace que la lista crezca para ocupar el espacio disponible */
+  margin-left: 20px;
+  list-style-type: disc;
+}
+.plan-card-1 p {
+  font-size: 16px;
+  color: #dc0e0e;
+  margin-top: 30px;
+  justify-content: center;
+  text-align: left;
+}
+
+
+
 .plan-card h5 {
   margin-top: 15px;
 }
@@ -145,7 +165,7 @@
 }
 .plan-card p {
   font-size: 16px;
-  color: #666;
+  color: #dc0e0e;
 }
 
 .service-buttons {
@@ -222,7 +242,7 @@
 .plans-title {
   text-align: center;
   font-size: 32px;
-  color: white;
+  color: #ff6600;
   margin-bottom: 20px;
   text-transform: uppercase;
   font-weight: bold;

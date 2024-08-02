@@ -61,8 +61,8 @@ const Services = () => {
         <div className="popup-overlay" onClick={closePopup}>
           <div className="popup-card" onClick={(e) => e.stopPropagation()}>
             <button className="close-button" onClick={closePopup}>X</button>
-            <h4 className="plans-title">PLANES PARA LANDING PAGES </h4>
-            <div className="plan-details-1">
+            <h4 className="plans-title">PLANES PARA LANDING PAGE </h4>
+            <div className="plan-details">
               <div className="plan-card-1">
                 <h5>Landing page 1</h5>
                 <p><strong>$120.000 CLP / $146 USD</strong></p>
@@ -250,8 +250,8 @@ const Services = () => {
     <div className="popup-card" onClick={(e) => e.stopPropagation()}>
       <button className="close-button" onClick={closePopup}>X</button>
       <h4 className="plans-title">Planes para Corredoras de Propiedades</h4>
-      <div className="plan-details-1">
-        <div className="plan-card-1">
+      <div className="plan-details">
+        <div className="plan-card">
           <h5>Plan Único</h5>
           <p><strong>$250.000 CLP / $305 USD</strong></p>
           <ul>
