@@ -1,7 +1,28 @@
 .footer {
-    background: #333;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-  }
-  
+  background: #102532;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.social-media {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centrar los iconos */
+  gap: 15px; /* Espacio entre los íconos */
+}
+
+.social-media li {
+  display: inline-block;
+}
+
+.social-media a {
+  color: white;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.social-media a:hover {
+  color: #ff6600;
+}
