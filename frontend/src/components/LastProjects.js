@@ -8,7 +8,7 @@ const LastProjects = () => {
   const projects = [
     {
       img: project1,
-      title: "Web Dev Solution",
+      title: "Synapse Dev - Web Dev Solution",
       link: "https://juan-zuniga-codoceo.github.io/webDev.github.io/#",
     },
     {
