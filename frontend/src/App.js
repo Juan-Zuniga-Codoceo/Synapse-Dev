@@ -6,7 +6,8 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Portfolio from './pages/Portfolio';
 import About from './pages/About';
-import Blog from './pages/Blog';
+import BlogList from './components/BlogList'; // Importación correcta
+import BlogPost from './components/BlogPost'; // Importación correcta
 import Contact from './pages/Contact';
 
 const App = () => {
@@ -19,7 +20,8 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/about" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog" element={<BlogList />} />
+          <Route path="/post/:postId" element={<BlogPost />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <Footer />

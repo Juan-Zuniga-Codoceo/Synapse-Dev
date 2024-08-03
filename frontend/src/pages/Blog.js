@@ -1,25 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import BlogList from "../components/BlogList";
+import BlogPost from "../components/BlogPost";
+import "../css/Blog.css";
 
 const Blog = () => {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    axios.get('https://public-api.wordpress.com/wp/v2/sites/slake167.wordpress.com/posts')
-      .then(response => setPosts(response.data))
-      .catch(error => console.log(error));
-  }, []);
-
   return (
-    <div>
-      <h1>Blog</h1>
-      {posts.map(post => (
-        <div key={post.id}>
-          <h2>{post.title.rendered}</h2>
-          <div dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
+    <Router>
+      <div className="blog-page-container">
+        <div className="blog-page">
+          <h1>Blog</h1>
+          <Routes>
+            <Route path="/" element={<BlogList />} />
+            <Route path="/post/:postId" element={<BlogPost />} />
+          </Routes>
         </div>
-      ))}
-    </div>
+      </div>
+    </Router>
   );
 };
 
