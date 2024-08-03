@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import '../css/Blog.css';
+
+const decodeEntities = (encodedString) => {
+  const textarea = document.createElement('textarea');
+  textarea.innerHTML = encodedString;
+  return textarea.value;
+};
 
 const BlogPost = () => {
   const { postId } = useParams();
@@ -17,8 +23,11 @@ const BlogPost = () => {
 
   return (
     <div className="blog-post">
-      <h1>{post.title.rendered}</h1>
+      <h1>{decodeEntities(post.title.rendered)}</h1>
       <div dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+      <div className="back-to-blog">
+        <Link to="/blog" className="blog-button">Ver todos los posts</Link>
+      </div>
     </div>
   );
 };
