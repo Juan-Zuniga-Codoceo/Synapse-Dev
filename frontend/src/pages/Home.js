@@ -4,6 +4,7 @@ import ServicesSection from '../components/ServicesSection'; // Importamos el co
 import { Link } from 'react-router-dom';
 import TechnologiesSection from '../components/TechnologiesSection';
 import LastProjects from '../components/LastProjects';
+import LatestPosts from '../components/LatestPosts';
 
 const Home = () => {
   return (
@@ -20,6 +21,7 @@ const Home = () => {
       <ServicesSection /> {/* Integramos el componente de servicios */}
       <TechnologiesSection />
       <LastProjects />
+      <LatestPosts />
     </div>
   );
 };
