@@ -12,15 +12,16 @@ const LastProjects = () => {
       link: "https://juan-zuniga-codoceo.github.io/webDev.github.io/#",
     },
     {
-      img: project2,
-      title: "Synapse Dev - Abogados",
-      link: "https://synapsedev-abogados.netlify.app/",
-    },
-    {
       img: project3,
       title: "Synapse Dev - Pizzería",
       link: "https://synapsedev-pizzeria.netlify.app/",
     },
+    {
+      img: project2,
+      title: "Synapse Dev - Abogados",
+      link: "https://synapsedev-abogados.netlify.app/",
+    },
+    
   ];
 
   return (

@@ -55,25 +55,6 @@ const Portfolio = () => {
         <div className="project-item">
           <div className="link-overlay">
             <a
-              href="https://synapsedev-abogados.netlify.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Ir a la web
-            </a>
-          </div>
-          <img src={project2} alt="Project 2" />
-          <h3>Synapse Dev - Abogados</h3>
-          <p>
-            Una página web diseñada para un estudio jurídico, enfocada en la
-            presentación clara y profesional de los servicios legales. La
-            estructura intuitiva y el diseño elegante facilitan la navegación
-            para los usuarios.
-          </p>
-        </div>
-        <div className="project-item">
-          <div className="link-overlay">
-            <a
               href="https://synapsedev-pizzeria.netlify.app/"
               target="_blank"
               rel="noopener noreferrer"
@@ -90,6 +71,26 @@ const Portfolio = () => {
             fluida.
           </p>
         </div>
+        <div className="project-item">
+          <div className="link-overlay">
+            <a
+              href="https://synapsedev-abogados.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ir a la web
+            </a>
+          </div>
+          <img src={project2} alt="Project 2" />
+          <h3>Synapse Dev - Abogados</h3>
+          <p>
+            Una página web diseñada para un estudio jurídico, enfocada en la
+            presentación clara y profesional de los servicios legales. La
+            estructura intuitiva y el diseño elegante facilitan la navegación
+            para los usuarios.
+          </p>
+        </div>
+        
       </div>
     </div>
     <br></br>

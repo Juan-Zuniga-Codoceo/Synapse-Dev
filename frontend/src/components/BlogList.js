@@ -20,12 +20,14 @@ const BlogList = () => {
   }
 
   return (
-    <div>
-      <h1>Blog</h1>
+    <div className="blog-list">
       {posts.map(post => (
-        <div key={post.id}>
+        <div key={post.id} className="blog-card">
+          {/* Aquí puedes agregar una imagen si la API la proporciona */}
+          <img src="https://via.placeholder.com/350" alt={post.title.rendered} />
           <h2>{post.title.rendered}</h2>
-          <div dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
+          <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }} />
+          <a href={`/post/${post.id}`} className="read-more">Leer más</a>
         </div>
       ))}
     </div>

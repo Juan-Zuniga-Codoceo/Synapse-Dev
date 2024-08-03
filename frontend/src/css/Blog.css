@@ -1,66 +1,87 @@
 .blog-page {
-    padding: 20px;
-  }
-  
-  .blog-list {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.blog-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .blog-card {
-    background: #f4f4f4;
+    gap: 30px;
+    justify-content: center;
+}
+
+.blog-card {
+    background: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 30%;
-    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 350px;
+    text-align: left;
     position: relative;
-  }
-  
-  .blog-card img {
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+}
+
+.blog-card img {
     width: 100%;
     border-radius: 8px;
     margin-bottom: 15px;
-  }
-  
-  .blog-card h2 {
-    font-size: 20px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.blog-card h2 {
+    font-size: 22px;
     margin-bottom: 10px;
-    color: #ff6600;
-  }
-  
-  .blog-card .read-more {
+    color: #333;
+}
+
+.blog-card p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.blog-card .read-more {
     background-color: #ff6600;
     color: white;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
     position: absolute;
-    bottom: 10px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-  }
-  
-  .blog-post {
+}
+
+.blog-post {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .blog-post h1 {
+    padding: 40px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post h1 {
     font-size: 32px;
     margin-bottom: 20px;
-  }
-  
-  .blog-post p {
+}
+
+.blog-post p {
     font-size: 18px;
-    line-height: 1.6;
-  }
-  
-  .blog-page-container {
+    line-height: 1.8;
+    color: #666;
+}
+
+.blog-post img {
     width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
