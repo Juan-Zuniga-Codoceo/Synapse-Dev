@@ -1,0 +1,140 @@
+.contact-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .contact-hero {
+    background-image: url('../img/contact-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 210vh;
+    margin-left: -2vh;
+    margin-top: -5vh;
+  }
+  
+  .contact-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Capa oscura */
+    z-index: 1;
+  }
+  
+  .contact-hero .overlay {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .contact-hero h1 {
+    font-size: 48px;
+    margin: 0;
+    color: #ff6600;
+  }
+  
+  .contact-hero p {
+    font-size: 24px;
+    margin-top: 10px;
+  }
+  
+  .contact-form {
+    margin: 40px 0;
+    text-align: center;
+  }
+  
+  .contact-form h2 {
+    color: #ff6600;
+    margin-bottom: 20px;
+  }
+  
+  .contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  .contact-form textarea {
+    height: 150px;
+    resize: none;
+  }
+  
+  .contact-form .cta-button {
+    background-color: #ff6600;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact-form .cta-button:hover {
+    background-color: #ff4500;
+  }
+  
+  .contact-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 40px 0;
+    text-align: center;
+  }
+  
+  .contact-info .contact-item {
+    flex: 1;
+    margin: 20px;
+  }
+  
+  .contact-info .contact-item i {
+    font-size: 30px;
+    color: #ff6600;
+    margin-bottom: 10px;
+  }
+  
+  .contact-info .contact-item p {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .contact-map-social {
+    margin: 40px 0;
+    text-align: center;
+  }
+  
+  .contact-map-social .map {
+    margin-bottom: 20px;
+    height: 300px;
+    background-color: #f4f4f4;
+  }
+  
+  .social-media a {
+    color: #ff6600;
+    font-size: 30px;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .social-media a:hover {
+    color: #ff4500;
+  }
+  

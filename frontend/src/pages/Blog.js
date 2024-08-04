@@ -1,22 +1,22 @@
+// Blog.js
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import BlogList from "../components/BlogList";
-import BlogPost from "../components/BlogPost";
 import "../css/Blog.css";
 
 const Blog = () => {
+  console.log("Blog.js rendered");
   return (
-    <Router>
-      <div className="blog-page-container">
-        <div className="blog-page">
-          <h1>Blog</h1>
-          <Routes>
-            <Route path="/" element={<BlogList />} />
-            <Route path="/post/:postId" element={<BlogPost />} />
-          </Routes>
+    <div className="blog-page-container">
+      <header className="blog-hero">
+        <div className="overlay">
+          <h1>Bienvenido/a a nuestro Blog</h1>
+          <p>Explora nuestros últimos artículos y novedades</p>
         </div>
+      </header>
+      <div className="blog-page">
+        <BlogList />
       </div>
-    </Router>
+    </div>
   );
 };
 
