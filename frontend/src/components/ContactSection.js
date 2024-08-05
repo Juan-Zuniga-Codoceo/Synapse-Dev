@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
-import emailjs from 'emailjs-com';
-import ReCAPTCHA from 'react-google-recaptcha';
-import '../css/ContactSection.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faInstagram, faYoutube, faTiktok, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import React, { useState } from "react";
+import emailjs from "emailjs-com";
+import ReCAPTCHA from "react-google-recaptcha";
+import "../css/ContactSection.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebookF,
+  faInstagram,
+  faYoutube,
+  faTiktok,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 const ContactSection = () => {
   const [recaptchaToken, setRecaptchaToken] = useState(null);
@@ -14,15 +20,15 @@ const ContactSection = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
-
+  
     if (!recaptchaToken) {
       alert("Por favor, completa el reCAPTCHA.");
       return;
     }
-
+  
     const formData = new FormData(e.target);
     formData.append('token', recaptchaToken);
-
+  
     fetch('/send-email', {
       method: 'POST',
       body: formData,
@@ -39,39 +45,71 @@ const ContactSection = () => {
         console.log(error);
         alert('Hubo un error al enviar el mensaje');
       });
-
+  
     e.target.reset();
   };
+  
 
   return (
     <section className="contact-section">
       <div className="contact-content">
         <div className="contact-form-wrapper">
           <h2>Contáctanos</h2>
-          <br/>
+          <br />
           <form className="contact-form" onSubmit={sendEmail}>
             <div className="form-group">
               <input type="text" name="name" placeholder="Nombre" required />
               <div className="phone-email">
                 <input type="text" name="phone" placeholder="+56 Teléfono" />
-                <input type="email" name="email" placeholder="E-mail" required />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="E-mail"
+                  required
+                />
               </div>
-              <textarea name="message" placeholder="Mensaje" required></textarea>
+              <textarea
+                name="message"
+                placeholder="Mensaje"
+                required
+              ></textarea>
             </div>
             <ReCAPTCHA
-  sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-  onChange={onReCAPTCHAChange}
-/>
+              sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+              onChange={onReCAPTCHAChange}
+            />
 
-            <button type="submit" className="submit-button">Enviar</button>
+            <button type="submit" className="submit-button">
+              Enviar
+            </button>
           </form>
           <div className="social-media">
             <ul>
-              <li><a href="#"><FontAwesomeIcon icon={faFacebookF} /></a></li>
-              <li><a href="#"><FontAwesomeIcon icon={faInstagram} /></a></li>
-              <li><a href="#"><FontAwesomeIcon icon={faYoutube} /></a></li>
-              <li><a href="#"><FontAwesomeIcon icon={faTiktok} /></a></li>
-              <li><a href="#"><FontAwesomeIcon icon={faTwitter} /></a></li>
+              <li>
+                <a href="#">
+                  <FontAwesomeIcon icon={faFacebookF} />
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <FontAwesomeIcon icon={faInstagram} />
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <FontAwesomeIcon icon={faYoutube} />
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <FontAwesomeIcon icon={faTiktok} />
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <FontAwesomeIcon icon={faTwitter} />
+                </a>
+              </li>
             </ul>
           </div>
         </div>

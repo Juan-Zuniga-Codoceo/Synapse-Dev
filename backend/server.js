@@ -1,36 +1,58 @@
 require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const axios = require('axios');
+const nodemailer = require('nodemailer');
+const cors = require('cors');
 
 const app = express();
+
+// Configuración de CORS para permitir solicitudes desde el frontend
+app.use(cors({
+  origin: 'http://localhost:3000', // Reemplaza con la URL de tu frontend si es diferente
+  methods: ['POST'], // Solo permitimos POST en este caso
+}));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/send-email', async (req, res) => {
-  const { token, name, email, message } = req.body;
+// Configuración de nodemailer basada en la información proporcionada
+const transporter = nodemailer.createTransport({
+  host: 'mboxhosting.com', // Servidor SMTP
+  port: 587, // Puedes usar 25 o 587 para STARTTLS
+  secure: false, // false para STARTTLS, true para SSL/TLS
+  auth: {
+    user: process.env.EMAIL_USER, // Tu correo electrónico (e.g., contacto@synapsedev.cl)
+    pass: process.env.EMAIL_PASS  // Tu contraseña de correo electrónico
+  },
+  tls: {
+    rejectUnauthorized: false // Utiliza esto si estás teniendo problemas con certificados no verificados
+  }
+});
 
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-  const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}`;
+app.post('/send-email', async (req, res) => {
+  console.log('Solicitud recibida:', req.body);  // Añadir este log para ver la solicitud
+
+  const { name, email, subject, message } = req.body;
+
+  if (!name || !email || !subject || !message) {
+    return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+  }
+
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    replyTo: email,
+    to: process.env.EMAIL_TO,
+    subject: subject,
+    text: `Nombre: ${name}\nCorreo: ${email}\nMensaje:\n${message}`
+  };
 
   try {
-    const response = await axios.post(verifyUrl);
-    if (!response.data.success) {
-      return res.status(400).json({ error: 'Failed captcha verification' });
-    }
-
-    // Aquí envías el email usando EmailJS o cualquier servicio de tu elección
-    emailjs.send(
-      'service_1msab3m',
-      'template_xiw5q6u',
-      { name, email, message },
-      'SlG90DUKfXFv5Dr8I'
-    )
-      .then(() => res.status(200).json({ success: 'Mensaje enviado correctamente' }))
-      .catch((error) => res.status(500).json({ error: 'Error al enviar el correo' }));
-
+    const info = await transporter.sendMail(mailOptions);
+    console.log('Mensaje enviado:', info.response);
+    res.status(200).json({ success: 'Mensaje enviado correctamente' });
   } catch (error) {
-    res.status(500).json({ error: 'Error al verificar reCAPTCHA' });
+    console.error('Error al enviar el correo:', error);
+    res.status(500).json({ error: 'Error al enviar el correo' });
   }
 });
 
