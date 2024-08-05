@@ -59,9 +59,10 @@ const ContactSection = () => {
               <textarea name="message" placeholder="Mensaje" required></textarea>
             </div>
             <ReCAPTCHA
-              sitekey="6LdR7R4qAAAAAE2eXndfpsP1iiCtvEuUIJhSbwBv"
-              onChange={onReCAPTCHAChange}
-            />
+  sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+  onChange={onReCAPTCHAChange}
+/>
+
             <button type="submit" className="submit-button">Enviar</button>
           </form>
           <div className="social-media">
