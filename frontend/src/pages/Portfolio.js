@@ -21,14 +21,14 @@ const Portfolio = () => {
 
     <div className="portfolio-page">
       <section className="portfolio-intro">
-        <h1>Bienvenido/a a nuestro portafolio!</h1>
+        <h1>¡Bienvenido/a a nuestro portafolio!</h1>
         <p>
           En nuestro portafolio, puedes descubrir una selección de nuestros
           proyectos más destacados en diseño web y gráfico. Hemos trabajado en
           una variedad de áreas, desde sitios web de comercio electrónico hasta
           proyectos corporativos. Cada diseño representa un desafío único y una
           oportunidad para crecer y mejorar. ¡Esperamos que disfrutes explorando
-          nuestro trabajo tanto como nosotros disfrutamos creándolo! 😊
+          nuestro trabajo tanto como nosotros disfrutamos creándolo! 
         </p>
       </section>
 

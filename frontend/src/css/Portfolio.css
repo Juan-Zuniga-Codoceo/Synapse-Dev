@@ -7,7 +7,7 @@
   background-image: url("../img/portafolio.jpg");
   background-size: cover;
   background-position: center;
-  width: 102.5%;
+  width: 100%; /* Asegura que cubra todo el ancho */
   height: 60vh;
   margin: 0;
   padding: 0;
@@ -16,7 +16,7 @@
   justify-content: center;
   align-items: center;
   color: white;
-  text-align: center;
+  text-align: left; /* Alinea el texto a la izquierda */
   position: relative;
 }
 
@@ -32,14 +32,13 @@
 }
 
 .portfolio-hero {
-  max-width: 800px;
+  max-width: 80%; /* Ajusta el ancho máximo para una mejor distribución del texto */
   margin: 0 auto;
-  
   padding: 20px;
   border-radius: 8px;
   position: relative;
   z-index: 2;
-  width: 80vh;
+  width: 100%;
   margin-top: 10vh;
 }
 
@@ -49,18 +48,21 @@
   z-index: 2;
   padding: 10px 20px;
   border-radius: 5px;
-  max-width: 80%;
+  max-width: 100%;
 }
 
 .portfolio-header h1 {
-  font-size: 64px; /* Ajusta el tamaño según lo que necesites */
-    margin-bottom: 10px;
-    color: #ff6600;
+  font-size: 60px; /* Ajusta el tamaño según lo que necesites */
+  margin-bottom: 10px;
+  color: #ff6600;
+  text-align: center; /* Mantén el título centrado */
 }
 
 .portfolio-header p {
-  font-size: 28px; /* Ajusta el tamaño según lo que necesites */
-    margin-bottom: 20px;
+  font-size: 20px; /* Ajusta el tamaño según lo que necesites */
+  margin-bottom: 20px;
+  text-align: center; /* Asegura que el párrafo esté alineado a la izquierda */
+  line-height: 1.5; /* Añade espacio entre las líneas para mejorar la legibilidad */
 }
 
 .portfolio-intro {
@@ -82,7 +84,7 @@
 }
 
 .project-item img {
-  width: 50%;
+  width: 100%; /* Ajustado para que la imagen cubra el ancho completo del contenedor */
   height: auto;
   border-radius: 8px;
   margin-bottom: 15px;
@@ -138,4 +140,3 @@
   font-size: 30px;
   text-decoration: none;
 }
-
