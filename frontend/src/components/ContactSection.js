@@ -11,7 +11,7 @@ import {
   faTiktok,
   faTwitter
 } from "@fortawesome/free-brands-svg-icons";
-import { faFilePdf } from "@fortawesome/free-solid-svg-icons"; // Correcta importación del icono
+import { faFilePdf } from "@fortawesome/free-solid-svg-icons"; 
 
 const ContactSection = () => {
   const [loading, setLoading] = useState(false);
@@ -20,8 +20,38 @@ const ContactSection = () => {
     e.preventDefault();
     setLoading(true);
 
-    // Lógica de envío de correo
-    setLoading(false); // Placeholder
+    const formData = {
+      name: e.target.name.value,
+      phone: e.target.phone.value,
+      email: e.target.email.value,
+      subject: e.target.subject.value,
+      message: e.target.message.value,
+    };
+
+    try {
+      const response = await fetch('http://localhost:5000/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert('Mensaje enviado con éxito');
+      } else {
+        alert('Hubo un error al enviar el mensaje');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Hubo un error al enviar el mensaje');
+    } finally {
+      setLoading(false);
+    }
+
+    e.target.reset();
   };
 
   return (
@@ -46,7 +76,9 @@ const ContactSection = () => {
         </div>
         <div className="contact-section-docs-card">
           <h2>Documentos Importantes</h2>
+          <br />
           <p>Descarga los siguientes documentos que te ayudarán a entender mejor nuestros servicios:</p>
+          <br />
           <div className="contact-section-docs-container">
             <a href="/docs/cotizaciones.pdf" className="contact-section-doc-link" download>
               <FontAwesomeIcon icon={faFilePdf} className="contact-section-doc-icon" />
