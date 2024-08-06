@@ -44,29 +44,29 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact-page-container">
-      <header className="contact-hero">
-        <div className="overlay">
+    <div className="contact-page-wrapper">
+      <header className="contact-page-hero">
+        <div className="contact-page-overlay">
           <h1>¿Listo para conectar?</h1>
           <p>Estamos aquí para ayudarte.</p>
         </div>
       </header>
 
-      <section className="contact-form">
+      <section className="contact-page-form">
         <h2>Contáctanos</h2>
         <form onSubmit={sendEmail}>
           <input type="text" name="name" placeholder="Nombre" required />
           <input type="email" name="email" placeholder="Correo Electrónico" required />
           <input type="text" name="subject" placeholder="Asunto" required />
           <textarea name="message" placeholder="Mensaje" required></textarea>
-          <button type="submit" className="cta-button" disabled={loading}>
+          <button type="submit" className="contact-page-cta-button" disabled={loading}>
             {loading ? 'Enviando...' : 'Enviar Mensaje'}
           </button>
         </form>
       </section>
 
-      <section className="contact-social">
-        <div className="social-media">
+      <section className="contact-page-social">
+        <div className="contact-page-social-media">
           <a href="#"><i className="fab fa-facebook-f"></i></a>
           <a href="#"><i className="fab fa-twitter"></i></a>
           <a href="#"><i className="fab fa-linkedin-in"></i></a>
@@ -74,7 +74,7 @@ const Contact = () => {
       </section>
 
       {loading && (
-        <div className="loader-overlay"> {/* Capa oscura */}
+        <div className="contact-page-loader-overlay"> {/* Capa oscura */}
           <Loader type="ball-spin-fade-loader" />
         </div>
       )}

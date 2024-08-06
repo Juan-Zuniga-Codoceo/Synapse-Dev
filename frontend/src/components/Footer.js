@@ -8,8 +8,8 @@ const Footer = () => {
     <footer className="footer">
       <p>© 2024 Synapse Dev. Todos los derechos reservados.</p>
       <ul className="social-media">
-        <li><a href="#"><FontAwesomeIcon icon={faFacebookF} /></a></li>
-        <li><a href="#"><FontAwesomeIcon icon={faInstagram} /></a></li>
+        <li><a href="https://web.facebook.com/profile.php?id=61563375403408&locale=es_LA"><FontAwesomeIcon icon={faFacebookF} /></a></li>
+        <li><a href="https://www.instagram.com/synapse_dev/?hl=es-es"><FontAwesomeIcon icon={faInstagram} /></a></li>
         <li><a href="#"><FontAwesomeIcon icon={faYoutube} /></a></li>
         <li><a href="#"><FontAwesomeIcon icon={faTiktok} /></a></li>
         <li><a href="#"><FontAwesomeIcon icon={faTwitter} /></a></li>

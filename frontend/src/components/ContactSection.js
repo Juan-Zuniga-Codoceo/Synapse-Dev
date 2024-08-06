@@ -1,130 +1,81 @@
-import React, { useState } from "react";
-import emailjs from "emailjs-com";
-import ReCAPTCHA from "react-google-recaptcha";
-import "../css/ContactSection.css";
+import React, { useState } from 'react';
+import Loader from 'react-loaders';
+import '../css/ContactSection.css';
+import 'loaders.css/src/animations/ball-spin-fade-loader.scss';
+import synapseLogo from '../img/Logo_mail-removebg-preview.png';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookF,
   faInstagram,
   faYoutube,
   faTiktok,
-  faTwitter,
+  faTwitter
 } from "@fortawesome/free-brands-svg-icons";
+import { faFilePdf } from "@fortawesome/free-solid-svg-icons"; // Correcta importación del icono
 
 const ContactSection = () => {
-  const [recaptchaToken, setRecaptchaToken] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const onReCAPTCHAChange = (token) => {
-    setRecaptchaToken(token);
-  };
-
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
-  
-    if (!recaptchaToken) {
-      alert("Por favor, completa el reCAPTCHA.");
-      return;
-    }
-  
-    const formData = new FormData(e.target);
-    formData.append('token', recaptchaToken);
-  
-    fetch('/send-email', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          alert('Mensaje enviado con éxito');
-        } else {
-          alert('Hubo un error al enviar el mensaje');
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        alert('Hubo un error al enviar el mensaje');
-      });
-  
-    e.target.reset();
+    setLoading(true);
+
+    // Lógica de envío de correo
+    setLoading(false); // Placeholder
   };
-  
 
   return (
-    <section className="contact-section">
-      <div className="contact-content">
-        <div className="contact-form-wrapper">
+    <section className="contact-section-wrapper">
+      <div className="contact-section-content">
+        <div className="contact-section-form-card">
           <h2>Contáctanos</h2>
-          <br />
-          <form className="contact-form" onSubmit={sendEmail}>
-            <div className="form-group">
+          <form className="contact-section-form" onSubmit={sendEmail}>
+            <div className="contact-section-form-group">
               <input type="text" name="name" placeholder="Nombre" required />
-              <div className="phone-email">
+              <div className="contact-section-phone-email">
                 <input type="text" name="phone" placeholder="+56 Teléfono" />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="E-mail"
-                  required
-                />
+                <input type="email" name="email" placeholder="E-mail" required />
               </div>
-              <textarea
-                name="message"
-                placeholder="Mensaje"
-                required
-              ></textarea>
+              <input type="text" name="subject" placeholder="Asunto" required />
+              <textarea name="message" placeholder="Mensaje" required></textarea>
             </div>
-            <ReCAPTCHA
-              sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-              onChange={onReCAPTCHAChange}
-            />
-
-            <button type="submit" className="submit-button">
+            <button type="submit" className="contact-section-submit-button">
               Enviar
             </button>
           </form>
-          <div className="social-media">
+        </div>
+        <div className="contact-section-docs-card">
+          <h2>Documentos Importantes</h2>
+          <p>Descarga los siguientes documentos que te ayudarán a entender mejor nuestros servicios:</p>
+          <div className="contact-section-docs-container">
+            <a href="/docs/cotizaciones.pdf" className="contact-section-doc-link" download>
+              <FontAwesomeIcon icon={faFilePdf} className="contact-section-doc-icon" />
+              Descargar Cotizaciones
+            </a>
+            <a href="/docs/guia-basica-web.pdf" className="contact-section-doc-link" download>
+              <FontAwesomeIcon icon={faFilePdf} className="contact-section-doc-icon" />
+              Guía Básica de Web
+            </a>
+          </div>
+          <div className="contact-section-image-container">
+            <img src={synapseLogo} alt="Logo Synapse Dev" className="contact-section-logo" />
+          </div>
+          <div className="contact-section-social-media">
             <ul>
-              <li>
-                <a href="#">
-                  <FontAwesomeIcon icon={faFacebookF} />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <FontAwesomeIcon icon={faInstagram} />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <FontAwesomeIcon icon={faYoutube} />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <FontAwesomeIcon icon={faTiktok} />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <FontAwesomeIcon icon={faTwitter} />
-                </a>
-              </li>
+              <li><a href="https://web.facebook.com/profile.php?id=61563375403408&locale=es_LA"><FontAwesomeIcon icon={faFacebookF} /></a></li>
+              <li><a href="https://www.instagram.com/synapse_dev/?hl=es-es"><FontAwesomeIcon icon={faInstagram} /></a></li>
+              <li><a href="#"><FontAwesomeIcon icon={faYoutube} /></a></li>
+              <li><a href="#"><FontAwesomeIcon icon={faTiktok} /></a></li>
+              <li><a href="#"><FontAwesomeIcon icon={faTwitter} /></a></li>
             </ul>
           </div>
         </div>
-        <div className="map-wrapper">
-          <iframe
-            title="Google Maps"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3168.9556310483485!2d-122.08424968468149!3d37.4219997798251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb5a6b2a4e3f3%3A0x2b1c8e1a0b3b2b0e!2sGoogleplex!5e0!3m2!1sen!2sus!4v1600904514455!5m2!1sen!2sus"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-          ></iframe>
-        </div>
       </div>
+      {loading && (
+        <div className="contact-section-loader-overlay">
+          <Loader type="ball-spin-fade-loader" />
+        </div>
+      )}
     </section>
   );
 };
