@@ -6,8 +6,7 @@ import landingPageImg from '../img/landing-page.jpg';
 import empresaServiciosImg from '../img/empresa-servicios.jpg';
 import ecommerceImg from '../img/ecommerce.jpg';
 import corredoraPropiedadesImg from '../img/corredora-propiedades.jpg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+
 
 const Services = () => {
   const [activePlan, setActivePlan] = useState(null);
@@ -106,10 +105,7 @@ const Services = () => {
               <p><em>*Estos precios no incluyen impuestos de tu país</em></p>
 
               <div className="service-buttons">
-                <a href="#contact" className="cta-button">Contactar</a>
-                <a href="https://wa.me/123456789" className="whatsapp-button">
-                  <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
-                </a>
+                <a href="/contact" className="cta-button">Contactar</a>
               </div>
             </div>
           </div>
@@ -160,10 +156,8 @@ const Services = () => {
       </div>
       <p><em>*Estos precios no incluyen impuestos de tu país</em></p>
       <div className="service-buttons">
-        <a href="#contact" className="cta-button">Contactar</a>
-        <a href="https://wa.me/123456789" className="whatsapp-button">
-          <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
-        </a>
+        <a href="/contact" className="cta-button">Contactar</a>
+        
       </div>
     </div>
   </div>
@@ -232,10 +226,8 @@ const Services = () => {
       </div>
       <p><em>*Estos precios no incluyen impuestos de tu país</em></p>
       <div className="service-buttons">
-        <a href="#contact" className="cta-button">Contactar</a>
-        <a href="https://wa.me/123456789" className="whatsapp-button">
-          <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
-        </a>
+        <a href="/contact" className="cta-button">Contactar</a>
+        
       </div>
     </div>
   </div>
@@ -270,10 +262,8 @@ const Services = () => {
       </div>
       <p><em>*Estos precios no incluyen impuestos de tu país</em></p>
       <div className="service-buttons">
-        <a href="#contact" className="cta-button">Contactar</a>
-        <a href="https://wa.me/123456789" className="whatsapp-button">
-          <FontAwesomeIcon icon={faWhatsapp} /> WhatsApp
-        </a>
+        <a href="/contact" className="cta-button">Contactar</a>
+        
       </div>
     </div>
   </div>
