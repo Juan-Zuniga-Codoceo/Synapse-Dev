@@ -10,6 +10,8 @@ import BlogPost from './components/BlogPost'; // Importación correcta
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import WhatsAppButton from './components/WhatsAppButton';
+import ScrollToTopButton from './components/ScrollToTopButton';
+
 const App = () => {
   return (
     <Router>
@@ -25,6 +27,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
         </Routes>
         <WhatsAppButton />
+        <ScrollToTopButton />
         <Footer />
       </div>
     </Router>
