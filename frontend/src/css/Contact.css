@@ -1,23 +1,19 @@
-.contact-page-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
 .contact-page-hero {
   background-image: url('../img/contact-hero.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 60vh;
+  background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+  background-position: center; /* Centra la imagen dentro del contenedor */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  height: 70vh; /* Asegura que la altura sea el 100% de la pantalla */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   text-align: center;
   color: white;
-  width: 210vh;
-  margin-left: -2vh;
-  margin-top: -5vh;
+  width: 100%; /* Asegura que el contenedor ocupe el 100% del ancho */
+  margin: 0; /* Elimina cualquier margen que desplace la imagen */
+  overflow: hidden; /* Previene el desbordamiento */
+  box-sizing: border-box;
 }
 
 .contact-page-hero::before {
@@ -34,6 +30,7 @@
 .contact-page-overlay {
   position: relative;
   z-index: 2;
+  padding: 20px;
 }
 
 .contact-page-hero h1 {
@@ -45,17 +42,24 @@
 .contact-page-hero p {
   font-size: 24px;
   margin-top: 10px;
+  margin-bottom: 0;
 }
 
 .contact-page-form {
   margin: 40px 0;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra verticalmente si es necesario */
+  align-items: center; /* Centra horizontalmente */
 }
 
 .contact-page-form h2 {
   color: #ff6600;
   margin-bottom: 20px;
   font-size: 32px;
+  width: 100%; /* Asegura que el título ocupe el 100% del ancho disponible */
+  text-align: center; /* Centra el texto del título */
 }
 
 .contact-page-form form {
@@ -63,6 +67,7 @@
   flex-direction: column;
   gap: 20px;
   max-width: 600px;
+  width: 100%; /* Asegura que el formulario ocupe el ancho máximo posible */
   margin: 0 auto;
 }
 
@@ -88,6 +93,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  align-self: center; /* Centra el botón dentro del formulario */
 }
 
 .contact-page-cta-button:hover {
@@ -158,4 +164,42 @@
 
 .loader-active {
   display: block;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .contact-page-hero {
+    height: 50vh; /* Ajusta la altura para pantallas más pequeñas */
+    width: 61vh;
+  }
+
+  .contact-page-hero h1 {
+    font-size: 36px;
+  }
+
+  .contact-page-hero p {
+    font-size: 18px;
+  }
+
+  .contact-page-form h2 {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-page-hero {
+    height: 40vh; /* Ajusta la altura para pantallas más pequeñas */
+  }
+
+  .contact-page-hero h1 {
+    font-size: 28px;
+  }
+
+  .contact-page-hero p {
+    font-size: 16px;
+  }
+
+  .contact-page-form h2 {
+    font-size: 24px;
+  }
 }

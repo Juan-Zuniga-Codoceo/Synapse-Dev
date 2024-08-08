@@ -1,31 +1,41 @@
 .scroll-to-top {
     position: fixed;
-    bottom: 80px; /* Separado del botón de WhatsApp */
+    bottom: 80px;
     left: 20px;
-    background-color: rgba(255, 102, 0, 0.7); /* Color #ff6600 traslúcido */
-    padding: 10px;
+    background-color: #ff6600;
+    padding: 15px;
     border-radius: 50%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+    z-index: 9999; /* Asegúrate de que esté por encima de todos los elementos */
     display: flex;
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    width: 40px;  /* Tamaño reducido del botón */
-    height: 40px;
-    opacity: 0.7;
+    width: 50px;
+    height: 50px;
 }
+
+.scroll-to-top:hover {
+    background-color: #ff4500;
+    transform: scale(1.1);
+}
+
+
 
 .scroll-button {
     background: none;
     border: none;
     color: white;
-    font-size: 40px; /* Tamaño reducido de la flecha */
+    font-size: 20px; /* Tamaño adecuado de la flecha */
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .scroll-to-top:hover {
-    background-color: rgba(255, 102, 0, 0.9); 
-    transform: scale(1.1);
-    opacity: 1;
+    background-color: #ff4500; /* Cambio de color al hacer hover */
+    transform: scale(1.1); /* Ligera ampliación al hacer hover */
+}
+
+.scroll-button:hover {
+    transform: translateY(-2px); /* Efecto de hover en la flecha */
 }
