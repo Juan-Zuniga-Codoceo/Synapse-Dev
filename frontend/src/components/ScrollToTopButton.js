@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../css/ScrollToTopButton.css'; // Asegúrate de crear este archivo CSS para los estilos
+import '../css/ScrollToTopButton.css';
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,7 +15,7 @@ const ScrollToTopButton = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth', // Deslizar hacia arriba suavemente
+      behavior: 'smooth', 
     });
   };
 
@@ -27,12 +27,10 @@ const ScrollToTopButton = () => {
   }, []);
 
   return (
-    <div className="scroll-to-top">
-      {isVisible && (
-        <button onClick={scrollToTop} className="scroll-button">
-          ↑
-        </button>
-      )}
+    <div className={`scroll-to-top ${isVisible ? '' : 'hide-scroll-button'}`}>
+      <button onClick={scrollToTop} className="scroll-button">
+        ↑
+      </button>
     </div>
   );
 };

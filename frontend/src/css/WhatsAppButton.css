@@ -1,27 +1,43 @@
 .whatsapp-button {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  left: 20px;
   background-color: #25d366;
   color: white;
   padding: 15px;
-  border-radius: 50%; /* Asegura que el botón sea circular */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Sombra más suave y definida */
-  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza las transiciones */
-  width: 50px;  /* Aumenta el tamaño del botón */
-  height: 50px; /* Aumenta el tamaño del botón */
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  width: 40px;
+  height: 40px;
+  animation: pulse 2s infinite; /* Agrega la animación de palpitación */
 }
 
 .whatsapp-button .fa-whatsapp {
-  font-size: 45px; /* Ajusta el tamaño del ícono para adaptarse al nuevo tamaño del botón */
+  font-size: 45px;
 }
 
 .whatsapp-button:hover {
   background-color: #20b858;
-  transform: scale(1.15); /* Hace el botón un poco más grande al hacer hover */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); /* Aumenta la sombra al hacer hover */
+  transform: scale(1.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
 }
