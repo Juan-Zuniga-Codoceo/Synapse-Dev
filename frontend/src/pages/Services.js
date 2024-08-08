@@ -1,3 +1,4 @@
+// Importamos las nuevas clases renombradas
 import React, { useState } from 'react';
 import '../css/Services.css';
 import TechnologiesSection from '../components/TechnologiesSection';
@@ -6,7 +7,6 @@ import landingPageImg from '../img/landing-page.jpg';
 import empresaServiciosImg from '../img/empresa-servicios.jpg';
 import ecommerceImg from '../img/ecommerce.jpg';
 import corredoraPropiedadesImg from '../img/corredora-propiedades.jpg';
-
 
 const Services = () => {
   const [activePlan, setActivePlan] = useState(null);
@@ -27,28 +27,28 @@ const Services = () => {
       </header>
 
       <div className="plans-grid">
-        <div className="service-item">
+        <div className="service-item-service">
           <img src={landingPageImg} alt="Landing Page" />
           <h2>Landing Page</h2>
           <p>Diseño y desarrollo de páginas de aterrizaje atractivas y optimizadas para conversiones.</p>
           <button className="cta-button-1" onClick={() => togglePlan('basic')}>Detalle</button>
         </div>
 
-        <div className="service-item">
+        <div className="service-item-service">
           <img src={empresaServiciosImg} alt="Web Empresas y Servicios" />
           <h2>Web Empresas y Servicios</h2>
           <p>Desarrollo de sitios web corporativos que representen la identidad de tu empresa.</p>
           <button className="cta-button" onClick={() => togglePlan('advanced')}>Detalle</button>
         </div>
 
-        <div className="service-item">
+        <div className="service-item-service">
           <img src={ecommerceImg} alt="Web Ecommerce" />
           <h2>Web Ecommerce</h2>
           <p>Soluciones de comercio electrónico para llevar tu tienda en línea al siguiente nivel.</p>
           <button className="cta-button-1" onClick={() => togglePlan('ecommerce')}>Detalle</button>
         </div>
 
-        <div className="service-item">
+        <div className="service-item-service">
           <img src={corredoraPropiedadesImg} alt="Web Corredora de Propiedades" />
           <h2>Web Corredora de Propiedades</h2>
           <p>Desarrollo de plataformas especializadas para corredoras de propiedades.</p>
@@ -277,3 +277,8 @@ const Services = () => {
 };
 
 export default Services;
+
+
+      
+
+      

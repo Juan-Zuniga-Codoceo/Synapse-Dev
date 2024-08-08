@@ -9,38 +9,66 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .services-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 87%;
-    background-color: rgba(0, 0, 0, 0.6); /* Capa negra con transparencia */
-    z-index: 1;
- }
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
 
-.services-header h1 {
+.services-header h1, .services-header p {
   position: relative;
-  z-index: 2; /* Asegura que el texto esté encima de la capa negra */
+  z-index: 2;
   padding: 10px 20px;
   border-radius: 5px;
   display: inline-block;
   max-width: 80%;
+  text-align: center;
+}
+
+.services-header h1 {
   font-size: 60px;
   color: #ff6600;
+  margin-bottom: 20px;
 }
 
 .services-header p {
-  position: relative;
-  z-index: 2; /* Asegura que el texto esté encima de la capa negra */
-  padding: 10px 20px;
-  border-radius: 5px;
-  display: inline-block;
-  max-width: 80%;
   font-size: 20px;
+}
+
+/* Cambiamos a grid */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas en pantallas grandes */
+  gap: 20px;
+}
+
+.service-item-service {
+  margin: 10px;
+  background: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 250px; /* Reducir el tamaño máximo de las cards */
+}
+
+.service-item-service img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border-radius: 8px;
 }
 
 .popup-overlay {
@@ -54,10 +82,11 @@
   justify-content: center;
   align-items: center;
   z-index: 1000;
+  padding: 20px;
 }
 
 .popup-card {
-  background: #102532;
+  background: #102532; /* Fondo blanco para mantener consistencia */
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
@@ -77,65 +106,18 @@
   border: none;
   font-size: 18px;
   cursor: pointer;
+  color: white;
 }
 
-.plan-details h4 {
-  margin-bottom: 10px;
-  font-size: 24px;
-  color: #333;
-}
-
-.plan-details p {
-  font-size: 16px;
-  color: #666;
-}
-
-.plans-grid {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.service-item {
-  flex: 1;
-  margin: 10px;
-  max-width: 23%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #f4f4f4;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.service-item img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  margin-bottom: 20px;
-  border-radius: 8px;
-}
-
-/* Cards de planes */
 .plan-details {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
-  justify-content: center; /* Centra las tarjetas en el contenedor */
+  justify-content: center;
 }
 
-.plan-details-1 {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
-  justify-content: center; /* Centra las tarjetas en el contenedor */
-}
-
-.plan-card {
+.plan-card, .plan-card-1 {
   background: #fff;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -145,48 +127,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 350px; /* Ajusta la altura mínima para uniformar las cards */
+  min-height: 350px;
 }
 
-.plan-card-1 {
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 15px;
-  max-width: 280px;
-  flex: 1;
-  margin: 0 auto;
-}
-
-.plan-card-1 h5 {
+.plan-card h5, .plan-card-1 h5 {
   margin-top: 15px;
 }
 
-.plan-card-1 ul {
-  flex-grow: 1; /* Hace que la lista crezca para ocupar el espacio disponible */
+.plan-card ul, .plan-card-1 ul {
+  flex-grow: 1;
   margin-left: 20px;
   list-style-type: disc;
 }
-.plan-card-1 p {
-  font-size: 16px;
-  color: #dc0e0e;
-  margin-top: 30px;
-  justify-content: center;
-  text-align: left;
-}
 
-
-
-.plan-card h5 {
-  margin-top: 15px;
-}
-
-.plan-card ul {
-  flex-grow: 1; /* Hace que la lista crezca para ocupar el espacio disponible */
-  margin-left: 20px;
-  list-style-type: disc;
-}
-.plan-card p {
+.plan-card p, .plan-card-1 p {
   font-size: 16px;
   color: #dc0e0e;
 }
@@ -197,44 +151,11 @@
   align-items: flex-end;
   gap: 20px;
   width: 100%;
-  margin-top: auto; /* Empuja los botones hacia abajo */
+  margin-top: auto;
 }
-.cta-button {
+
+.cta-button, .cta-button-1, .whatsapp-button {
   background-color: #ff6600;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 18px;
-  transition: background-color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 45px; /* Mantener altura uniforme */
-  width: 180px; /* Mantener ancho uniforme */
-  margin-top: 20px;
-}
-
-.cta-button-1 {
-  background-color: #ff6600;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 18px;
-  transition: background-color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 45px; /* Mantener altura uniforme */
-  width: 180px; /* Mantener ancho uniforme */
-  margin-top: 45px;
-  border: none; /* Eliminar borde negro */
-}
-
-
-.whatsapp-button {
-  background-color: #25d366;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
@@ -246,20 +167,16 @@
   justify-content: center;
   height: 45px;
   width: 180px;
-  margin-top: auto;
+  margin-top: 20px;
+  border: none;
 }
 
-.cta-button:hover {
+.cta-button-1 {
+  margin-top: 50px;
+}
+
+.cta-button:hover, .cta-button-1:hover, .whatsapp-button:hover {
   background-color: #ff4500;
-}
-
-.whatsapp-button:hover {
-  background-color: #1ebe54;
-}
-
-.whatsapp-button svg {
-  margin-right: 8px;
-  vertical-align: middle;
 }
 
 .plans-title {
@@ -269,4 +186,79 @@
   margin-bottom: 20px;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .plans-grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 columna en pantallas pequeñas */
+    padding: 0 15px; /* Añadimos padding lateral para centrar las cards */
+    gap: 20px; /* Espacio entre las cards */
+  }
+
+  .popup-overlay {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popup-card {
+    max-width: 90%; /* Asegura que el pop-up no ocupe toda la pantalla */
+    max-height: 80vh; /* Limitamos la altura del pop-up */
+    padding: 20px;
+    overflow-y: auto; /* Permitimos que el contenido del pop-up sea desplazable si es necesario */
+    margin: 0 auto; /* Centramos el pop-up */
+    position: relative;
+    border-radius: 10px; /* Redondeamos un poco más las esquinas */
+  }
+
+  .cta-button, .cta-button-1, .whatsapp-button {
+    width: 160px;
+    height: 40px;
+    font-size: 16px;
+    margin-top: 15px; /* Espacio superior para separar el botón del contenido anterior */
+    margin-bottom: 20px; /* Espacio inferior para evitar que quede pegado a la base de la card */
+  }
+}
+
+@media (max-width: 480px) {
+  .service-item-service {
+    flex: 1 1 100%;
+    margin: 0 auto 20px auto; /* Centramos la card y añadimos un margin inferior para separación */
+    padding: 0 20px; /* Añadimos padding lateral */
+  }
+
+  .plans-grid {
+    padding: 0 20px; /* Asegura un padding lateral en el contenedor */
+    gap: 20px; /* Espacio entre las cards */
+  }
+
+  .popup-overlay {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popup-card {
+    max-width: 95%; /* Asegura que el pop-up esté bien centrado */
+    padding: 15px;
+    overflow-y: auto; /* Permitimos que el contenido del pop-up sea desplazable si es necesario */
+    margin: 0 auto; /* Centramos el pop-up */
+    border-radius: 10px; /* Redondeamos un poco más las esquinas */
+    position: relative;
+  }
+
+  .cta-button, .cta-button-1, .whatsapp-button {
+    width: 140px;
+    height: 36px;
+    font-size: 14px;
+    margin-top: 15px; /* Espacio superior para separar el botón del contenido anterior */
+    margin-bottom: 20px; /* Espacio inferior para evitar que quede pegado a la base de la card */
+  }
+}
+
+.services-page {
+  margin-bottom: 40px; /* Añadimos margen inferior a la página para separación con el siguiente elemento */
 }
