@@ -8,12 +8,7 @@ import {
   faRocket,
 } from "@fortawesome/free-solid-svg-icons";
 
-import jsIcon from "../img/js-icon.png";
-import cssIcon from "../img/css-icon.png";
-import htmlIcon from "../img/html-icon.png";
-import reactIcon from "../img/react-icon.png";
-import vueIcon from "../img/vue-icon.png";
-import wordpressIcon from "../img/wordpress-icon.png";
+import TechnologiesSection from '../components/TechnologiesSection';
 
 const About = () => {
   return (
@@ -50,30 +45,31 @@ const About = () => {
           </p>
         </div>
       </section>
+
       <section className="about-process">
         <h2>Nuestro Proceso de Trabajo</h2>
         <div className="process-steps">
           <div className="step">
             <h3>1. Consulta Inicial</h3>
-            <br></br>
+            <br />
             <FontAwesomeIcon icon={faClipboardList} size="3x" />
             <p>Entendemos tus necesidades y objetivos.</p>
           </div>
           <div className="step">
             <h3>2. Diseño</h3>
-            <br></br>
+            <br />
             <FontAwesomeIcon icon={faPaintBrush} size="3x" />
             <p>Convertimos tus ideas en un diseño atractivo y funcional.</p>
           </div>
           <div className="step">
             <h3>3. Desarrollo</h3>
-            <br></br>
+            <br />
             <FontAwesomeIcon icon={faCode} size="3x" />
             <p>Construimos la solución utilizando tecnologías de vanguardia.</p>
           </div>
           <div className="step">
             <h3>4. Lanzamiento</h3>
-            <br></br>
+            <br />
             <FontAwesomeIcon icon={faRocket} size="3x" />
             <p>
               Hacemos que tu proyecto esté en línea y listo para impresionar.
@@ -82,17 +78,8 @@ const About = () => {
         </div>
       </section>
 
-      <section className="about-technologies">
-        <h2>Tecnologías que utilizamos</h2>
-        <div className="tech-logos">
-          <img src={jsIcon} alt="JavaScript" />
-          <img src={cssIcon} alt="CSS" />
-          <img src={htmlIcon} alt="HTML" />
-          <img src={reactIcon} alt="React" />
-          <img src={vueIcon} alt="Vue" />
-          <img src={wordpressIcon} alt="WordPress" />
-        </div>
-      </section>
+      {/* Reemplazamos esta sección con el componente TechnologiesSection */}
+      <TechnologiesSection />
 
       <section className="about-cta">
         <h2>¿Listo para comenzar?</h2>
