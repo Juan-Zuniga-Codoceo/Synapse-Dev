@@ -9,7 +9,8 @@ const multer = require('multer');
 const app = express();
 
 // Configuración de CORS para permitir solicitudes desde el frontend
-const allowedOrigins = ['http://synapsedev.cl', 'https://www.synapsedev.cl'];
+const allowedOrigins = ['http://synapsedev.cl', 'https://synapsedev.cl', 'http://www.synapsedev.cl', 'https://www.synapsedev.cl'];
+
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -76,7 +77,7 @@ app.post('/send-email', upload.none(), async (req, res) => {
 
   } catch (error) {
     console.error('Error al enviar el correo:', error);
-    res.status(500).json({ error: 'Error al enviar el correo' });
+res.status(500).json({ error: 'Error al enviar el correo', details: error.message });
   }
 });
 
