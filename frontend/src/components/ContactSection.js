@@ -27,13 +27,14 @@ const ContactSection = () => {
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/send-email`, {
+      const response = await fetch('http://localhost:5000/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
+    
 
       const data = await response.json();
 
@@ -78,11 +79,11 @@ const ContactSection = () => {
           <p>Descarga los siguientes documentos que te ayudarán a entender mejor nuestros servicios:</p>
           <br />
           <div className="contact-section-docs-container">
-            <a href="/docs/cotizaciones.pdf" className="contact-section-doc-link" download>
+            <a href="/docs/Cotizacion_Synapse_Dev.docx" className="contact-section-doc-link" download>
               <FontAwesomeIcon icon={faFilePdf} className="contact-section-doc-icon" />
               Descargar Cotizaciones
             </a>
-            <a href="/docs/guia-basica-web.pdf" className="contact-section-doc-link" download>
+            <a href="/docs/Guia_Basica_Paginas_Web_.pdf" className="contact-section-doc-link" download>
               <FontAwesomeIcon icon={faFilePdf} className="contact-section-doc-icon" />
               Guía Básica de Web
             </a>
