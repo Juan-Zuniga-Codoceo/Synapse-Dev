@@ -10,7 +10,7 @@ const app = express();
 
 // Configuración de CORS para permitir solicitudes desde el frontend
 app.use(cors({
-  origin: process.env.FRONTEND_URL, // Usando la URL del frontend desde .env
+  origin: ['http://synapsedev.cl', 'https://www.synapsedev.cl'], // Añade ambos orígenes aquí
   methods: ['POST'], // Solo permitimos POST en este caso
 }));
 

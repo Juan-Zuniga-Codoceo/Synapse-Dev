@@ -18,7 +18,7 @@ const Contact = () => {
     };
 
     try {
-      const response = await fetch('https://synapse-dev-backend.onrender.com/send-email', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/send-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
