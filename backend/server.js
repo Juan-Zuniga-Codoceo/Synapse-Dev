@@ -9,10 +9,19 @@ const multer = require('multer');
 const app = express();
 
 // Configuración de CORS para permitir solicitudes desde el frontend
+const allowedOrigins = ['http://synapsedev.cl', 'https://www.synapsedev.cl'];
+
 app.use(cors({
-  origin: ['http://synapsedev.cl', 'https://www.synapsedev.cl'], // Añade ambos orígenes aquí
-  methods: ['POST'], // Solo permitimos POST en este caso
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['POST'],
 }));
+
 
 // Configuración de body-parser para manejar JSON y URL-encoded data
 app.use(bodyParser.urlencoded({ extended: true }));
