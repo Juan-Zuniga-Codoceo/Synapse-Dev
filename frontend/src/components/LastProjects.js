@@ -1,8 +1,8 @@
 import React from "react";
 import "../css/LastProjects.css";
-import project1 from "../img/project1.png";
-import project2 from "../img/project2.png";
-import project3 from "../img/project3.png";
+import project1 from "../img/project1.webp";
+import project2 from "../img/project2.webp";
+import project3 from "../img/project3.webp";
 
 const LastProjects = () => {
   const projects = [
