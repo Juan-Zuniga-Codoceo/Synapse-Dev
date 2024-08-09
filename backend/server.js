@@ -44,6 +44,11 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+app.get('/', (req, res) => {
+  res.send('El servidor está corriendo correctamente');
+});
+
+
 // Ruta para manejar el envío de correos
 app.post('/send-email', upload.none(), async (req, res) => {
   console.log('Solicitud recibida con multer:', req.body);
