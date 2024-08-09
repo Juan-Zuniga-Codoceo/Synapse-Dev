@@ -78,7 +78,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Reemplazamos esta sección con el componente TechnologiesSection */}
       <TechnologiesSection />
 
       <section className="about-cta">

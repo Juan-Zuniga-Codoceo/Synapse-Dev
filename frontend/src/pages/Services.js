@@ -1,12 +1,11 @@
-// Importamos las nuevas clases renombradas
 import React, { useState } from 'react';
 import '../css/Services.css';
 import TechnologiesSection from '../components/TechnologiesSection';
 import ContactSection from '../components/ContactSection';
-import landingPageImg from '../img/landing-page.jpg';
-import empresaServiciosImg from '../img/empresa-servicios.jpg';
-import ecommerceImg from '../img/ecommerce.jpg';
-import corredoraPropiedadesImg from '../img/corredora-propiedades.jpg';
+import landingPageImg from '../img/landing-page.webp';
+import empresaServiciosImg from '../img/empresa-servicios.webp';
+import ecommerceImg from '../img/ecommerce.webp';
+import corredoraPropiedadesImg from '../img/corredora-propiedades.webp';
 
 const Services = () => {
   const [activePlan, setActivePlan] = useState(null);

@@ -1,3 +1,5 @@
+/* Home.css */
+
 /* General Styles */
 body {
   margin: 0;
@@ -6,9 +8,12 @@ body {
 
 /* Hero Section */
 .hero {
-  background: url('../img/hero.jpg') no-repeat center center/cover;
+  background: url('../img/hero.webp') no-repeat center center/cover;
   color: #ff6600;
-  padding: 100px 0;
+  height: 70vh; /* Altura consistente para todos los héroes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   text-align: center;
 }
@@ -37,7 +42,6 @@ body {
   align-items: center;
   justify-content: center;
 }
-
 
 .hero-content h1 {
   font-size: 3rem;
@@ -68,7 +72,7 @@ body {
 /* Media Queries */
 @media (max-width: 768px) {
   .hero {
-    padding: 50px 0;
+    height: 50vh; /* Ajuste de altura en pantallas más pequeñas */
   }
 
   .hero-content h1 {

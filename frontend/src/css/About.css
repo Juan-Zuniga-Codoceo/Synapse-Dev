@@ -3,7 +3,7 @@
     padding: 50px 20px;
     background-color: #102532;
     color: white;
-    background-image: url('../img/about-hero.jpg');
+    background-image: url('../img/about-hero.webp');
     background-size: cover; /* Asegura que la imagen cubra el contenedor */
     background-position: center;
     height: 60vh;
