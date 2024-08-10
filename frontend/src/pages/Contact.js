@@ -18,13 +18,17 @@ const Contact = () => {
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/send-email`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const apiUrl = process.env.REACT_APP_API_URL.trim(); // Eliminar cualquier espacio o salto de línea
+
+const response = await fetch(`${apiUrl}/send-email`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(formData),
+});
+
+    
     
     
       const data = await response.json();

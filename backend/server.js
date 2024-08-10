@@ -9,8 +9,13 @@ const multer = require('multer');
 const app = express();
 
 // Configuración de CORS para permitir solicitudes desde el frontend
-const allowedOrigins = ['http://synapsedev.cl', 'https://synapsedev.cl', 'http://www.synapsedev.cl', 'https://www.synapsedev.cl'];
-
+const allowedOrigins = [
+  'http://localhost:3000',  // Permite solicitudes desde el frontend local
+  'http://synapsedev.cl',
+  'https://synapsedev.cl',
+  'http://www.synapsedev.cl',
+  'https://www.synapsedev.cl'
+];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -21,8 +26,8 @@ app.use(cors({
     }
   },
   methods: ['POST'],
+  allowedHeaders: ['Content-Type']
 }));
-
 
 // Configuración de body-parser para manejar JSON y URL-encoded data
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,14 +50,14 @@ const transporter = nodemailer.createTransport({
   }
 });
 
+// Ruta para verificar que el servidor está corriendo
 app.get('/', (req, res) => {
   res.send('El servidor está corriendo correctamente');
 });
 
-
 // Ruta para manejar el envío de correos
 app.post('/send-email', upload.none(), async (req, res) => {
-  console.log('Solicitud recibida con multer:', req.body);
+  console.log('Solicitud recibida:', req.body);
 
   const { name, email, subject, message } = req.body;
 
@@ -77,7 +82,7 @@ app.post('/send-email', upload.none(), async (req, res) => {
 
   } catch (error) {
     console.error('Error al enviar el correo:', error);
-res.status(500).json({ error: 'Error al enviar el correo', details: error.message });
+    res.status(500).json({ error: 'Error al enviar el correo', details: error.message });
   }
 });
 
