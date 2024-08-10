@@ -18,9 +18,9 @@ const Contact = () => {
     };
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL.trim(); // Eliminar cualquier espacio o salto de línea
+      //const apiUrl = process.env.REACT_APP_API_URL.trim(); // Eliminar cualquier espacio o salto de línea
 
-const response = await fetch(`${apiUrl}/send-email`, {
+const response = await fetch(`${process.env.REACT_APP_API_UR}/send-email`, {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
