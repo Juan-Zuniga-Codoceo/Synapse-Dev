@@ -1,9 +1,9 @@
-.portfolio-page {
+.portfolio-page-renamed {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.portfolio-header {
+.portfolio-header-renamed {
   background-image: url("../img/portafolio.webp");
   background-size: cover;
   background-position: center;
@@ -20,7 +20,7 @@
   position: relative;
 }
 
-.portfolio-header::before {
+.portfolio-header-renamed::before {
   content: "";
   position: absolute;
   top: 0;
@@ -31,7 +31,7 @@
   z-index: 1;
 }
 
-.portfolio-hero {
+.portfolio-hero-renamed {
   max-width: 80%;
   margin: 0 auto;
   padding: 20px;
@@ -42,8 +42,8 @@
   margin-top: 10vh;
 }
 
-.portfolio-header h1,
-.portfolio-header p {
+.portfolio-header-renamed h1,
+.portfolio-header-renamed p {
   position: relative;
   z-index: 2;
   padding: 10px 20px;
@@ -52,44 +52,45 @@
   text-align: center;
 }
 
-.portfolio-header h1 {
+.portfolio-header-renamed h1 {
   font-size: 60px;
   margin-bottom: 10px;
   color: #ff6600;
 }
 
-.portfolio-header p {
+.portfolio-header-renamed p {
   font-size: 20px;
   margin-bottom: 20px;
   line-height: 1.5;
 }
 
-.portfolio-intro {
+.portfolio-intro-renamed {
   margin: 40px 0;
   text-align: center;
   font-size: 18px;
   color: #333;
 }
 
-.portfolio-intro h1 {
+.portfolio-intro-renamed h1 {
   color: #ff6600;
   font-size: 32px;
 }
 
-.projects-grid {
+.projects-grid-renamed {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 
-.project-item img {
+.project-item-renamed img {
   width: 100%;
-  height: auto;
+  height: 600px; /* Establece una altura fija para las imágenes */
+  object-fit: cover; /* Asegura que las imágenes se recorten y no sobresalgan del contenedor */
   border-radius: 8px;
   margin-bottom: 15px;
 }
 
-.project-item {
+.project-item-renamed {
   position: relative;
   background-color: #f4f4f4;
   padding: 15px;
@@ -97,24 +98,28 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.3s ease;
+  height: 750px; /* Asegura que todas las cards tengan la misma altura */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-
-.project-item:hover {
+.project-item-renamed:hover {
   transform: translateY(-8px);
 }
 
-.project-item h3 {
-  font-size: 20px;
+.project-item-renamed h3 {
+  font-size: 18px;
   margin-bottom: 8px;
   color: #ff6600;
 }
 
-.project-item p {
+.project-item-renamed p {
   font-size: 14px;
   color: #666;
+  flex-grow: 1; /* Esto permite que el texto se expanda según sea necesario */
 }
 
-.project-item .link-overlay {
+.project-item-renamed .link-overlay-renamed {
   position: absolute;
   top: 0;
   left: 0;
@@ -130,11 +135,11 @@
   transition: opacity 0.3s ease;
 }
 
-.project-item:hover .link-overlay {
+.project-item-renamed:hover .link-overlay-renamed {
   opacity: 1;
 }
 
-.link-overlay a {
+.link-overlay-renamed a {
   color: white;
   font-size: 30px;
   text-decoration: none;
@@ -142,61 +147,61 @@
 
 /* Media Queries para mejorar la responsividad */
 @media (max-width: 1024px) {
-  .projects-grid {
+  .projects-grid-renamed {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .portfolio-header h1 {
+  .portfolio-header-renamed h1 {
     font-size: 48px;
   }
 
-  .portfolio-header p {
+  .portfolio-header-renamed p {
     font-size: 18px;
   }
 }
 
 @media (max-width: 768px) {
-  .projects-grid {
+  .projects-grid-renamed {
     grid-template-columns: 1fr;
   }
 
-  .portfolio-header {
+  .portfolio-header-renamed {
     height: 50vh;
   }
 
-  .portfolio-header h1 {
+  .portfolio-header-renamed h1 {
     font-size: 36px;
   }
 
-  .portfolio-header p {
+  .portfolio-header-renamed p {
     font-size: 16px;
   }
 
-  .project-item {
+  .project-item-renamed {
     margin: 0 auto;
     max-width: 90%;
   }
 }
 
 @media (max-width: 480px) {
-  .portfolio-header {
+  .portfolio-header-renamed {
     height: 40vh;
   }
 
-  .portfolio-header h1 {
+  .portfolio-header-renamed h1 {
     font-size: 28px;
   }
 
-  .portfolio-header p {
+  .portfolio-header-renamed p {
     font-size: 14px;
   }
 
-  .project-item {
+  .project-item-renamed {
     margin: 0 auto;
     max-width: 100%;
   }
 
-  .portfolio-intro {
+  .portfolio-intro-renamed {
     padding: 0 10px;
   }
 }

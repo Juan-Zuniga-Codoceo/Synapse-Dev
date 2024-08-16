@@ -11,7 +11,7 @@
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ajustamos las columnas para que se adapten al tamaño disponible */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
 
@@ -23,20 +23,27 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.3s ease;
+  overflow: hidden;
+  height: 600px; /* Aumenta la altura de la card */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .project-item img {
-  width: 100%; /* Ajusta la imagen para que ocupe todo el ancho de la card */
-  height: auto;
+  width: 100%;
+  max-height: 500px; /* Aumenta la altura máxima de la imagen */
+  object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 10px;
 }
 
-.project-item h3 {
-  font-size: 18px;
-  margin-bottom: 8px;
+.project-item h3, .project-item p {
+  margin: 5px 0;
   color: #ff6600;
 }
+
+
+
 
 .project-item .link-overlay {
   position: absolute;

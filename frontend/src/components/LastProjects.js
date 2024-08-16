@@ -3,9 +3,15 @@ import "../css/LastProjects.css";
 import project1 from "../img/project1.webp";
 import project2 from "../img/project2.webp";
 import project3 from "../img/project3.webp";
+import project4 from "../img/abogado.webp";
 
 const LastProjects = () => {
   const projects = [
+    {
+      img: project4,
+      title: "Landing Page - Abogado Andrés González",
+      link: "https://abogadoandresgonzalez.rf.gd/",
+    },
     {
       img: project1,
       title: "Synapse Dev - Web Dev Solution",
@@ -22,25 +28,27 @@ const LastProjects = () => {
       link: "https://synapsedev-abogados.netlify.app/",
     },
     
+    
   ];
 
   return (
     <div className="last-projects">
-      <h2>Últimos Proyectos</h2>
-      <div className="projects-grid">
-        {projects.map((project, index) => (
-          <div key={index} className="project-item">
-            <div className="link-overlay">
-              <a href={project.link} target="_blank" rel="noopener noreferrer">
-                Ir a la web
-              </a>
-            </div>
-            <img src={project.img} alt={project.title} />
-            <h3>{project.title}</h3>
-          </div>
-        ))}
+  <h2>Últimos Proyectos</h2>
+  <div className="projects-grid">
+    {projects.map((project, index) => (
+      <div key={index} className="project-item">
+        <div className="link-overlay">
+          <a href={project.link} target="_blank" rel="noopener noreferrer">
+            Ir a la web
+          </a>
+        </div>
+        <img src={project.img} alt={project.title} />
+        <h3>{project.title}</h3> {/* Mueve el título aquí */}
       </div>
-    </div>
+    ))}
+  </div>
+</div>
+
   );
 };
 
