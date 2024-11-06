@@ -4,9 +4,15 @@ import project1 from "../img/project1.webp";
 import project2 from "../img/project2.webp";
 import project3 from "../img/project3.webp";
 import project4 from "../img/abogado.webp";
+import project5 from "../img/proyecto5.webp";
 
 const LastProjects = () => {
   const projects = [
+    {
+      img: project5,
+      title: "Spend Shield - Gestor de finanzas personales",
+      link: "https://spendshield.netlify.app/",
+    },
     {
       img: project4,
       title: "Landing Page - Abogado Andrés González",
