@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import './css/styles.css';  // Importa styles.css desde la nueva carpeta css
+import './styles/global.css'; // Importa styles.css desde la nueva carpeta css
 import App from './App';
 
 

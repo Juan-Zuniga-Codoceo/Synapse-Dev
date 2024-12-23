@@ -1,0 +1,136 @@
+/* src/components/home/StatisticsSection/styles.css */
+.statistics-section {
+    background-color: #102532;
+    padding: 80px 20px;
+ }
+ 
+ .statistics-container {
+    max-width: 1200px;
+    margin: 0 auto;
+ }
+ 
+ .section-header {
+    margin-bottom: 80px;
+ }
+ 
+ .section-header h2 {
+    font-size: 42px;
+    color: #ff6600;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.2;
+    text-align: center;
+ }
+ 
+ .section-subtitle {
+    font-size: 16px;
+    color: #6b7280;
+    line-height: 1.6;
+    opacity: 0.8;
+    text-align: center;
+ }
+ 
+ .stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    margin: 0 auto;
+ }
+ 
+ .stat-item {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+ }
+ 
+ .stat-icon {
+    font-size: 28px;
+    color: #ff6600;
+    margin-bottom: 20px;
+    display: block;
+ }
+ 
+ .stat-number {
+    font-size: 42px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 10px 0;
+    line-height: 1;
+ }
+ 
+ .stat-label {
+    color: #cbd5e1;
+    font-size: 14px;
+    opacity: 0.8;
+    margin: 0;
+ }
+ 
+ /* Hover effects */
+ .stat-item {
+    transition: transform 0.3s ease;
+ }
+ 
+ .stat-item:hover {
+    transform: translateY(-5px);
+ }
+ 
+ .stat-icon {
+    transition: all 0.3s ease;
+ }
+ 
+ .stat-item:hover .stat-icon {
+    transform: scale(1.1);
+ }
+ 
+ /* Media Queries */
+ @media (max-width: 1024px) {
+    .stats-container {
+        flex-wrap: wrap;
+        max-width: 800px;
+    }
+    
+    .stat-item {
+        flex: 1 1 calc(50% - 20px);
+        min-width: 200px;
+    }
+ }
+ 
+ @media (max-width: 768px) {
+    .statistics-section {
+        padding: 60px 15px;
+    }
+ 
+    .section-header {
+        margin-bottom: 40px;
+        text-align: center;
+    }
+ 
+    .section-header h2 {
+        font-size: 36px;
+    }
+ 
+    .stats-container {
+        gap: 20px;
+    }
+ }
+ 
+ @media (max-width: 480px) {
+    .stat-item {
+        flex: 1 1 100%;
+    }
+ 
+    .stat-number {
+        font-size: 36px;
+    }
+ 
+    .stat-label {
+        font-size: 13px;
+    }
+ }

@@ -1,0 +1,65 @@
+.lazy-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: inherit;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  }
+  
+  .tech-item:hover .lazy-image-container {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  }
+  
+  .lazy-image {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .lazy-image.loaded {
+    opacity: 1;
+  }
+  
+  .lazy-image-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+  
+  .lazy-image-loading {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 102, 0, 0.1);
+    border-top: 2px solid #ff6600;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  .lazy-image-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff6600;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

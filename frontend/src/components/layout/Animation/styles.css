@@ -1,0 +1,39 @@
+.animate-section {
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: var(--animation-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  
+  .animate-section.animate {
+    opacity: 1;
+    transform: none !important;
+  }
+  
+  /* Fade Up Animation */
+  .animate-fade-up {
+    transform: translateY(20px);
+  }
+  
+  /* Fade In Animation */
+  .animate-fade-in {
+    opacity: 0;
+  }
+  
+  /* Slide In Animation */
+  .animate-slide-in {
+    transform: translateX(-20px);
+  }
+  
+  /* Scale Up Animation */
+  .animate-scale-up {
+    transform: scale(0.95);
+  }
+  
+  /* Ensure animations work on mobile */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-section {
+      transition-duration: 0.6s;
+    }
+  }
