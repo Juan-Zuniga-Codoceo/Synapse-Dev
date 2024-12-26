@@ -1,3 +1,12 @@
+/* Services Page Styles */
+.services-page {
+  padding-top: 120px;
+}
+
+.breadcrumbs {
+  display: none;
+}
+
 /* Hero Section */
 .services-header {
   background: linear-gradient(
@@ -9,203 +18,260 @@
   background-position: center;
   color: white;
   padding: 80px 20px;
-  margin-bottom: 40px;
+  margin-top: -120px;
   min-height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
- }
- 
- .header-content {
+}
+
+.header-content {
   text-align: center;
   max-width: 800px;
   z-index: 2;
- }
- 
- .services-header h1 {
+  margin-top: 120px;
+}
+
+.services-header h1 {
   font-size: 62px;
   color: #ff6600;
   margin-bottom: 20px;
   font-weight: 700;
- }
- 
- .services-header p {
+}
+
+.services-header p {
   font-size: 18px;
   color: #cbd5e1;
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto;
- }
- 
- /* Services Section */
- .services-section {
+}
+
+/* Services Section */
+.services-section {
   padding: 80px 0;
   background: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
- }
- 
- .plans-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  max-width: 800px;
+}
+
+.container {
+  max-width: 1200px;
   margin: 0 auto;
-  justify-content: center;
   padding: 0 20px;
- }
- 
- .service-item-service {
-  width: 350px;
+}
+
+/* Category Filter */
+.category-filter {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 10px;
+}
+
+.category-filter button {
+  padding: 10px 20px;
+  border: none;
+  background: #f3f4f6;
+  color: #4b5563;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-filter button.active {
+  background: #ff6600;
+  color: white;
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Service Card */
+.service-card {
   background: white;
   border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* Importante: mantiene el contenido dentro de la card */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  overflow: hidden;
-  border: 1px solid #eee;
-  margin-bottom: 20px;
- }
- 
- .service-image {
   width: 100%;
-  height: 200px;
-  overflow: hidden;
- }
- 
- .service-image img {
+  border: 1px solid #eee;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.service-image {
+  position: relative;
+  height: 250px;
+  overflow: hidden; /* Mantiene la imagen dentro del contenedor */
+}
+
+.service-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
- }
- 
- .service-content {
+}
+
+.service-card:hover .service-image img {
+  transform: scale(1.05); /* Reducido el scale para un efecto más sutil */
+}
+
+.service-content {
   padding: 25px;
-  text-align: center;
- }
- 
- .service-item-service h2 {
-  font-size: 22px;
-  color: #102532;
+}
+
+.service-content h2 {
+  font-size: 24px;
+  color: #1f2937;
   margin-bottom: 15px;
   font-weight: 600;
- }
- 
- .service-item-service p {
-  color: #666;
-  font-size: 15px;
+}
+
+.service-content p {
+  color: #6b7280;
+  margin-bottom: 20px;
   line-height: 1.6;
-  margin-bottom: 25px;
   min-height: 48px;
- }
- 
- /* Popup/Modal Styles */
- .popup-overlay {
+}
+
+/* Features */
+.features {
+  margin-bottom: 20px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  color: #4b5563;
+}
+
+.feature-icon {
+  color: #ff6600;
+  flex-shrink: 0;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #e5e7eb;
+  margin-bottom: 20px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Button */
+.cta-button {
+  width: 100%;
+  background: #ff6600;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #ff4500;
+  transform: translateY(-2px);
+}
+
+/* Modal */
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
   background: rgba(0, 0, 0, 0.75);
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
+  justify-content: center;
   padding: 20px;
+  z-index: 1000;
   backdrop-filter: blur(5px);
- }
- 
- .popup-card {
+}
+
+.modal-content {
   background: #102532;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 40px;
+  border-radius: 15px;
+  width: 100%;
   max-width: 900px;
-  width: 90%;
   max-height: 85vh;
   overflow-y: auto;
-  position: relative;
- }
- 
- .close-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  padding: 30px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.modal-header h2 {
+  color: #ff6600;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.close-button {
   background: none;
   border: none;
   color: #cbd5e1;
-  font-size: 24px;
   cursor: pointer;
-  transition: all 0.3s ease;
- }
- 
- .plans-title {
-  font-size: 32px;
-  color: #ff6600;
-  text-align: center;
-  margin-bottom: 40px;
-  font-weight: 700;
- }
- 
- .plan-details {
+  font-size: 24px;
+  padding: 5px;
+}
+
+.plans-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 30px;
   margin-bottom: 30px;
- }
- 
- .plan-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.plan-card {
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   padding: 25px;
-  transition: all 0.3s ease;
   position: relative;
- }
- 
- .plan-card:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.2);
- }
- 
- .plan-card h5 {
-  font-size: 20px;
-  color: #ffffff;
-  margin-bottom: 15px;
- }
- 
- .price {
-  font-size: 24px;
-  color: #ff6600;
-  margin-bottom: 20px;
- }
- 
- .plan-card ul {
-  margin: 0;
-  padding-left: 20px;
-  color: #cbd5e1;
-  list-style: none;
- }
- 
- .plan-card li {
-  margin-bottom: 10px;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  line-height: 1.4;
- }
- 
- .feature-icon {
-  color: #ff6600;
-  flex-shrink: 0;
-  margin-top: 4px;
- }
- 
- .recommended-badge {
+  transition: transform 0.3s ease;
+}
+
+.plan-card.recommended {
+  border: 2px solid #ff6600;
+  transform: scale(1.05);
+}
+
+.recommended-badge {
   position: absolute;
   top: -12px;
   right: 20px;
@@ -214,102 +280,104 @@
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 12px;
-  font-weight: 500;
- }
- 
- /* Buttons */
- .cta-button {
-  background: #ff6600;
+}
+
+.plan-card h3 {
   color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  cursor: pointer;
- }
- 
- .cta-button:hover {
-  background: #ff4500;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(255, 102, 0, 0.3);
- }
- 
- .service-buttons {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.price {
+  color: #ff6600;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #cbd5e1;
+}
+
+.features-list li {
   display: flex;
-  justify-content: center;
-  margin-top: 30px;
- }
- 
- .price-note {
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.price-note {
   text-align: center;
   color: #cbd5e1;
   margin-top: 20px;
-  font-size: 14px;
- }
- 
- /* Hover Effects */
- .service-item-service:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
- }
- 
- .service-item-service:hover .service-image img {
-  transform: scale(1.1);
- }
- 
- /* Media Queries */
- @media (max-width: 1200px) {
-  .plans-grid {
-    max-width: 750px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+/* Media Queries */
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
- }
- 
- @media (max-width: 768px) {
+}
+
+@media (max-width: 768px) {
+  .services-page {
+    padding-top: 80px;
+  }
+
+  .header-content {
+    margin-top: 80px;
+  }
+
   .services-header h1 {
     font-size: 36px;
   }
- 
-  .services-header p {
-    font-size: 16px;
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
- 
-  .service-item-service {
-    width: 100%;
-    max-width: 350px;
+
+  .service-image {
+    height: 200px;
   }
- 
-  .service-content {
+
+  .category-filter {
+    flex-wrap: wrap;
+  }
+
+  .modal-content {
     padding: 20px;
   }
- 
-  .plan-details {
+
+  .plans-grid {
     grid-template-columns: 1fr;
   }
- }
- 
- @media (max-width: 480px) {
-  .services-header {
-    min-height: 50vh;
-    padding: 60px 15px;
+
+  .plan-card.recommended {
+    transform: none;
   }
- 
+}
+
+@media (max-width: 480px) {
   .services-header h1 {
-    font-size: 32px;
+    font-size: 28px;
   }
- 
-  .service-item-service {
-    width: 100%;
-  }
- 
+
   .service-image {
-    height: 180px;
+    height: 160px;
   }
- 
-  .popup-card {
-    padding: 20px;
+
+  .modal-content {
+    padding: 15px;
   }
- }
+}

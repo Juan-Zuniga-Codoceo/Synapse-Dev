@@ -1,117 +1,170 @@
 // src/components/shared/ContactSection/index.js
 import React, { useState } from 'react';
 import './styles.css';
-import Loader from 'react-loaders';
-import 'loaders.css/src/animations/ball-spin-fade-loader.scss';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookF,
   faInstagram,
-  faTwitter
+  faTwitter,
+  faWhatsapp
 } from "@fortawesome/free-brands-svg-icons";
-import { faFilePdf } from "@fortawesome/free-solid-svg-icons";
-// Actualizar ruta de la imagen
+import { 
+  faFilePdf, 
+  faEnvelope, 
+  faPhone 
+} from "@fortawesome/free-solid-svg-icons";
 import synapseLogo from '../../../assets/images/logos/Logo_mail-removebg-preview.png';
 
 const ContactSection = () => {
-  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
 
-  const sendEmail = async (e) => {
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleWhatsApp = () => {
+    const message = `
+      *Consulta desde la web*
+      Nombre: ${formData.name}
+      Email: ${formData.email}
+      Teléfono: ${formData.phone}
+      Asunto: ${formData.subject}
+      Mensaje: ${formData.message}
+    `;
+    
+    const phoneNumber = "+56928333538"; // Reemplazar con tu número de WhatsApp
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-
-    const formData = {
-      name: e.target.name.value,
-      phone: e.target.phone.value,
-      email: e.target.email.value,
-      subject: e.target.subject.value,
-      message: e.target.message.value,
-    };
-
-    try {
-     // const apiUrl = process.env.REACT_APP_API_URL.trim(); // Eliminar cualquier espacio o salto de línea
-
-const response = await fetch(`${process.env.REACT_APP_API_UR}/send-email`, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(formData),
-});
-
-    
-    
-    
-
-      const data = await response.json();
-
-      if (data.success) {
-        alert('Mensaje enviado con éxito');
-      } else {
-        alert('Hubo un error al enviar el mensaje');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Hubo un error al enviar el mensaje');
-    } finally {
-      setLoading(false);
-    }
-
-    e.target.reset();
+    handleWhatsApp();
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      subject: '',
+      message: ''
+    });
   };
 
   return (
-    <section className="contact-section-wrapper">
-      <div className="contact-section-content">
-        <div className="contact-section-form-card">
+    <section className="contact-section">
+      <div className="contact-grid">
+        <div className="contact-form-container">
           <h2>Contáctanos</h2>
-          <form className="contact-section-form" onSubmit={sendEmail}>
-            <div className="contact-section-form-group">
-              <input type="text" name="name" placeholder="Nombre" required />
-              <div className="contact-section-phone-email">
-                <input type="text" name="phone" placeholder="+56 Teléfono" />
-                <input type="email" name="email" placeholder="E-mail" required />
-              </div>
-              <input type="text" name="subject" placeholder="Asunto" required />
-              <textarea name="message" placeholder="Mensaje" required></textarea>
+          <p className="contact-subtitle">
+            Estamos aquí para ayudarte con tu próximo proyecto
+          </p>
+          <form onSubmit={handleSubmit} className="contact-form">
+            <div className="form-group">
+              <input
+                type="text"
+                name="name"
+                placeholder="Nombre"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
             </div>
-            <button type="submit" className="contact-section-submit-button">
-              Enviar
+            <div className="form-group-row">
+              <input
+                type="tel"
+                name="phone"
+                placeholder="+56 Teléfono"
+                value={formData.phone}
+                onChange={handleChange}
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                name="subject"
+                placeholder="Asunto"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <textarea
+                name="message"
+                placeholder="Mensaje"
+                value={formData.message}
+                onChange={handleChange}
+                required
+              ></textarea>
+            </div>
+            <button type="submit" className="submit-button">
+              Enviar Mensaje
+              <FontAwesomeIcon icon={faWhatsapp} className="whatsapp-icon" />
             </button>
           </form>
         </div>
-        <div className="contact-section-docs-card">
-          <h2>Documentos Importantes</h2>
-          <br />
-          <p>Descarga los siguientes documentos que te ayudarán a entender mejor nuestros servicios:</p>
-          <br />
-          <div className="contact-section-docs-container">
-            <a href="/docs/Cotizacion_Synapse_Dev.docx" className="contact-section-doc-link" download>
-              <FontAwesomeIcon icon={faFilePdf} className="contact-section-doc-icon" />
-              Descargar Cotizaciones
-            </a>
-            <a href="/docs/Guia_Basica_Paginas_Web_.pdf" className="contact-section-doc-link" download>
-              <FontAwesomeIcon icon={faFilePdf} className="contact-section-doc-icon" />
-              Guía Básica de Web
-            </a>
+
+        <div className="contact-info-container">
+          <div className="contact-info">
+            <h3>Información de Contacto</h3>
+            <div className="contact-details">
+              <a href="mailto:contacto@synapsedev.cl" className="contact-detail">
+                <FontAwesomeIcon icon={faEnvelope} />
+                <span>contacto@synapsedev.cl</span>
+              </a>
+              <a href="tel:+56XXXXXXXX" className="contact-detail">
+                <FontAwesomeIcon icon={faPhone} />
+                <span>+56 9 2833 3538</span>
+              </a>
+            </div>
           </div>
-          <div className="contact-section-image-container">
-            <img src={synapseLogo} alt="Logo Synapse Dev" className="contact-section-logo" />
+
+          <div className="documents-section">
+            <h3>Documentos Importantes</h3>
+            <p>Descarga los siguientes documentos para conocer más sobre nuestros servicios:</p>
+            <div className="documents-grid">
+              <a href="/docs/Cotizacion_Synapse_Dev.docx" className="document-link" download>
+                <FontAwesomeIcon icon={faFilePdf} />
+                <span>Descargar Cotizaciones</span>
+              </a>
+              <a href="/docs/Guia_Basica_Paginas_Web_.pdf" className="document-link" download>
+                <FontAwesomeIcon icon={faFilePdf} />
+                <span>Guía Básica de Web</span>
+              </a>
+            </div>
           </div>
-          <div className="contact-section-social-media">
-            <ul>
-              <li><a href="https://web.facebook.com/profile.php?id=61563375403408&locale=es_LA"><FontAwesomeIcon icon={faFacebookF} /></a></li>
-              <li><a href="https://www.instagram.com/synapse_dev/?hl=es-es"><FontAwesomeIcon icon={faInstagram} /></a></li>
-              <li><a href="https://x.com/Synapse___Dev"><FontAwesomeIcon icon={faTwitter} /></a></li>
-            </ul>
+
+          <div className="brand-section">
+            <img src={synapseLogo} alt="Synapse Dev Logo" className="brand-logo" />
+            <div className="social-links">
+              <a href="https://web.facebook.com/profile.php?id=61563375403408" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faFacebookF} />
+              </a>
+              <a href="https://www.instagram.com/synapse_dev/" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faInstagram} />
+              </a>
+              <a href="https://twitter.com/Synapse___Dev" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
+            </div>
           </div>
         </div>
       </div>
-      {loading && (
-        <div className="contact-section-loader-overlay">
-          <Loader type="ball-spin-fade-loader" />
-        </div>
-      )}
     </section>
   );
 };
