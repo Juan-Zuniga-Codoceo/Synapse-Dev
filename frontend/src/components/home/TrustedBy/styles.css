@@ -1,151 +1,151 @@
 .trusted-by {
-    padding: 60px 20px;
-    background-color: #102532;
-  }
-  
-  .trusted-by-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .trusted-by h2 {
-    font-size: 42px;
-    color: #ff6600;
-    font-weight: 700;
-    margin-bottom: 50px;
-    letter-spacing: -0.02em;
-  }
-  
-  .trusted-by-subtitle {
-    font-size: 16px;
-    color: #6b7280;
-    max-width: 600px;
-    margin: 0 auto 40px;
-    line-height: 1.5;
-  }
-  
-  .logos-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
-    padding: 0;
-    margin: 0 auto;
-  }
-  
-  .client-link {
-    text-decoration: none;
-    display: block;
-  }
-  
-  .logo-container {
-    width: 320px; /* Aumentado */
-    height: 180px; /* Aumentado */
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-  }
-  
-  .logo-container:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  }
-  
+  padding: 80px 20px;
+  background-color: #102532;
+  position: relative;
+}
+
+.trusted-by::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(
+      90deg,
+      rgba(255, 102, 0, 0) 0%,
+      rgba(255, 102, 0, 0.3) 50%,
+      rgba(255, 102, 0, 0) 100%
+  );
+}
+
+.trusted-by-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.trusted-by h2 {
+  font-size: 42px;
+  color: #ff6600;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.trusted-by-subtitle {
+  font-size: 16px;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto 50px;
+  line-height: 1.5;
+}
+
+.logos-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.logo-wrapper {
+  flex: 0 1 200px;
+  text-decoration: none;
+}
+
+.logo-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 25px;
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.logo-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.client-logo {
+  max-width: 100%;
+  height: auto;
+  transition: all 0.3s ease;
+  opacity: 0.8;
+}
+
+.logo-card:hover .client-logo {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
 /* Estilos específicos para cada logo */
-.client-logo[alt*="CORFO"] {
-    height: 120px;
-    width: auto;
-    filter: none;
-    -webkit-font-smoothing: antialiased;
-    image-rendering: -webkit-optimize-contrast;
+.corfo-logo {
+  width: 120px;
+  filter: none;
 }
 
-.client-logo[alt*="SEMILLA NEGRA"] {
-    height: 180px;
-    width: auto;
-    filter: brightness(0) invert(1);
-    -webkit-font-smoothing: antialiased;
-    image-rendering: -webkit-optimize-contrast;
+.mi-semilla-negra-logo {
+  width: 140px;
+  filter: brightness(0) invert(1);
 }
 
-.client-logo[alt*="SPENDSHIELD"] {
-    height: 190px;
-    width: auto;
-    filter: brightness(0) invert(1);
-    -webkit-font-smoothing: antialiased;
-    image-rendering: -webkit-optimize-contrast;
+.spendshield-logo {
+  width: 140px;
+  filter: brightness(0) invert(1);
 }
 
-/* Estilo más específico para el logo del abogado */
-.client-logo[alt*="ABOGADO"] {
-    height: 50px;
-    width: auto;
-    filter: brightness(0) invert(1) contrast(1.1);
-    -webkit-font-smoothing: antialiased;
-    image-rendering: -webkit-optimize-contrast;
-    transform: scale(1.4); /* Hace el logo más grande manteniendo la calidad */
+.matrona-naty-logo {
+  width: 100px;
+  filter: none;
+  border-radius: 50%;
 }
 
-/* Ajuste para el hover del logo del abogado */
-.logo-container:hover .client-logo[alt*="ABOGADO"] {
-    transform: scale(1.45); /* Mantenemos la proporción del hover */
+.abogado-andrés-gonzález-logo {
+  width: 140px;
+  filter: brightness(0) invert(1);
 }
-  /* Media Queries */
-  @media (max-width: 1400px) {
-    .logos-container {
-      gap: 40px;
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .logos-grid {
+      padding: 0 20px;
+  }
+  
+  .logo-wrapper {
+      flex: 0 1 180px;
+  }
+}
+
+@media (max-width: 992px) {
+  .logos-grid {
       flex-wrap: wrap;
-      max-width: 1200px;
-    }
-    
-    .logo-container {
-      width: 300px;
-      height: 160px;
-    }
+      gap: 20px;
   }
-  
-  @media (max-width: 768px) {
-    .trusted-by {
-      padding: 50px 15px;
-    }
-  
-    .logos-container {
-      gap: 30px;
-    }
-    
-    .logo-container {
-      width: 280px;
-      height: 150px;
-    }
-    
-    .client-logo[alt*="CORFO"] {
-      max-height: 90px;
-    }
-    
-    .client-logo[alt*="SEMILLA NEGRA"] {
-      max-height: 120px;
-    }
-    
-    .client-logo[alt*="SPENDSHIELD"] {
-      max-height: 100px;
-    }
-    
-    .client-logo[alt*="ABOGADO"] {
-      max-height: 140px;
-    }
+}
+
+@media (max-width: 768px) {
+  .trusted-by {
+      padding: 60px 15px;
   }
-  
-  @media (max-width: 480px) {
-    .logos-container {
-      flex-direction: column;
-      gap: 25px;
-    }
+
+  .trusted-by h2 {
+      font-size: 32px;
   }
+
+  .logo-wrapper {
+      flex: 0 1 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-wrapper {
+      flex: 0 1 100%;
+  }
+}

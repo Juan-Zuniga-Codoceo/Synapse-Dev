@@ -10,6 +10,7 @@ import project3 from '../../../assets/images/projects/project3.webp';
 import project4 from '../../../assets/images/projects/abogado.webp';
 import project5 from '../../../assets/images/projects/proyecto5.webp';
 import semillaNegra from '../../../assets/images/projects/misemillanegra.netlify.app_.png';
+import matronaNaty from '../../../assets/images/projects/matronanaty.png';
 
 const LastProjects = () => {
   const projects = [
@@ -17,6 +18,11 @@ const LastProjects = () => {
       img: semillaNegra,
       title: "Mi Semilla Negra - Salsas Orientales",
       link: "https://misemillanegra.netlify.app/",
+    },
+    {
+      img: matronaNaty,
+      title: "Matrona Naty - Cuidado especializado de la mujer",
+      link: "https://www.matronanaty.cl/",
     },
     {
       img: project5,
@@ -27,12 +33,7 @@ const LastProjects = () => {
       img: project4,
       title: "Landing Page - Abogado Andrés González",
       link: "https://abogadoandresgonzalez.rf.gd/",
-    },
-    {
-      img: project1,
-      title: "Synapse Dev - Web Dev Solution",
-      link: "https://juan-zuniga-codoceo.github.io/webDev.github.io/#",
-    },
+    }, 
     {
       img: project3,
       title: "Synapse Dev - Pizzería",

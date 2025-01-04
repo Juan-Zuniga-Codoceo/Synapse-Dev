@@ -388,23 +388,33 @@ const TechnologiesSection = () => {
     return row * 100 + col * 50;
   };
 
+  const getCategoryColor = (category) => {
+    const colors = {
+      'FRONTEND': '#ff6600',
+      'BACKEND': '#4CAF50',
+      'DATABASE': '#2196F3',
+      'CMS': '#9C27B0',
+      'E-COMMERCE': '#FFC107'
+    };
+    return colors[category] || '#ff6600';
+  };
+
   if (isLoading) {
     return <TechnologiesSkeleton />;
   }
 
   return (
-    <section className="technologies-section">
+    <section className="tech-main-section">
       <AnimatedSection animation="fade-up">
-        <div className="technologies-heading">
+        <div className="tech-main-heading">
           <h2>Tecnologías Utilizadas</h2>
-          <p className="technologies-subtitle">
-            Trabajamos con las últimas tecnologías para crear soluciones
-            modernas y escalables
+          <p className="tech-main-subtitle">
+            Trabajamos con las últimas tecnologías para crear soluciones modernas y escalables
           </p>
         </div>
       </AnimatedSection>
 
-      <div className="tech-grid">
+      <div className="tech-main-grid">
         {technologies.map((tech, index) => (
           <AnimatedSection
             key={tech.id}
@@ -412,18 +422,24 @@ const TechnologiesSection = () => {
             delay={getStaggeredDelay(index)}
             threshold={0.1}
           >
-            <div className="tech-item">
-              <div className="tech-icon-wrapper">
+            <div className="tech-main-item">
+              <div className="tech-main-icon-wrapper">
                 <LazyImage
                   src={tech.icon}
                   alt={`${tech.name} icon`}
+                  className="tech-main-icon"
                   placeholderColor="rgba(16, 37, 50, 0.95)"
                 />
-              </div>
-              <h3 className="tech-name">{tech.name}</h3>
-              <span className="tech-category">{tech.category}</span>
+             </div>
+              <h3 className="tech-main-name">{tech.name}</h3>
+              <span 
+                className="tech-main-category"
+                data-category={tech.category}
+              >
+                {tech.category}
+              </span>
               {tech.description && (
-                <p className="tech-description">{tech.description}</p>
+                <p className="tech-main-description">{tech.description}</p>
               )}
             </div>
           </AnimatedSection>

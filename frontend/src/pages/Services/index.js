@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FaCheck, FaArrowRight, FaRegStar, FaTimes } from 'react-icons/fa';
-import Animation from '../../components/layout/Animation';
-import TechnologiesSection from '../../components/home/TechnologiesSection';
-import ContactSection from '../../components/shared/ContactSection';
-import './styles.css'; // Asumiendo que crearemos este archivo
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { FaCheck, FaArrowRight, FaRegStar, FaTimes } from "react-icons/fa";
+import Animation from "../../components/layout/Animation";
+import TechnologiesSection from "../../components/home/TechnologiesSection";
+import ContactSection from "../../components/shared/ContactSection";
+import landingPageImg from "../../assets/images/services/landing-page.webp";
+import empresaServiciosImg from "../../assets/images/services/empresa-servicios.webp";
+import ecommerceImg from "../../assets/images/services/ecommerce.webp";
+import corredoraPropiedadesImg from "../../assets/images/services/corredora-propiedades.webp";
+import "./styles.css";
+import heroImage from "../../assets/images/heroes/portafolio.webp";
 
-// Importación de imágenes
-import landingPageImg from '../../assets/images/services/landing-page.webp';
-import empresaServiciosImg from '../../assets/images/services/empresa-servicios.webp';
-import ecommerceImg from '../../assets/images/services/ecommerce.webp';
-import corredoraPropiedadesImg from '../../assets/images/services/corredora-propiedades.webp';
-
-// Datos y funciones auxiliares
+// Datos
 const categories = [
-  { id: 'all', name: 'Todos' },
-  { id: 'web', name: 'Desarrollo Web' },
-  { id: 'ecommerce', name: 'E-commerce' },
-  { id: 'business', name: 'Empresas' }
+  { id: "all", name: "Todos" },
+  { id: "web", name: "Desarrollo Web" },
+  { id: "ecommerce", name: "E-commerce" },
+  { id: "business", name: "Empresas" },
 ];
 
 const services = [
@@ -26,79 +25,79 @@ const services = [
     image: landingPageImg,
     title: "Landing Page",
     category: "web",
-    description: "Diseño y desarrollo de páginas de aterrizaje atractivas y optimizadas para conversiones.",
-    features: [
-      "Diseño responsive",
-      "Optimización SEO",
-      "Analytics integrado"
-    ],
+    description:
+      "Diseño y desarrollo de páginas de aterrizaje atractivas y optimizadas para conversiones.",
+    features: ["Diseño responsive", "Optimización SEO", "Analytics integrado"],
     stats: {
       clients: "+30 landing pages",
-      satisfaction: "95% satisfacción"
+      satisfaction: "95% satisfacción",
     },
-    planType: "basic"
+    planType: "basic",
   },
   {
     id: "business",
     image: empresaServiciosImg,
     title: "Web Empresas y Servicios",
     category: "business",
-    description: "Desarrollo de sitios web corporativos que representen la identidad de tu empresa.",
+    description:
+      "Desarrollo de sitios web corporativos que representen la identidad de tu empresa.",
     features: [
       "Diseño corporativo",
       "CMS personalizado",
-      "Integración con CRM"
+      "Integración con CRM",
     ],
     stats: {
       clients: "+50 empresas",
-      satisfaction: "98% satisfacción"
+      satisfaction: "98% satisfacción",
     },
-    planType: "advanced"
+    planType: "advanced",
   },
   {
     id: "ecommerce",
     image: ecommerceImg,
     title: "Web Ecommerce",
     category: "ecommerce",
-    description: "Soluciones de comercio electrónico para llevar tu tienda en línea al siguiente nivel.",
+    description:
+      "Soluciones de comercio electrónico para llevar tu tienda en línea al siguiente nivel.",
     features: [
       "Carrito de compras",
       "Gestión de inventario",
-      "Pasarela de pagos"
+      "Pasarela de pagos",
     ],
     stats: {
       clients: "+20 tiendas",
-      satisfaction: "97% satisfacción"
+      satisfaction: "97% satisfacción",
     },
-    planType: "ecommerce"
+    planType: "ecommerce",
   },
   {
     id: "real-estate",
     image: corredoraPropiedadesImg,
     title: "Web Corredora de Propiedades",
     category: "business",
-    description: "Desarrollo de plataformas especializadas para corredoras de propiedades.",
+    description:
+      "Desarrollo de plataformas especializadas para corredoras de propiedades.",
     features: [
       "Listado de propiedades",
       "Búsqueda avanzada",
-      "Gestión de leads"
+      "Gestión de leads",
     ],
     stats: {
       clients: "+15 corredoras",
-      satisfaction: "96% satisfacción"
+      satisfaction: "96% satisfacción",
     },
-    planType: "custom"
-  }
+    planType: "custom",
+  },
 ];
 
 const getPlanTitle = (planType) => {
   const titles = {
-    basic: 'Planes para Landing Page',
-    advanced: 'Planes para Web Empresas y Servicios',
-    ecommerce: 'Planes para Web Ecommerce',
-    custom: 'Planes para Corredoras de Propiedades'
+    basic: "Planes para Landing Page",
+    advanced: "Planes para Web Empresas y Servicios",
+    ecommerce: "Planes para Web Ecommerce",
+    custom: "Planes para Corredoras de Propiedades",
   };
-  return titles[planType] || 'Planes';
+  return titles[planType] || "Planes";
 };
 
 const getPlansForType = (planType) => {
@@ -111,8 +110,8 @@ const getPlansForType = (planType) => {
           "Menú Navegable",
           "1 Sección de contenido",
           "1 imagen",
-          "Formulario de contacto"
-        ]
+          "Formulario de contacto",
+        ],
       },
       {
         title: "Landing page 2",
@@ -121,9 +120,9 @@ const getPlansForType = (planType) => {
           "Menú Navegable",
           "2 Secciones de contenido",
           "1 imagen",
-          "Formulario de contacto"
+          "Formulario de contacto",
         ],
-        recommended: true
+        recommended: true,
       },
       {
         title: "Landing page 3",
@@ -132,9 +131,9 @@ const getPlansForType = (planType) => {
           "Menú Navegable",
           "3 Secciones de contenido",
           "1 imagen",
-          "Formulario de contacto"
-        ]
-      }
+          "Formulario de contacto",
+        ],
+      },
     ],
     advanced: [
       {
@@ -144,8 +143,8 @@ const getPlansForType = (planType) => {
           "Inicio - Nosotros - Servicios - Detalle de servicios - Blog - Contacto",
           "Galería de fotos de servicios",
           "Buscador de servicios",
-          "Registro e inicio de sesión de clientes"
-        ]
+          "Registro e inicio de sesión de clientes",
+        ],
       },
       {
         title: "Plan Avanzado",
@@ -155,9 +154,9 @@ const getPlansForType = (planType) => {
           "Galería de fotos de servicios",
           "Buscador de servicios",
           "Registro e inicio de sesión de clientes",
-          "Sistema reserva de horas"
+          "Sistema reserva de horas",
         ],
-        recommended: true
+        recommended: true,
       },
       {
         title: "Plan Experto",
@@ -168,9 +167,9 @@ const getPlansForType = (planType) => {
           "Buscador de servicios",
           "Registro e inicio de sesión de clientes",
           "Sistema reserva de horas",
-          "Pago de abono para reserva"
-        ]
-      }
+          "Pago de abono para reserva",
+        ],
+      },
     ],
     ecommerce: [
       {
@@ -183,8 +182,8 @@ const getPlansForType = (planType) => {
           "Buscador de productos",
           "Registro e inicio de sesión de clientes",
           "Carro de compras",
-          "Control de stock"
-        ]
+          "Control de stock",
+        ],
       },
       {
         title: "Plan Avanzado",
@@ -194,9 +193,9 @@ const getPlansForType = (planType) => {
           "Sistema de cupones de descuento",
           "Opción de habilitar ventas mayoristas",
           "Múltiples métodos de pago",
-          "Gastos de envío administrables"
+          "Gastos de envío administrables",
         ],
-        recommended: true
+        recommended: true,
       },
       {
         title: "Plan Experto",
@@ -206,9 +205,9 @@ const getPlansForType = (planType) => {
           "Sincronización con Mercadolibre",
           "Cotizador Chilexpress para delivery",
           "API para integraciones personalizadas",
-          "Soporte premium"
-        ]
-      }
+          "Soporte premium",
+        ],
+      },
     ],
     custom: [
       {
@@ -221,47 +220,53 @@ const getPlansForType = (planType) => {
           "Detalle de propiedad con galería",
           "Formulario para registro de propiedades",
           "Blog integrado",
-          "Panel de administración"
-        ]
-      }
-    ]
+          "Panel de administración",
+        ],
+      },
+    ],
   };
   return plans[planType] || [];
 };
 
-// Componentes
-const ServiceCard = ({ image, title, description, onClick, features, stats }) => (
+const ServiceCard = ({
+  image,
+  title,
+  description,
+  onClick,
+  features,
+  stats,
+}) => (
   <Animation animation="fade-up">
-    <div className="service-card">
-      <div className="service-image">
+    <div className="service-page-card">
+      <div className="service-page-image">
         <img src={image} alt={title} loading="lazy" />
       </div>
-      <div className="service-content">
+      <div className="service-page-content">
         <h2>{title}</h2>
         <p>{description}</p>
-        
+
         {features && (
-          <div className="features">
+          <div className="service-page-features">
             {features.map((feature, index) => (
-              <div key={index} className="feature-item">
+              <div key={index} className="service-page-feature-item">
                 <FaCheck className="feature-icon" />
                 <span>{feature}</span>
               </div>
             ))}
           </div>
         )}
-        
+
         {stats && (
-          <div className="stats">
-            <div className="stat">
+          <div className="service-page-stats">
+            <div className="service-page-stat">
               <FaRegStar className="stat-icon" />
               <span>{stats.clients}</span>
             </div>
             <span>{stats.satisfaction}</span>
           </div>
         )}
-        
-        <button onClick={onClick} className="cta-button">
+
+        <button onClick={onClick} className="service-page-cta">
           Ver Detalles
           <FaArrowRight />
         </button>
@@ -271,16 +276,12 @@ const ServiceCard = ({ image, title, description, onClick, features, stats }) =>
 );
 
 const PlanCard = ({ title, price, features, recommended }) => (
-  <div className={`plan-card ${recommended ? 'recommended' : ''}`}>
-    {recommended && (
-      <span className="recommended-badge">
-        Recomendado
-      </span>
-    )}
-    
+  <div className={`plan-card ${recommended ? "recommended" : ""}`}>
+    {recommended && <span className="recommended-badge">Recomendado</span>}
+
     <h3>{title}</h3>
     <p className="price">{price}</p>
-    
+
     <ul className="features-list">
       {features.map((feature, index) => (
         <li key={index}>
@@ -294,7 +295,7 @@ const PlanCard = ({ title, price, features, recommended }) => (
 
 const Services = () => {
   const [activePlan, setActivePlan] = useState(null);
-  const [filterCategory, setFilterCategory] = useState('all');
+  const [filterCategory, setFilterCategory] = useState("all");
 
   useEffect(() => {
     document.title = "Servicios | Synapse Dev";
@@ -309,57 +310,69 @@ const Services = () => {
 
   const togglePlan = (plan) => {
     setActivePlan(plan);
-    document.body.style.overflow = plan ? 'hidden' : 'unset';
+    document.body.style.overflow = plan ? "hidden" : "unset";
   };
 
-  const filteredServices = filterCategory === 'all' 
-    ? services 
-    : services.filter(service => service.category === filterCategory);
+  const filteredServices =
+    filterCategory === "all"
+      ? services
+      : services.filter((service) => service.category === filterCategory);
 
   return (
     <div className="services-page">
-      {/* Breadcrumbs */}
       <nav className="breadcrumbs">
         <div className="container">
           <ol>
-            <li><Link to="/">Inicio</Link></li>
+            <li>
+              <Link to="/">Inicio</Link>
+            </li>
             <li>/</li>
             <li>Servicios</li>
           </ol>
         </div>
       </nav>
 
-      {/* Hero Section */}
       <Animation animation="fade-up">
-        <header className="services-header">
+        <header
+          className="services-header"
+          style={{
+            backgroundImage: `linear-gradient(
+        to bottom,
+        rgba(16, 37, 50, 0.95),
+        rgba(16, 37, 50, 0.85)
+      ), url(${heroImage})`,
+            backgroundAttachment: "fixed",
+          }}
+        >
+          <div className="header-overlay"></div>
           <div className="header-content">
-            <h1>Desarrollo Web a Medida</h1>
+            <h1>
+              <span className="title-line">Desarrollo Web</span>
+              <span className="title-line">a Medida</span>
+            </h1>
             <p>
-              Nos especializamos en crear soluciones digitales adaptadas a las 
+              Nos especializamos en crear soluciones digitales adaptadas a las
               necesidades de tu negocio.
             </p>
           </div>
         </header>
       </Animation>
 
-      {/* Services Section */}
-      <section className="services-section">
+      <section className="services-page-section">
         <div className="container">
-          {/* Category Filter */}
           <div className="category-filter">
-            {categories.map(category => (
+            {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setFilterCategory(category.id)}
-                className={filterCategory === category.id ? 'active' : ''}
+                className={filterCategory === category.id ? "active" : ""}
               >
                 {category.name}
               </button>
             ))}
           </div>
 
-          {/* Services Grid */}
-          <div className="services-grid">
+          <div className="services-page-grid">
             {filteredServices.map((service) => (
               <ServiceCard
                 key={service.id}
@@ -371,16 +384,12 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Plan Modal */}
       {activePlan && (
         <div className="modal-overlay" onClick={() => togglePlan(null)}>
-          <div className="modal-content" onClick={e => e.stopPropagation()}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
               <h2>{getPlanTitle(activePlan)}</h2>
-              <button 
-                onClick={() => togglePlan(null)}
-                className="close-button"
-              >
+              <button onClick={() => togglePlan(null)} className="close-button">
                 <FaTimes />
               </button>
             </div>

@@ -1,15 +1,16 @@
-/*import React from 'react';
-import './styles.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
-  faLaptopCode, 
+  faShoppingBag, 
+  faGlobe, 
   faSearch, 
   faLightbulb,
   faCheck,
   faClock,
-  faStar
+  faStar 
 } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import './styles.css';
 
 const ServicesSection = () => {
   const services = [
@@ -17,9 +18,9 @@ const ServicesSection = () => {
       id: 1,
       title: "Desarrollo Web",
       description: "Creación de sitios web modernos, responsivos y personalizados que impulsan tu presencia digital.",
-      icon: faLaptopCode,
+      icon: faGlobe,
       features: [
-        "Diseño UI/UX personalizado",
+        "Diseño UX/UI personalizado",
         "Desarrollo Frontend y Backend",
         "Optimización de rendimiento"
       ],
@@ -30,6 +31,25 @@ const ServicesSection = () => {
     },
     {
       id: 2,
+      title: "Tiendas Shopify",
+      description: "Desarrollo y mantenimiento de tiendas online profesionales en Shopify, perfectas para emprendedores y pequeños negocios.",
+      icon: faShoppingBag,
+      features: [
+        "Configuración completa",
+        "Personalización de temas",
+        "Integración de pagos y envíos"
+      ],
+      stats: {
+        projects: "+20 tiendas creadas",
+        time: "2-4 semanas promedio"
+      },
+      pricing: {
+        amount: "Desde $80.000  CLP + IVA",
+        description: "Plan básico todo incluido"
+      }
+    },
+    {
+      id: 3,
       title: "Optimización SEO",
       description: "Mejoramos la visibilidad de tu sitio web en los motores de búsqueda para atraer más tráfico cualificado.",
       icon: faSearch,
@@ -44,7 +64,7 @@ const ServicesSection = () => {
       }
     },
     {
-      id: 3,
+      id: 4,
       title: "Consultoría",
       description: "Asesoría experta para potenciar tu negocio en línea con estrategias probadas y personalizadas.",
       icon: faLightbulb,
@@ -61,304 +81,63 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="services-section">
-      <div className="services-heading">
-        <h2>Nuestros Servicios</h2>
-        <p className="services-subtitle">
+    <section className="home-services">
+      <div className="home-services__heading">
+        <h2 className="home-services__title">Nuestros Servicios</h2>
+        <p className="home-services__subtitle">
           Soluciones digitales integrales para hacer crecer tu negocio
         </p>
       </div>
       
-      <div className="services-grid">
+      <div className="home-services__grid">
         {services.map((service) => (
-          <div key={service.id} className="service-item-grid">
-            <div>
-              <div className="service-icon-wrapper">
-                <FontAwesomeIcon icon={service.icon} />
+          <div 
+            key={service.id} 
+            className={`home-services__item ${service.id === 2 ? 'featured' : ''}`}
+          >
+            <div className="home-services__content">
+              <div className="home-services__icon-wrapper">
+                <FontAwesomeIcon icon={service.icon} className="home-services__icon" />
               </div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
+              <h3 className="home-services__item-title">{service.title}</h3>
+              <p className="home-services__description">{service.description}</p>
               
-              <div className="service-features">
+              <div className="home-services__features">
                 {service.features.map((feature, index) => (
-                  <div key={index} className="feature-item">
-                    <FontAwesomeIcon icon={faCheck} />
+                  <div key={index} className="home-services__feature">
+                    <FontAwesomeIcon icon={faCheck} className="home-services__check-icon" />
                     <span>{feature}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="service-stats">
-                <div>
-                  <FontAwesomeIcon icon={faStar} /> {Object.values(service.stats)[0]}
+              {service.id === 2 && service.pricing && (
+                <div className="pricing-info">
+                  <div className="price">{service.pricing.amount}</div>
+                  <div className="price-description">{service.pricing.description}</div>
                 </div>
-                <div>
-                  <FontAwesomeIcon icon={faClock} /> {Object.values(service.stats)[1]}
+              )}
+
+              <div className="home-services__stats">
+                <div className="home-services__stat">
+                  <FontAwesomeIcon icon={faStar} className="home-services__stat-icon" />
+                  <span>{Object.values(service.stats)[0]}</span>
+                </div>
+                <div className="home-services__stat">
+                  <FontAwesomeIcon icon={faClock} className="home-services__stat-icon" />
+                  <span>{Object.values(service.stats)[1]}</span>
                 </div>
               </div>
             </div>
 
-            <Link to="/services" style={{ textDecoration: 'none', width: '100%' }}>
-              <button className="cta-button-grid">Ver más</button>
+            <Link 
+              to="/services" 
+              className="home-services__button"
+              aria-label={`Ver más sobre ${service.title}`}
+            >
+              {service.id === 2 ? 'Comenzar ahora' : 'Ver más'}
             </Link>
           </div>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-export default ServicesSection;*/
-
-/*import React from 'react';
-import './styles.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faLaptopCode, 
-  faSearch, 
-  faLightbulb,
-  faCheck,
-  faClock,
-  faStar
-} from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import AnimatedSection from '../../layout/Animation/index';
-
-const ServicesSection = () => {
-  const services = [
-    {
-      id: 1,
-      title: "Desarrollo Web",
-      description: "Creación de sitios web modernos, responsivos y personalizados que impulsan tu presencia digital.",
-      icon: faLaptopCode,
-      features: [
-        "Diseño UI/UX personalizado",
-        "Desarrollo Frontend y Backend",
-        "Optimización de rendimiento"
-      ],
-      stats: {
-        projects: "+50 proyectos entregados",
-        time: "4-8 semanas promedio"
-      }
-    },
-    {
-      id: 2,
-      title: "Optimización SEO",
-      description: "Mejoramos la visibilidad de tu sitio web en los motores de búsqueda para atraer más tráfico cualificado.",
-      icon: faSearch,
-      features: [
-        "Análisis técnico completo",
-        "Optimización de contenido",
-        "Estrategia de keywords"
-      ],
-      stats: {
-        improvement: "+80% mejora en rankings",
-        time: "3-6 meses seguimiento"
-      }
-    },
-    {
-      id: 3,
-      title: "Consultoría",
-      description: "Asesoría experta para potenciar tu negocio en línea con estrategias probadas y personalizadas.",
-      icon: faLightbulb,
-      features: [
-        "Análisis de mercado",
-        "Estrategia digital",
-        "Plan de crecimiento"
-      ],
-      stats: {
-        clients: "+30 negocios asesorados",
-        satisfaction: "98% satisfacción"
-      }
-    }
-  ];
-
-  return (
-    <section className="services-section">
-      <AnimatedSection animation="fade-up">
-        <div className="services-heading">
-          <h2>Nuestros Servicios</h2>
-          <p className="services-subtitle">
-            Soluciones digitales integrales para hacer crecer tu negocio
-          </p>
-        </div>
-      </AnimatedSection>
-      
-      <div className="services-grid">
-        {services.map((service, index) => (
-          <AnimatedSection 
-            key={service.id} 
-            animation="fade-up" 
-            delay={index * 200}
-          >
-            <div className="service-item-grid">
-              <div>
-                <div className="service-icon-wrapper">
-                  <FontAwesomeIcon icon={service.icon} />
-                </div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-                
-                <div className="service-features">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="feature-item">
-                      <FontAwesomeIcon icon={faCheck} />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="service-stats">
-                  <div>
-                    <FontAwesomeIcon icon={faStar} /> {Object.values(service.stats)[0]}
-                  </div>
-                  <div>
-                    <FontAwesomeIcon icon={faClock} /> {Object.values(service.stats)[1]}
-                  </div>
-                </div>
-              </div>
-
-              <Link to="/services" style={{ textDecoration: 'none', width: '100%' }}>
-                <button className="cta-button-grid">Ver más</button>
-              </Link>
-            </div>
-          </AnimatedSection>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-export default ServicesSection;*/
-
-import React, { useState, useEffect } from 'react';
-import './styles.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faLaptopCode, 
-  faSearch, 
-  faLightbulb,
-  faCheck,
-  faClock,
-  faStar
-} from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import AnimatedSection from '../../layout/Animation/index';
-import ServicesSkeleton from './ ServicesSkeleton';
-
-const ServicesSection = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const services = [
-    {
-      id: 1,
-      title: "Desarrollo Web",
-      description: "Creación de sitios web modernos, responsivos y personalizados que impulsan tu presencia digital.",
-      icon: faLaptopCode,
-      features: [
-        "Diseño UI/UX personalizado",
-        "Desarrollo Frontend y Backend",
-        "Optimización de rendimiento"
-      ],
-      stats: {
-        projects: "+50 proyectos entregados",
-        time: "4-8 semanas promedio"
-      }
-    },
-    {
-      id: 2,
-      title: "Optimización SEO",
-      description: "Mejoramos la visibilidad de tu sitio web en los motores de búsqueda para atraer más tráfico cualificado.",
-      icon: faSearch,
-      features: [
-        "Análisis técnico completo",
-        "Optimización de contenido",
-        "Estrategia de keywords"
-      ],
-      stats: {
-        improvement: "+80% mejora en rankings",
-        time: "3-6 meses seguimiento"
-      }
-    },
-    {
-      id: 3,
-      title: "Consultoría",
-      description: "Asesoría experta para potenciar tu negocio en línea con estrategias probadas y personalizadas.",
-      icon: faLightbulb,
-      features: [
-        "Análisis de mercado",
-        "Estrategia digital",
-        "Plan de crecimiento"
-      ],
-      stats: {
-        clients: "+30 negocios asesorados",
-        satisfaction: "98% satisfacción"
-      }
-    }
-  ];
-
-  if (isLoading) {
-    return <ServicesSkeleton />;
-  }
-
-  return (
-    <section className="services-section">
-      <AnimatedSection animation="fade-up">
-        <div className="services-heading">
-          <h2>Nuestros Servicios</h2>
-          <p className="services-subtitle">
-            Soluciones digitales integrales para hacer crecer tu negocio
-          </p>
-        </div>
-      </AnimatedSection>
-      
-      <div className="services-grid">
-        {services.map((service, index) => (
-          <AnimatedSection 
-            key={service.id} 
-            animation="fade-up" 
-            delay={index * 200}
-          >
-            <div className="service-item-grid">
-              <div>
-                <div className="service-icon-wrapper">
-                  <FontAwesomeIcon icon={service.icon} />
-                </div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-                
-                <div className="service-features">
-                  {service.features.map((feature, idx) => (
-                    <div key={idx} className="feature-item">
-                      <FontAwesomeIcon icon={faCheck} />
-                      <span>{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="service-stats">
-                  <div>
-                    <FontAwesomeIcon icon={faStar} /> {Object.values(service.stats)[0]}
-                  </div>
-                  <div>
-                    <FontAwesomeIcon icon={faClock} /> {Object.values(service.stats)[1]}
-                  </div>
-                </div>
-              </div>
-
-              <Link to="/services" style={{ textDecoration: 'none', width: '100%' }}>
-                <button className="cta-button-grid">Ver más</button>
-              </Link>
-            </div>
-          </AnimatedSection>
         ))}
       </div>
     </section>

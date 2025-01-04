@@ -1,4 +1,14 @@
 /* src/pages/Home/styles/Home.css */
+
+/* Contenedor principal */
+.home-container {
+  min-height: 100vh;
+  background-color: #102532;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Hero Section */
 .hero {
   position: relative;
   min-height: 90vh;
@@ -7,6 +17,9 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background-color: #102532;
+  margin: 0;
+  padding: 0;
 }
 
 .hero-background {
@@ -104,6 +117,82 @@
   transform: translateY(-2px);
 }
 
+/* Secciones */
+section {
+  position: relative;
+  margin: 0;
+  padding: 60px 0;
+}
+
+.home-section {
+  width: 100%;
+  border: none;
+}
+
+.home-section--light {
+  background-color: #ffffff;
+}
+
+.home-section--dark {
+  background-color: #102532;
+}
+
+/* Separadores sutiles entre secciones del mismo color */
+.home-section--dark + .home-section--dark::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1200px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.home-section--light + .home-section--light::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1200px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(16, 37, 50, 0) 0%,
+    rgba(16, 37, 50, 0.05) 50%,
+    rgba(16, 37, 50, 0) 100%
+  );
+}
+
+/* ParallaxSection */
+.parallax-section {
+  background-color: #102532;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.parallax-section > section {
+  margin: 0;
+  padding: 60px 0;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  section,
+  .parallax-section > section {
+    padding: 50px 0;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-title {
     font-size: 3rem;
@@ -116,5 +205,35 @@
   .hero-buttons {
     flex-direction: column;
     gap: 1rem;
+  }
+
+  section,
+  .parallax-section > section {
+    padding: 40px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 0 1rem;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  section,
+  .parallax-section > section {
+    padding: 30px 0;
+  }
+
+  .hero-cta-primary,
+  .hero-cta-secondary {
+    width: 100%;
+    text-align: center;
   }
 }

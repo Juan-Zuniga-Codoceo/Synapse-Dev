@@ -1,5 +1,6 @@
 // components/layout/ParallaxSection.js
 import React, { useEffect } from 'react';
+import './ParallaxSection.css';
 
 const ParallaxSection = ({ children }) => {
   useEffect(() => {
