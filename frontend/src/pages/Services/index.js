@@ -1,422 +1,337 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FaCheck, FaArrowRight, FaRegStar, FaTimes } from "react-icons/fa";
-import Animation from "../../components/layout/Animation";
-import TechnologiesSection from "../../components/home/TechnologiesSection";
-import ContactSection from "../../components/shared/ContactSection";
-import landingPageImg from "../../assets/images/services/landing-page.webp";
-import empresaServiciosImg from "../../assets/images/services/empresa-servicios.webp";
-import ecommerceImg from "../../assets/images/services/ecommerce.webp";
-import corredoraPropiedadesImg from "../../assets/images/services/corredora-propiedades.webp";
-import "./styles.css";
-import heroImage from "../../assets/images/heroes/portafolio.webp";
-
-// Datos
-const categories = [
-  { id: "all", name: "Todos" },
-  { id: "web", name: "Desarrollo Web" },
-  { id: "ecommerce", name: "E-commerce" },
-  { id: "business", name: "Empresas" },
-];
+// src/pages/Services/index.js
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { FaCheck, FaArrowRight, FaTimes } from 'react-icons/fa';
+import Animation from '../../components/layout/Animation';
+import TechnologiesSection from '../../components/home/TechnologiesSection';
+import ContactSection from '../../components/shared/ContactSection';
+import heroImage from '../../assets/images/heroes/portafolio.webp';
+import './styles.css';
 
 const services = [
-  {
-    id: "landing",
-    image: landingPageImg,
-    title: "Landing Page",
-    category: "web",
-    description:
-      "Diseño y desarrollo de páginas de aterrizaje atractivas y optimizadas para conversiones.",
-    features: ["Diseño responsive", "Optimización SEO", "Analytics integrado"],
-    stats: {
-      clients: "+30 landing pages",
-      satisfaction: "95% satisfacción",
-    },
-    planType: "basic",
-  },
-  {
-    id: "business",
-    image: empresaServiciosImg,
-    title: "Web Empresas y Servicios",
-    category: "business",
-    description:
-      "Desarrollo de sitios web corporativos que representen la identidad de tu empresa.",
-    features: [
-      "Diseño corporativo",
-      "CMS personalizado",
-      "Integración con CRM",
-    ],
-    stats: {
-      clients: "+50 empresas",
-      satisfaction: "98% satisfacción",
-    },
-    planType: "advanced",
-  },
-  {
-    id: "ecommerce",
-    image: ecommerceImg,
-    title: "Web Ecommerce",
-    category: "ecommerce",
-    description:
-      "Soluciones de comercio electrónico para llevar tu tienda en línea al siguiente nivel.",
-    features: [
-      "Carrito de compras",
-      "Gestión de inventario",
-      "Pasarela de pagos",
-    ],
-    stats: {
-      clients: "+20 tiendas",
-      satisfaction: "97% satisfacción",
-    },
-    planType: "ecommerce",
-  },
-  {
-    id: "real-estate",
-    image: corredoraPropiedadesImg,
-    title: "Web Corredora de Propiedades",
-    category: "business",
-    description:
-      "Desarrollo de plataformas especializadas para corredoras de propiedades.",
-    features: [
-      "Listado de propiedades",
-      "Búsqueda avanzada",
-      "Gestión de leads",
-    ],
-    stats: {
-      clients: "+15 corredoras",
-      satisfaction: "96% satisfacción",
-    },
-    planType: "custom",
-  },
+ {
+   id: 'web',
+   title: 'Desarrollo Web',
+   description: 'Creación de sitios web modernos, responsivos y personalizados.',
+   features: [
+     'Diseño responsive',
+     'Optimización SEO',
+     'Panel administrable',
+     'Integración APIs'
+   ],
+   stats: {
+     clients: '+50 sitios web',
+     satisfaction: '98% satisfacción'
+   },
+   price: 'Desde $250.000 CLP',
+   plans: [
+     {
+       title: 'Plan Básico',
+       price: '$250.000 CLP',
+       features: [
+         'Diseño personalizado',
+         'Responsive design',
+         'Optimización SEO básica',
+         'Formulario de contacto'
+       ]
+     },
+     {
+       title: 'Plan Pro',
+       price: '$350.000 CLP',
+       features: [
+         'Todo del plan básico',
+         'Panel administrable',
+         'Blog integrado',
+         'Analítica avanzada'
+       ],
+       recommended: true
+     }
+   ]
+ },
+ {
+   id: 'landing',
+   title: 'Landing Page',
+   description: 'Diseño y desarrollo de páginas de aterrizaje atractivas y optimizadas para conversiones.',
+   features: [
+     'Diseño responsive',
+     'Optimización de conversión',
+     'Analytics integrado',
+     'A/B Testing'
+   ],
+   stats: {
+     clients: '+30 landings',
+     satisfaction: '95% satisfacción'
+   },
+   price: 'Desde $150.000 CLP + IVA',
+   plans: [
+     {
+       title: 'Plan Básico',
+       price: '$150.000 CLP',
+       features: [
+         'Una sección principal',
+         'Formulario de contacto',
+         'Diseño responsive',
+         'Optimización básica'
+       ]
+     },
+     {
+       title: 'Plan Avanzado',
+       price: '$200.000 CLP',
+       features: [
+         'Múltiples secciones',
+         'Formulario personalizado',
+         'Analytics avanzado',
+         'A/B Testing incluido'
+       ],
+       recommended: true
+     }
+   ]
+ },
+ {
+   id: 'shopify',
+   title: 'Tiendas Shopify',
+   description: 'Desarrollo de tiendas online profesionales con Shopify, la plataforma líder en ecommerce.',
+   features: [
+     'Diseño personalizado',
+     'Configuración completa', 
+     'Gestión de productos',
+     'Métodos de pago integrados'
+   ],
+   stats: {
+     clients: '+20 tiendas',
+     satisfaction: '97% satisfacción'
+   },
+   price: 'Desde $80.000 CLP',
+   featured: true,
+   plans: [
+     {
+       title: 'Plan Básico',
+       price: '$80.000 CLP',
+       features: [
+         'Tema personalizado',
+         'Configuración básica',
+         'Hasta 50 productos',
+         'Soporte por 1 mes'
+       ]
+     },
+     {
+       title: 'Plan Completo',
+       price: '$250.000 CLP',
+       features: [
+         'Todo del plan básico',
+         'Productos ilimitados',
+         'Apps premium instaladas',
+         'Soporte por 3 meses'
+       ],
+       recommended: true
+     }
+   ]
+ },
+ {
+   id: 'ecommerce',
+   title: 'E-commerce Personalizado',
+   description: 'Plataformas de comercio electrónico personalizadas y escalables para tu negocio.',
+   features: [
+     'Carrito de compras avanzado',
+     'Gestión de inventario',
+     'Múltiples formas de pago',
+     'Panel administrativo completo'
+   ],
+   stats: {
+     clients: '+30 tiendas',
+     satisfaction: '96% satisfacción'
+   },
+   price: 'Desde $300.000 CLP',
+   plans: [
+     {
+       title: 'Plan Estándar',
+       price: '$300.000 CLP',
+       features: [
+         'Catálogo de productos',
+         'Carrito de compras',
+         'Gestión de pedidos',
+         'Panel admin básico'
+       ]
+     },
+     {
+       title: 'Plan Premium',
+       price: '$450.000 CLP',
+       features: [
+         'Todo del plan estándar',
+         'Múltiples métodos de pago',
+         'Sistema de descuentos',
+         'API para integraciones'
+       ],
+       recommended: true
+     }
+   ]
+ },
+ {
+   id: 'maintenance',
+   title: 'Mantención Web',
+   description: 'Servicio de mantenimiento y soporte continuo para mantener tu sitio web actualizado y seguro.',
+   features: [
+     'Actualizaciones de seguridad',
+     'Copias de seguridad',
+     'Optimización de rendimiento',
+     'Soporte técnico prioritario'
+   ],
+   stats: {
+     clients: '+40 sitios',
+     satisfaction: '99% satisfacción'
+   },
+   price: 'Desde $40.000 CLP/mes',
+   plans: [
+     {
+       title: 'Plan Mensual',
+       price: '$40.000 CLP/mes',
+       features: [
+         'Actualizaciones de seguridad',
+         'Backups semanales',
+         'Soporte básico',
+         'Monitoreo 24/7'
+       ]
+     },
+     {
+       title: 'Plan Anual',
+       price: '$35.000 CLP/mes',
+       features: [
+         'Todo del plan mensual',
+         'Backups diarios',
+         'Soporte prioritario',
+         '2 horas de desarrollo'
+       ],
+       recommended: true
+     }
+   ]
+ }
 ];
 
-const getPlanTitle = (planType) => {
-  const titles = {
-    basic: "Planes para Landing Page",
-    advanced: "Planes para Web Empresas y Servicios",
-    ecommerce: "Planes para Web Ecommerce",
-    custom: "Planes para Corredoras de Propiedades",
-  };
-  return titles[planType] || "Planes";
-};
-
-const getPlansForType = (planType) => {
-  const plans = {
-    basic: [
-      {
-        title: "Landing page 1",
-        price: "$120.000 CLP / $146 USD",
-        features: [
-          "Menú Navegable",
-          "1 Sección de contenido",
-          "1 imagen",
-          "Formulario de contacto",
-        ],
-      },
-      {
-        title: "Landing page 2",
-        price: "$150.000 CLP / $183 USD",
-        features: [
-          "Menú Navegable",
-          "2 Secciones de contenido",
-          "1 imagen",
-          "Formulario de contacto",
-        ],
-        recommended: true,
-      },
-      {
-        title: "Landing page 3",
-        price: "$170.000 CLP / $207 USD",
-        features: [
-          "Menú Navegable",
-          "3 Secciones de contenido",
-          "1 imagen",
-          "Formulario de contacto",
-        ],
-      },
-    ],
-    advanced: [
-      {
-        title: "Plan Básico",
-        price: "$250.000 CLP / $305 USD",
-        features: [
-          "Inicio - Nosotros - Servicios - Detalle de servicios - Blog - Contacto",
-          "Galería de fotos de servicios",
-          "Buscador de servicios",
-          "Registro e inicio de sesión de clientes",
-        ],
-      },
-      {
-        title: "Plan Avanzado",
-        price: "$270.000 CLP / $329 USD",
-        features: [
-          "Inicio - Nosotros - Servicios - Detalle de servicios - Blog - Contacto",
-          "Galería de fotos de servicios",
-          "Buscador de servicios",
-          "Registro e inicio de sesión de clientes",
-          "Sistema reserva de horas",
-        ],
-        recommended: true,
-      },
-      {
-        title: "Plan Experto",
-        price: "$280.000 CLP / $341 USD",
-        features: [
-          "Inicio - Nosotros - Servicios - Detalle de servicios - Blog - Contacto",
-          "Galería de fotos de servicios",
-          "Buscador de servicios",
-          "Registro e inicio de sesión de clientes",
-          "Sistema reserva de horas",
-          "Pago de abono para reserva",
-        ],
-      },
-    ],
-    ecommerce: [
-      {
-        title: "Plan Básico",
-        price: "$250.000 CLP / $270.000 (productos con tallas)",
-        features: [
-          "Inicio - Nosotros - Productos - Detalle de productos - Blog - Contacto",
-          "Categorías y subcategorías de productos",
-          "Galería de fotos de productos",
-          "Buscador de productos",
-          "Registro e inicio de sesión de clientes",
-          "Carro de compras",
-          "Control de stock",
-        ],
-      },
-      {
-        title: "Plan Avanzado",
-        price: "$280.000 CLP / $300.000 (productos con tallas)",
-        features: [
-          "Todo lo del plan básico",
-          "Sistema de cupones de descuento",
-          "Opción de habilitar ventas mayoristas",
-          "Múltiples métodos de pago",
-          "Gastos de envío administrables",
-        ],
-        recommended: true,
-      },
-      {
-        title: "Plan Experto",
-        price: "$300.000 CLP / $320.000 (productos con tallas)",
-        features: [
-          "Todo lo del plan avanzado",
-          "Sincronización con Mercadolibre",
-          "Cotizador Chilexpress para delivery",
-          "API para integraciones personalizadas",
-          "Soporte premium",
-        ],
-      },
-    ],
-    custom: [
-      {
-        title: "Plan Único",
-        price: "$250.000 CLP / $305 USD",
-        features: [
-          "Sección inicio con Slideshow",
-          "Sección Quienes somos",
-          "Sección de propiedades (ventas y arriendo)",
-          "Detalle de propiedad con galería",
-          "Formulario para registro de propiedades",
-          "Blog integrado",
-          "Panel de administración",
-        ],
-      },
-    ],
-  };
-  return plans[planType] || [];
-};
-
-const ServiceCard = ({
-  image,
-  title,
-  description,
-  onClick,
-  features,
-  stats,
-}) => (
-  <Animation animation="fade-up">
-    <div className="service-page-card">
-      <div className="service-page-image">
-        <img src={image} alt={title} loading="lazy" />
-      </div>
-      <div className="service-page-content">
-        <h2>{title}</h2>
-        <p>{description}</p>
-
-        {features && (
-          <div className="service-page-features">
-            {features.map((feature, index) => (
-              <div key={index} className="service-page-feature-item">
-                <FaCheck className="feature-icon" />
-                <span>{feature}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {stats && (
-          <div className="service-page-stats">
-            <div className="service-page-stat">
-              <FaRegStar className="stat-icon" />
-              <span>{stats.clients}</span>
-            </div>
-            <span>{stats.satisfaction}</span>
-          </div>
-        )}
-
-        <button onClick={onClick} className="service-page-cta">
-          Ver Detalles
-          <FaArrowRight />
-        </button>
-      </div>
-    </div>
-  </Animation>
+const ServiceCard = ({ service, onSelect }) => (
+ <div className={`service-item ${service.featured ? 'featured' : ''}`}>
+   <h3>{service.title}</h3>
+   <p>{service.description}</p>
+   
+   <ul className="features-list">
+     {service.features.map((feature, index) => (
+       <li key={index}>
+         <FaCheck className="feature-icon" />
+         <span>{feature}</span>
+       </li>
+     ))}
+   </ul>
+   
+   <div className="service-stats">
+     <span>{service.stats.clients}</span>
+     <span>{service.stats.satisfaction}</span>
+   </div>
+   
+   <p className="price">{service.price}</p>
+   <button className="details-button" onClick={() => onSelect(service)}>
+     Ver Detalles <FaArrowRight />
+   </button>
+ </div>
 );
 
-const PlanCard = ({ title, price, features, recommended }) => (
-  <div className={`plan-card ${recommended ? "recommended" : ""}`}>
-    {recommended && <span className="recommended-badge">Recomendado</span>}
-
-    <h3>{title}</h3>
-    <p className="price">{price}</p>
-
-    <ul className="features-list">
-      {features.map((feature, index) => (
-        <li key={index}>
-          <FaCheck className="feature-icon" />
-          <span>{feature}</span>
-        </li>
-      ))}
-    </ul>
-  </div>
+const PlanCard = ({ plan }) => (
+ <div className={`plan-card ${plan.recommended ? 'recommended' : ''}`}>
+   {plan.recommended && <span className="recommended-badge">Recomendado</span>}
+   <h3>{plan.title}</h3>
+   <p className="plan-price">{plan.price}</p>
+   <ul className="plan-features">
+     {plan.features.map((feature, index) => (
+       <li key={index}>
+         <FaCheck className="feature-icon" />
+         <span>{feature}</span>
+       </li>
+     ))}
+   </ul>
+ </div>
 );
 
 const Services = () => {
-  const [activePlan, setActivePlan] = useState(null);
-  const [filterCategory, setFilterCategory] = useState("all");
+ const [selectedService, setSelectedService] = useState(null);
 
-  useEffect(() => {
-    document.title = "Servicios | Synapse Dev";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        "content",
-        "Soluciones digitales integrales para tu negocio. Desarrollo web, ecommerce y más."
-      );
-    }
-  }, []);
+ const closeModal = () => {
+   setSelectedService(null);
+   document.body.style.overflow = 'unset';
+ };
 
-  const togglePlan = (plan) => {
-    setActivePlan(plan);
-    document.body.style.overflow = plan ? "hidden" : "unset";
-  };
+ const openModal = (service) => {
+   setSelectedService(service);
+   document.body.style.overflow = 'hidden';
+ };
 
-  const filteredServices =
-    filterCategory === "all"
-      ? services
-      : services.filter((service) => service.category === filterCategory);
+ useEffect(() => {
+   document.title = 'Servicios | Synapse Dev';
+ }, []);
 
-  return (
-    <div className="services-page">
-      <nav className="breadcrumbs">
-        <div className="container">
-          <ol>
-            <li>
-              <Link to="/">Inicio</Link>
-            </li>
-            <li>/</li>
-            <li>Servicios</li>
-          </ol>
-        </div>
-      </nav>
+ return (
+   <div className="services-page">
+     <header 
+       className="services-hero"
+       style={{
+         backgroundImage: `linear-gradient(
+           to bottom,
+           rgba(16, 37, 50, 0.95),
+           rgba(16, 37, 50, 0.85)
+         ), url(${heroImage})`
+       }}
+     >
+       <Animation animation="fade-up">
+         <div className="hero-content">
+           <h1>
+             <span>Desarrollo Web</span>
+             <span>a Medida</span>
+           </h1>
+           <p>
+             Nos especializamos en crear soluciones digitales adaptadas a las
+             necesidades de tu negocio.
+           </p>
+         </div>
+       </Animation>
+     </header>
 
-      <Animation animation="fade-up">
-        <header
-          className="services-header"
-          style={{
-            backgroundImage: `linear-gradient(
-        to bottom,
-        rgba(16, 37, 50, 0.95),
-        rgba(16, 37, 50, 0.85)
-      ), url(${heroImage})`,
-            backgroundAttachment: "fixed",
-          }}
-        >
-          <div className="header-overlay"></div>
-          <div className="header-content">
-            <h1>
-              <span className="title-line">Desarrollo Web</span>
-              <span className="title-line">a Medida</span>
-            </h1>
-            <p>
-              Nos especializamos en crear soluciones digitales adaptadas a las
-              necesidades de tu negocio.
-            </p>
-          </div>
-        </header>
-      </Animation>
+     <div className="services-content">
+       {services.map((service) => (
+         <Animation key={service.id} animation="fade-up">
+           <ServiceCard
+             service={service}
+             onSelect={openModal}
+           />
+         </Animation>
+       ))}
+     </div>
 
-      <section className="services-page-section">
-        <div className="container">
-          <div className="category-filter">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setFilterCategory(category.id)}
-                className={filterCategory === category.id ? "active" : ""}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
+     {selectedService && (
+       <div className="modal-overlay" onClick={closeModal}>
+         <div className="modal-content" onClick={e => e.stopPropagation()}>
+           <div className="modal-header">
+             <h2>{selectedService.title}</h2>
+             <button className="close-button" onClick={closeModal}>
+               <FaTimes />
+             </button>
+           </div>
 
-          <div className="services-page-grid">
-            {filteredServices.map((service) => (
-              <ServiceCard
-                key={service.id}
-                {...service}
-                onClick={() => togglePlan(service.planType)}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+           <div className="plans-grid">
+             {selectedService.plans.map((plan, index) => (
+               <PlanCard key={index} plan={plan} />
+             ))}
+           </div>
 
-      {activePlan && (
-        <div className="modal-overlay" onClick={() => togglePlan(null)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h2>{getPlanTitle(activePlan)}</h2>
-              <button onClick={() => togglePlan(null)} className="close-button">
-                <FaTimes />
-              </button>
-            </div>
+           <p className="price-note">*Los precios no incluyen IVA</p>
 
-            <div className="plans-grid">
-              {getPlansForType(activePlan).map((plan, index) => (
-                <PlanCard key={index} {...plan} />
-              ))}
-            </div>
+           <Link to="/contact" className="contact-button">
+             Contactar
+           </Link>
+         </div>
+       </div>
+     )}
 
-            <p className="price-note">
-              *Estos precios no incluyen impuestos de tu país
-            </p>
-
-            <div className="modal-footer">
-              <Link to="/contact" className="cta-button">
-                Contactar
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
-
-      <TechnologiesSection />
-      <ContactSection />
-    </div>
-  );
+     <TechnologiesSection />
+     <ContactSection />
+   </div>
+ );
 };
 
 export default Services;
