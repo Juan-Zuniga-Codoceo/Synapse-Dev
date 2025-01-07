@@ -2,14 +2,69 @@ import React from "react";
 import './styles/Portfolio.css';
 import TechnologiesSection from '../../components/home/TechnologiesSection';
 import ContactSection from '../../components/shared/ContactSection';
+
+// Importación de imágenes
+import heroImage from '../../assets/images/heroes/portafolio.webp';
 import project1 from '../../assets/images/projects/project1.webp';
 import project2 from '../../assets/images/projects/project2.webp';
 import project3 from '../../assets/images/projects/project3.webp';
 import project4 from '../../assets/images/projects/abogado.webp';
+import project5 from '../../assets/images/projects/proyecto5.webp';
+import semillaNegra from '../../assets/images/projects/misemillanegra.netlify.app_.png';
+import matronaNaty from '../../assets/images/projects/matronanaty.png';
+
 const Portfolio = () => {
+  const projects = [
+    {
+      img: semillaNegra,
+      title: "Mi Semilla Negra - Salsas Orientales",
+      link: "https://misemillanegra.netlify.app/",
+      description: "Una tienda online especializada en salsas y productos orientales, con un diseño moderno y una experiencia de compra optimizada. El sitio integra un sistema de comercio electrónico completo con gestión de inventario y pagos seguros."
+    },
+    {
+      img: matronaNaty,
+      title: "Matrona Naty - Cuidado especializado de la mujer",
+      link: "https://www.matronanaty.cl/",
+      description: "Plataforma profesional para servicios de maternidad y cuidado femenino. Destaca por su diseño acogedor y funcionalidades específicas para la gestión de citas y recursos educativos."
+    },
+    {
+      img: project5,
+      title: "Spend Shield - Gestor de finanzas personales",
+      link: "https://spendshield.netlify.app/",
+      description: "Aplicación web para la gestión de finanzas personales con interfaz intuitiva y herramientas avanzadas de seguimiento de gastos, presupuestos y análisis financiero."
+    },
+    {
+      img: project4,
+      title: "Abogado Andrés González",
+      link: "https://abogadoandresgonzalez.rf.gd/",
+      description: "Landing page elegante y profesional que destaca la experiencia y servicios legales. Diseño limpio y contenido estratégicamente organizado para maximizar las conversiones."
+    },
+    {
+      img: project3,
+      title: "Synapse Dev - Pizzería",
+      link: "https://synapsedev-pizzeria.netlify.app/",
+      description: "Sitio web para restaurante con sistema de pedidos online, diseño atractivo y experiencia de usuario optimizada. Incluye menú interactivo y gestión eficiente de pedidos."
+    },
+    {
+      img: project2,
+      title: "Synapse Dev - Abogados",
+      link: "https://synapsedev-abogados.netlify.app/",
+      description: "Plataforma profesional para bufete de abogados con diseño elegante y funcionalidades específicas para el sector legal. Facilita la conexión entre clientes y servicios legales."
+    }
+  ];
+
   return (
     <div>
-      <header className="portfolio-header-renamed">
+      <header 
+        className="portfolio-header-renamed"
+        style={{
+          backgroundImage: `linear-gradient(
+            to bottom,
+            rgba(16, 37, 50, 0.95),
+            rgba(16, 37, 50, 0.85)
+          ), url(${heroImage})`
+        }}
+      >
         <div className="portfolio-hero-renamed">
           <h1>Portafolio</h1>
           <p>
@@ -34,88 +89,25 @@ const Portfolio = () => {
         </section>
 
         <div className="projects-grid-renamed">
-          <div className="project-item-renamed">
-            <div className="link-overlay-renamed">
-              <a
-                href="https://juan-zuniga-codoceo.github.io/webDev.github.io/#"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ir a la web
-              </a>
+          {projects.map((project, index) => (
+            <div key={index} className="project-item-renamed">
+              <div className="link-overlay-renamed">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ir a la web
+                </a>
+              </div>
+              <img src={project.img} alt={project.title} loading="lazy" />
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
             </div>
-            <img src={project1} alt="Project 1" />
-            <h3>Web Dev Solution</h3>
-            <p>
-              Una muestra de proyectos de desarrollo web que destacan por su
-              diseño limpio y funcionalidad optimizada. Este portafolio es un
-              reflejo del compromiso con la calidad y la innovación en cada
-              proyecto realizado.
-            </p>
-          </div>
-
-          <div className="project-item-renamed">
-            <div className="link-overlay-renamed">
-              <a
-                href="https://synapsedev-pizzeria.netlify.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ir a la web
-              </a>
-            </div>
-            <img src={project3} alt="Project 3" />
-            <h3>Synapse Dev - Pizzería</h3>
-            <p>
-              Un sitio web creado para una pizzería, con un diseño atractivo y
-              fácil de usar que resalta el menú y las opciones de pedido. La
-              página combina un diseño moderno con una experiencia de usuario
-              fluida.
-            </p>
-          </div>
-
-          <div className="project-item-renamed">
-            <div className="link-overlay-renamed">
-              <a
-                href="https://synapsedev-abogados.netlify.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ir a la web
-              </a>
-            </div>
-            <img src={project2} alt="Project 2" />
-            <h3>Synapse Dev - Abogados</h3>
-            <p>
-              Una página web diseñada para un estudio jurídico, enfocada en la
-              presentación clara y profesional de los servicios legales. La
-              estructura intuitiva y el diseño elegante facilitan la navegación
-              para los usuarios.
-            </p>
-          </div>
-
-          <div className="project-item-renamed">
-            <div className="link-overlay-renamed">
-              <a
-                href="https://abogadoandresgonzalez.rf.gd/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Ir a la web
-              </a>
-            </div>
-            <img src={project4} alt="Abogado Andrés Gonzalez" />
-            <h3>Abogado Andrés Gonzalez</h3>
-            <p>
-              Una landing page elegante y profesional creada para el abogado
-              Andrés Gonzalez. Destaca por su diseño limpio, navegación sencilla
-              y contenido relevante que resalta la experiencia del abogado en
-              derecho civil y comercial.
-            </p>
-          </div>
+          ))}
         </div>
       </div>
-      <br />
+      
       <TechnologiesSection />
       <ContactSection />
     </div>

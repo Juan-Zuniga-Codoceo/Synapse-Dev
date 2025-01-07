@@ -1,184 +1,408 @@
-.about-header {
-    text-align: center;
-    padding: 50px 20px;
+/* About.css */
+.about-page-renamed {
     background-color: #102532;
     color: white;
-    background-image: url('../../../assets/images/heroes/about-hero.webp');
-    background-size: cover; /* Asegura que la imagen cubra el contenedor */
-    background-position: center;
-    height: 60vh;
-    width: 100%; /* Asegura que el contenedor ocupe el 100% del ancho */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
     position: relative;
-    overflow: hidden; /* Previene el desbordamiento */
-    box-sizing: border-box;
-}
-
-.about-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1;
-}
-
-.about-header h1,
-.about-header p {
+  }
+  
+  /* Header Section */
+  .about-header-renamed {
+    height: 60vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+    text-align: center;
+  }
+  
+  .about-hero-content-renamed {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
     position: relative;
     z-index: 2;
-    padding: 10px 20px;
-    border-radius: 5px;
-    max-width: 80%;
-}
-
-.about-header h1 {
-    font-size: 64px;
-    margin-bottom: 10px;
+    animation: fadeInUp 1s ease-out;
+  }
+  
+  .about-hero-content-renamed h1 {
+    font-size: 4rem;
     color: #ff6600;
-}
-
-.about-header p {
-    font-size: 28px;
+    font-weight: 700;
     margin-bottom: 20px;
-}
-
-.about-intro,
-.about-vision-mission,
-.about-process,
-.about-cta {
-    margin: 40px 0;
-    padding: 0 20px; /* Añadimos padding lateral para centrar el contenido */
-}
-
-.about-intro {
-    flex: 1;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #102532;
-}
-
-.about-intro h2,
-.about-vision-mission h2,
-.about-process h2,
-.about-cta h2 {
-    color: #ff6600;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 32px;
-}
-
-.about-vision-mission {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.about-vision-mission .vision,
-.about-vision-mission .mission {
-    flex: 1;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #102532;
-}
-
-.about-process .process-steps {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.about-process .step {
-    flex: 1;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #102532;
-}
-
-.about-cta {
-    text-align: center;
-    padding: 20px 0;
-}
-
-.about-cta .cta-button {
-    background-color: #ff6600;
-    color: white;
-    padding: 5px 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .about-hero-content-renamed p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    line-height: 1.6;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Main Content */
+  .about-main-renamed {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  /* Section Styles */
+  .section-title-renamed {
+    position: relative;
     display: inline-block;
-    text-align: center;
-    line-height: 40px;
-}
-
-.about-cta .cta-button:hover {
-    background-color: #ff4500;
-}
-
-.process-steps .step .fa-icon {
     color: #ff6600;
-    margin-bottom: 10px;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-    .about-vision-mission,
-    .about-process .process-steps {
-        flex-direction: column;
-        align-items: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 40px;
+    padding-bottom: 15px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .section-title-renamed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, #ff6600, #ff4500);
+    border-radius: 2px;
+  }
+  
+  /* Section Separators */
+  .about-history-section-renamed,
+  .about-vision-mission-renamed,
+  .about-process-renamed {
+    position: relative;
+    padding: 80px 0;
+    margin: 0;
+  }
+  
+  .about-history-section-renamed::after,
+  .about-vision-mission-renamed::after,
+  .about-process-renamed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(255, 102, 0, 0.3),
+      rgba(255, 102, 0, 0.5),
+      rgba(255, 102, 0, 0.3),
+      transparent
+    );
+  }
+  
+  /* History Section */
+  .about-history-section-renamed {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .section-description-renamed {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+  }
+  
+  /* Vision & Mission Section */
+  .about-vision-mission-renamed {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin: 0 auto;
+  }
+  
+  .vision-card-renamed,
+  .mission-card-renamed {
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 35px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .vision-card-renamed::before,
+  .mission-card-renamed::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, rgba(255, 102, 0, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .vision-card-renamed:hover::before,
+  .mission-card-renamed:hover::before {
+    opacity: 1;
+  }
+  
+  .vision-card-renamed:hover,
+  .mission-card-renamed:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 102, 0, 0.3);
+    box-shadow: 0 8px 25px rgba(255, 102, 0, 0.15);
+  }
+  
+  .vision-card-renamed h2,
+  .mission-card-renamed h2 {
+    color: #ff6600;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .vision-card-renamed p,
+  .mission-card-renamed p {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    text-align: center;
+  }
+  
+  /* Process Section */
+  .about-process-renamed {
+    margin: 0 auto;
+  }
+  
+  .process-grid-renamed {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 40px;
+  }
+  
+  .process-card-renamed {
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .process-card-renamed:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 102, 0, 0.3);
+    box-shadow: 0 8px 25px rgba(255, 102, 0, 0.15);
+  }
+  
+  .step-number-renamed {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: rgba(255, 102, 0, 0.2);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+  
+  .step-icon-renamed {
+    color: #ff6600;
+    font-size: 2.5rem;
+    margin: 20px 0;
+  }
+  
+  .process-card-renamed h3 {
+    color: #ff6600;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+  }
+  
+  .process-card-renamed p {
+    color: #cbd5e1;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* CTA Section */
+  .about-cta-renamed {
+    text-align: center;
+    padding: 80px 0;
+    margin: 0;
+    background: linear-gradient(
+      45deg,
+      rgba(255, 102, 0, 0.05) 0%,
+      rgba(16, 37, 50, 0.05) 100%
+    );
+    position: relative;
+  }
+  
+  .cta-content-renamed {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .cta-button-renamed {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff6600, #ff4500);
+    color: white;
+    text-decoration: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button-renamed:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 102, 0, 0.25);
+  }
+  
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
     }
-
-    .about-vision-mission .vision,
-    .about-vision-mission .mission,
-    .about-process .step {
-        max-width: 100%;
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    .about-header {
-        height: 50vh; /* Ajustamos la altura para pantallas más pequeñas */
-        background-size: cover; /* Asegura que la imagen se ajuste bien en pantallas más pequeñas */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .process-grid-renamed {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
-
-    .about-header h1 {
-        font-size: 48px;
+  }
+  
+  @media (max-width: 768px) {
+    .about-hero-content-renamed h1 {
+      font-size: 3rem;
     }
-
-    .about-header p {
-        font-size: 22px;
+  
+    .section-title-renamed {
+      font-size: 2rem;
     }
-}
-
-@media (max-width: 480px) {
-    .about-header {
-        height: 40vh; /* Ajustamos la altura para pantallas más pequeñas */
-        background-size: cover; /* Asegura que la imagen se ajuste bien en pantallas pequeñas */
+  
+    .about-vision-mission-renamed {
+      grid-template-columns: 1fr;
     }
-    .about-header h1 {
-        font-size: 36px;
+  
+    .process-grid-renamed {
+      grid-template-columns: 1fr;
     }
-
-    .about-header p {
-        font-size: 18px;
+  
+    .vision-card-renamed,
+    .mission-card-renamed,
+    .process-card-renamed {
+      padding: 25px;
     }
-}
+  
+    .about-history-section-renamed,
+    .about-vision-mission-renamed,
+    .about-process-renamed {
+      padding: 60px 0;
+    }
+  
+    .about-history-section-renamed::after,
+    .about-vision-mission-renamed::after,
+    .about-process-renamed::after {
+      width: 90%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-header-renamed {
+      height: 50vh;
+    }
+  
+    .about-hero-content-renamed h1 {
+      font-size: 2.5rem;
+    }
+  
+    .about-hero-content-renamed p {
+      font-size: 1rem;
+    }
+  
+    .section-title-renamed {
+      font-size: 1.8rem;
+    }
+  
+    .vision-card-renamed h2,
+    .mission-card-renamed h2 {
+      font-size: 1.5rem;
+    }
+  
+    .cta-button-renamed {
+      padding: 14px 28px;
+      font-size: 1rem;
+    }
+  
+    .about-history-section-renamed,
+    .about-vision-mission-renamed,
+    .about-process-renamed {
+      padding: 40px 0;
+    }
+  
+    .about-history-section-renamed::after,
+    .about-vision-mission-renamed::after,
+    .about-process-renamed::after {
+      width: 95%;
+    }
+  }
+  
+  /* Touch Device Optimizations */
+  @media (hover: none) {
+    .vision-card-renamed:hover,
+    .mission-card-renamed:hover,
+    .process-card-renamed:hover {
+      transform: none;
+    }
+  
+    .cta-button-renamed:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+  
+  /* Accessibility Improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .vision-card-renamed,
+    .mission-card-renamed,
+    .process-card-renamed,
+    .cta-button-renamed {
+      transition: none;
+    }
+  
+    .about-hero-content-renamed {
+      animation: none;
+    }
+  }
