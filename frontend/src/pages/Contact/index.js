@@ -22,7 +22,7 @@ const Contact = () => {
 
   const sendEmail = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setLoading(true); // Mostrar el loader cuando se envía el formulario
 
     const formData = {
       name: e.target.name.value,
@@ -32,17 +32,15 @@ const Contact = () => {
     };
 
     try {
-      const response = await fetch('https://www.synapsedev.cl/send-email', {
+      //const apiUrl = process.env.REACT_APP_API_URL.trim(); // Eliminar cualquier espacio o salto de línea
+      const response = await fetch(`${process.env.REACT_APP_API_UR}/send-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          // Agregamos CORS headers si es necesario
-          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(formData),
       });
-
+    
       const data = await response.json();
 
       if (data.success) {
@@ -54,12 +52,12 @@ const Contact = () => {
       console.error('Error:', error);
       alert('Hubo un error al enviar el mensaje');
     } finally {
-      setLoading(false);
+      setLoading(false); // Ocultar el loader cuando se recibe la respuesta
     }
 
     e.target.reset();
   };
-  
+
   const contactInfo = [
     {
       icon: faPhone,
