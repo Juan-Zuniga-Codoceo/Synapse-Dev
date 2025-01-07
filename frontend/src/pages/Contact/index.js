@@ -194,7 +194,9 @@ const Contact = () => {
 
       {loading && (
         <div className="loader-overlay-renamed">
-          <Loader type="ball-spin-fade-loader" />
+          <div className="contact-page-loader-overlay">
+            <Loader type="ball-spin-fade-loader" />
+          </div>
         </div>
       )}
     </div>
