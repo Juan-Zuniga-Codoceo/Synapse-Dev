@@ -18,13 +18,12 @@ const Home = () => {
         <div className="hero-overlay"></div>
         <div className="hero-content">
           <h1 className="hero-title">
-            Transformamos Ideas en 
+            Expertos en páginas web
             <br />
-            <span>Experiencias Digitales</span>
+            <span>que impulsan tu negocio.</span>
           </h1>
           <p className="hero-subtitle">
-            Tu socio en soluciones innovadoras de desarrollo web. Creamos experiencias digitales 
-            que impulsan tu negocio al siguiente nivel y dan vida a tus ideas.
+          Páginas web que transforman visitantes en clientes reales. Expertos en crear sitios web modernos, rápidos y optimizados que potencian tu negocio en el mundo digital.
           </p>
           <div className="hero-buttons">
             <Link to="/contact" className="hero-cta-primary">

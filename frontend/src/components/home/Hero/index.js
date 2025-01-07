@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="hero-overlay"></div>
       <div className="hero-content">
         <h1 className="hero-title">
-          Transformamos Ideas en <span>Experiencias Digitales</span>
+          Expertos en paginas web <span>que impulsan tu negocio</span>
         </h1>
         <p className="hero-subtitle">
           Desarrollamos soluciones web innovadoras y personalizadas que impulsan el crecimiento de tu negocio.
