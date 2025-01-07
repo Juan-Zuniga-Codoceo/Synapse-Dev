@@ -32,10 +32,13 @@ const Contact = () => {
     };
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/send-email`, {
+      const response = await fetch('https://www.synapsedev.cl/send-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          // Agregamos CORS headers si es necesario
+          'Access-Control-Allow-Origin': '*'
         },
         body: JSON.stringify(formData),
       });
@@ -56,7 +59,7 @@ const Contact = () => {
 
     e.target.reset();
   };
-
+  
   const contactInfo = [
     {
       icon: faPhone,
