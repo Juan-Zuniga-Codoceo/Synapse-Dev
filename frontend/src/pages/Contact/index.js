@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import Loader from 'react-loaders';
 import './styles/Contact.css';
-import 'loaders.css/src/animations/ball-spin-fade-loader.scss'; // Importar la animación
+import 'loaders.css/src/animations/ball-spin-fade-loader.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faPhone,
+  faEnvelope,
+  faLocationDot,
+  faPaperPlane
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faFacebookF,
+  faTwitter,
+  faInstagram,
+  faLinkedinIn
+} from '@fortawesome/free-brands-svg-icons';
+import heroImage from '../../assets/images/heroes/contact-hero.webp';
 
 const Contact = () => {
-  const [loading, setLoading] = useState(false); // Estado para manejar el loader
+  const [loading, setLoading] = useState(false);
 
   const sendEmail = async (e) => {
     e.preventDefault();
-    setLoading(true); // Mostrar el loader cuando se envía el formulario
+    setLoading(true);
 
     const formData = {
       name: e.target.name.value,
@@ -18,19 +32,14 @@ const Contact = () => {
     };
 
     try {
-      //const apiUrl = process.env.REACT_APP_API_URL.trim(); // Eliminar cualquier espacio o salto de línea
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/send-email`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-const response = await fetch(`${process.env.REACT_APP_API_UR}/send-email`, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(formData),
-});
-
-    
-    
-    
       const data = await response.json();
 
       if (data.success) {
@@ -42,44 +51,149 @@ const response = await fetch(`${process.env.REACT_APP_API_UR}/send-email`, {
       console.error('Error:', error);
       alert('Hubo un error al enviar el mensaje');
     } finally {
-      setLoading(false); // Ocultar el loader cuando se recibe la respuesta
+      setLoading(false);
     }
 
     e.target.reset();
   };
 
+  const contactInfo = [
+    {
+      icon: faPhone,
+      title: "Teléfono",
+      info: "+56 9 2033 3538",
+      link: "tel:+56920333538"
+    },
+    {
+      icon: faEnvelope,
+      title: "Email",
+      info: "contacto@synapsedev.cl",
+      link: "mailto:contacto@synapsedev.cl"
+    },
+    {
+      icon: faLocationDot,
+      title: "Ubicación",
+      info: "Santiago, Chile",
+      link: "#"
+    }
+  ];
+
+  const socialLinks = [
+    { icon: faFacebookF, link: "#", label: "Facebook" },
+    { icon: faTwitter, link: "#", label: "Twitter" },
+    { icon: faInstagram, link: "#", label: "Instagram" },
+    { icon: faLinkedinIn, link: "#", label: "LinkedIn" }
+  ];
+
   return (
-    <div className="contact-page-wrapper">
-      <header className="contact-page-hero">
-        <div className="contact-page-overlay">
+    <div className="contact-page-renamed">
+      <header 
+        className="contact-hero-renamed"
+        style={{
+          backgroundImage: `linear-gradient(
+            to bottom,
+            rgba(16, 37, 50, 0.75),
+            rgba(16, 37, 50, 0.65)
+          ), url(${heroImage})`
+        }}
+      >
+        <div className="hero-content-renamed">
           <h1>¿Listo para conectar?</h1>
-          <p>Estamos aquí para ayudarte.</p>
+          <p>Estamos aquí para ayudarte a hacer realidad tu próximo proyecto.</p>
         </div>
       </header>
 
-      <section className="contact-page-form">
-        <h2>Contáctanos</h2>
-        <form onSubmit={sendEmail}>
-          <input type="text" name="name" placeholder="Nombre" required />
-          <input type="email" name="email" placeholder="Correo Electrónico" required />
-          <input type="text" name="subject" placeholder="Asunto" required />
-          <textarea name="message" placeholder="Mensaje" required></textarea>
-          <button type="submit" className="contact-page-cta-button" disabled={loading}>
-            {loading ? 'Enviando...' : 'Enviar Mensaje'}
-          </button>
-        </form>
-      </section>
+      <main className="contact-main-renamed">
+        <section className="contact-info-renamed">
+          <h2 className="section-title-renamed">Información de Contacto</h2>
+          <p className="section-description-renamed">
+            Encuentra la mejor manera de conectarte con nosotros
+          </p>
+          <div className="info-grid-renamed">
+            {contactInfo.map((item, index) => (
+              <a 
+                key={index}
+                href={item.link}
+                className="info-card-renamed"
+                rel={item.link.startsWith('http') ? "noopener noreferrer" : undefined}
+                target={item.link.startsWith('http') ? "_blank" : undefined}
+              >
+                <FontAwesomeIcon icon={item.icon} className="info-icon-renamed" />
+                <h3>{item.title}</h3>
+                <p>{item.info}</p>
+              </a>
+            ))}
+          </div>
+        </section>
 
-      <section className="contact-page-social">
-        <div className="contact-page-social-media">
-          <a href="#"><i className="fab fa-facebook-f"></i></a>
-          <a href="#"><i className="fab fa-twitter"></i></a>
-          <a href="#"><i className="fab fa-linkedin-in"></i></a>
-        </div>
-      </section>
+        <section className="contact-form-section-renamed">
+          <div className="form-container-renamed">
+            <h2 className="section-title-renamed">Envíanos un mensaje</h2>
+            <form onSubmit={sendEmail} className="contact-form-renamed">
+              <div className="form-group-renamed">
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Nombre"
+                  required
+                />
+              </div>
+              <div className="form-group-renamed">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Correo Electrónico"
+                  required
+                />
+              </div>
+              <div className="form-group-renamed">
+                <input
+                  type="text"
+                  name="subject"
+                  placeholder="Asunto"
+                  required
+                />
+              </div>
+              <div className="form-group-renamed">
+                <textarea
+                  name="message"
+                  placeholder="Mensaje"
+                  required
+                ></textarea>
+              </div>
+              <button 
+                type="submit" 
+                className="submit-button-renamed"
+                disabled={loading}
+              >
+                <span>{loading ? 'Enviando...' : 'Enviar Mensaje'}</span>
+                {!loading && <FontAwesomeIcon icon={faPaperPlane} />}
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <section className="social-section-renamed">
+          <h2 className="section-title-renamed">Síguenos en redes sociales</h2>
+          <div className="social-links-renamed">
+            {socialLinks.map((social, index) => (
+              <a
+                key={index}
+                href={social.link}
+                className="social-link-renamed"
+                aria-label={social.label}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FontAwesomeIcon icon={social.icon} />
+              </a>
+            ))}
+          </div>
+        </section>
+      </main>
 
       {loading && (
-        <div className="contact-page-loader-overlay"> {/* Capa oscura */}
+        <div className="loader-overlay-renamed">
           <Loader type="ball-spin-fade-loader" />
         </div>
       )}
