@@ -74,15 +74,15 @@ const Contact = () => {
     {
       icon: faLocationDot,
       title: "Ubicación",
-      info: "Santiago, Chile",
+      info: "Viña del mar, Chile",
       link: "#"
     }
   ];
 
   const socialLinks = [
-    { icon: faFacebookF, link: "#", label: "Facebook" },
-    { icon: faTwitter, link: "#", label: "Twitter" },
-    { icon: faInstagram, link: "#", label: "Instagram" },
+    { icon: faFacebookF, link: "https://web.facebook.com/profile.php?id=61563375403408&locale=es_LA", label: "Facebook" },
+    { icon: faTwitter, link: "https://x.com/Synapse___Dev", label: "Twitter" },
+    { icon: faInstagram, link: "https://www.instagram.com/synapse_dev/?hl=es-es", label: "Instagram" },
     { icon: faLinkedinIn, link: "#", label: "LinkedIn" }
   ];
 

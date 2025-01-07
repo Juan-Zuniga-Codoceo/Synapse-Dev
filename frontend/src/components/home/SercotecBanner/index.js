@@ -60,6 +60,8 @@ const SercotecBanner = () => {
                   <li><FontAwesomeIcon icon={faCheck} />Hosting incluido</li>
                   <li><FontAwesomeIcon icon={faCheck} />Diseño a medida</li>
                   <li><FontAwesomeIcon icon={faCheck} />SEO básico</li>
+                  <li><FontAwesomeIcon icon={faCheck} />Soporte técnico</li>
+                  <li><FontAwesomeIcon icon={faCheck} />Certificado SSL</li>
                 </ul>
               </div>
               <div className="benefit-card">

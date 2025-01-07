@@ -16,66 +16,66 @@ const ServicesSection = () => {
   const services = [
     {
       id: 1,
-      title: "Desarrollo Web",
-      description: "Creación de sitios web modernos, responsivos y personalizados que impulsan tu presencia digital.",
+      title: "Desarrollo de Páginas Web",
+      description: "Creamos sitios web profesionales y optimizados que convierten visitantes en clientes. Diseño responsivo adaptado a todos los dispositivos.",
       icon: faGlobe,
       features: [
-        "Diseño UX/UI personalizado",
-        "Desarrollo Frontend y Backend",
-        "Optimización de rendimiento"
+        "Sitios web 100% personalizados",
+        "Diseño responsive y moderno",
+        "Optimización de velocidad y SEO"
       ],
       stats: {
-        projects: "+50 proyectos entregados",
-        time: "4-8 semanas promedio"
+        projects: "+50 sitios web exitosos",
+        time: "2-4 semanas entrega"
       }
     },
     {
       id: 2,
-      title: "Tiendas Shopify",
-      description: "Desarrollo y mantenimiento de tiendas online profesionales en Shopify, perfectas para emprendedores y pequeños negocios.",
+      title: "Tiendas Online Shopify",
+      description: "Desarrollamos tu tienda online profesional en Shopify. La solución perfecta para vender tus productos en internet de forma segura y efectiva.",
       icon: faShoppingBag,
       features: [
-        "Configuración completa",
-        "Personalización de temas",
-        "Integración de pagos y envíos"
+        "Diseño profesional de E-commerce",
+        "Integración de pagos chilenos",
+        "Sistema de envíos automático"
       ],
       stats: {
-        projects: "+20 tiendas creadas",
-        time: "2-4 semanas promedio"
+        projects: "+20 tiendas exitosas",
+        time: "2-4 semanas entrega"
       },
       pricing: {
-        amount: "Desde $80.000  CLP + IVA",
-        description: "Plan básico todo incluido"
+        amount: "Desde $80.000 CLP + IVA",
+        description: "Tienda online completa lista para vender"
       }
     },
     {
       id: 3,
-      title: "Optimización SEO",
-      description: "Mejoramos la visibilidad de tu sitio web en los motores de búsqueda para atraer más tráfico cualificado.",
+      title: "Posicionamiento Web SEO",
+      description: "Aumentamos tu visibilidad en Google y atraemos más clientes potenciales a tu sitio web mediante estrategias SEO probadas.",
       icon: faSearch,
       features: [
-        "Análisis técnico completo",
-        "Optimización de contenido",
-        "Estrategia de keywords"
+        "Optimización técnica web",
+        "Contenido optimizado para Google",
+        "Keywords de alto rendimiento"
       ],
       stats: {
-        improvement: "+80% mejora en rankings",
-        time: "3-6 meses seguimiento"
+        improvement: "+80% más visitas web",
+        time: "3-6 meses resultados"
       }
     },
     {
       id: 4,
-      title: "Consultoría",
-      description: "Asesoría experta para potenciar tu negocio en línea con estrategias probadas y personalizadas.",
+      title: "Asesoría Web",
+      description: "Guiamos tu presencia digital con estrategias efectivas para aumentar ventas y potenciar tu marca en internet.",
       icon: faLightbulb,
       features: [
-        "Análisis de mercado",
-        "Estrategia digital",
-        "Plan de crecimiento"
+        "Estrategia de ventas online",
+        "Plan de marketing digital",
+        "Optimización de conversión"
       ],
       stats: {
-        clients: "+30 negocios asesorados",
-        satisfaction: "98% satisfacción"
+        clients: "+30 negocios exitosos",
+        satisfaction: "98% clientes satisfechos"
       }
     }
   ];
@@ -83,9 +83,9 @@ const ServicesSection = () => {
   return (
     <section className="home-services">
       <div className="home-services__heading">
-        <h2 className="home-services__title">Nuestros Servicios</h2>
+        <h2 className="home-services__title">Servicios de Desarrollo Web Profesional</h2>
         <p className="home-services__subtitle">
-          Soluciones digitales integrales para hacer crecer tu negocio
+          Soluciones web efectivas para hacer crecer tu negocio en internet
         </p>
       </div>
       
@@ -135,7 +135,7 @@ const ServicesSection = () => {
               className="home-services__button"
               aria-label={`Ver más sobre ${service.title}`}
             >
-              {service.id === 2 ? 'Comenzar ahora' : 'Ver más'}
+              {service.id === 2 ? 'Crear Mi Tienda Online' : 'Ver Más Detalles'}
             </Link>
           </div>
         ))}
