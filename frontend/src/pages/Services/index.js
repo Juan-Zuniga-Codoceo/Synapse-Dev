@@ -96,7 +96,7 @@ const services = [
       "Desarrollo de tiendas online profesionales con Shopify. La solución perfecta para vender en internet.",
     features: [
       "Diseño personalizado",
-      "Configuración completa",
+      "Integración con DROPI (Dropshipping)",
       "Gestión de productos",
       "Medios de pago chilenos",
     ],
@@ -104,17 +104,17 @@ const services = [
       clients: "+20 tiendas",
       satisfaction: "97% satisfacción",
     },
-    price: "Desde $80.000 CLP",
+    price: "Desde $100.000 CLP",
     featured: true,
     plans: [
       {
         title: "Plan Básico",
-        price: "$80.000 CLP",
+        price: "$100.000 CLP",
         features: [
           "Tema personalizado",
           "Configuración básica",
           "Hasta 50 productos",
-          "Soporte por 1 mes",
+          "Integración con DROPI (Dropshipping)",
         ],
       },
       {

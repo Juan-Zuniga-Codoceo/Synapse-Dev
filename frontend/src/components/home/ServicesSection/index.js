@@ -37,14 +37,14 @@ const ServicesSection = () => {
       features: [
         "Diseño profesional de E-commerce",
         "Integración de pagos chilenos",
-        "Sistema de envíos automático"
+        "Integración con DROPI (Dropshipping)"
       ],
       stats: {
         projects: "+20 tiendas exitosas",
         time: "2-4 semanas entrega"
       },
       pricing: {
-        amount: "Desde $80.000 CLP + IVA",
+        amount: "Desde $100.000 CLP + IVA",
         description: "Tienda online completa lista para vender"
       }
     },
