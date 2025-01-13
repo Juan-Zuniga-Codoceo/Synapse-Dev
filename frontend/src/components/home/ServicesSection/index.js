@@ -44,7 +44,7 @@ const ServicesSection = () => {
         time: "2-4 semanas entrega"
       },
       pricing: {
-        amount: "Desde $100.000 CLP + IVA",
+        amount: "Desde $99.990 CLP + IVA",
         description: "Tienda online completa lista para vender"
       }
     },

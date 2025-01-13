@@ -24,11 +24,11 @@ const services = [
       clients: "+50 sitios web",
       satisfaction: "98% satisfacción",
     },
-    price: "Desde $250.000 CLP",
+    price: "Desde $249.990 CLP",
     plans: [
       {
         title: "Plan Básico",
-        price: "$250.000 CLP",
+        price: "$249.990 CLP",
         features: [
           "Diseño web personalizado",
           "Responsive design",
@@ -38,7 +38,7 @@ const services = [
       },
       {
         title: "Plan Pro",
-        price: "$350.000 CLP",
+        price: "$349.990 CLP",
         features: [
           "Todo del plan básico",
           "Panel administrable",
@@ -64,11 +64,11 @@ const services = [
       clients: "+30 landings",
       satisfaction: "95% satisfacción",
     },
-    price: "Desde $150.000 CLP + IVA",
+    price: "Desde $149.990 CLP + IVA",
     plans: [
       {
         title: "Plan Básico",
-        price: "$150.000 CLP",
+        price: "$149.990 CLP",
         features: [
           "Sección principal optimizada",
           "Formulario de contacto",
@@ -78,7 +78,7 @@ const services = [
       },
       {
         title: "Plan Avanzado",
-        price: "$200.000 CLP",
+        price: "$199.990 CLP",
         features: [
           "Múltiples secciones de venta",
           "Formulario personalizado",
@@ -104,12 +104,12 @@ const services = [
       clients: "+20 tiendas",
       satisfaction: "97% satisfacción",
     },
-    price: "Desde $100.000 CLP",
+    price: "Desde $99.990 CLP",
     featured: true,
     plans: [
       {
         title: "Plan Básico",
-        price: "$100.000 CLP",
+        price: "$99.990 CLP",
         features: [
           "Tema personalizado",
           "Configuración básica",
@@ -119,7 +119,7 @@ const services = [
       },
       {
         title: "Plan Completo",
-        price: "$250.000 CLP",
+        price: "$249.990 CLP",
         features: [
           "Todo del plan básico",
           "Productos ilimitados",
@@ -145,11 +145,11 @@ const services = [
       clients: "+30 tiendas",
       satisfaction: "96% satisfacción",
     },
-    price: "Desde $300.000 CLP",
+    price: "Desde $299.990 CLP",
     plans: [
       {
         title: "Plan Estándar",
-        price: "$300.000 CLP",
+        price: "$299.990 CLP",
         features: [
           "Catálogo de productos",
           "Carrito de compras",
@@ -159,7 +159,7 @@ const services = [
       },
       {
         title: "Plan Premium",
-        price: "$450.000 CLP",
+        price: "$449.990 CLP",
         features: [
           "Todo del plan estándar",
           "Múltiples medios de pago",
@@ -185,11 +185,11 @@ const services = [
       clients: "+40 sitios",
       satisfaction: "99% satisfacción",
     },
-    price: "Desde $40.000 CLP/mes",
+    price: "Desde $39.990 CLP/mes",
     plans: [
       {
         title: "Plan Mensual",
-        price: "$40.000 CLP/mes",
+        price: "$39.990 CLP/mes",
         features: [
           "Actualizaciones de seguridad",
           "Backups semanales",
