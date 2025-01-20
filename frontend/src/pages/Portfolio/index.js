@@ -12,9 +12,16 @@ import project4 from '../../assets/images/projects/abogado.webp';
 import project5 from '../../assets/images/projects/proyecto5.webp';
 import semillaNegra from '../../assets/images/projects/misemillanegra.netlify.app_.png';
 import matronaNaty from '../../assets/images/projects/matronanaty.png';
+import elrincondetodo from '../../assets/images/projects/elrincondetodo.webp';
 
 const Portfolio = () => {
   const projects = [
+    {
+      img: elrincondetodo,
+      title: "Summer Fresh - Tienda Dropshipping",
+      link: "https://elrincondetodo.cl/",
+      description: "Plataforma de comercio electrónico desarrollada con Shopify e integración de Dropi para dropshipping. Incluye sistema de gestión de inventario automatizado, pasarela de pagos segura y optimización para conversiones."
+    },
     {
       img: semillaNegra,
       title: "Mi Semilla Negra - Salsas Orientales",

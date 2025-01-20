@@ -11,9 +11,15 @@ import project4 from '../../../assets/images/projects/abogado.webp';
 import project5 from '../../../assets/images/projects/proyecto5.webp';
 import semillaNegra from '../../../assets/images/projects/misemillanegra.netlify.app_.png';
 import matronaNaty from '../../../assets/images/projects/matronanaty.png';
+import elrincondetodo from '../../../assets/images/projects/elrincondetodo.webp';
 
 const LastProjects = () => {
   const projects = [
+    {
+      img: elrincondetodo,
+      title: "El Rincón de Todo - Tienda Dropshipping",
+      link: "https://elrincondetodo.cl/",
+    },
     {
       img: semillaNegra,
       title: "Mi Semilla Negra - Salsas Orientales",
@@ -39,11 +45,7 @@ const LastProjects = () => {
       title: "Synapse Dev - Pizzería",
       link: "https://synapsedev-pizzeria.netlify.app/",
     },
-    {
-      img: project2,
-      title: "Synapse Dev - Abogados",
-      link: "https://synapsedev-abogados.netlify.app/",
-    },
+    
   ];
 
   return (
