@@ -113,7 +113,7 @@ const services = [
         features: [
           "Tema personalizado",
           "Configuración básica",
-          "Hasta 50 productos",
+          "Hasta 20 productos",
           "Integración con DROPI (Dropshipping)",
         ],
       },
