@@ -24,35 +24,38 @@ const Navbar = () => {
  }, [menuOpen]);
 
  return (
-   <nav className={`main-navbar ${isScrolled ? 'solid' : 'transparent'}`}>
-     <div className="main-navbar-container">
-       <Link to="/" className="main-navbar-logo">
-         <img src={logo} alt="Synapse Dev Logo" />
-       </Link>
+  <nav className={`main-navbar ${isScrolled ? 'solid' : 'transparent'}`}>
+    <div className="main-navbar-container">
+      <Link to="/" className="main-navbar-logo">
+        <img src={logo} alt="Synapse Dev Logo" />
+      </Link>
 
-       {/* Menú Desktop */}
-       <ul className="main-navbar-menu desktop">
-         <li className="main-navbar-item">
-           <Link to="/">Inicio</Link>
-         </li>
-         <li className="main-navbar-item">
-           <Link to="/services">Servicios</Link>
-         </li>
-         <li className="main-navbar-item">
-           <Link to="/portfolio">Portafolio</Link>
-         </li>
-         <li className="main-navbar-item">
-           <Link to="/about">Acerca de</Link>
-         </li>
-         <li className="main-navbar-item">
-           <Link to="/contact">Contacto</Link>
-         </li>
-         <li className="main-navbar-item">
-           <Link to="/contact" className="navbar-cta-button">
-             INICIAR PROYECTO
-           </Link>
-         </li>
-       </ul>
+      {/* Menú Desktop */}
+      <ul className="main-navbar-menu desktop">
+        <li className="main-navbar-item">
+          <Link to="/">Inicio</Link>
+        </li>
+        <li className="main-navbar-item">
+          <Link to="/services">Servicios</Link>
+        </li>
+        <li className="main-navbar-item">
+          <Link to="/portfolio">Portafolio</Link>
+        </li>
+        <li className="main-navbar-item">
+          <Link to="/blog">Blog</Link>
+        </li>
+        <li className="main-navbar-item">
+          <Link to="/about">Acerca de</Link>
+        </li>
+        <li className="main-navbar-item">
+          <Link to="/contact">Contacto</Link>
+        </li>
+        <li className="main-navbar-item">
+          <Link to="/contact" className="navbar-cta-button">
+            INICIAR PROYECTO
+          </Link>
+        </li>
+      </ul>
 
        {/* Botón menú móvil */}
        <div 
@@ -66,46 +69,49 @@ const Navbar = () => {
 
        {/* Menú Móvil */}
        <div className={`main-menu-overlay ${menuOpen ? 'open' : ''}`}>
-         <div className="main-close-menu-container">
-           <button 
-             className="main-close-menu"
-             onClick={() => setMenuOpen(false)}
-             aria-label="Cerrar menú"
-           >
-             ×
-           </button>
-         </div>
+          <div className="main-close-menu-container">
+            <button 
+              className="main-close-menu"
+              onClick={() => setMenuOpen(false)}
+              aria-label="Cerrar menú"
+            >
+              ×
+            </button>
+          </div>
 
-         <ul className="main-navbar-menu mobile">
-           <li className="main-navbar-item">
-             <Link to="/" onClick={() => setMenuOpen(false)}>Inicio</Link>
-           </li>
-           <li className="main-navbar-item">
-             <Link to="/services" onClick={() => setMenuOpen(false)}>Servicios</Link>
-           </li>
-           <li className="main-navbar-item">
-             <Link to="/portfolio" onClick={() => setMenuOpen(false)}>Portafolio</Link>
-           </li>
-           <li className="main-navbar-item">
-             <Link to="/about" onClick={() => setMenuOpen(false)}>Acerca de</Link>
-           </li>
-           <li className="main-navbar-item">
-             <Link to="/contact" onClick={() => setMenuOpen(false)}>Contacto</Link>
-           </li>
-           <li className="main-navbar-item">
-             <Link 
-               to="/contact" 
-               className="navbar-cta-button mobile" 
-               onClick={() => setMenuOpen(false)}
-             >
-               INICIAR PROYECTO
-             </Link>
-           </li>
-         </ul>
-       </div>
-     </div>
-   </nav>
- );
+          <ul className="main-navbar-menu mobile">
+            <li className="main-navbar-item">
+              <Link to="/" onClick={() => setMenuOpen(false)}>Inicio</Link>
+            </li>
+            <li className="main-navbar-item">
+              <Link to="/services" onClick={() => setMenuOpen(false)}>Servicios</Link>
+            </li>
+            <li className="main-navbar-item">
+              <Link to="/portfolio" onClick={() => setMenuOpen(false)}>Portafolio</Link>
+            </li>
+            <li className="main-navbar-item">
+              <Link to="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
+            </li>
+            <li className="main-navbar-item">
+              <Link to="/about" onClick={() => setMenuOpen(false)}>Acerca de</Link>
+            </li>
+            <li className="main-navbar-item">
+              <Link to="/contact" onClick={() => setMenuOpen(false)}>Contacto</Link>
+            </li>
+            <li className="main-navbar-item">
+              <Link 
+                to="/contact" 
+                className="navbar-cta-button mobile" 
+                onClick={() => setMenuOpen(false)}
+              >
+                INICIAR PROYECTO
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;
