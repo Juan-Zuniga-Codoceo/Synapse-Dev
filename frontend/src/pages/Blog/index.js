@@ -6,26 +6,14 @@ import "./styles/Blog.css";
 
 const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Todos');
-  const categories = [
-    'Todos',
-    'Desarrollo Web',
-    'Marketing Digital',
-    'SEO',
-    'Diseño UI/UX',
-    'Tutoriales'
-  ];
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-  };
-
   return (
     <div className="blog-page">
+      {/* Hero Section */}
       <section 
         className="blog-hero"
         style={{
@@ -42,6 +30,7 @@ const BlogPage = () => {
             Descubre artículos sobre desarrollo web, marketing digital y consejos 
             para hacer crecer tu negocio online.
           </p>
+          {/* Barra de Búsqueda */}
           <div className="search-container">
             <input
               type="text"
@@ -54,26 +43,12 @@ const BlogPage = () => {
           </div>
         </div>
       </section>
-      <section className="categories-section">
-        <div className="categories-container">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => handleCategoryClick(category)}
-              className={`category-button ${
-                selectedCategory === category ? 'active' : ''
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      </section>
+
+      {/* Lista de Posts */}
       <BlogPosts 
         limit={9} 
         showHeader={false}
         searchTerm={searchTerm}
-        category={selectedCategory}
       />
     </div>
   );
