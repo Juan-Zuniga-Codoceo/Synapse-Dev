@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Calendar, Clock, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
 import './styles.css';
 
 const HERO_IMAGE = '/assets/images/hero/wordpress.webp';
+
 const BlogPost = () => {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
@@ -20,7 +20,7 @@ const BlogPost = () => {
         );
         if (!response.ok) throw new Error('Error al cargar el artículo');
         const [data] = await response.json();
-        console.log('Post data:', data); // Para debug
+        console.log('Datos del post:', data); // Para debug
         setPost(data);
       } catch (err) {
         setError('Error al cargar el artículo');
@@ -29,34 +29,44 @@ const BlogPost = () => {
         setLoading(false);
       }
     };
-
     fetchPost();
   }, [slug]);
 
-  // Función para limpiar el HTML entities
+  // Función para limpiar los HTML entities
   const cleanHtmlEntities = (str) => {
     return str
       .replace(/&nbsp;/g, ' ')
       .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>')
+      .replace(/</g, '<')
+      .replace(/>/g, '>')
       .replace(/&quot;/g, '"');
   };
 
   const getImageUrl = () => {
     try {
+      // Intentar obtener la imagen destacada
       if (
-        post._embedded && 
-        post._embedded['wp:featuredmedia'] && 
+        post._embedded &&
+        post._embedded['wp:featuredmedia'] &&
         post._embedded['wp:featuredmedia'][0] &&
         post._embedded['wp:featuredmedia'][0].source_url
       ) {
-        return post._embedded['wp:featuredmedia'][0].source_url;
+        const imageUrl = post._embedded['wp:featuredmedia'][0].source_url;
+        return imageUrl.startsWith('http') ? imageUrl : HERO_IMAGE;
+      }
+
+      // Si no hay imagen destacada, buscar la primera imagen en el contenido
+      const content = post.content?.rendered || '';
+      const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
+      if (imgMatch && imgMatch[1]) {
+        return imgMatch[1];
       }
     } catch (error) {
-      console.error('Error getting image:', error);
+      console.error('Error al obtener la imagen:', error);
     }
-    return HERO_IMAGE; // Usar imagen de respaldo local
+
+    // Si no se encuentra ninguna imagen, usar la imagen de respaldo
+    return HERO_IMAGE;
   };
 
   if (loading) {
@@ -98,11 +108,8 @@ const BlogPost = () => {
         <Link to="/blog" className="back-to-blog">
           <ArrowLeft /> Volver al Blog
         </Link>
+        <h1>{cleanHtmlEntities(post.title.rendered)}</h1>
 
-        <h1>
-          {cleanHtmlEntities(post.title.rendered)}
-        </h1>
-        
         <div className="blog-post-meta">
           <span>
             <Calendar className="icon" />
@@ -113,22 +120,23 @@ const BlogPost = () => {
             {Math.ceil(post.content.rendered.split(' ').length / 200)} min de lectura
           </span>
         </div>
-
         <div className="blog-post-image-container">
           <img
             src={getImageUrl()}
             alt={cleanHtmlEntities(post.title.rendered)}
             className="blog-post-image"
+            onError={(e) => {
+              e.target.src = HERO_IMAGE; // Reemplazar con la imagen de respaldo
+            }}
           />
         </div>
-
-        <div 
+        <div
           className="blog-post-content"
-          dangerouslySetInnerHTML={{ 
-            __html: cleanHtmlEntities(post.content.rendered) 
-          }} 
+          dangerouslySetInnerHTML={{
+            __html: cleanHtmlEntities(post.content.rendered),
+          }}
         />
-        
+
         <div className="blog-post-footer">
           <Link to="/blog" className="back-to-blog">
             <ArrowLeft /> Volver al Blog

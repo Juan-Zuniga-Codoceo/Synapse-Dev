@@ -1,4 +1,3 @@
-// src/components/home/BlogPosts/index.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
@@ -18,6 +17,7 @@ const BlogPosts = ({ limit = 3, showHeader = true }) => {
         );
         if (!response.ok) throw new Error("Error al cargar los posts");
         const data = await response.json();
+        console.log("Datos de los posts:", data); // Depuración
         setPosts(data);
       } catch (err) {
         setError("Error al cargar los posts");
@@ -26,7 +26,6 @@ const BlogPosts = ({ limit = 3, showHeader = true }) => {
         setLoading(false);
       }
     };
-
     fetchPosts();
   }, []);
 
@@ -34,22 +33,35 @@ const BlogPosts = ({ limit = 3, showHeader = true }) => {
     return str
       .replace(/&nbsp;/g, " ")
       .replace(/&amp;/g, "&")
-      .replace(/&lt;/g, "<")
-      .replace(/&gt;/g, ">")
+      .replace(/</g, "<")
+      .replace(/>/g, ">")
       .replace(/&quot;/g, '"');
   };
 
   const getPostImage = (post) => {
-    // Si el post tiene una imagen destacada
-    if (
-      post._embedded &&
-      post._embedded["wp:featuredmedia"] &&
-      post._embedded["wp:featuredmedia"][0] &&
-      post._embedded["wp:featuredmedia"][0].source_url
-    ) {
-      return post._embedded["wp:featuredmedia"][0].source_url;
+    try {
+      // Intentar obtener la imagen destacada
+      if (
+        post._embedded &&
+        post._embedded["wp:featuredmedia"] &&
+        post._embedded["wp:featuredmedia"][0] &&
+        post._embedded["wp:featuredmedia"][0].source_url
+      ) {
+        const imageUrl = post._embedded["wp:featuredmedia"][0].source_url;
+        return imageUrl.startsWith("http") ? imageUrl : heroImage;
+      }
+
+      // Si no hay imagen destacada, buscar la primera imagen en el contenido
+      const content = post.content?.rendered || "";
+      const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
+      if (imgMatch && imgMatch[1]) {
+        return imgMatch[1];
+      }
+    } catch (error) {
+      console.error("Error al obtener la imagen:", error);
     }
-    // Si no hay imagen destacada, usar imagen por defecto
+
+    // Si no se encuentra ninguna imagen, usar la imagen de respaldo
     return heroImage;
   };
 
@@ -94,7 +106,6 @@ const BlogPosts = ({ limit = 3, showHeader = true }) => {
             </p>
           </div>
         )}
-
         <div className="blog-grid">
           {posts.slice(0, limit).map((post) => (
             <article key={post.id} className="blog-card">
@@ -104,9 +115,11 @@ const BlogPosts = ({ limit = 3, showHeader = true }) => {
                   alt={post.title?.rendered || "Imagen del post"}
                   className="blog-image"
                   loading="lazy"
+                  onError={(e) => {
+                    e.target.src = heroImage; // Reemplazar con la imagen de respaldo
+                  }}
                 />
               </div>
-
               <div className="blog-content">
                 <div className="blog-meta">
                   <span>
@@ -122,13 +135,11 @@ const BlogPosts = ({ limit = 3, showHeader = true }) => {
                       : "1 min"}
                   </span>
                 </div>
-
                 <h3 className="blog-title">
                   {post.title?.rendered
                     ? cleanHtmlEntities(post.title.rendered)
                     : "Sin título"}
                 </h3>
-
                 {post.excerpt?.rendered && (
                   <div
                     className="blog-excerpt"
@@ -145,7 +156,6 @@ const BlogPosts = ({ limit = 3, showHeader = true }) => {
             </article>
           ))}
         </div>
-
         {showHeader && posts.length > 0 && (
           <div className="view-all">
             <Link to="/blog" className="view-all-button">

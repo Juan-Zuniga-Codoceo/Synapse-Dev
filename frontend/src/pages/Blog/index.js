@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Search } from 'lucide-react';
 import BlogPosts from '../../components/home/BlogPosts';
-import heroImage from '../../assets/images/hero/wordpress.webp'; 
+import heroImage from '../../assets/images/hero/wordpress.webp';
 import "./styles/Blog.css";
 
 const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Todos');
-
   const categories = [
     'Todos',
     'Desarrollo Web',
@@ -43,7 +42,6 @@ const BlogPage = () => {
             Descubre artículos sobre desarrollo web, marketing digital y consejos 
             para hacer crecer tu negocio online.
           </p>
-
           <div className="search-container">
             <input
               type="text"
@@ -56,7 +54,6 @@ const BlogPage = () => {
           </div>
         </div>
       </section>
-
       <section className="categories-section">
         <div className="categories-container">
           {categories.map((category) => (
@@ -72,7 +69,6 @@ const BlogPage = () => {
           ))}
         </div>
       </section>
-
       <BlogPosts 
         limit={9} 
         showHeader={false}
