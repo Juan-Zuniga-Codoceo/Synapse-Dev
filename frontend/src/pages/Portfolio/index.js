@@ -25,7 +25,7 @@ const Portfolio = () => {
     {
       img: semillaNegra,
       title: "Mi Semilla Negra - Salsas Orientales",
-      link: "https://misemillanegra.netlify.app/",
+      link: "https://misemillanegra.cl/",
       description: "Una tienda online especializada en salsas y productos orientales, con un diseño moderno y una experiencia de compra optimizada. El sitio integra un sistema de comercio electrónico completo con gestión de inventario y pagos seguros."
     },
     {
