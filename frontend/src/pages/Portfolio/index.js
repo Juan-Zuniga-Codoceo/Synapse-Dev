@@ -18,7 +18,7 @@ const Portfolio = () => {
   const projects = [
     {
       img: elrincondetodo,
-      title: "Summer Fresh - Tienda Dropshipping",
+      title: "El Rincón de Todo - Tienda Dropshipping",
       link: "https://elrincondetodo.cl/",
       description: "Plataforma de comercio electrónico desarrollada con Shopify e integración de Dropi para dropshipping. Incluye sistema de gestión de inventario automatizado, pasarela de pagos segura y optimización para conversiones."
     },
