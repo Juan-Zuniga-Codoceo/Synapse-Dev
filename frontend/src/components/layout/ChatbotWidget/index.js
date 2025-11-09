@@ -1,5 +1,5 @@
 // frontend/src/components/layout/ChatbotWidget/index.js
-import React, { useState, useEffect } from "react"; // <-- 1. IMPORTAMOS useEffect
+import React, { useState, useEffect } from "react";
 import { getBotResponse } from "./logic";
 import "./styles.css";
 
@@ -8,18 +8,14 @@ const ChatbotWidget = () => {
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
-  // --- 2. NUEVO: Saludo automático al abrir ---
   useEffect(() => {
-    // Si se abre y no hay mensajes (es la primera vez)
     if (isOpen && messages.length === 0) {
-      // Obtener la respuesta a "hola"
       const botResponse = getBotResponse("hola"); 
       setMessages([
         { text: botResponse.text, sender: "bot", options: botResponse.options }
       ]);
     }
-  }, [isOpen]); // Se ejecuta cada vez que 'isOpen' cambia
-  // --- FIN DEL NUEVO BLOQUE ---
+  }, [isOpen, messages.length]); // <-- 1. ARREGLO: AÑADIMOS 'messages.length' AQUÍ
 
   const handleSendMessage = () => {
     const messageToSend = inputValue.trim();
@@ -45,8 +41,7 @@ const ChatbotWidget = () => {
     }, 500);
   };
 
-  // --- 3. FUNCIÓN CORREGIDA ---
-  // Esta es la lógica que faltaba para que las opciones funcionen.
+  // Esta función es la que arregla el CLIC
   const handleOptionClick = (option) => {
     const userMessage = { text: option, sender: "user" };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
@@ -94,7 +89,7 @@ const ChatbotWidget = () => {
                     <button
                       key={idx}
                       className="option-button"
-                      onClick={() => handleOptionClick(option)} // <-- Llama a la función corregida
+                      onClick={() => handleOptionClick(option)} 
                     >
                       {option}
                     </button>
