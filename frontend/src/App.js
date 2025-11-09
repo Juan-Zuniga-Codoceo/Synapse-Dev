@@ -11,15 +11,16 @@ import Contact from "./pages/Contact";
 import WhatsAppButton from "./components/layout/WhatsAppButton";
 import ScrollToTopButton from "./components/layout/ScrollToTopButton";
 import BlogPage from './pages/Blog';
-import ChatbotWidget from "./components/layout/ChatbotWidget";
 import BlogPost from './pages/BlogPost';
 import Operia from './pages/Operia';
+import OperiaModal from './components/layout/OperiaModal'; // <-- 1. AÑADE ESTA IMPORTACIÓN
 
 const App = () => {
   return (
     <Router>
       <div>
         <Navbar />
+        <OperiaModal /> {/* <-- 2. AÑADE EL COMPONENTE AQUÍ */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
@@ -32,7 +33,6 @@ const App = () => {
         </Routes>
         <WhatsAppButton />
         <ScrollToTopButton />
-        <ChatbotWidget />
         <Footer />
       </div>
     </Router>

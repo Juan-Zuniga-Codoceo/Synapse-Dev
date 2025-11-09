@@ -1,0 +1,179 @@
+/* frontend/src/components/layout/OperiaModal/styles.css */
+.operia-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 37, 50, 0.85); /* Fondo oscuro del sitio */
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000; /* Prioridad alta */
+  opacity: 0;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.operia-modal-content {
+  background: #102532; /* Tema oscuro */
+  border: 1px solid rgba(255, 102, 0, 0.3); /* Acento naranja */
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px; /* Más angosto para un pop-up vertical */
+  display: flex;
+  flex-direction: column; 
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform: scale(0.95);
+  opacity: 0;
+  animation: zoomIn 0.3s ease 0.1s forwards;
+  max-height: 90vh; /* Límite de altura */
+}
+
+.operia-modal-image {
+  width: 100%;
+  height: 250px; /* Altura fija para la imagen */
+  overflow: hidden;
+  background: #0a1721;
+  flex-shrink: 0; /* Evita que la imagen se encoja */
+}
+
+.operia-modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* La imagen se ajustará para cubrir el espacio */
+  object-position: top left; /* Enfoca la parte superior del tablero */
+  display: block;
+}
+
+.operia-modal-text {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #cbd5e1;
+  overflow-y: auto; /* Scroll si el contenido es mucho */
+}
+
+.operia-modal-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff6600; /* Acento naranja */
+  margin-bottom: 15px;
+  text-align: center; /* Centrado */
+}
+
+.operia-modal-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: center; /* Centrado */
+}
+
+/* --- LISTA DE FEATURES ACTUALIZADA --- */
+.operia-modal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Espacio entre items */
+  align-items: flex-start; /* Alinea los items a la izquierda */
+  width: 100%; /* Ocupa todo el ancho */
+  box-sizing: border-box; /* Para padding */
+  padding-left: 10%; /* Indentación para centrar la lista */
+}
+
+.operia-modal-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  color: #cbd5e1;
+}
+
+/* --- CAMBIO DE '.fa' A 'svg' --- */
+.operia-modal-list li svg { /* Estilo para el componente FontAwesomeIcon */
+  color: #ff6600; /* Acento naranja */
+  font-size: 1.1rem;
+  width: 20px; /* Espacio reservado */
+  text-align: center;
+  flex-shrink: 0;
+}
+/* --- FIN DEL CAMBIO --- */
+
+.operia-modal-cta {
+  background-color: #ff6600;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  flex-shrink: 0; /* Evita que el botón se encoja */
+}
+
+.operia-modal-cta:hover {
+  background-color: #ff4500;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(255, 102, 0, 0.2);
+}
+
+.operia-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  font-size: 2.5rem;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.operia-modal-close:hover {
+  color: #ff6600;
+  transform: scale(1.1);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .operia-modal-content {
+    max-width: 400px;
+  }
+  .operia-modal-list {
+    padding-left: 5%; /* Menos indentación en móvil */
+  }
+}
+
+@media (max-width: 480px) {
+  .operia-modal-content {
+    max-width: 320px;
+    max-height: 90vh;
+  }
+  .operia-modal-text {
+    padding: 20px;
+  }
+  .operia-modal-title {
+    font-size: 1.5rem;
+  }
+  .operia-modal-description {
+    font-size: 0.95rem;
+  }
+  .operia-modal-list {
+    padding-left: 0; /* Sin indentación en pantallas pequeñas */
+  }
+  .operia-modal-list li {
+    font-size: 0.9rem;
+  }
+}
