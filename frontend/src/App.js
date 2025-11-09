@@ -11,8 +11,9 @@ import Contact from "./pages/Contact";
 import WhatsAppButton from "./components/layout/WhatsAppButton";
 import ScrollToTopButton from "./components/layout/ScrollToTopButton";
 import BlogPage from './pages/Blog';
-
+import ChatbotWidget from "./components/layout/ChatbotWidget";
 import BlogPost from './pages/BlogPost';
+import Operia from './pages/Operia';
 
 const App = () => {
   return (
@@ -27,9 +28,11 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/operia" element={<Operia />} />
         </Routes>
         <WhatsAppButton />
         <ScrollToTopButton />
+        <ChatbotWidget />
         <Footer />
       </div>
     </Router>

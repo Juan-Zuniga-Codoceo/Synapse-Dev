@@ -1,0 +1,285 @@
+/* frontend/src/pages/Operia/styles.css */
+
+.operia-page {
+  background-color: #102532; /* Fondo oscuro de Synapse Dev */
+  color: #cbd5e1;
+  overflow-x: hidden;
+}
+
+/* 1. Sección Héroe */
+.operia-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 160px 20px 100px 20px; /* Padding superior para el navbar */
+}
+
+.operia-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.operia-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #ff6600; /* Acento naranja de Synapse Dev */
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.operia-subtitle {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.operia-cta-primary {
+  background-color: #ff6600;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.operia-cta-primary:hover {
+  background-color: #ff4500;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(255, 102, 0, 0.2);
+}
+
+.operia-hero-image img {
+  width: 100%;
+  max-width: 600px; /* Asegura que la imagen no sea demasiado grande */
+  display: block;
+  margin-left: auto; /* Centra la imagen si la columna es más ancha */
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 2. Sección de Características (Fondo Claro) */
+.operia-section-light {
+  background-color: #ffffff; /* FONDO BLANCO */
+  color: #333; /* Texto oscuro para contraste */
+  padding: 80px 20px;
+}
+
+.operia-features {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+}
+
+.operia-feature-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.operia-feature-item.reverse {
+  grid-template-columns: 1fr 1fr;
+}
+
+.operia-feature-item.reverse .operia-feature-image {
+  order: 2;
+}
+
+.operia-feature-text {
+  max-width: 450px;
+}
+
+.operia-feature-text h2 {
+  font-size: 2.5rem;
+  color: #ff6600;
+  margin-bottom: 15px;
+}
+
+.operia-feature-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #4b5563; /* Texto un poco más suave que el negro puro */
+}
+
+.operia-feature-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* 3. Sección Pivote (Fondo Oscuro) */
+.operia-pivot {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.operia-pivot h2 {
+  font-size: 2.5rem;
+  color: #ff6600;
+  margin-bottom: 20px;
+}
+
+.operia-pivot-text {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: #cbd5e1;
+}
+
+.operia-pivot-key {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* 4. Prueba Social (Fondo Claro) */
+.operia-proof {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 0; /* Menos padding vertical porque ya está en un .operia-section-light */
+  text-align: center;
+}
+
+.operia-proof-content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px;
+  background: #f8f9fa; /* Un blanco apenas grisáceo */
+  border-radius: 16px;
+  border: 1px solid #e0e0e0;
+}
+
+.operia-proof-logo {
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.operia-proof h2 {
+  font-size: 2rem;
+  color: #ff6600;
+  margin-bottom: 15px;
+}
+
+.operia-proof p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  color: #4b5563;
+}
+
+.operia-cta-secondary {
+  background-color: transparent;
+  color: #102532; /* Color oscuro para el botón */
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  border: 2px solid #102532;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.operia-cta-secondary:hover {
+  background-color: #102532;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* 5. CTA Final (Fondo Oscuro) */
+.operia-cta-final {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 102, 0, 0.3);
+}
+
+.operia-cta-final h2 {
+  font-size: 2.5rem;
+  color: #ff6600;
+  margin-bottom: 20px;
+}
+
+.operia-cta-final p {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  margin-bottom: 30px;
+  color: #cbd5e1;
+}
+
+
+/* --- RESPONSIVIDAD --- */
+
+@media (max-width: 992px) {
+  .operia-hero,
+  .operia-feature-item,
+  .operia-feature-item.reverse {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .operia-hero-content {
+    align-items: center;
+    padding-top: 100px; /* Más espacio por el navbar */
+  }
+
+  .operia-hero-image {
+    order: -1;
+    margin: 0 auto; /* Centra la imagen */
+  }
+  
+  .operia-feature-item.reverse .operia-feature-image {
+    order: -1;
+  }
+
+  .operia-feature-text {
+    max-width: 100%;
+  }
+
+  .operia-title {
+    font-size: 3rem;
+  }
+
+  .operia-feature-text h2,
+  .operia-pivot h2,
+  .operia-cta-final h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .operia-title {
+    font-size: 2.5rem;
+  }
+
+  .operia-subtitle,
+  .operia-pivot-text,
+  .operia-cta-final p {
+    font-size: 1.1rem;
+  }
+  
+  .operia-features {
+    gap: 60px;
+  }
+  
+  .operia-section-light {
+    padding: 60px 20px;
+  }
+
+  .operia-pivot,
+  .operia-proof {
+    padding: 60px 20px;
+  }
+  
+  .operia-cta-final {
+     padding: 60px 20px;
+  }
+}

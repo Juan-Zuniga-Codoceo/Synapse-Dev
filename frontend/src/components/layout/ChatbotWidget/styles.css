@@ -1,0 +1,141 @@
+/* Estilos generales del contenedor del chatbot */
+.chatbot-widget {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  /* Estilos del botón para abrir/cerrar el chatbot */
+  .chatbot-button {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Estilos de la ventana del chatbot */
+  .chatbot-window {
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .chatbot-window.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  /* Estilos del encabezado del chatbot */
+  .chatbot-header {
+    background-color: #ff6600;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Estilos del contenedor de mensajes */
+  .chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  /* Estilos de los mensajes del usuario y del bot */
+  .message {
+    max-width: 80%;
+  }
+  
+  .message-bubble {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+  
+  .user-bubble {
+    background-color: #ff6600;
+    color: white;
+    align-self: flex-end;
+  }
+  
+  .bot-bubble {
+    background-color: #f1f1f1;
+    color: black;
+    align-self: flex-start;
+  }
+  
+  /* Estilos del área de entrada de texto */
+  .chatbot-input {
+    display: flex;
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .chatbot-input input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    font-size: 14px;
+  }
+  
+  .chatbot-input button {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .chatbot-input button:hover {
+    background-color: #e65c00;
+  }
+  
+  /* Estilos para los botones de opciones */
+  .options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
+  .option-button {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  .option-button:hover {
+    background-color: #e65c00;
+  }

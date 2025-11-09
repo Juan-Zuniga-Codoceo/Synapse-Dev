@@ -42,6 +42,9 @@ const Navbar = () => {
           <Link to="/portfolio">Portafolio</Link>
         </li>
         <li className="main-navbar-item">
+          <Link to="/operia">Demo Operia</Link>
+        </li>
+        <li className="main-navbar-item">
           <Link to="/blog">Blog</Link>
         </li>
         <li className="main-navbar-item">
@@ -88,6 +91,9 @@ const Navbar = () => {
             </li>
             <li className="main-navbar-item">
               <Link to="/portfolio" onClick={() => setMenuOpen(false)}>Portafolio</Link>
+            </li>
+            <li className="main-navbar-item">
+              <Link to="/operia" onClick={() => setMenuOpen(false)}>Demo Operia</Link>
             </li>
             <li className="main-navbar-item">
               <Link to="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
