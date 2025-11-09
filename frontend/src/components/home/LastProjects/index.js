@@ -4,8 +4,7 @@ import Animation from '../../layout/Animation/index';
 import LazyImage from '../../shared/LazyImage/index';
 
 // Importación de imágenes
-import project1 from '../../../assets/images/projects/project1.webp';
-import project2 from '../../../assets/images/projects/project2.webp';
+
 import project3 from '../../../assets/images/projects/project3.webp';
 import project4 from '../../../assets/images/projects/abogado.webp';
 import project5 from '../../../assets/images/projects/proyecto5.webp';

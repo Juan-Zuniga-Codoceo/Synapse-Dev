@@ -116,7 +116,7 @@ const Footer = () => {
              <FontAwesomeIcon icon={faTwitter} />
            </a>
            <a 
-             href="#"
+             href="#!"
              target="_blank"
              rel="noopener noreferrer"
              className="social-link"

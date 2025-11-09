@@ -5,7 +5,7 @@ import ContactSection from '../../components/shared/ContactSection';
 
 // Importación de imágenes
 import heroImage from '../../assets/images/heroes/portafolio.webp';
-import project1 from '../../assets/images/projects/project1.webp';
+
 import project2 from '../../assets/images/projects/project2.webp';
 import project3 from '../../assets/images/projects/project3.webp';
 import project4 from '../../assets/images/projects/abogado.webp';

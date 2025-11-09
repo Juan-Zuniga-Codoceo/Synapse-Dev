@@ -388,16 +388,7 @@ const TechnologiesSection = () => {
     return row * 100 + col * 50;
   };
 
-  const getCategoryColor = (category) => {
-    const colors = {
-      'FRONTEND': '#ff6600',
-      'BACKEND': '#4CAF50',
-      'DATABASE': '#2196F3',
-      'CMS': '#9C27B0',
-      'E-COMMERCE': '#FFC107'
-    };
-    return colors[category] || '#ff6600';
-  };
+ 
 
   if (isLoading) {
     return <TechnologiesSkeleton />;
