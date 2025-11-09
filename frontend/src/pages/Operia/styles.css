@@ -37,6 +37,13 @@
   margin-bottom: 30px;
 }
 
+/* --- Contenedor de botones del Héroe --- */
+.operia-hero-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
 .operia-cta-primary {
   background-color: #ff6600;
   color: white;
@@ -53,11 +60,29 @@
   box-shadow: 0 4px 6px rgba(255, 102, 0, 0.2);
 }
 
+/* --- Botón secundario del Héroe --- */
+.operia-cta-secondary-hero {
+  background-color: transparent;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  border: 2px solid white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.operia-cta-secondary-hero:hover {
+  background-color: white;
+  color: #102532;
+  transform: translateY(-2px);
+}
+
 .operia-hero-image img {
   width: 100%;
-  max-width: 600px; /* Asegura que la imagen no sea demasiado grande */
+  max-width: 600px; 
   display: block;
-  margin-left: auto; /* Centra la imagen si la columna es más ancha */
+  margin-left: auto; 
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
@@ -68,51 +93,98 @@
   color: #333; /* Texto oscuro para contraste */
   padding: 80px 20px;
 }
-
-.operia-features {
+/* --- NUEVO: Separador para secciones blancas (Tu sugerencia) --- */
+.operia-section-light + .operia-section-light {
+  padding-top: 40px; /* Restaura un poco de padding */
+  border-top: 1px solid #e0e0e0; /* La línea divisoria que pediste */
+}
+/* --- Estilos de Pestañas (Tabs) --- */
+.operia-features-interactive {
   max-width: 1000px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 100px;
 }
 
-.operia-feature-item {
+.operia-tab-pills {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.operia-tab-pill {
+  background-color: #f0f0f0;
+  color: #4b5563;
+  border: 2px solid #e0e0e0;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.operia-tab-pill:hover {
+  background-color: #e0e0e0;
+  border-color: #c0c0c0;
+}
+
+.operia-tab-pill.active {
+  background-color: #ff6600;
+  color: white;
+  border-color: #ff6600;
+  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.2);
+}
+
+.operia-tab-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: center;
+  min-height: 400px; /* Le da altura uniforme */
 }
 
-.operia-feature-item.reverse {
-  grid-template-columns: 1fr 1fr;
-}
-
-.operia-feature-item.reverse .operia-feature-image {
-  order: 2;
-}
-
-.operia-feature-text {
-  max-width: 450px;
-}
-
-.operia-feature-text h2 {
+.operia-tab-text h2 {
   font-size: 2.5rem;
   color: #ff6600;
   margin-bottom: 15px;
 }
 
-.operia-feature-text p {
+.operia-tab-text p {
   font-size: 1.1rem;
   line-height: 1.7;
-  color: #4b5563; /* Texto un poco más suave que el negro puro */
+  color: #4b5563; 
 }
 
-.operia-feature-image img {
+.operia-tab-image-container {
+  position: relative;
   width: 100%;
+  height: 450px; /* Altura fija para el contenedor */
+}
+
+.operia-tab-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  object-fit: contain; /* Usa 'contain' para mostrar la UI completa */
+  object-position: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s;
+  transform: scale(0.98); /* Efecto sutil */
 }
+
+.operia-tab-image.active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+/* --- FIN DE ESTILOS DE TABS --- */
+
 
 /* 3. Sección Pivote (Fondo Oscuro) */
 .operia-pivot {
@@ -128,12 +200,54 @@
   margin-bottom: 20px;
 }
 
+/* --- ESTILOS PARA SECCIÓN PIVOTE (NUEVO) --- */
 .operia-pivot-text {
   font-size: 1.25rem;
   line-height: 1.7;
-  margin-bottom: 20px;
+  margin-bottom: 50px; /* Aumentado para dar espacio a la grilla */
   color: #cbd5e1;
 }
+
+.operia-pivot-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+  text-align: left; /* Alinea el texto de las tarjetas a la izquierda */
+}
+
+.pivot-card {
+  background: rgba(255, 255, 255, 0.03); /* Fondo sutil */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+  padding: 30px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.pivot-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 102, 0, 0.3); /* Borde naranja al hacer hover */
+}
+
+.pivot-icon {
+  color: #ff6600; /* Color naranja */
+  margin-bottom: 20px;
+}
+
+.pivot-card h3 {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.pivot-card p {
+  font-size: 1rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+/* --- FIN ESTILOS PIVOTE --- */
 
 .operia-pivot-key {
   font-size: 1.1rem;
@@ -145,7 +259,7 @@
 .operia-proof {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 0; /* Menos padding vertical porque ya está en un .operia-section-light */
+  padding: 40px 0; 
   text-align: center;
 }
 
@@ -153,14 +267,9 @@
   max-width: 700px;
   margin: 0 auto;
   padding: 40px;
-  background: #f8f9fa; /* Un blanco apenas grisáceo */
+  background: #f8f9fa; 
   border-radius: 16px;
   border: 1px solid #e0e0e0;
-}
-
-.operia-proof-logo {
-  height: 50px;
-  margin-bottom: 20px;
 }
 
 .operia-proof h2 {
@@ -178,7 +287,7 @@
 
 .operia-cta-secondary {
   background-color: transparent;
-  color: #102532; /* Color oscuro para el botón */
+  color: #102532;
   padding: 0.8rem 1.5rem;
   border-radius: 0.5rem;
   font-weight: 500;
@@ -215,40 +324,54 @@
   color: #cbd5e1;
 }
 
-
 /* --- RESPONSIVIDAD --- */
 
 @media (max-width: 992px) {
-  .operia-hero,
-  .operia-feature-item,
-  .operia-feature-item.reverse {
+  .operia-hero {
     grid-template-columns: 1fr;
     text-align: center;
   }
-  
   .operia-hero-content {
     align-items: center;
-    padding-top: 100px; /* Más espacio por el navbar */
+    padding-top: 100px;
   }
-
   .operia-hero-image {
     order: -1;
-    margin: 0 auto; /* Centra la imagen */
+    margin: 0 auto;
   }
-  
-  .operia-feature-item.reverse .operia-feature-image {
-    order: -1;
+  .operia-hero-buttons {
+    justify-content: center; /* Centra los botones en móvil */
   }
 
-  .operia-feature-text {
-    max-width: 100%;
+  /* --- Tabs en móvil --- */
+  .operia-tab-content {
+    grid-template-columns: 1fr;
   }
+  .operia-tab-image-container {
+    order: -1; /* Pone la imagen arriba */
+    height: 350px; /* Ajusta altura para móvil */
+  }
+  .operia-tab-text {
+    text-align: center;
+  }
+
+  /* --- Pivot en móvil --- */
+  .operia-pivot-grid {
+    grid-template-columns: 1fr;
+  }
+  .pivot-card {
+    text-align: center; /* Centrar en móvil */
+  }
+  .pivot-icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  /* --- Fin Pivot en móvil --- */
 
   .operia-title {
     font-size: 3rem;
   }
-
-  .operia-feature-text h2,
+  .operia-tab-text h2,
   .operia-pivot h2,
   .operia-cta-final h2 {
     font-size: 2rem;
@@ -259,27 +382,28 @@
   .operia-title {
     font-size: 2.5rem;
   }
-
   .operia-subtitle,
   .operia-pivot-text,
   .operia-cta-final p {
     font-size: 1.1rem;
   }
-  
-  .operia-features {
-    gap: 60px;
-  }
-  
   .operia-section-light {
     padding: 60px 20px;
   }
-
   .operia-pivot,
-  .operia-proof {
-    padding: 60px 20px;
-  }
-  
+  .operia-proof,
   .operia-cta-final {
      padding: 60px 20px;
+  }
+  /* --- Tabs en móvil pequeño --- */
+  .operia-tab-pills {
+    gap: 8px;
+  }
+  .operia-tab-pill {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+  .operia-tab-image-container {
+    height: 280px;
   }
 }
