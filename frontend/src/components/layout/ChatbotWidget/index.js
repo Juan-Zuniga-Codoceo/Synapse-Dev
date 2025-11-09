@@ -1,46 +1,77 @@
-import React, { useState } from "react";
-import { getBotResponse } from "./logic"; // Importamos la lógica de respuestas
+// frontend/src/components/layout/ChatbotWidget/index.js
+import React, { useState, useEffect } from "react"; // <-- 1. IMPORTAMOS useEffect
+import { getBotResponse } from "./logic";
 import "./styles.css";
 
 const ChatbotWidget = () => {
-  const [isOpen, setIsOpen] = useState(false); // Estado para controlar la visibilidad
-  const [messages, setMessages] = useState([]); // Estado para almacenar mensajes
-  const [inputValue, setInputValue] = useState(""); // Estado para el input del usuario
+  const [isOpen, setIsOpen] = useState(false);
+  const [messages, setMessages] = useState([]);
+  const [inputValue, setInputValue] = useState("");
 
-  // Función para manejar el envío de mensajes
+  // --- 2. NUEVO: Saludo automático al abrir ---
+  useEffect(() => {
+    // Si se abre y no hay mensajes (es la primera vez)
+    if (isOpen && messages.length === 0) {
+      // Obtener la respuesta a "hola"
+      const botResponse = getBotResponse("hola"); 
+      setMessages([
+        { text: botResponse.text, sender: "bot", options: botResponse.options }
+      ]);
+    }
+  }, [isOpen]); // Se ejecuta cada vez que 'isOpen' cambia
+  // --- FIN DEL NUEVO BLOQUE ---
+
   const handleSendMessage = () => {
-    if (inputValue.trim() === "") return;
+    const messageToSend = inputValue.trim();
+    if (messageToSend === "") return;
 
-    // Agregar mensaje del usuario
-    const userMessage = { text: inputValue, sender: "user" };
+    const userMessage = { text: messageToSend, sender: "user" };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
+    setInputValue(""); 
 
-    // Simular respuesta del bot
     setTimeout(() => {
-      const botResponse = getBotResponse(inputValue); // Obtener respuesta usando logic.js
+      const botResponse = getBotResponse(messageToSend); 
+      
       setMessages((prevMessages) => [
         ...prevMessages,
         { text: botResponse.text, sender: "bot", options: botResponse.options },
       ]);
-    }, 500);
 
-    setInputValue(""); // Limpiar el input
+      if (botResponse.action === 'navigate' && botResponse.url) {
+        setTimeout(() => {
+          window.open(botResponse.url, "_blank");
+        }, 800);
+      }
+    }, 500);
   };
 
-  // Función para manejar clics en opciones del bot
+  // --- 3. FUNCIÓN CORREGIDA ---
+  // Esta es la lógica que faltaba para que las opciones funcionen.
   const handleOptionClick = (option) => {
-    setInputValue(option); // Establecer la opción en el input
-    handleSendMessage(); // Enviar el mensaje automáticamente
+    const userMessage = { text: option, sender: "user" };
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
+
+    setTimeout(() => {
+      const botResponse = getBotResponse(option);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { text: botResponse.text, sender: "bot", options: botResponse.options },
+      ]);
+
+      if (botResponse.action === 'navigate' && botResponse.url) {
+        setTimeout(() => {
+          window.open(botResponse.url, "_blank");
+        }, 800);
+      }
+    }, 500);
   };
 
   return (
     <div className="chatbot-widget">
-      {/* Botón para abrir/cerrar el chatbot */}
       <button className="chatbot-button" onClick={() => setIsOpen(!isOpen)}>
-        💬 Asistente Virtual
+        💬
       </button>
 
-      {/* Ventana del chatbot */}
       <div className={`chatbot-window ${isOpen ? "active" : ""}`}>
         <div className="chatbot-header">Asistente Virtual</div>
         <div className="chatbot-messages">
@@ -57,14 +88,13 @@ const ChatbotWidget = () => {
               >
                 {msg.text}
               </span>
-              {/* Mostrar opciones si existen */}
               {msg.options && (
                 <div className="options-container">
                   {msg.options.map((option, idx) => (
                     <button
                       key={idx}
                       className="option-button"
-                      onClick={() => handleOptionClick(option)}
+                      onClick={() => handleOptionClick(option)} // <-- Llama a la función corregida
                     >
                       {option}
                     </button>

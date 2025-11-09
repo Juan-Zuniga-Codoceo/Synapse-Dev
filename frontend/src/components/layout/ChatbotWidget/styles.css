@@ -1,141 +1,169 @@
-/* Estilos generales del contenedor del chatbot */
+/* frontend/src/components/layout/ChatbotWidget/styles.css */
+
 .chatbot-widget {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-  }
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chatbot-button {
+  background-color: #ff6600;
+  color: white;
+  /* --- CAMBIOS PARA BOTÓN CIRCULAR --- */
+  padding: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 28px; /* Tamaño del emoji */
+  justify-content: center;
+  gap: 0;
+  /* --- FIN DE CAMBIOS --- */
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.chatbot-button:hover {
+  background-color: #e65c00;
+  transform: scale(1.1);
+}
+
+.chatbot-window {
+  /* --- CAMBIOS DE POSICIÓN --- */
+  position: absolute;
+  bottom: 80px; /* 60px (botón) + 20px (espacio) */
+  right: 0;
+  /* --- FIN DE CAMBIOS --- */
+  width: 300px;
+  height: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
   
-  /* Estilos del botón para abrir/cerrar el chatbot */
+.chatbot-window.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ... (El resto de los estilos .chatbot-header, .chatbot-messages, etc. permanecen igual) ... */
+.chatbot-header {
+  background-color: #ff6600;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.chatbot-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message {
+  max-width: 80%;
+}
+
+.message-bubble {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.user-bubble {
+  background-color: #ff6600;
+  color: white;
+  align-self: flex-end; /* Asegura que el mensaje del usuario esté a la derecha */
+}
+
+.bot-bubble {
+  background-color: #f1f1f1;
+  color: black;
+  align-self: flex-start; /* Asegura que el mensaje del bot esté a la izquierda */
+}
+
+.chatbot-input {
+  display: flex;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.chatbot-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+}
+
+.chatbot-input button {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin-left: 8px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.chatbot-input button:hover {
+  background-color: #e65c00;
+}
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+  align-items: flex-start; /* Opciones se alinean a la izquierda */
+}
+
+.option-button {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+}
+
+.option-button:hover {
+  background-color: #e65c00;
+}
+
+/* Responsive para el botón circular */
+@media (max-width: 768px) {
   .chatbot-button {
-    background-color: #ff6600;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
   }
-  
-  /* Estilos de la ventana del chatbot */
+
   .chatbot-window {
-    width: 300px;
-    height: 400px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transform: translateY(100%);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+      bottom: 70px; /* 50px (botón) + 20px (espacio) */
   }
-  
-  .chatbot-window.active {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  
-  /* Estilos del encabezado del chatbot */
-  .chatbot-header {
-    background-color: #ff6600;
-    color: white;
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-  }
-  
-  /* Estilos del contenedor de mensajes */
-  .chatbot-messages {
-    flex: 1;
-    padding: 10px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  /* Estilos de los mensajes del usuario y del bot */
-  .message {
-    max-width: 80%;
-  }
-  
-  .message-bubble {
-    display: inline-block;
-    padding: 8px 12px;
-    border-radius: 12px;
-    font-size: 14px;
-  }
-  
-  .user-bubble {
-    background-color: #ff6600;
-    color: white;
-    align-self: flex-end;
-  }
-  
-  .bot-bubble {
-    background-color: #f1f1f1;
-    color: black;
-    align-self: flex-start;
-  }
-  
-  /* Estilos del área de entrada de texto */
-  .chatbot-input {
-    display: flex;
-    border-top: 1px solid #ddd;
-    padding: 10px;
-    background-color: #f9f9f9;
-  }
-  
-  .chatbot-input input {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    outline: none;
-    font-size: 14px;
-  }
-  
-  .chatbot-input button {
-    background-color: #ff6600;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 16px;
-    margin-left: 8px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .chatbot-input button:hover {
-    background-color: #e65c00;
-  }
-  
-  /* Estilos para los botones de opciones */
-  .options-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
-  }
-  
-  .option-button {
-    background-color: #ff6600;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 16px;
-    cursor: pointer;
-    font-size: 14px;
-    text-align: left;
-  }
-  
-  .option-button:hover {
-    background-color: #e65c00;
-  }
+}
