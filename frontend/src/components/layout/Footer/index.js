@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -64,16 +65,16 @@ const Footer = () => {
             <h3 className="footer-title">Navegación</h3>
             <ul className="footer-list">
               <li>
-                <a href="/blog">Blog</a>
+                <Link to="/blog">Blog</Link>
               </li>
               <li>
-                <a href="/about">Acerca de</a>
+                <Link to="/about">Acerca de</Link>
               </li>
               <li>
-                <a href="/cato">CATO: LIFE OS</a>
+                <Link to="/cato">CATO: LIFE OS</Link>
               </li>
               <li>
-                <a href="/operia">Demo Operia</a>
+                <Link to="/operia">Demo Operia</Link>
               </li>
             </ul>
           </div>

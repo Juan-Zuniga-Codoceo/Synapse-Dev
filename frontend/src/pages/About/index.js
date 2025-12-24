@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import './styles/About.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -41,7 +42,7 @@ const About = () => {
 
   return (
     <div className="about-page-renamed">
-      <header 
+      <header
         className="about-header-renamed"
         style={{
           backgroundImage: `linear-gradient(
@@ -78,7 +79,7 @@ const About = () => {
               soluciones innovadoras que transformen ideas en realidad.
             </p>
           </div>
-          
+
           <div className="mission-card-renamed">
             <h2>Nuestra Misión</h2>
             <p>
@@ -96,8 +97,8 @@ const About = () => {
             {processSteps.map((step) => (
               <div key={step.id} className="process-card-renamed">
                 <span className="step-number-renamed">0{step.id}</span>
-                <FontAwesomeIcon 
-                  icon={step.icon} 
+                <FontAwesomeIcon
+                  icon={step.icon}
                   className="step-icon-renamed"
                 />
                 <h3>{step.title}</h3>
@@ -115,9 +116,9 @@ const About = () => {
           <div className="cta-content-renamed">
             <h2 className="section-title-renamed">¿Listo para comenzar?</h2>
             <p>Contacta con nosotros y transforma tus ideas en realidad.</p>
-            <a href="/contact" className="cta-button-renamed">
+            <Link to="/contact" className="cta-button-renamed">
               Contáctanos
-            </a>
+            </Link>
           </div>
         </section>
 

@@ -33,14 +33,14 @@ const Contact = () => {
 
     try {
       //const apiUrl = process.env.REACT_APP_API_URL.trim(); // Eliminar cualquier espacio o salto de línea
-      const response = await fetch(`${process.env.REACT_APP_API_UR}/send-email`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/send-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
-    
+
       const data = await response.json();
 
       if (data.success) {
@@ -88,7 +88,7 @@ const Contact = () => {
 
   return (
     <div className="contact-page-renamed">
-      <header 
+      <header
         className="contact-hero-renamed"
         style={{
           backgroundImage: `linear-gradient(
@@ -112,7 +112,7 @@ const Contact = () => {
           </p>
           <div className="info-grid-renamed">
             {contactInfo.map((item, index) => (
-              <a 
+              <a
                 key={index}
                 href={item.link}
                 className="info-card-renamed"
@@ -162,8 +162,8 @@ const Contact = () => {
                   required
                 ></textarea>
               </div>
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="submit-button-renamed"
                 disabled={loading}
               >
