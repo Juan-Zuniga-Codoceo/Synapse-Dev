@@ -22,7 +22,6 @@ import dashboardDark from '../../img/Cato/Dashboard-Dark.png';
 import finanzasImg from '../../img/Cato/Finanzas.png';
 import rpgImg from '../../img/Cato/RPG.png';
 import adultModeImg from '../../img/Cato/Adult Mode.png';
-import graficoFunciones from '../../img/Cato/grafico funciones.png';
 
 const Cato = () => {
     const features = [
