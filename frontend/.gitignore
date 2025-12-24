@@ -27,3 +27,6 @@ yarn-error.log*
 *.aab
 *.obb
 backend/public/downloads/*.apk
+
+
+.
