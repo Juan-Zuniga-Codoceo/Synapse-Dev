@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
-import catoLogo from '../../../img/Cato/logo.png';
+import catoLogo from '../../../img/Cato/Life_os-removebg-preview.png';
 
 const CatoModal = () => {
     const [isOpen, setIsOpen] = useState(false);
