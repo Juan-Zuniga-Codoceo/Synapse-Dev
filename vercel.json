@@ -1,0 +1,40 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "backend/server.js",
+            "use": "@vercel/node"
+        },
+        {
+            "src": "frontend/package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "build"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/download-cato",
+            "status": 302,
+            "headers": {
+                "Location": "https://www.dropbox.com/scl/fi/64nr0259yhf54sv8v2uvz/cato_life_os.apk?rlkey=8vf76tjp549lhic4qroqelzpn&st=005gplwt&dl=1"
+            }
+        },
+        {
+            "src": "/api/(.*)",
+            "dest": "/backend/server.js"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/frontend/$1"
+        }
+    ],
+    "redirects": [
+        {
+            "source": "/download-cato",
+            "destination": "https://www.dropbox.com/scl/fi/64nr0259yhf54sv8v2uvz/cato_life_os.apk?rlkey=8vf76tjp549lhic4qroqelzpn&st=005gplwt&dl=1",
+            "permanent": false
+        }
+    ]
+}

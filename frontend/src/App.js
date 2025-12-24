@@ -13,14 +13,15 @@ import ScrollToTopButton from "./components/layout/ScrollToTopButton";
 import BlogPage from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Operia from './pages/Operia';
-import OperiaModal from './components/layout/OperiaModal'; // <-- 1. AÑADE ESTA IMPORTACIÓN
+import Cato from './pages/Cato';
+import CatoModal from './components/layout/CatoModal';
 
 const App = () => {
   return (
     <Router>
       <div>
         <Navbar />
-        <OperiaModal /> {/* <-- 2. AÑADE EL COMPONENTE AQUÍ */}
+        <CatoModal />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/operia" element={<Operia />} />
+          <Route path="/cato" element={<Cato />} />
         </Routes>
         <WhatsAppButton />
         <ScrollToTopButton />

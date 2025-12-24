@@ -7,6 +7,7 @@ const multer = require('multer');
 
 // Inicializar express
 const app = express();
+const path = require('path');
 
 // Configuración de CORS para permitir solicitudes desde el frontend
 const allowedOrigins = [
@@ -33,6 +34,9 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Servir archivos estáticos desde la carpeta public/downloads
+app.use('/downloads', express.static(path.join(__dirname, 'public/downloads')));
+
 // Configuración de multer para manejar multipart/form-data
 const upload = multer();
 
@@ -53,6 +57,29 @@ const transporter = nodemailer.createTransport({
 // Ruta para verificar que el servidor está corriendo
 app.get('/', (req, res) => {
   res.send('El servidor está corriendo correctamente');
+});
+
+// Endpoint para descargar CATO: LIFE OS APK
+app.get('/download-cato', (req, res) => {
+  const filePath = path.join(__dirname, 'public/downloads/cato_life_os.apk');
+  
+  // Verificar si el archivo existe
+  const fs = require('fs');
+  if (!fs.existsSync(filePath)) {
+    return res.status(404).json({ error: 'Archivo APK no encontrado' });
+  }
+  
+  // Configurar headers para descarga de APK
+  res.setHeader('Content-Type', 'application/vnd.android.package-archive');
+  res.setHeader('Content-Disposition', 'attachment; filename="cato_life_os.apk"');
+  
+  // Enviar el archivo
+  res.sendFile(filePath, (err) => {
+    if (err) {
+      console.error('Error al enviar el archivo:', err);
+      res.status(500).json({ error: 'Error al descargar el archivo' });
+    }
+  });
 });
 
 // Ruta para manejar el envío de correos
