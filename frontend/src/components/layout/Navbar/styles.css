@@ -3,7 +3,7 @@
   padding: 0;
   position: fixed;
   width: 100%;
-  z-index: 1000;
+  z-index: 9999;
   transition: all 0.3s ease;
   height: 120px;
   background: transparent;
@@ -33,7 +33,7 @@
 .main-navbar-logo {
   display: flex;
   align-items: flex-start;
-  z-index: 1001;
+  z-index: 10001;
 }
 
 .main-navbar-logo img {
@@ -144,7 +144,7 @@
     width: 100%;
     height: 100vh;
     background-color: #102532;
-    z-index: 1000;
+    z-index: 10000;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -168,7 +168,7 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    z-index: 1001;
+    z-index: 10001;
   }
 
   .main-close-menu {
@@ -185,7 +185,7 @@
   .main-menu-icon {
     display: block;
     cursor: pointer;
-    z-index: 999;
+    z-index: 10002;
   }
 
   .main-menu-icon .bar {

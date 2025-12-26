@@ -16,10 +16,7 @@
     "routes": [
         {
             "src": "/download-cato",
-            "status": 302,
-            "headers": {
-                "Location": "https://www.dropbox.com/scl/fi/64nr0259yhf54sv8v2uvz/cato_life_os.apk?rlkey=8vf76tjp549lhic4qroqelzpn&st=005gplwt&dl=1"
-            }
+            "dest": "/backend/server.js"
         },
         {
             "src": "/api/(.*)",

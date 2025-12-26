@@ -1,5 +1,5 @@
 // frontend/src/pages/Cato/index.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
 import Animation from '../../components/layout/Animation';
 import {
@@ -24,6 +24,35 @@ import rpgImg from '../../img/Cato/RPG.png';
 import adultModeImg from '../../img/Cato/Adult Mode.png';
 
 const Cato = () => {
+    // Estado para las estadísticas de descarga
+    const [downloadCount, setDownloadCount] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
+
+    // Meta de la Fase Alpha
+    const ALPHA_GOAL = 100;
+
+    // Fetch de estadísticas al cargar el componente
+    useEffect(() => {
+        const fetchDownloadStats = async () => {
+            try {
+                const response = await fetch('/api/view-stats');
+                if (response.ok) {
+                    const data = await response.json();
+                    setDownloadCount(data.total_downloads || 0);
+                }
+            } catch (error) {
+                console.error('Error al obtener estadísticas:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        fetchDownloadStats();
+    }, []);
+
+    // Calcular porcentaje de progreso
+    const progressPercentage = Math.min((downloadCount / ALPHA_GOAL) * 100, 100);
+
     const features = [
         {
             icon: <Gamepad2 size={40} />,
@@ -86,7 +115,7 @@ const Cato = () => {
         }
     ];
 
-    const EXTERNAL_APK_LINK = 'https://www.dropbox.com/scl/fi/64nr0259yhf54sv8v2uvz/cato_life_os.apk?rlkey=8vf76tjp549lhic4qroqelzpn&st=005gplwt&dl=1';
+    const EXTERNAL_APK_LINK = '/api/download-cato';
 
     const handleDownload = () => {
         window.location.href = EXTERNAL_APK_LINK;
@@ -118,6 +147,31 @@ const Cato = () => {
                                     <AlertCircle size={16} />
                                     Versión 1.0.0 • APK Oficial • 200 MB
                                 </p>
+
+                                {/* Indicador de Progreso de Fase Alpha */}
+                                <div className="cato-deployment-status">
+                                    {isLoading ? (
+                                        <div className="deployment-loading">
+                                            <span className="loading-indicator">▸</span> CARGANDO ESTADO...
+                                        </div>
+                                    ) : (
+                                        <>
+                                            <div className="deployment-text">
+                                                <span className="deployment-label">ESTADO DE DESPLIEGUE:</span>
+                                                <span className="deployment-count">{downloadCount} / {ALPHA_GOAL}</span>
+                                                <span className="deployment-phase">OPERADORES EN FASE ALPHA</span>
+                                            </div>
+                                            <div className="deployment-progress-bar">
+                                                <div
+                                                    className="deployment-progress-fill"
+                                                    style={{ width: `${progressPercentage}%` }}
+                                                >
+                                                    <span className="progress-glow"></span>
+                                                </div>
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         </div>
 

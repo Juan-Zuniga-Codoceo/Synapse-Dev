@@ -8,6 +8,47 @@ const multer = require('multer');
 // Inicializar express
 const app = express();
 const path = require('path');
+const fs = require('fs');
+
+// Utilidades para persistencia de estadísticas
+const STATS_FILE = path.join(__dirname, 'data', 'stats.json');
+
+// Asegurar que el directorio data existe
+const dataDir = path.join(__dirname, 'data');
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
+
+// Función para leer estadísticas
+function readStats() {
+  try {
+    if (!fs.existsSync(STATS_FILE)) {
+      // Crear archivo inicial si no existe
+      const initialStats = {
+        total_downloads: 0,
+        downloads_history: []
+      };
+      fs.writeFileSync(STATS_FILE, JSON.stringify(initialStats, null, 2));
+      return initialStats;
+    }
+    const data = fs.readFileSync(STATS_FILE, 'utf8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Error al leer stats.json:', error);
+    return { total_downloads: 0, downloads_history: [] };
+  }
+}
+
+// Función para escribir estadísticas
+function writeStats(stats) {
+  try {
+    fs.writeFileSync(STATS_FILE, JSON.stringify(stats, null, 2));
+    return true;
+  } catch (error) {
+    console.error('Error al escribir stats.json:', error);
+    return false;
+  }
+}
 
 // Configuración de CORS para permitir solicitudes desde el frontend
 const allowedOrigins = [
@@ -59,27 +100,55 @@ app.get('/', (req, res) => {
   res.send('El servidor está corriendo correctamente');
 });
 
-// Endpoint para descargar CATO: LIFE OS APK
+// Endpoint para descargar CATO: LIFE OS APK (con contador y redirección)
 app.get('/download-cato', (req, res) => {
-  const filePath = path.join(__dirname, 'public/downloads/cato_life_os.apk');
-  
-  // Verificar si el archivo existe
-  const fs = require('fs');
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).json({ error: 'Archivo APK no encontrado' });
-  }
-  
-  // Configurar headers para descarga de APK
-  res.setHeader('Content-Type', 'application/vnd.android.package-archive');
-  res.setHeader('Content-Disposition', 'attachment; filename="cato_life_os.apk"');
-  
-  // Enviar el archivo
-  res.sendFile(filePath, (err) => {
-    if (err) {
-      console.error('Error al enviar el archivo:', err);
-      res.status(500).json({ error: 'Error al descargar el archivo' });
+  try {
+    // Leer estadísticas actuales
+    const stats = readStats();
+
+    // Incrementar contador
+    stats.total_downloads += 1;
+
+    // Agregar entrada al historial con timestamp
+    stats.downloads_history.push({
+      timestamp: new Date().toISOString(),
+      ip: req.ip || req.connection.remoteAddress,
+      userAgent: req.get('user-agent') || 'unknown'
+    });
+
+    // Guardar estadísticas actualizadas
+    const saved = writeStats(stats);
+
+    if (!saved) {
+      console.warn('No se pudieron guardar las estadísticas, pero redirigiendo de todas formas');
     }
-  });
+
+    // URL de Dropbox para la descarga
+    const DROPBOX_URL = 'https://www.dropbox.com/scl/fi/64nr0259yhf54sv8v2uvz/cato_life_os.apk?rlkey=8vf76tjp549lhic4qroqelzpn&st=005gplwt&dl=1';
+
+    // Redirigir al usuario a Dropbox
+    res.redirect(302, DROPBOX_URL);
+
+  } catch (error) {
+    console.error('Error en /download-cato:', error);
+    // En caso de error, redirigir de todas formas
+    res.redirect(302, 'https://www.dropbox.com/scl/fi/64nr0259yhf54sv8v2uvz/cato_life_os.apk?rlkey=8vf76tjp549lhic4qroqelzpn&st=005gplwt&dl=1');
+  }
+});
+
+// Endpoint para visualizar estadísticas de descargas
+app.get('/api/view-stats', (req, res) => {
+  try {
+    const stats = readStats();
+    res.status(200).json({
+      total_downloads: stats.total_downloads,
+      downloads_history: stats.downloads_history,
+      last_updated: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Error al obtener estadísticas:', error);
+    res.status(500).json({ error: 'Error al obtener estadísticas' });
+  }
 });
 
 // Ruta para manejar el envío de correos
