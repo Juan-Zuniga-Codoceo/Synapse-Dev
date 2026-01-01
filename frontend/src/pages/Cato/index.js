@@ -22,6 +22,8 @@ import dashboardDark from '../../img/Cato/Dashboard-Dark.png';
 import finanzasImg from '../../img/Cato/Finanzas.png';
 import rpgImg from '../../img/Cato/RPG.png';
 import adultModeImg from '../../img/Cato/Adult Mode.png';
+import qrCodeImg from '../../img/Cato/QR.png';
+import googlePlayLogo from '../../img/Cato/Google Play PlayStore Logo.png';
 
 const Cato = () => {
     // Estado para las estadísticas de descarga
@@ -139,38 +141,26 @@ const Cato = () => {
 
                         <div className="cato-hero-actions">
                             <div className="cato-download-wrapper">
-                                <button onClick={handleDownload} className="cato-download-btn">
-                                    <Download size={24} />
-                                    Descargar APK (Android)
-                                </button>
-                                <p className="cato-version-info">
-                                    <AlertCircle size={16} />
-                                    Versión 1.0.0 • APK Oficial • 200 MB
-                                </p>
+                                {/* Código QR para Google Play */}
+                                <div className="cato-qr-section">
+                                    <div className="cato-qr-badge">
+                                        <span>Disponible en Google Play</span>
+                                    </div>
+                                    <img src={qrCodeImg} alt="QR Code para Google Play" className="cato-qr-image" />
 
-                                {/* Indicador de Progreso de Fase Alpha */}
-                                <div className="cato-deployment-status">
-                                    {isLoading ? (
-                                        <div className="deployment-loading">
-                                            <span className="loading-indicator">▸</span> CARGANDO ESTADO...
+                                    {/* Botón de Google Play */}
+                                    <a
+                                        href="https://play.google.com/store/apps/details?id=cl.synapsedev.cato"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="google-play-button"
+                                    >
+                                        <img src={googlePlayLogo} alt="Google Play" className="google-play-button-logo" />
+                                        <div className="google-play-button-text">
+                                            <span className="google-play-button-label">Descarga en</span>
+                                            <span className="google-play-button-store">Google Play</span>
                                         </div>
-                                    ) : (
-                                        <>
-                                            <div className="deployment-text">
-                                                <span className="deployment-label">ESTADO DE DESPLIEGUE:</span>
-                                                <span className="deployment-count">{downloadCount} / {ALPHA_GOAL}</span>
-                                                <span className="deployment-phase">OPERADORES EN FASE ALPHA</span>
-                                            </div>
-                                            <div className="deployment-progress-bar">
-                                                <div
-                                                    className="deployment-progress-fill"
-                                                    style={{ width: `${progressPercentage}%` }}
-                                                >
-                                                    <span className="progress-glow"></span>
-                                                </div>
-                                            </div>
-                                        </>
-                                    )}
+                                    </a>
                                 </div>
                             </div>
                         </div>

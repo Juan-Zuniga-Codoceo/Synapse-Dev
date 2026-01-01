@@ -98,6 +98,155 @@
   font-family: monospace;
 }
 
+/* ========== QR CODE SECTION ========== */
+.cato-qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+  padding: 30px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 102, 0, 0.3);
+  border-radius: 16px;
+  max-width: 320px;
+  position: relative;
+  animation: qr-pulse 3s ease-in-out infinite;
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(255, 102, 0, 0.1);
+}
+
+@keyframes qr-pulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.3),
+      0 0 40px rgba(255, 102, 0, 0.1);
+  }
+
+  50% {
+    box-shadow:
+      0 8px 25px rgba(0, 0, 0, 0.3),
+      0 0 50px rgba(255, 102, 0, 0.25);
+  }
+}
+
+.cato-qr-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.2), rgba(255, 69, 0, 0.15));
+  border: 1px solid rgba(255, 102, 0, 0.4);
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #ff6600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.google-play-logo {
+  height: 20px;
+  width: auto;
+  object-fit: contain;
+}
+
+.cato-qr-image {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: white;
+  padding: 10px;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(255, 102, 0, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.cato-qr-image:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 6px 30px rgba(0, 0, 0, 0.4),
+    0 0 50px rgba(255, 102, 0, 0.4);
+}
+
+/* Google Play Button */
+.google-play-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.15), rgba(255, 69, 0, 0.1));
+  border: 2px solid rgba(255, 102, 0, 0.4);
+  padding: 12px 24px;
+  border-radius: 8px;
+  margin-top: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.google-play-button:hover {
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.25), rgba(255, 69, 0, 0.18));
+  border-color: rgba(255, 102, 0, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+}
+
+.google-play-button-logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.google-play-button-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.google-play-button-label {
+  font-size: 0.7rem;
+  color: #cbd5e1;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.google-play-button-store {
+  font-size: 1.05rem;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 768px) {
+  .cato-qr-section {
+    max-width: 100%;
+    padding: 24px 20px;
+  }
+
+  .cato-qr-image {
+    width: 180px;
+    height: 180px;
+  }
+
+  .cato-qr-text {
+    font-size: 0.88rem;
+  }
+
+  .cato-qr-badge {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+  }
+}
+
 /* ========== INDICADOR DE DESPLIEGUE TÁCTICO ========== */
 .cato-deployment-status {
   margin-top: 24px;
