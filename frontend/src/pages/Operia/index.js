@@ -26,7 +26,7 @@ const Operia = () => {
               Operia es una plataforma integral de gestión de tareas y colaboración empresarial que centraliza todo el flujo de trabajo operativo en un sistema visual e intuitivo. Transforma la complejidad operativa en un tablero Kanban claro y accesible.
             </p>
             <div className="operia-hero-buttons">
-              <a href="https://operia.onrender.com" target="_blank" rel="noopener noreferrer" className="operia-cta-primary">
+              <a href="https://operia.synapsedev.cl/" target="_blank" rel="noopener noreferrer" className="operia-cta-primary">
                 Probar Demo en Vivo
               </a>
               <a href="#modules" className="operia-cta-secondary-hero">
