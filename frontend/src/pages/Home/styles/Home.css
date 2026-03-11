@@ -55,6 +55,32 @@
   text-align: center;
 }
 
+.hero-tools-badge {
+  display: inline-block;
+  background-color: rgba(255, 102, 0, 0.1);
+  border: 1px solid rgba(255, 102, 0, 0.3);
+  color: #cbd5e1;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 24px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.hero-tools-badge:hover {
+  background-color: rgba(255, 102, 0, 0.2);
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.badge-new {
+  font-weight: 700;
+  color: #ff6600;
+  margin-right: 6px;
+}
+
 .hero-title {
   font-size: 4rem;
   font-weight: 700;

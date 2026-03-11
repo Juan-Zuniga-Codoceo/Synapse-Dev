@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/layout/Navbar';
-import Footer from '../../components/layout/Footer';
 import Animation from '../../components/layout/Animation';
+import { CONTACT_INFO } from '../../constants';
 import { Copy, UploadCloud, Download, CheckCircle, Smartphone, ShieldCheck, Calculator, ArrowRight, Activity, AlertTriangle } from 'lucide-react';
 import './styles.css';
 
@@ -339,11 +339,11 @@ const Tools = () => {
 
               <form onSubmit={handleGenerateWaLink} className="wa-form">
                 <div className="form-group">
-                  <label className="form-label" htmlFor="wa-number">Número de Teléfono (ej: 56912345678)</label>
+                  <label className="form-label" htmlFor="wa-number">Número de Teléfono (ej: {CONTACT_INFO.phone.replace('+', '')})</label>
                   <input
                     id="wa-number"
                     type="text"
-                    placeholder="56912345678"
+                    placeholder={CONTACT_INFO.phone.replace('+', '')}
                     value={waNumber}
                     onChange={(e) => setWaNumber(e.target.value)}
                     className="form-input"
@@ -598,11 +598,9 @@ const Tools = () => {
       </main>
 
       {/* Floating CTA */}
-      <Link to="/contact" className="floating-cta">
+      <a href={CONTACT_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" className="floating-cta">
         🚀 Consultoría Gratis
-      </Link>
-
-      <Footer />
+      </a>
     </div>
   );
 };

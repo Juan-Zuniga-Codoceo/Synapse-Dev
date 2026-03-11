@@ -1,5 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import { CONTACT_INFO } from '../../../constants';
+import './styles.css';
 import './styles.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -91,10 +92,13 @@ const Footer = () => {
                 <FontAwesomeIcon icon={faEnvelope} className="footer-icon" />
                 contacto@synapsedev.cl
               </a>
-              <a href="tel:+56920333538">
-                <FontAwesomeIcon icon={faPhone} className="footer-icon" />
-                +56 9 2033 3538 - WhatsApp disponible
-              </a>
+              <p className="footer-contact-item">
+                <a href={`tel:${CONTACT_INFO.phone}`}>
+                  {/* Format phone number for display if needed, but using direct variable is fine */}
+                  <FontAwesomeIcon icon={faPhone} className="footer-icon" />
+                  {CONTACT_INFO.phone} - WhatsApp disponible
+                </a>
+              </p>
             </div>
           </div>
         </div>

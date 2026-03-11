@@ -8,11 +8,8 @@ import {
   faTwitter,
   faWhatsapp
 } from "@fortawesome/free-brands-svg-icons";
-import { 
-  faFilePdf, 
-  faEnvelope, 
-  faPhone 
-} from "@fortawesome/free-solid-svg-icons";
+import { faFilePdf, faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { CONTACT_INFO } from '../../../constants';
 import synapseLogo from '../../../assets/images/logos/Logo_mail-removebg-preview.png';
 
 const ContactSection = () => {
@@ -40,9 +37,8 @@ const ContactSection = () => {
       Asunto: ${formData.subject}
       Mensaje: ${formData.message}
     `;
-    
-    const phoneNumber = "+56928333538"; // Reemplazar con tu número de WhatsApp
-    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`);
+    const whatsappUrl = `${CONTACT_INFO.whatsappLink}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl);
   };
 
   const handleSubmit = (e) => {
@@ -127,9 +123,9 @@ const ContactSection = () => {
                 <FontAwesomeIcon icon={faEnvelope} />
                 <span>contacto@synapsedev.cl</span>
               </a>
-              <a href="tel:+56XXXXXXXX" className="contact-detail">
+              <a href={`tel:${CONTACT_INFO.phone}`} className="contact-detail">
                 <FontAwesomeIcon icon={faPhone} />
-                <span>+56 9 2833 3538</span>
+                <span>{CONTACT_INFO.phone}</span>
               </a>
             </div>
           </div>

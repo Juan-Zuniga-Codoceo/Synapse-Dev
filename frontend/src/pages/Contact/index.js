@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import Loader from 'react-loaders';
+import Footer from '../../components/layout/Footer';
+import Animation from '../../components/layout/Animation';
+import { CONTACT_INFO } from '../../constants';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 import './styles/Contact.css';
 import 'loaders.css/src/animations/ball-spin-fade-loader.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faPhone,
   faEnvelope,
   faLocationDot,
   faPaperPlane
@@ -60,10 +63,10 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: faPhone,
-      title: "Teléfono",
-      info: "+56 9 2033 3538",
-      link: "tel:+56920333538"
+      icon: <Phone className="contact-info-icon" />,
+      title: "Teléfono / WhatsApp",
+      info: CONTACT_INFO.phone,
+      link: `tel:${CONTACT_INFO.phone}`
     },
     {
       icon: faEnvelope,

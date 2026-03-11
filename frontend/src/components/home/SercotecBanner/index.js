@@ -1,30 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faLaptop, 
-  faStore, 
+import {
+  faLaptop,
+  faStore,
   faBullhorn,
   faCheck,
   faClock
 } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import './styles.css';
+import { CONTACT_INFO } from '../../../constants';
 import sercotecLogo from '../../../assets/images/logos/logo-sercotec.png';
 
 const SercotecBanner = () => {
-  const whatsappNumber = "+56928333538"; // Reemplazar con número real
   const whatsappMessage = "¡Hola! Me interesa implementar mi proyecto web con el Kit Digital de Sercotec";
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappUrl = `${CONTACT_INFO.whatsappLink}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
     <section className="sercotec-banner">
       <div className="sercotec-banner__container">
         <div className="sercotec-banner__grid">
           <div className="sercotec-banner__logo-section">
-            <img 
-              src={sercotecLogo} 
-              alt="Sercotec Logo" 
+            <img
+              src={sercotecLogo}
+              alt="Sercotec Logo"
               className="sercotec-banner__logo"
             />
             <div className="sercotec-banner__stats">
@@ -94,13 +94,13 @@ const SercotecBanner = () => {
             </div>
 
             <div className="sercotec-banner__cta">
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="cta-button primary"
               >
                 ¡Quiero mi sitio web gratis!
               </Link>
-              <a 
+              <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"

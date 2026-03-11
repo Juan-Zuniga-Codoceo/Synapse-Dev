@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './styles.css';
 import logo from '../../../assets/icons/logo-navbar-removebg.png';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,10 +39,13 @@ const Navbar = () => {
           <li className="main-navbar-item">
             <Link to="/services">Servicios</Link>
           </li>
-          <li className="main-navbar-item">
+          <li className={`main-navbar-item ${location.pathname === '/portfolio' ? 'active' : ''}`}>
             <Link to="/portfolio">Portafolio</Link>
           </li>
-          <li className="main-navbar-item cato-highlight">
+          <li className={`main-navbar-item ${location.pathname === '/tools' ? 'active' : ''}`}>
+            <Link to="/tools">Herramientas</Link>
+          </li>
+          <li className={`main-navbar-item cato-highlight ${location.pathname === '/cato' ? 'active' : ''}`}>
             <Link to="/cato">CATO</Link>
           </li>
           <li className="main-navbar-item">
@@ -86,10 +90,13 @@ const Navbar = () => {
             <li className="main-navbar-item">
               <Link to="/services" onClick={() => setMenuOpen(false)}>Servicios</Link>
             </li>
-            <li className="main-navbar-item">
+            <li className={`main-navbar-item ${location.pathname === '/portfolio' ? 'active' : ''}`}>
               <Link to="/portfolio" onClick={() => setMenuOpen(false)}>Portafolio</Link>
             </li>
-            <li className="main-navbar-item cato-highlight">
+            <li className={`main-navbar-item ${location.pathname === '/tools' ? 'active' : ''}`}>
+              <Link to="/tools" onClick={() => setMenuOpen(false)}>Herramientas</Link>
+            </li>
+            <li className={`main-navbar-item cato-highlight ${location.pathname === '/cato' ? 'active' : ''}`}>
               <Link to="/cato" onClick={() => setMenuOpen(false)}>CATO</Link>
             </li>
             <li className="main-navbar-item">

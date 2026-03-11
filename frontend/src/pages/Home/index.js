@@ -9,7 +9,7 @@ import TrustedBy from "../../components/home/TrustedBy";
 import StatisticsSection from "../../components/home/StatisticsSection";
 import BlogPosts from "../../components/home/BlogPosts";
 import SercotecBanner from "../../components/home/SercotecBanner";
-
+import ToolsPreview from "../../components/home/ToolsPreview";
 
 const Home = () => {
   return (
@@ -18,6 +18,9 @@ const Home = () => {
         <div className="hero-background"></div>
         <div className="hero-overlay"></div>
         <div className="hero-content">
+          <Link to="/tools" className="hero-tools-badge">
+            <span className="badge-new">¡Nuevo!</span> Analizador de velocidad gratuito 🚀
+          </Link>
           <h1 className="hero-title">
             Expertos en páginas web
             <br />
@@ -59,6 +62,9 @@ const Home = () => {
       <div className="home-section home-section--dark">
         <TrustedBy />
       </div>
+
+      <ToolsPreview />
+
       <div className="home-section home-section--dark">
         <BlogPosts limit={3} />
       </div>
