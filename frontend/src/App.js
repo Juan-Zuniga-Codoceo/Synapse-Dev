@@ -15,6 +15,7 @@ import BlogPost from './pages/BlogPost';
 import Operia from './pages/Operia';
 import Cato from './pages/Cato';
 import CatoModal from './components/layout/CatoModal';
+import Tools from './pages/Tools';
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/operia" element={<Operia />} />
           <Route path="/cato" element={<Cato />} />
+          <Route path="/tools" element={<Tools />} />
         </Routes>
         <WhatsAppButton />
         <ScrollToTopButton />
