@@ -174,43 +174,49 @@ const Tools = () => {
   };
 
   // --- Speed Analyzer Logic ---
+  const sanitizeUrl = (url) => {
+    const trimmed = url.trim();
+    if (!/^https?:\/\//i.test(trimmed)) {
+      return `https://${trimmed}`;
+    }
+    return trimmed;
+  };
+
   const handleAnalyzeSpeed = async (e) => {
     e.preventDefault();
     if (!psUrl) return;
 
-    let targetUrl = psUrl.trim();
-    if (!/^https?:\/\//i.test(targetUrl)) {
-      targetUrl = 'https://' + targetUrl;
-    }
+    const validatedUrl = sanitizeUrl(psUrl);
 
     setPsLoading(true);
     setPsError('');
     setPsResult(null);
 
     try {
-      const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(targetUrl)}&category=performance`;
+      const apiKey = 'AIzaSyD36X57OTNSCVFH5LewBTov5jtAjQ_KoJY';
+      const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(validatedUrl)}&category=performance&key=${apiKey}`;
       const response = await fetch(apiUrl);
+
+      if (!response.ok) {
+        throw new Error('Error al analizar la web. Verifica que la URL sea pública y válida.');
+      }
+
       const data = await response.json();
 
       if (data.error) {
-        throw new Error(data.error.message || 'Error al analizar el sitio');
+        throw new Error('Error al analizar la web. Verifica que la URL sea pública y válida.');
       }
 
-      const lighthouse = data.lighthouseResult;
-      if (!lighthouse || !lighthouse.categories || !lighthouse.categories.performance) {
-        throw new Error('No se pudieron obtener los resultados de rendimiento.');
-      }
+      const score = Math.round((data?.lighthouseResult?.categories?.performance?.score || 0) * 100);
+      const lcp = data?.lighthouseResult?.audits?.['largest-contentful-paint']?.displayValue || 'N/A';
+      const tti = data?.lighthouseResult?.audits?.['interactive']?.displayValue || 'N/A';
+      const speedIndex = data?.lighthouseResult?.audits?.['speed-index']?.displayValue || 'N/A';
 
-      const score = Math.round(lighthouse.categories.performance.score * 100);
-      const lcp = lighthouse.audits['largest-contentful-paint']?.displayValue || 'N/A';
-      const tti = lighthouse.audits['interactive']?.displayValue || 'N/A';
-      const speedIndex = lighthouse.audits['speed-index']?.displayValue || 'N/A';
-
-      setPsResult({ score, lcp, tti, speedIndex, url: targetUrl });
+      setPsResult({ score, lcp, tti, speedIndex, url: validatedUrl });
       trackToolUsage('Analizador de Velocidad');
     } catch (err) {
       console.error(err);
-      setPsError('Hubo un error al analizar la URL. Asegúrate de que el sitio sea público y válido.');
+      setPsError('Error al analizar la web. Verifica que la URL sea pública y válida.');
     } finally {
       setPsLoading(false);
     }
@@ -282,16 +288,16 @@ const Tools = () => {
                     <div className={`score-circle ${psResult.score >= 90 ? 'score-green' : (psResult.score >= 50 ? 'score-orange' : 'score-red')}`}>
                       {psResult.score}
                     </div>
-                    <div className="speed-metrics">
-                      <div className="metric-item">
+                    <div className="speed-metrics" style={{ overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      <div className="metric-item" style={{ overflowWrap: 'break-word', wordBreak: 'break-word' }}>
                         <span className="metric-label">LCP</span>
                         <span className="metric-value">{psResult.lcp}</span>
                       </div>
-                      <div className="metric-item">
+                      <div className="metric-item" style={{ overflowWrap: 'break-word', wordBreak: 'break-word' }}>
                         <span className="metric-label">TTI</span>
                         <span className="metric-value">{psResult.tti}</span>
                       </div>
-                      <div className="metric-item">
+                      <div className="metric-item" style={{ overflowWrap: 'break-word', wordBreak: 'break-word' }}>
                         <span className="metric-label">Speed Index</span>
                         <span className="metric-value">{psResult.speedIndex}</span>
                       </div>

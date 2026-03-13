@@ -4,20 +4,19 @@ import { Calendar, Clock, ArrowRight } from "lucide-react";
 import heroImage from "../../../assets/images/hero/hero-blog.webp"; // Como imagen de respaldo
 import "./styles.css";
 
-const BlogPosts = ({ limit = 3, showHeader = true }) => {
+const BlogPosts = ({ limit = 3, showHeader = true, searchTerm = '' }) => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch(
-          `https://public-api.wordpress.com/wp/v2/sites/synapsedevblog.wordpress.com/posts?_embed`
-        );
+        const response = await fetch(`${API_URL}/api/posts`);
         if (!response.ok) throw new Error("Error al cargar los posts");
         const data = await response.json();
-        console.log("Datos de los posts:", data); // Depuración
         setPosts(data);
       } catch (err) {
         setError("Error al cargar los posts");
@@ -39,31 +38,23 @@ const BlogPosts = ({ limit = 3, showHeader = true }) => {
   };
 
   const getPostImage = (post) => {
-    try {
-      // Intentar obtener la imagen destacada
-      if (
-        post._embedded &&
-        post._embedded["wp:featuredmedia"] &&
-        post._embedded["wp:featuredmedia"][0] &&
-        post._embedded["wp:featuredmedia"][0].source_url
-      ) {
-        const imageUrl = post._embedded["wp:featuredmedia"][0].source_url;
-        return imageUrl.startsWith("http") ? imageUrl : heroImage;
-      }
-
-      // Si no hay imagen destacada, buscar la primera imagen en el contenido
-      const content = post.content?.rendered || "";
-      const imgMatch = content.match(/<img[^>]+src="([^">]+)"/);
-      if (imgMatch && imgMatch[1]) {
-        return imgMatch[1];
-      }
-    } catch (error) {
-      console.error("Error al obtener la imagen:", error);
+    if (post.image && post.image.trim() !== '') {
+      return post.image;
     }
-
-    // Si no se encuentra ninguna imagen, usar la imagen de respaldo
+    // Fallback if no image is provided and attempt to parse content
+    const imgMatch = post.content?.match(/<img[^>]+src="([^">]+)"/);
+    if (imgMatch && imgMatch[1]) {
+      return imgMatch[1];
+    }
     return heroImage;
   };
+
+  // Filter logic combining the search term
+  const filteredPosts = posts.filter(post => {
+    if (!searchTerm) return true;
+    return post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.content.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   if (loading) {
     return (
@@ -107,12 +98,12 @@ const BlogPosts = ({ limit = 3, showHeader = true }) => {
           </div>
         )}
         <div className="blog-grid">
-          {posts.slice(0, limit).map((post) => (
+          {filteredPosts.slice(0, limit).map((post) => (
             <article key={post.id} className="blog-card">
               <div className="blog-image-container">
                 <img
                   src={getPostImage(post)}
-                  alt={post.title?.rendered || "Imagen del post"}
+                  alt={post.title}
                   className="blog-image"
                   loading="lazy"
                   onError={(e) => {
@@ -128,23 +119,19 @@ const BlogPosts = ({ limit = 3, showHeader = true }) => {
                   </span>
                   <span>
                     <Clock className="meta-icon" />
-                    {post.content?.rendered
-                      ? `${Math.ceil(
-                          post.content.rendered.split(" ").length / 200
-                        )} min`
+                    {post.content
+                      ? `${Math.ceil(post.content.split(" ").length / 200)} min`
                       : "1 min"}
                   </span>
                 </div>
                 <h3 className="blog-title">
-                  {post.title?.rendered
-                    ? cleanHtmlEntities(post.title.rendered)
-                    : "Sin título"}
+                  {cleanHtmlEntities(post.title || "Sin título")}
                 </h3>
-                {post.excerpt?.rendered && (
+                {post.content && (
                   <div
                     className="blog-excerpt"
                     dangerouslySetInnerHTML={{
-                      __html: cleanHtmlEntities(post.excerpt.rendered),
+                      __html: cleanHtmlEntities(post.content.substring(0, 150) + "..."),
                     }}
                   />
                 )}

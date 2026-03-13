@@ -9,6 +9,7 @@ const multer = require('multer');
 const app = express();
 const path = require('path');
 const fs = require('fs');
+const postRoutes = require('./routes/postRoutes');
 
 // Utilidades para persistencia de estadísticas
 const STATS_FILE = path.join(__dirname, 'data', 'stats.json');
@@ -67,8 +68,8 @@ app.use(cors({
       callback(new Error('Not allowed by CORS'));
     }
   },
-  methods: ['POST'],
-  allowedHeaders: ['Content-Type']
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Configuración de body-parser para manejar JSON y URL-encoded data
@@ -181,6 +182,9 @@ app.post('/send-email', upload.none(), async (req, res) => {
     res.status(500).json({ error: 'Error al enviar el correo', details: error.message });
   }
 });
+
+// Rutas de la API de Posts (Blog)
+app.use('/api/posts', postRoutes);
 
 // Escuchar en el puerto definido
 const PORT = process.env.PORT || 5000;
