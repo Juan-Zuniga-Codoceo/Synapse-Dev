@@ -6,11 +6,13 @@ import './styles.css';
 
 const Admin = () => {
     const [token, setToken] = useState(localStorage.getItem('adminToken') || '');
-    const [passwordInput, setPasswordInput] = useState('');
+    const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [posts, setPosts] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
+    const [editingPostId, setEditingPostId] = useState(null);
     const [currentPost, setCurrentPost] = useState({ title: '', slug: '', image: '', content: '' });
     const [loading, setLoading] = useState(false);
+    const [uploadingImage, setUploadingImage] = useState(false);
     const [error, setError] = useState('');
 
     const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
@@ -39,11 +41,60 @@ const Admin = () => {
         }
     };
 
-    const handleLogin = (e) => {
+    const fetchPost = async (id) => {
+        try {
+            setLoading(true);
+            const res = await fetch(`${API_URL}/api/posts/${id}`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                setCurrentPost({
+                    title: data.title || '',
+                    slug: data.slug || '',
+                    image: data.image || '',
+                    content: data.content || ''
+                });
+            } else {
+                setError('Error al cargar el post para editar');
+            }
+        } catch (err) {
+            setError('Error de conexión al cargar post');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (isEditing && editingPostId && token) {
+            fetchPost(editingPostId);
+        }
+    }, [isEditing, editingPostId, token]);
+
+    const handleLogin = async (e) => {
         e.preventDefault();
-        localStorage.setItem('adminToken', passwordInput);
-        setToken(passwordInput);
-        setPasswordInput('');
+        setError('');
+        try {
+            const res = await fetch(`${API_URL}/api/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(credentials)
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                localStorage.setItem('adminToken', data.token);
+                setToken(data.token);
+                setCredentials({ email: '', password: '' });
+            } else {
+                const errData = await res.json();
+                setError(errData.error || 'Credenciales inválidas');
+            }
+        } catch (err) {
+            setError('Error de conexión al servidor');
+        }
     };
 
     const handleLogout = () => {
@@ -58,11 +109,14 @@ const Admin = () => {
 
         try {
             setLoading(true);
-            const res = await fetch(`${API_URL}/api/posts`, {
-                method: 'POST',
+            const method = editingPostId ? 'PUT' : 'POST';
+            const url = editingPostId ? `${API_URL}/api/posts/${editingPostId}` : `${API_URL}/api/posts`;
+
+            const res = await fetch(url, {
+                method: method,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': token
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     title: currentPost.title || 'Sin Título',
@@ -75,6 +129,7 @@ const Admin = () => {
 
             if (res.ok) {
                 setIsEditing(false);
+                setEditingPostId(null);
                 setCurrentPost({ title: '', slug: '', image: '', content: '' });
                 fetchPosts();
             } else if (res.status === 401) {
@@ -90,13 +145,46 @@ const Admin = () => {
         }
     };
 
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try {
+            setUploadingImage(true);
+            setError('');
+
+            const res = await fetch(`${API_URL}/api/upload`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                setCurrentPost({ ...currentPost, image: data.url });
+            } else {
+                const errData = await res.json();
+                setError(errData.error || 'Error al subir la imagen');
+            }
+        } catch (err) {
+            setError('Error de conexión al subir imagen');
+        } finally {
+            setUploadingImage(false);
+        }
+    };
+
     const handleDelete = async (id) => {
         if (!window.confirm('¿Seguro que deseas mover este post a la papelera?')) return;
         try {
             const res = await fetch(`${API_URL}/api/posts/${id}`, {
                 method: 'DELETE',
                 headers: {
-                    'Authorization': token
+                    'Authorization': `Bearer ${token}`
                 }
             });
             if (res.ok) {
@@ -135,13 +223,22 @@ const Admin = () => {
                     <form className="wp-login-form" onSubmit={handleLogin}>
                         {error && <div className="wp-login-error">{error}</div>}
                         <div className="wp-input-group">
-                            <label>Contraseña Maestra</label>
+                            <label>Correo Electrónico</label>
                             <input
-                                type="password"
-                                value={passwordInput}
-                                onChange={(e) => setPasswordInput(e.target.value)}
+                                type="email"
+                                value={credentials.email}
+                                onChange={(e) => setCredentials({ ...credentials, email: e.target.value })}
                                 required
                                 autoFocus
+                            />
+                        </div>
+                        <div className="wp-input-group" style={{ marginTop: '15px' }}>
+                            <label>Contraseña</label>
+                            <input
+                                type="password"
+                                value={credentials.password}
+                                onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
+                                required
                             />
                         </div>
                         <div className="wp-login-actions">
@@ -163,17 +260,17 @@ const Admin = () => {
                 </div>
                 <ul className="wp-menu">
                     <li className="wp-menu-item">
-                        <button className="wp-menu-link" onClick={() => setIsEditing(false)}>
+                        <button className="wp-menu-link" onClick={() => { setIsEditing(false); setEditingPostId(null); }}>
                             <LayoutDashboard size={18} /> Escritorio
                         </button>
                     </li>
                     <li className="wp-menu-item active">
-                        <button className="wp-menu-link" onClick={() => setIsEditing(false)}>
+                        <button className="wp-menu-link" onClick={() => { setIsEditing(false); setEditingPostId(null); }}>
                             <FileText size={18} /> Entradas
                         </button>
                         <ul className="wp-submenu">
-                            <li><button onClick={() => setIsEditing(false)}>Todas las entradas</button></li>
-                            <li><button onClick={() => { setIsEditing(true); setCurrentPost({ title: '', slug: '', image: '', content: '' }) }}>Añadir nueva</button></li>
+                            <li><button onClick={() => { setIsEditing(false); setEditingPostId(null); }}>Todas las entradas</button></li>
+                            <li><button onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '' }) }}>Añadir nueva</button></li>
                         </ul>
                     </li>
                     <li className="wp-menu-separator"></li>
@@ -193,7 +290,7 @@ const Admin = () => {
                         <a href="/" target="_blank" rel="noopener noreferrer" className="wp-topbar-item" title="Ver sitio">
                             <span>Synapse Dev</span>
                         </a>
-                        <button className="wp-topbar-item" onClick={() => { setIsEditing(true); setCurrentPost({ title: '', slug: '', image: '', content: '' }) }}>
+                        <button className="wp-topbar-item" onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '' }) }}>
                             <Plus size={16} /> <span style={{ marginLeft: '4px' }}>Añadir</span>
                         </button>
                     </div>
@@ -208,8 +305,8 @@ const Admin = () => {
                     {isEditing ? (
                         <div className="wp-editor-view">
                             <div className="wp-editor-header">
-                                <h1 className="wp-page-title">Añadir nueva entrada</h1>
-                                <button className="wp-button-secondary" onClick={() => setIsEditing(false)}>Volver a Entradas</button>
+                                <h1 className="wp-page-title">{editingPostId ? 'Editar entrada' : 'Añadir nueva entrada'}</h1>
+                                <button className="wp-button-secondary" onClick={() => { setIsEditing(false); setEditingPostId(null); }}>Volver a Entradas</button>
                             </div>
 
                             <div className="wp-editor-layout">
@@ -259,9 +356,9 @@ const Admin = () => {
                                             </div>
                                         </div>
                                         <div className="wp-meta-box-footer">
-                                            <button className="wp-button-link wp-text-danger" onClick={() => setIsEditing(false)}>Mover a la papelera</button>
+                                            <button className="wp-button-link wp-text-danger" onClick={() => { setIsEditing(false); setEditingPostId(null); }}>Cancelar</button>
                                             <button className="wp-button-primary wp-button-large" onClick={handleSavePost} disabled={loading}>
-                                                {loading ? 'Publicando...' : 'Publicar'}
+                                                {loading ? (editingPostId ? 'Actualizando...' : 'Publicando...') : (editingPostId ? 'Actualizar' : 'Publicar')}
                                             </button>
                                         </div>
                                     </div>
@@ -278,7 +375,13 @@ const Admin = () => {
                                                 value={currentPost.slug}
                                                 onChange={(e) => setCurrentPost({ ...currentPost, slug: e.target.value })}
                                                 placeholder="Dejar en blanco para auto-generar"
+                                                disabled={!!editingPostId}
                                             />
+                                            {editingPostId && (
+                                                <p style={{ color: '#d63638', fontSize: '12px', marginTop: '4px' }}>
+                                                    El slug no admite edición por motivos de SEO.
+                                                </p>
+                                            )}
                                         </div>
                                     </div>
 
@@ -288,15 +391,21 @@ const Admin = () => {
                                             <h2>Imagen destacada</h2>
                                         </div>
                                         <div className="wp-meta-box-content">
-                                            <label className="wp-label-sm">URL de la imagen</label>
+                                            <label className="wp-label-sm">Subir imagen</label>
                                             <input
-                                                type="url"
+                                                type="file"
+                                                accept="image/*"
                                                 className="wp-input-standard"
-                                                value={currentPost.image}
-                                                onChange={(e) => setCurrentPost({ ...currentPost, image: e.target.value })}
-                                                placeholder="https://..."
+                                                onChange={handleImageUpload}
+                                                disabled={uploadingImage}
+                                                style={{ padding: '8px' }}
                                             />
-                                            {currentPost.image && (
+                                            {uploadingImage && (
+                                                <div style={{ marginTop: '8px', fontSize: '13px', color: '#2271b1' }}>
+                                                    Subiendo imagen...
+                                                </div>
+                                            )}
+                                            {currentPost.image && !uploadingImage && (
                                                 <div className="wp-featured-image-preview">
                                                     <img src={currentPost.image} alt="Preview" />
                                                 </div>
@@ -310,7 +419,7 @@ const Admin = () => {
                         <div className="wp-posts-view">
                             <div className="wp-page-header">
                                 <h1 className="wp-page-title">Entradas</h1>
-                                <button className="wp-button-secondary wp-add-new-btn" onClick={() => { setIsEditing(true); setCurrentPost({ title: '', slug: '', image: '', content: '' }) }}>Añadir nueva</button>
+                                <button className="wp-button-secondary wp-add-new-btn" onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '' }) }}>Añadir nueva</button>
                             </div>
 
                             <ul className="wp-subsubsub">
@@ -336,12 +445,12 @@ const Admin = () => {
                                                 <tr><td colSpan="4" className="no-items">No se encontraron entradas.</td></tr>
                                             ) : (
                                                 posts.map(post => (
-                                                    <tr key={post.id}>
+                                                    <tr key={post._id || post.id}>
                                                         <td className="column-title has-row-actions">
-                                                            <strong><a href="#_" className="row-title">{post.title || '(Sin título)'}</a></strong>
+                                                            <strong><a href="#_" className="row-title" onClick={() => { setIsEditing(true); setEditingPostId(post._id || post.id); }}>{post.title || '(Sin título)'}</a></strong>
                                                             <div className="row-actions">
-                                                                <span className="edit"><button className="link-action">Editar</button> | </span>
-                                                                <span className="trash"><button className="link-action text-danger" onClick={() => handleDelete(post.id)}>Papelera</button> | </span>
+                                                                <span className="edit"><button className="link-action" onClick={() => { setIsEditing(true); setEditingPostId(post._id || post.id); }}>Editar</button> | </span>
+                                                                <span className="trash"><button className="link-action text-danger" onClick={() => handleDelete(post._id || post.id)}>Papelera</button> | </span>
                                                                 <span className="view"><a href={`/blog/${post.slug}`} target="_blank" rel="noopener noreferrer">Ver</a></span>
                                                             </div>
                                                         </td>

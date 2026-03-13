@@ -4,12 +4,22 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
 const multer = require('multer');
+const mongoose = require('mongoose');
 
 // Inicializar express
 const app = express();
 const path = require('path');
 const fs = require('fs');
+const { SitemapStream, streamToPromise } = require('sitemap');
 const postRoutes = require('./routes/postRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
+const authRoutes = require('./routes/authRoutes');
+const Post = require('./models/Post');
+
+// Conexión a MongoDB
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('✅ Conectado exitosamente a MongoDB'))
+  .catch((error) => console.error('❌ Error al conectar a MongoDB:', error));
 
 // Utilidades para persistencia de estadísticas
 const STATS_FILE = path.join(__dirname, 'data', 'stats.json');
@@ -183,8 +193,54 @@ app.post('/send-email', upload.none(), async (req, res) => {
   }
 });
 
+// Rutas de autenticación
+app.use('/api/auth', authRoutes);
+
 // Rutas de la API de Posts (Blog)
 app.use('/api/posts', postRoutes);
+
+// Ruta de API para Subida de Imágenes
+app.use('/api/upload', uploadRoutes);
+
+// Endpoint Generador de Sitemap XML (SEO Técnico)
+app.get('/sitemap.xml', async (req, res) => {
+  res.header('Content-Type', 'application/xml');
+  res.header('Content-Encoding', 'gzip');
+
+  try {
+    const smStream = new SitemapStream({ hostname: 'https://www.synapsedev.cl' });
+
+    // 1. Añadir Rutas Estáticas
+    smStream.write({ url: '/', changefreq: 'weekly', priority: 1.0 });
+    smStream.write({ url: '/tools', changefreq: 'weekly', priority: 0.9 });
+    smStream.write({ url: '/contact', changefreq: 'monthly', priority: 0.8 });
+    smStream.write({ url: '/blog', changefreq: 'daily', priority: 0.8 });
+
+    // 2. Añadir Rutas Dinámicas (Posts del Blog publicados)
+    const posts = await Post.find({ status: 'published' }).sort({ createdAt: -1 });
+    posts.forEach(post => {
+      // Usar la fecha de creación o actualización si se implementase posteriormente
+      const postDate = post.createdAt ? post.createdAt.toISOString() : new Date().toISOString();
+      smStream.write({
+        url: `/blog/${post.slug}`,
+        changefreq: 'weekly',
+        priority: 0.7,
+        lastmod: postDate
+      });
+    });
+
+    // Cerrar el stream
+    smStream.end();
+
+    // Convertir el stream a Promise y enviar
+    const sitemapOutput = await streamToPromise(smStream);
+    res.status(200).send(sitemapOutput.toString());
+
+  } catch (error) {
+    console.error('Error generando sitemap XML:', error);
+    res.status(500).end();
+  }
+});
 
 // Escuchar en el puerto definido
 const PORT = process.env.PORT || 5000;
