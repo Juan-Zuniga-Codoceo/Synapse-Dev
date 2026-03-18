@@ -22,6 +22,18 @@ const postSchema = new mongoose.Schema({
         type: String,
         default: 'published'
     },
+    metaTitle: {
+        type: String,
+        default: ''
+    },
+    metaDescription: {
+        type: String,
+        default: ''
+    },
+    focusKeyword: {
+        type: String,
+        default: ''
+    },
     createdAt: {
         type: Date,
         default: Date.now

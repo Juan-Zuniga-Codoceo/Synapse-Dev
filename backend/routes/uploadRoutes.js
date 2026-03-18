@@ -17,8 +17,8 @@ router.post('/', authMiddleware, upload.single('image'), (req, res) => {
         // Devolvemos la URL segura proporcionada por Cloudinary
         res.status(200).json({ url: req.file.path });
     } catch (error) {
-        console.error('Error al subir imagen:', error);
-        res.status(500).json({ error: 'Error del servidor al procesar la imagen' });
+        console.error('*** DETAILED UPLOAD ERROR ***:', error.message, error.stack);
+        res.status(500).json({ error: 'Error del servidor al procesar la imagen: ' + error.message });
     }
 });
 

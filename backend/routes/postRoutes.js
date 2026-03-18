@@ -43,7 +43,7 @@ router.get('/:id', async (req, res) => {
 // POST /api/posts - Crear un nuevo post (Protegido)
 router.post('/', authMiddleware, async (req, res) => {
     try {
-        const { title, content, image, slug, status } = req.body;
+        const { title, content, image, slug, status, metaTitle, metaDescription, focusKeyword } = req.body;
 
         if (!title || !content || !slug) {
             return res.status(400).json({ error: 'Faltan campos obligatorios (title, content, slug)' });
@@ -54,6 +54,9 @@ router.post('/', authMiddleware, async (req, res) => {
             content,
             slug,
             image: image || '',
+            metaTitle: metaTitle || '',
+            metaDescription: metaDescription || '',
+            focusKeyword: focusKeyword || ''
         };
 
         if (status) {
@@ -90,7 +93,7 @@ router.delete('/:id', authMiddleware, async (req, res) => {
 // PUT /api/posts/:id - Actualizar un post existente (Protegido)
 router.put('/:id', authMiddleware, async (req, res) => {
     try {
-        const { title, content, image, slug, status } = req.body;
+        const { title, content, image, slug, status, metaTitle, metaDescription, focusKeyword } = req.body;
 
         if (!title || !content || !slug) {
             return res.status(400).json({ error: 'Faltan campos obligatorios (title, content, slug)' });
@@ -100,7 +103,10 @@ router.put('/:id', authMiddleware, async (req, res) => {
             title,
             content,
             slug,
-            image: image || ''
+            image: image || '',
+            metaTitle: metaTitle || '',
+            metaDescription: metaDescription || '',
+            focusKeyword: focusKeyword || ''
         };
 
         if (status) {

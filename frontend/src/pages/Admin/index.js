@@ -10,7 +10,7 @@ const Admin = () => {
     const [posts, setPosts] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [editingPostId, setEditingPostId] = useState(null);
-    const [currentPost, setCurrentPost] = useState({ title: '', slug: '', image: '', content: '' });
+    const [currentPost, setCurrentPost] = useState({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '' });
     const [loading, setLoading] = useState(false);
     const [uploadingImage, setUploadingImage] = useState(false);
     const [error, setError] = useState('');
@@ -53,7 +53,10 @@ const Admin = () => {
                     title: data.title || '',
                     slug: data.slug || '',
                     image: data.image || '',
-                    content: data.content || ''
+                    content: data.content || '',
+                    metaTitle: data.metaTitle || '',
+                    metaDescription: data.metaDescription || '',
+                    focusKeyword: data.focusKeyword || ''
                 });
             } else {
                 setError('Error al cargar el post para editar');
@@ -103,7 +106,7 @@ const Admin = () => {
         setPosts([]);
     };
 
-    const handleSavePost = async (e) => {
+    const handleSavePost = async (e, customStatus = 'published') => {
         if (e) e.preventDefault();
         setError('');
 
@@ -123,6 +126,10 @@ const Admin = () => {
                     slug: currentPost.slug || generateSlug(currentPost.title || 'nuevo-post'),
                     image: currentPost.image,
                     content: currentPost.content,
+                    status: customStatus,
+                    metaTitle: currentPost.metaTitle,
+                    metaDescription: currentPost.metaDescription,
+                    focusKeyword: currentPost.focusKeyword,
                     date: new Date().toISOString()
                 })
             });
@@ -130,7 +137,7 @@ const Admin = () => {
             if (res.ok) {
                 setIsEditing(false);
                 setEditingPostId(null);
-                setCurrentPost({ title: '', slug: '', image: '', content: '' });
+                setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '' });
                 fetchPosts();
             } else if (res.status === 401) {
                 setError('Contraseña incorrecta. Cierra sesión e intenta de nuevo.');
@@ -270,7 +277,7 @@ const Admin = () => {
                         </button>
                         <ul className="wp-submenu">
                             <li><button onClick={() => { setIsEditing(false); setEditingPostId(null); }}>Todas las entradas</button></li>
-                            <li><button onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '' }) }}>Añadir nueva</button></li>
+                            <li><button onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '' }) }}>Añadir nueva</button></li>
                         </ul>
                     </li>
                     <li className="wp-menu-separator"></li>
@@ -290,7 +297,7 @@ const Admin = () => {
                         <a href="/" target="_blank" rel="noopener noreferrer" className="wp-topbar-item" title="Ver sitio">
                             <span>Synapse Dev</span>
                         </a>
-                        <button className="wp-topbar-item" onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '' }) }}>
+                        <button className="wp-topbar-item" onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '' }) }}>
                             <Plus size={16} /> <span style={{ marginLeft: '4px' }}>Añadir</span>
                         </button>
                     </div>
@@ -352,12 +359,14 @@ const Admin = () => {
                                                 <Settings2 size={16} /> <span>Estado: <strong>Borrador</strong></span>
                                             </div>
                                             <div className="wp-publish-actions">
-                                                <button className="wp-button-secondary">Solo guardar</button>
+                                                <button className="wp-button-secondary" onClick={(e) => handleSavePost(e, 'draft')} disabled={loading}>
+                                                    Solo guardar
+                                                </button>
                                             </div>
                                         </div>
                                         <div className="wp-meta-box-footer">
                                             <button className="wp-button-link wp-text-danger" onClick={() => { setIsEditing(false); setEditingPostId(null); }}>Cancelar</button>
-                                            <button className="wp-button-primary wp-button-large" onClick={handleSavePost} disabled={loading}>
+                                            <button className="wp-button-primary wp-button-large" onClick={(e) => handleSavePost(e, 'published')} disabled={loading}>
                                                 {loading ? (editingPostId ? 'Actualizando...' : 'Publicando...') : (editingPostId ? 'Actualizar' : 'Publicar')}
                                             </button>
                                         </div>
@@ -412,6 +421,46 @@ const Admin = () => {
                                             )}
                                         </div>
                                     </div>
+
+                                    {/* SEO Meta Box */}
+                                    <div className="wp-meta-box">
+                                        <div className="wp-meta-box-header">
+                                            <h2>Ajustes SEO</h2>
+                                        </div>
+                                        <div className="wp-meta-box-content">
+                                            <div className="wp-input-group" style={{ marginBottom: '10px' }}>
+                                                <label className="wp-label-sm">Meta Título</label>
+                                                <input
+                                                    type="text"
+                                                    className="wp-input-standard"
+                                                    value={currentPost.metaTitle || ''}
+                                                    onChange={(e) => setCurrentPost({ ...currentPost, metaTitle: e.target.value })}
+                                                    placeholder="Título para buscadores (60 caracteres)"
+                                                />
+                                            </div>
+                                            <div className="wp-input-group" style={{ marginBottom: '10px' }}>
+                                                <label className="wp-label-sm">Meta Descripción</label>
+                                                <textarea
+                                                    className="wp-input-standard"
+                                                    style={{ resize: 'vertical', minHeight: '60px' }}
+                                                    value={currentPost.metaDescription || ''}
+                                                    onChange={(e) => setCurrentPost({ ...currentPost, metaDescription: e.target.value })}
+                                                    placeholder="Resumen para Google (150-160 caracteres)"
+                                                    rows="3"
+                                                />
+                                            </div>
+                                            <div className="wp-input-group">
+                                                <label className="wp-label-sm">Palabras Clave (Keywords)</label>
+                                                <input
+                                                    type="text"
+                                                    className="wp-input-standard"
+                                                    value={currentPost.focusKeyword || ''}
+                                                    onChange={(e) => setCurrentPost({ ...currentPost, focusKeyword: e.target.value })}
+                                                    placeholder="Ej: software médico, clínica, chile"
+                                                />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -419,7 +468,7 @@ const Admin = () => {
                         <div className="wp-posts-view">
                             <div className="wp-page-header">
                                 <h1 className="wp-page-title">Entradas</h1>
-                                <button className="wp-button-secondary wp-add-new-btn" onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '' }) }}>Añadir nueva</button>
+                                <button className="wp-button-secondary wp-add-new-btn" onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '' }) }}>Añadir nueva</button>
                             </div>
 
                             <ul className="wp-subsubsub">
