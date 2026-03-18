@@ -333,7 +333,7 @@ const Admin = () => {
                                     {/* Permalink display */}
                                     {currentPost.title && (
                                         <div className="wp-permalink-display">
-                                            <strong>Enlace permanente:</strong> {API_URL}/blog/{currentPost.slug || generateSlug(currentPost.title)}
+                                            <strong>Enlace permanente:</strong> {window.location.origin}/blog/{currentPost.slug || generateSlug(currentPost.title)}
                                         </div>
                                     )}
 
