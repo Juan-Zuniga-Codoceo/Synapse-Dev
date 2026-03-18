@@ -226,7 +226,7 @@ const Admin = () => {
             <div className="wp-login-page">
                 <div className="wp-login-form-container">
                     <div className="wp-login-logo">
-                        <div className="wp-logo-placeholder">W</div>
+                        <img src={logo} alt="Synapse Dev" style={{ maxHeight: '60px', maxWidth: '100%', objectFit: 'contain', marginBottom: '20px' }} />
                     </div>
                     <form className="wp-login-form" onSubmit={handleLogin}>
                         {error && <div className="wp-login-error">{error}</div>}

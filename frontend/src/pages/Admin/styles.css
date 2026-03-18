@@ -561,18 +561,18 @@ body {
 
 .wp-title-input {
     width: 100%;
-    padding: 12px 16px;
+    padding: 18px 20px;
     font-size: 1.8em;
     font-weight: 600;
     line-height: 100%;
-    border: 1px solid rgba(203, 213, 225, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
-    background-color: #1a364b;
+    background-color: #0d1e29;
     color: #ffffff;
     font-family: inherit;
     box-sizing: border-box;
     transition: all .2s ease-in-out;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .wp-title-input::placeholder {
@@ -596,11 +596,11 @@ body {
 }
 
 .wp-quill-wrapper {
-    background: #102532;
+    background: #0d1e29;
     border-radius: 8px;
     overflow: hidden;
     transition: all 0.3s ease;
-    border: 1px solid rgba(203, 213, 225, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -611,9 +611,9 @@ body {
 
 /* QUILL SPECIFIC OVERRIDES FOR DARK MODE */
 .ql-toolbar.ql-snow {
-    background: #1a364b;
+    background: rgba(0, 0, 0, 0.2);
     border: none !important;
-    border-bottom: 1px solid rgba(203, 213, 225, 0.1) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     padding: 12px !important;
 }
 
@@ -631,8 +631,8 @@ body {
 }
 
 .ql-snow .ql-picker-options {
-    background-color: #1a364b !important;
-    border: 1px solid rgba(203, 213, 225, 0.2) !important;
+    background-color: #0d1e29 !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .ql-snow.ql-toolbar button:hover .ql-stroke,
@@ -672,18 +672,18 @@ body {
 
 /* META BOXES */
 .wp-meta-box {
-    background: #1a364b;
-    border: 1px solid rgba(203, 213, 225, 0.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    background: #0d1e29;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
     margin-bottom: 24px;
     overflow: hidden;
 }
 
 .wp-meta-box-header {
-    background: rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(203, 213, 225, 0.1);
-    padding: 0 16px;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 0 20px;
 }
 
 .wp-meta-box-header h2 {
@@ -729,12 +729,12 @@ body {
 
 .wp-input-standard {
     width: 100%;
-    padding: 8px 12px;
+    padding: 10px 14px;
     font-size: 14px;
-    background: #102532;
+    background: rgba(0, 0, 0, 0.2);
     color: #ffffff;
-    border: 1px solid rgba(203, 213, 225, 0.2);
-    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
     box-sizing: border-box;
     transition: all 0.2s ease;
 }
