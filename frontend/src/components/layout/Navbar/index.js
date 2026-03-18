@@ -45,6 +45,9 @@ const Navbar = () => {
           <li className={`main-navbar-item ${location.pathname === '/tools' ? 'active' : ''}`}>
             <Link to="/tools">Herramientas</Link>
           </li>
+          <li className={`main-navbar-item ${location.pathname.startsWith('/blog') ? 'active' : ''}`}>
+            <Link to="/blog">Blog</Link>
+          </li>
           <li className={`main-navbar-item cato-highlight ${location.pathname === '/cato' ? 'active' : ''}`}>
             <Link to="/cato">CATO</Link>
           </li>
@@ -95,6 +98,9 @@ const Navbar = () => {
             </li>
             <li className={`main-navbar-item ${location.pathname === '/tools' ? 'active' : ''}`}>
               <Link to="/tools" onClick={() => setMenuOpen(false)}>Herramientas</Link>
+            </li>
+            <li className={`main-navbar-item ${location.pathname.startsWith('/blog') ? 'active' : ''}`}>
+              <Link to="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
             </li>
             <li className={`main-navbar-item cato-highlight ${location.pathname === '/cato' ? 'active' : ''}`}>
               <Link to="/cato" onClick={() => setMenuOpen(false)}>CATO</Link>

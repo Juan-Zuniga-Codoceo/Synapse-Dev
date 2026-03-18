@@ -115,7 +115,7 @@ const BlogPosts = ({ limit = 3, showHeader = true, searchTerm = '' }) => {
                 <div className="blog-meta">
                   <span>
                     <Calendar className="meta-icon" />
-                    {new Date(post.date).toLocaleDateString("es-ES")}
+                    {new Date(post.createdAt || post.date).toLocaleDateString("es-ES")}
                   </span>
                   <span>
                     <Clock className="meta-icon" />

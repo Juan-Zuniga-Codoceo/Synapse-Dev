@@ -108,7 +108,7 @@ const BlogPost = () => {
         <div className="blog-post-meta">
           <span>
             <Calendar className="icon" />
-            {new Date(post.date).toLocaleDateString('es-ES')}
+            {new Date(post.createdAt || post.date).toLocaleDateString('es-ES')}
           </span>
           <span>
             <Clock className="icon" />
