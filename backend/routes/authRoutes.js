@@ -42,8 +42,8 @@ router.post('/login', async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Login error:', error);
-        res.status(500).json({ error: 'Error del servidor' });
+        console.error('*** DETAILED LOGIN ERROR ***:', error.message, error.stack);
+        res.status(500).json({ error: 'Error del servidor: ' + error.message });
     }
 });
 
