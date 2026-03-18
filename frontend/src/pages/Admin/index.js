@@ -496,9 +496,9 @@ const Admin = () => {
                                                 posts.map(post => (
                                                     <tr key={post._id || post.id}>
                                                         <td className="column-title has-row-actions">
-                                                            <strong><a href="#_" className="row-title" onClick={() => { setIsEditing(true); setEditingPostId(post._id || post.id); }}>{post.title || '(Sin título)'}</a></strong>
+                                                            <strong><a href="#_" className="row-title" onClick={() => { setIsEditing(true); setEditingPostId(post._id || post.id); setCurrentPost(post); }}>{post.title || '(Sin título)'}</a></strong>
                                                             <div className="row-actions">
-                                                                <span className="edit"><button className="link-action" onClick={() => { setIsEditing(true); setEditingPostId(post._id || post.id); }}>Editar</button> | </span>
+                                                                <span className="edit"><button className="link-action" onClick={() => { setIsEditing(true); setEditingPostId(post._id || post.id); setCurrentPost(post); }}>Editar</button> | </span>
                                                                 <span className="trash"><button className="link-action text-danger" onClick={() => handleDelete(post._id || post.id)}>Papelera</button> | </span>
                                                                 <span className="view"><a href={`/blog/${post.slug}`} target="_blank" rel="noopener noreferrer">Ver</a></span>
                                                             </div>
@@ -507,7 +507,9 @@ const Admin = () => {
                                                         <td className="column-slug">{post.slug}</td>
                                                         <td className="column-date">
                                                             Publicada<br />
-                                                            <span title={new Date(post.date).toLocaleString()}>{new Date(post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                                                            <span title={new Date(post.createdAt || post.date).toLocaleString()}>
+                                                                {new Date(post.createdAt || post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                                            </span>
                                                         </td>
                                                     </tr>
                                                 ))
