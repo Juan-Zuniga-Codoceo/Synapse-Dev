@@ -67,7 +67,9 @@ const allowedOrigins = [
   'http://synapsedev.cl',
   'https://synapsedev.cl',
   'http://www.synapsedev.cl',
-  'https://www.synapsedev.cl'
+  'https://www.synapsedev.cl',
+  'http://synapse-dev-backend.onrender.com',
+  'https://synapse-dev-backend.onrender.com'
 ];
 
 app.use(cors({
