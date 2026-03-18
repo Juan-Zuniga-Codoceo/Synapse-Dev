@@ -131,16 +131,17 @@ body {
 }
 
 .wp-sidebar-header {
-    background: #1a364b;
-    padding: 10px 15px;
+    background: transparent;
+    padding: 0 15px;
     font-size: 14px;
     font-weight: 600;
     color: #FF6600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    height: 32px;
+    height: 60px;
     display: flex;
     align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .wp-menu {
@@ -225,19 +226,19 @@ body {
 }
 
 .wp-topbar {
-    height: 40px;
-    background: #1a364b;
+    height: 60px;
+    background: #0d1e29;
     color: #cbd5e1;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 20px;
     position: fixed;
     top: 0;
     right: 0;
     left: 160px;
     z-index: 9999;
-    border-bottom: 1px solid rgba(203, 213, 225, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .wp-topbar-left,
@@ -269,9 +270,10 @@ body {
 
 /* --- COMMON ADMIN STYLES --- */
 .wp-content {
-    padding: 10px 20px 20px 20px;
-    margin-top: 40px;
-    max-width: 1200px;
+    padding: 20px 30px;
+    margin-top: 60px;
+    max-width: 1400px;
+    width: 100%;
 }
 
 .wp-page-title {
@@ -412,12 +414,12 @@ body {
 }
 
 .wp-list-table {
-    border: 1px solid rgba(203, 213, 225, 0.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    background: #1a364b;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: #0d1e29;
     border-collapse: collapse;
     width: 100%;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
 }
 
@@ -425,29 +427,34 @@ body {
 .wp-list-table tfoot th {
     font-weight: 600;
     color: #cbd5e1;
-    padding: 12px 15px;
+    padding: 16px 20px;
     text-align: left;
-    border-bottom: 1px solid rgba(203, 213, 225, 0.1);
-    background: rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid rgba(255, 102, 0, 0.5);
+    background: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
 }
 
 .wp-list-table tfoot th {
-    border-top: 1px solid rgba(203, 213, 225, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom: none;
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .wp-list-table tbody td {
-    border-bottom: 1px solid rgba(203, 213, 225, 0.05);
-    padding: 12px 15px;
-    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 18px 20px;
+    color: #f1f5f9;
+    font-size: 14px;
 }
 
 .wp-list-table tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.02);
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .wp-list-table tr:hover {
-    background-color: rgba(255, 102, 0, 0.05);
+    background-color: rgba(255, 102, 0, 0.08);
 }
 
 .column-title {

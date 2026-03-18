@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Pencil, Trash2, Plus, LogOut, LayoutDashboard, FileText, Settings, Settings2 } from 'lucide-react';
+import logo from '../../assets/icons/logo-navbar-removebg.png';
 import './styles.css';
 
 const Admin = () => {
@@ -262,8 +263,8 @@ const Admin = () => {
         <div className="wp-admin-wrapper">
             {/* Sidebar Left */}
             <aside className="wp-sidebar">
-                <div className="wp-sidebar-header">
-                    Synapse Dev
+                <div className="wp-sidebar-header" style={{ height: '60px', padding: '0 15px', justifyContent: 'center' }}>
+                    <img src={logo} alt="Synapse Dev" style={{ maxHeight: '40px', maxWidth: '100%', objectFit: 'contain' }} />
                 </div>
                 <ul className="wp-menu">
                     <li className="wp-menu-item">
