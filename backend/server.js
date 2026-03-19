@@ -113,6 +113,11 @@ app.get('/', (req, res) => {
   res.send('El servidor está corriendo correctamente');
 });
 
+// Health check para Render
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 // Endpoint para descargar CATO: LIFE OS APK (con contador y redirección)
 app.get('/download-cato', (req, res) => {
   try {
