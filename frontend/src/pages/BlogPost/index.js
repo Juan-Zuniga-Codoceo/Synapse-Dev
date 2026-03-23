@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Calendar, Clock, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SocialShare from '../../components/blog/SocialShare';
+import NewsletterWidget from '../../components/blog/NewsletterWidget';
 import './styles.css';
 
 const HERO_IMAGE = '/assets/images/hero/wordpress.webp';
@@ -131,6 +133,10 @@ const BlogPost = () => {
             __html: cleanHtmlEntities(post.content || ""),
           }}
         />
+
+        <SocialShare title={post.title} url={window.location.href} />
+
+        <NewsletterWidget />
 
         <div className="blog-post-cta">
           <div className="cta-content">

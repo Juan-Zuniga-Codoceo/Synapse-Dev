@@ -3,10 +3,10 @@ const router = express.Router();
 const Post = require('../models/Post');
 const authMiddleware = require('../middleware/authMiddleware');
 
-// GET /api/posts - Obtener todos los posts públicos
+// GET /api/posts - Obtener todos los posts PUBLICADOS (público)
 router.get('/', async (req, res) => {
     try {
-        const posts = await Post.find().sort({ createdAt: -1 });
+        const posts = await Post.find({ status: 'published' }).sort({ createdAt: -1 });
         res.status(200).json(posts);
     } catch (error) {
         console.error('Error al obtener posts:', error);
@@ -14,18 +14,27 @@ router.get('/', async (req, res) => {
     }
 });
 
-// GET /api/posts/:id - Obtener un post en específico (por id o slug)
+// GET /api/posts/admin/all - Obtener TODOS los posts para el CMS (Protegido)
+router.get('/admin/all', authMiddleware, async (req, res) => {
+    try {
+        const posts = await Post.find().sort({ createdAt: -1 });
+        res.status(200).json(posts);
+    } catch (error) {
+        console.error('Error al obtener posts admin:', error);
+        res.status(500).json({ error: 'Error al obtener los posts' });
+    }
+});
+
+// GET /api/posts/:id - Obtener un post en específico (por id o slug) - solo publicados en frontend
 router.get('/:id', async (req, res) => {
     try {
         const param = req.params.id;
 
         let post;
-        // Si parece un ObjectId, intentar match primero con _id
         if (param.match(/^[0-9a-fA-F]{24}$/)) {
             post = await Post.findById(param);
         }
 
-        // Si no se encontró por ID o no era ObjectID válido, buscar por slug
         if (!post) {
             post = await Post.findOne({ slug: param });
         }
@@ -33,6 +42,12 @@ router.get('/:id', async (req, res) => {
         if (!post) {
             return res.status(404).json({ error: 'Post no encontrado' });
         }
+
+        // No mostrar drafts ni scheduled al público
+        if (post.status !== 'published') {
+            return res.status(404).json({ error: 'Post no encontrado' });
+        }
+
         res.status(200).json(post);
     } catch (error) {
         console.error('Error al obtener el post:', error);
@@ -43,10 +58,15 @@ router.get('/:id', async (req, res) => {
 // POST /api/posts - Crear un nuevo post (Protegido)
 router.post('/', authMiddleware, async (req, res) => {
     try {
-        const { title, content, image, slug, status, metaTitle, metaDescription, focusKeyword } = req.body;
+        const { title, content, image, slug, status, scheduledAt, metaTitle, metaDescription, focusKeyword } = req.body;
 
         if (!title || !content || !slug) {
             return res.status(400).json({ error: 'Faltan campos obligatorios (title, content, slug)' });
+        }
+
+        // Si el status es 'scheduled', scheduledAt es obligatorio
+        if (status === 'scheduled' && !scheduledAt) {
+            return res.status(400).json({ error: 'Debes indicar una fecha de publicación para programar el post.' });
         }
 
         const newPostData = {
@@ -54,14 +74,12 @@ router.post('/', authMiddleware, async (req, res) => {
             content,
             slug,
             image: image || '',
+            status: status || 'published',
+            scheduledAt: status === 'scheduled' ? new Date(scheduledAt) : null,
             metaTitle: metaTitle || '',
             metaDescription: metaDescription || '',
             focusKeyword: focusKeyword || ''
         };
-
-        if (status) {
-            newPostData.status = status;
-        }
 
         const newPost = await Post.create(newPostData);
         res.status(201).json(newPost);
@@ -93,10 +111,14 @@ router.delete('/:id', authMiddleware, async (req, res) => {
 // PUT /api/posts/:id - Actualizar un post existente (Protegido)
 router.put('/:id', authMiddleware, async (req, res) => {
     try {
-        const { title, content, image, slug, status, metaTitle, metaDescription, focusKeyword } = req.body;
+        const { title, content, image, slug, status, scheduledAt, metaTitle, metaDescription, focusKeyword } = req.body;
 
         if (!title || !content || !slug) {
             return res.status(400).json({ error: 'Faltan campos obligatorios (title, content, slug)' });
+        }
+
+        if (status === 'scheduled' && !scheduledAt) {
+            return res.status(400).json({ error: 'Debes indicar una fecha de publicación para programar el post.' });
         }
 
         const updatedData = {
@@ -104,14 +126,12 @@ router.put('/:id', authMiddleware, async (req, res) => {
             content,
             slug,
             image: image || '',
+            status: status || 'published',
+            scheduledAt: status === 'scheduled' ? new Date(scheduledAt) : null,
             metaTitle: metaTitle || '',
             metaDescription: metaDescription || '',
             focusKeyword: focusKeyword || ''
         };
-
-        if (status) {
-            updatedData.status = status;
-        }
 
         const updatedPost = await Post.findByIdAndUpdate(
             req.params.id,

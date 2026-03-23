@@ -11,9 +11,11 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 const { SitemapStream, streamToPromise } = require('sitemap');
+const cron = require('node-cron');
 const postRoutes = require('./routes/postRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const authRoutes = require('./routes/authRoutes');
+const newsletterRoutes = require('./routes/newsletterRoutes');
 const Post = require('./models/Post');
 
 // Conexión a MongoDB
@@ -206,8 +208,27 @@ app.use('/api/auth', authRoutes);
 // Rutas de la API de Posts (Blog)
 app.use('/api/posts', postRoutes);
 
+// Rutas del Newsletter
+app.use('/api/newsletter', newsletterRoutes);
+
 // Ruta de API para Subida de Imágenes
 app.use('/api/upload', uploadRoutes);
+
+// Cron job: publicar posts programados cada minuto
+cron.schedule('* * * * *', async () => {
+  try {
+    const now = new Date();
+    const result = await Post.updateMany(
+      { status: 'scheduled', scheduledAt: { $lte: now } },
+      { $set: { status: 'published', scheduledAt: null } }
+    );
+    if (result.modifiedCount > 0) {
+      console.log(`✅ Cron: ${result.modifiedCount} post(s) programado(s) publicado(s) automáticamente.`);
+    }
+  } catch (err) {
+    console.error('❌ Cron error al publicar posts programados:', err);
+  }
+});
 
 // Endpoint Generador de Sitemap XML (SEO Técnico)
 app.get('/sitemap.xml', async (req, res) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { Pencil, Trash2, Plus, LogOut, LayoutDashboard, FileText, Settings, Settings2 } from 'lucide-react';
+import { Pencil, Trash2, Plus, LogOut, LayoutDashboard, FileText, Settings, Settings2, Users } from 'lucide-react';
 import logo from '../../assets/icons/logo-navbar-removebg.png';
 import './styles.css';
 
@@ -11,7 +11,9 @@ const Admin = () => {
     const [posts, setPosts] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [editingPostId, setEditingPostId] = useState(null);
-    const [currentPost, setCurrentPost] = useState({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '' });
+    const [currentPost, setCurrentPost] = useState({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '', status: 'draft', scheduledAt: '' });
+    const [subscribers, setSubscribers] = useState([]);
+    const [viewingSubscribers, setViewingSubscribers] = useState(false);
     const [loading, setLoading] = useState(false);
     const [uploadingImage, setUploadingImage] = useState(false);
     const [error, setError] = useState('');
@@ -28,12 +30,33 @@ const Admin = () => {
     const fetchPosts = async () => {
         try {
             setLoading(true);
-            const res = await fetch(`${API_URL}/api/posts`);
+            const res = await fetch(`${API_URL}/api/posts/admin/all`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             if (res.ok) {
                 const data = await res.json();
                 setPosts(data);
             } else {
                 setError('Error al cargar posts');
+            }
+        } catch (err) {
+            setError('No se pudo conectar al servidor');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchSubscribers = async () => {
+        try {
+            setLoading(true);
+            const res = await fetch(`${API_URL}/api/newsletter/subscribers`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (res.ok) {
+                const data = await res.json();
+                setSubscribers(data.subscribers || []);
+            } else {
+                setError('Error al cargar suscriptores');
             }
         } catch (err) {
             setError('No se pudo conectar al servidor');
@@ -57,7 +80,9 @@ const Admin = () => {
                     content: data.content || '',
                     metaTitle: data.metaTitle || '',
                     metaDescription: data.metaDescription || '',
-                    focusKeyword: data.focusKeyword || ''
+                    focusKeyword: data.focusKeyword || '',
+                    status: data.status || 'draft',
+                    scheduledAt: data.scheduledAt ? new Date(data.scheduledAt).toISOString().slice(0, 16) : ''
                 });
             } else {
                 setError('Error al cargar el post para editar');
@@ -107,7 +132,7 @@ const Admin = () => {
         setPosts([]);
     };
 
-    const handleSavePost = async (e, customStatus = 'published') => {
+    const handleSavePost = async (e) => {
         if (e) e.preventDefault();
         setError('');
 
@@ -127,7 +152,8 @@ const Admin = () => {
                     slug: currentPost.slug || generateSlug(currentPost.title || 'nuevo-post'),
                     image: currentPost.image,
                     content: currentPost.content,
-                    status: customStatus,
+                    status: currentPost.status,
+                    scheduledAt: currentPost.scheduledAt || null,
                     metaTitle: currentPost.metaTitle,
                     metaDescription: currentPost.metaDescription,
                     focusKeyword: currentPost.focusKeyword,
@@ -138,7 +164,7 @@ const Admin = () => {
             if (res.ok) {
                 setIsEditing(false);
                 setEditingPostId(null);
-                setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '' });
+                setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '', status: 'draft', scheduledAt: '' });
                 fetchPosts();
             } else if (res.status === 401) {
                 setError('Contraseña incorrecta. Cierra sesión e intenta de nuevo.');
@@ -268,18 +294,23 @@ const Admin = () => {
                 </div>
                 <ul className="wp-menu">
                     <li className="wp-menu-item">
-                        <button className="wp-menu-link" onClick={() => { setIsEditing(false); setEditingPostId(null); }}>
+                        <button className="wp-menu-link" onClick={() => { setViewingSubscribers(false); setIsEditing(false); setEditingPostId(null); }}>
                             <LayoutDashboard size={18} /> Escritorio
                         </button>
                     </li>
-                    <li className="wp-menu-item active">
-                        <button className="wp-menu-link" onClick={() => { setIsEditing(false); setEditingPostId(null); }}>
+                    <li className={`wp-menu-item ${!viewingSubscribers ? 'active' : ''}`}>
+                        <button className="wp-menu-link" onClick={() => { setViewingSubscribers(false); setIsEditing(false); setEditingPostId(null); }}>
                             <FileText size={18} /> Entradas
                         </button>
                         <ul className="wp-submenu">
-                            <li><button onClick={() => { setIsEditing(false); setEditingPostId(null); }}>Todas las entradas</button></li>
-                            <li><button onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '' }) }}>Añadir nueva</button></li>
+                            <li><button onClick={() => { setViewingSubscribers(false); setIsEditing(false); setEditingPostId(null); }}>Todas las entradas</button></li>
+                            <li><button onClick={() => { setViewingSubscribers(false); setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '', status: 'draft', scheduledAt: '' }) }}>Añadir nueva</button></li>
                         </ul>
+                    </li>
+                    <li className={`wp-menu-item ${viewingSubscribers ? 'active' : ''}`}>
+                        <button className="wp-menu-link" onClick={() => { setViewingSubscribers(true); setIsEditing(false); fetchSubscribers(); }}>
+                            <Users size={18} /> Suscriptores
+                        </button>
                     </li>
                     <li className="wp-menu-separator"></li>
                     <li className="wp-menu-item">
@@ -298,7 +329,7 @@ const Admin = () => {
                         <a href="/" target="_blank" rel="noopener noreferrer" className="wp-topbar-item" title="Ver sitio">
                             <span>Synapse Dev</span>
                         </a>
-                        <button className="wp-topbar-item" onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '' }) }}>
+                        <button className="wp-topbar-item" onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '', status: 'draft', scheduledAt: '' }) }}>
                             <Plus size={16} /> <span style={{ marginLeft: '4px' }}>Añadir</span>
                         </button>
                     </div>
@@ -310,7 +341,52 @@ const Admin = () => {
                 <main className="wp-content">
                     {error && <div className="wp-notice wp-notice-error"><p>{error}</p></div>}
 
-                    {isEditing ? (
+                    {viewingSubscribers ? (
+                        <div className="wp-posts-view">
+                            <div className="wp-page-header">
+                                <h1 className="wp-page-title">Suscriptores del Newsletter</h1>
+                            </div>
+                            <div className="wp-table-wrapper" style={{ marginTop: '20px' }}>
+                                {loading && subscribers.length === 0 ? (
+                                    <p style={{ padding: '20px' }}>Cargando...</p>
+                                ) : (
+                                    <table className="wp-list-table">
+                                        <thead>
+                                            <tr>
+                                                <th className="column-title">Email</th>
+                                                <th className="column-date">Fecha de suscripción</th>
+                                                <th className="column-status">Estado</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {subscribers.length === 0 ? (
+                                                <tr><td colSpan="3" className="no-items">No hay suscriptores aún.</td></tr>
+                                            ) : (
+                                                subscribers.map(sub => (
+                                                    <tr key={sub._id}>
+                                                        <td className="column-title"><strong>{sub.email}</strong></td>
+                                                        <td className="column-date">
+                                                            {new Date(sub.createdAt).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                                                        </td>
+                                                        <td className="column-status">
+                                                            {sub.active ? <span style={{ color: '#007017', fontWeight: 'bold' }}>Activo</span> : <span style={{ color: '#d63638', fontWeight: 'bold' }}>Inactivo</span>}
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                            )}
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th className="column-title">Email</th>
+                                                <th className="column-date">Fecha de suscripción</th>
+                                                <th className="column-status">Estado</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                )}
+                            </div>
+                        </div>
+                    ) : isEditing ? (
                         <div className="wp-editor-view">
                             <div className="wp-editor-header">
                                 <h1 className="wp-page-title">{editingPostId ? 'Editar entrada' : 'Añadir nueva entrada'}</h1>
@@ -356,19 +432,33 @@ const Admin = () => {
                                             <h2>Publicar</h2>
                                         </div>
                                         <div className="wp-meta-box-content">
-                                            <div className="wp-publish-status">
-                                                <Settings2 size={16} /> <span>Estado: <strong>Borrador</strong></span>
+                                            <div className="wp-publish-status" style={{ display: 'flex', alignItems: 'center' }}>
+                                                <Settings2 size={16} /> <span style={{ marginLeft: '8px' }}>Estado:</span>
+                                                <select
+                                                    value={currentPost.status}
+                                                    onChange={(e) => setCurrentPost({ ...currentPost, status: e.target.value })}
+                                                    style={{ marginLeft: '10px', padding: '4px', flex: 1 }}
+                                                >
+                                                    <option value="draft">Borrador</option>
+                                                    <option value="published">Publicado</option>
+                                                    <option value="scheduled">Programado</option>
+                                                </select>
                                             </div>
-                                            <div className="wp-publish-actions">
-                                                <button className="wp-button-secondary" onClick={(e) => handleSavePost(e, 'draft')} disabled={loading}>
-                                                    Solo guardar
-                                                </button>
-                                            </div>
+                                            {currentPost.status === 'scheduled' && (
+                                                <div className="wp-publish-status" style={{ marginTop: '10px' }}>
+                                                    <input
+                                                        type="datetime-local"
+                                                        value={currentPost.scheduledAt}
+                                                        onChange={(e) => setCurrentPost({ ...currentPost, scheduledAt: e.target.value })}
+                                                        style={{ padding: '6px', width: '100%', boxSizing: 'border-box' }}
+                                                    />
+                                                </div>
+                                            )}
                                         </div>
                                         <div className="wp-meta-box-footer">
                                             <button className="wp-button-link wp-text-danger" onClick={() => { setIsEditing(false); setEditingPostId(null); }}>Cancelar</button>
-                                            <button className="wp-button-primary wp-button-large" onClick={(e) => handleSavePost(e, 'published')} disabled={loading}>
-                                                {loading ? (editingPostId ? 'Actualizando...' : 'Publicando...') : (editingPostId ? 'Actualizar' : 'Publicar')}
+                                            <button className="wp-button-primary wp-button-large" onClick={handleSavePost} disabled={loading}>
+                                                {loading ? 'Guardando...' : 'Guardar'}
                                             </button>
                                         </div>
                                     </div>
@@ -469,7 +559,7 @@ const Admin = () => {
                         <div className="wp-posts-view">
                             <div className="wp-page-header">
                                 <h1 className="wp-page-title">Entradas</h1>
-                                <button className="wp-button-secondary wp-add-new-btn" onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '' }) }}>Añadir nueva</button>
+                                <button className="wp-button-secondary wp-add-new-btn" onClick={() => { setIsEditing(true); setEditingPostId(null); setCurrentPost({ title: '', slug: '', image: '', content: '', metaTitle: '', metaDescription: '', focusKeyword: '', status: 'draft', scheduledAt: '' }) }}>Añadir nueva</button>
                             </div>
 
                             <ul className="wp-subsubsub">
@@ -507,10 +597,19 @@ const Admin = () => {
                                                         <td className="column-author"><a href="#_">admin</a></td>
                                                         <td className="column-slug">{post.slug}</td>
                                                         <td className="column-date">
-                                                            Publicada<br />
-                                                            <span title={new Date(post.createdAt || post.date).toLocaleString()}>
-                                                                {new Date(post.createdAt || post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
-                                                            </span>
+                                                            {post.status === 'published' && <span style={{ color: '#007017', fontWeight: 'bold' }}>Publicado</span>}
+                                                            {post.status === 'draft' && <span style={{ color: '#999', fontWeight: 'bold' }}>Borrador</span>}
+                                                            {post.status === 'scheduled' && <span style={{ color: '#b36b00', fontWeight: 'bold' }}>Programado</span>}
+                                                            <br />
+                                                            {post.status === 'scheduled' && post.scheduledAt ? (
+                                                                <span title={new Date(post.scheduledAt).toLocaleString()}>
+                                                                    Para: {new Date(post.scheduledAt).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
+                                                                </span>
+                                                            ) : (
+                                                                <span title={new Date(post.createdAt || post.date).toLocaleString()}>
+                                                                    {new Date(post.createdAt || post.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                                                </span>
+                                                            )}
                                                         </td>
                                                     </tr>
                                                 ))
