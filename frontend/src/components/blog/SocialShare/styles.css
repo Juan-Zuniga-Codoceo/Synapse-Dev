@@ -49,12 +49,20 @@
     background-color: #25D366;
 }
 
-.linkedin {
-    background-color: #0077b5;
+.facebook {
+    background-color: #1877f2;
 }
 
 .twitter {
     background-color: #000000;
+}
+
+.linkedin {
+    background-color: #0077b5;
+}
+
+.instagram {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 }
 
 .copy-link {

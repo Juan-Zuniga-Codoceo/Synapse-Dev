@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Share2, Link as LinkIcon, Check, Twitter, Linkedin } from 'lucide-react';
+import { Share2, Link as LinkIcon, Check, Twitter, Linkedin, Facebook, Instagram } from 'lucide-react';
 import './styles.css';
 
 const SocialShare = ({ title, url }) => {
@@ -19,8 +19,10 @@ const SocialShare = ({ title, url }) => {
 
     const shareLinks = {
         whatsapp: `https://wa.me/?text=${encodeURIComponent(shareTitle + ' ' + shareUrl)}`,
+        facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+        twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`,
         linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
-        twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareTitle)}`
+        instagram: `https://www.instagram.com/`
     };
 
     return (
@@ -43,6 +45,28 @@ const SocialShare = ({ title, url }) => {
                     </svg>
                 </a>
 
+                {/* Facebook */}
+                <a
+                    href={shareLinks.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-btn facebook"
+                    title="Compartir en Facebook"
+                >
+                    <Facebook size={20} />
+                </a>
+
+                {/* Twitter / X */}
+                <a
+                    href={shareLinks.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-btn twitter"
+                    title="Compartir en X"
+                >
+                    <Twitter size={20} />
+                </a>
+
                 {/* LinkedIn */}
                 <a
                     href={shareLinks.linkedin}
@@ -52,6 +76,17 @@ const SocialShare = ({ title, url }) => {
                     title="Compartir en LinkedIn"
                 >
                     <Linkedin size={20} />
+                </a>
+
+                {/* Instagram */}
+                <a
+                    href={shareLinks.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="share-btn instagram"
+                    title="Instagram"
+                >
+                    <Instagram size={20} />
                 </a>
 
                 {/* Twitter / X */}
