@@ -11,9 +11,27 @@ import project5 from '../../../assets/images/projects/proyecto5.webp';
 import semillaNegra from '../../../assets/images/projects/misemillanegra.netlify.app_.png';
 import matronaNaty from '../../../assets/images/projects/matronanaty.png';
 import elrincondetodo from '../../../assets/images/projects/elrincondetodo.webp';
+import operiaImg from '../../../assets/images/projects/operia.webp';
+import patitasImg from '../../../assets/images/projects/mispatitasfelices.webp';
+import catoImg from '../../../assets/images/projects/cato.webp';
 
 const LastProjects = () => {
   const projects = [
+    {
+      img: operiaImg,
+      title: "Operia - Software Integral de RRHH",
+      link: "https://operia.synapsedev.cl/",
+    },
+    {
+      img: catoImg,
+      title: "CATO App - Sistema Táctico",
+      link: "https://synapsedev.cl/cato",
+    },
+    {
+      img: patitasImg,
+      title: "Mis Patitas Felices - E-commerce",
+      link: "https://mispatitasfelices.cl/",
+    },
     {
       img: elrincondetodo,
       title: "El Rincón de Todo - Tienda Dropshipping",
@@ -38,13 +56,13 @@ const LastProjects = () => {
       img: project4,
       title: "Landing Page - Abogado Andrés González",
       link: "https://abogadoandresgonzalez.rf.gd/",
-    }, 
+    },
     {
       img: project3,
       title: "Synapse Dev - Pizzería",
       link: "https://synapsedev-pizzeria.netlify.app/",
     },
-    
+
   ];
 
   return (
@@ -67,7 +85,7 @@ const LastProjects = () => {
           >
             <div className="project-item">
               <div className="project-image-container">
-                <LazyImage 
+                <LazyImage
                   src={project.img}
                   alt={project.title}
                   className="project-image"
@@ -78,9 +96,9 @@ const LastProjects = () => {
                 <h3>{project.title}</h3>
               </div>
               <div className="link-overlay">
-                <a 
-                  href={project.link} 
-                  target="_blank" 
+                <a
+                  href={project.link}
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="project-link"
                 >

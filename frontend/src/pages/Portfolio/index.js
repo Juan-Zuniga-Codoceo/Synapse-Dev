@@ -13,9 +13,30 @@ import project5 from '../../assets/images/projects/proyecto5.webp';
 import semillaNegra from '../../assets/images/projects/misemillanegra.netlify.app_.png';
 import matronaNaty from '../../assets/images/projects/matronanaty.png';
 import elrincondetodo from '../../assets/images/projects/elrincondetodo.webp';
+import operiaImg from '../../assets/images/projects/operia.webp';
+import patitasImg from '../../assets/images/projects/mispatitasfelices.webp';
+import catoImg from '../../assets/images/projects/cato.webp';
 
 const Portfolio = () => {
   const projects = [
+    {
+      img: operiaImg,
+      title: "Operia - Software Integral de RRHH",
+      link: "https://operia.synapsedev.cl/",
+      description: "Plataforma SaaS integral para la gestión de recursos humanos y control de asistencia."
+    },
+    {
+      img: catoImg,
+      title: "CATO App - Sistema Táctico",
+      link: "https://synapsedev.cl/cato",
+      description: "Sistema especializado para la gestión táctica, logística y entrenamiento para operaciones de seguridad."
+    },
+    {
+      img: patitasImg,
+      title: "Mis Patitas Felices - E-commerce",
+      link: "https://mispatitasfelices.cl/",
+      description: "Plataforma de comercio electrónico avanzada con sistema logístico y gestión de inventario complejo."
+    },
     {
       img: elrincondetodo,
       title: "El Rincón de Todo - Tienda Dropshipping",
@@ -62,7 +83,7 @@ const Portfolio = () => {
 
   return (
     <div>
-      <header 
+      <header
         className="portfolio-header-renamed"
         style={{
           backgroundImage: `linear-gradient(
@@ -114,7 +135,7 @@ const Portfolio = () => {
           ))}
         </div>
       </div>
-      
+
       <TechnologiesSection />
       <ContactSection />
     </div>
