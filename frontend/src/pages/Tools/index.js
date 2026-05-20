@@ -7,6 +7,8 @@ import { Copy, UploadCloud, Download, CheckCircle, Smartphone, ShieldCheck, Calc
 import './styles.css';
 import PitchGenerator from '../../components/tools/PitchGenerator';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const Tools = () => {
   // --- SEO Loop ---
   useEffect(() => {
@@ -194,8 +196,7 @@ const Tools = () => {
     setPsResult(null);
 
     try {
-      const apiKey = 'AIzaSyD36X57OTNSCVFH5LewBTov5jtAjQ_KoJY';
-      const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(validatedUrl)}&category=performance&key=${apiKey}`;
+      const apiUrl = `${API_URL}/api/speed-analyze?url=${encodeURIComponent(validatedUrl)}`;
       const response = await fetch(apiUrl);
 
       if (!response.ok) {

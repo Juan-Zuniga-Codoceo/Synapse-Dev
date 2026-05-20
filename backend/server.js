@@ -213,6 +213,36 @@ app.post('/send-email', upload.none(), async (req, res) => {
   }
 });
 
+// Endpoint proxy seguro para Google PageSpeed Insights (evita exponer la API Key en el frontend)
+app.get('/api/speed-analyze', async (req, res) => {
+  const { url } = req.query;
+
+  if (!url) {
+    return res.status(400).json({ error: 'La URL es requerida' });
+  }
+
+  const apiKey = process.env.PAGESPEED_API_KEY;
+  if (!apiKey) {
+    console.error('Error: PAGESPEED_API_KEY no está configurada en las variables de entorno.');
+    return res.status(500).json({ error: 'Error de configuración en el servidor. Falta la API Key de PageSpeed.' });
+  }
+
+  try {
+    const axios = require('axios');
+    const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&category=performance&key=${apiKey}`;
+    
+    const response = await axios.get(apiUrl);
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error('Error en /api/speed-analyze:', error.message);
+    if (error.response) {
+      res.status(error.response.status).json({ error: error.response.data.error || 'Error al analizar la velocidad de la web.' });
+    } else {
+      res.status(500).json({ error: 'Error interno al comunicarse con el servicio de PageSpeed.' });
+    }
+  }
+});
+
 // Rutas de autenticación
 app.use('/api/auth', authRoutes);
 
