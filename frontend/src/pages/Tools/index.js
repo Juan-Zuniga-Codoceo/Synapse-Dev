@@ -5,6 +5,7 @@ import Animation from '../../components/layout/Animation';
 import { CONTACT_INFO } from '../../constants';
 import { Copy, UploadCloud, Download, CheckCircle, Smartphone, ShieldCheck, Calculator, ArrowRight, Activity, AlertTriangle } from 'lucide-react';
 import './styles.css';
+import PitchGenerator from '../../components/tools/PitchGenerator';
 
 const Tools = () => {
   // --- SEO Loop ---
@@ -328,6 +329,11 @@ const Tools = () => {
                 </div>
               )}
             </div>
+          </Animation>
+
+          {/* Pitch Generator Card (AI Powered) */}
+          <Animation animation="fade-up" delay={150}>
+            <PitchGenerator />
           </Animation>
 
           {/* WhatsApp Generator Card */}

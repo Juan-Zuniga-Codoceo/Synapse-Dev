@@ -16,6 +16,7 @@ const postRoutes = require('./routes/postRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const authRoutes = require('./routes/authRoutes');
 const newsletterRoutes = require('./routes/newsletterRoutes');
+const pitchRoutes = require('./routes/pitchRoutes');
 const Post = require('./models/Post');
 
 // Conexión a MongoDB
@@ -66,6 +67,9 @@ function writeStats(stats) {
 // Configuración de CORS para permitir solicitudes desde el frontend
 const allowedOrigins = [
   'http://localhost:3000',  // Permite solicitudes desde el frontend local
+  'http://127.0.0.1:3000',  // Permite solicitudes desde la IP local en el frontend
+  'http://localhost:5000',
+  'http://127.0.0.1:5000',
   'http://synapsedev.cl',
   'https://synapsedev.cl',
   'http://www.synapsedev.cl',
@@ -76,10 +80,17 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+    // Permitir solicitudes sin origen (como curl o Postman)
+    // O si está en allowedOrigins, o si coincide con cualquier puerto en localhost/127.0.0.1
+    if (
+      !origin || 
+      allowedOrigins.indexOf(origin) !== -1 || 
+      /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+    ) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      console.error(`[CORS Error] Solicitud rechazada para el origen: ${origin}`);
+      callback(new Error(`Not allowed by CORS: ${origin}`));
     }
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -210,6 +221,9 @@ app.use('/api/posts', postRoutes);
 
 // Rutas del Newsletter
 app.use('/api/newsletter', newsletterRoutes);
+
+// Rutas de Generación de Pitch (Copywriting)
+app.use('/api', pitchRoutes);
 
 // Ruta de API para Subida de Imágenes
 app.use('/api/upload', uploadRoutes);
