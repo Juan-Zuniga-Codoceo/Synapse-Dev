@@ -10,7 +10,8 @@ import operiaHero from '../../assets/images/operia/operia-hero.png';
 import {
   Trello, Users, Truck, MessageSquare, FileText, Settings,
   Eye, Zap, FileCheck, Link2, DollarSign, Database, TrendingUp,
-  CheckCircle2, Shield, Lock, Server, Code, Smartphone
+  CheckCircle2, Shield, Lock, Server, Code, Smartphone,
+  Brain, Fingerprint, UserCheck, Sparkles, Check
 } from 'lucide-react';
 
 const Operia = () => {
@@ -21,16 +22,16 @@ const Operia = () => {
       <Animation animation="fade-in">
         <section className="operia-hero">
           <div className="operia-hero-content">
-            <h1 className="operia-title">Centraliza la operación de tu equipo</h1>
+            <h1 className="operia-title">Gestiona tus tareas como nunca antes</h1>
             <p className="operia-subtitle">
-              Operia es una plataforma integral de gestión de tareas y colaboración empresarial que centraliza todo el flujo de trabajo operativo en un sistema visual e intuitivo. Transforma la complejidad operativa en un tablero Kanban claro y accesible.
+              La plataforma SaaS de gestión operativa para equipos que buscan simplicidad, potencia e inteligencia real. Centraliza todo tu flujo en un sistema visual e inteligente.
             </p>
             <div className="operia-hero-buttons">
-              <a href="https://operia.synapsedev.cl/" target="_blank" rel="noopener noreferrer" className="operia-cta-primary">
-                Probar Demo en Vivo
+              <a href="https://operia.cl/signup.html" target="_blank" rel="noopener noreferrer" className="operia-cta-primary">
+                Comenzar Gratis (SaaS)
               </a>
-              <a href="#modules" className="operia-cta-secondary-hero">
-                Ver Características
+              <a href="#pricing" className="operia-cta-secondary-hero">
+                Ver Planes
               </a>
             </div>
           </div>
@@ -72,6 +73,55 @@ const Operia = () => {
               <div className="capability-item">
                 <Settings className="capability-icon" />
                 <p>Control de responsabilidades con roles diferenciados</p>
+              </div>
+            </div>
+          </section>
+        </Animation>
+      </div>
+
+      {/* [NEW] 2.1 OPERIA AI INTAKE */}
+      <div className="operia-ai-intake" id="ai-intake">
+        <Animation animation="fade-up">
+          <section className="ai-intake-container">
+            <div className="gemini-badge">
+              <Sparkles size={16} style={{ marginRight: '4px' }} /> Potenciado por Gemini 2.5 Flash
+            </div>
+            <h2 className="ai-intake-title">
+              Operia <span>AI Intake 🤖</span>
+            </h2>
+            <p className="ai-intake-subtitle">
+              La ingesta inteligente de tareas que transforma correos y chats desestructurados en órdenes de trabajo listas en el Kanban con un solo click.
+            </p>
+
+            <div className="ai-cards-grid">
+              <div className="ai-card">
+                <div className="ai-card-icon-wrapper">
+                  <Brain size={30} />
+                </div>
+                <h3>Extracción Inteligente en Segundos</h3>
+                <p>
+                  Gemini 2.5 Flash lee instantáneamente cualquier texto desestructurado (correos, WhatsApps o minutas) y autocompleta el formulario del operador sin necesidad de tipeo manual.
+                </p>
+              </div>
+
+              <div className="ai-card">
+                <div className="ai-card-icon-wrapper">
+                  <Fingerprint size={30} />
+                </div>
+                <h3>Validación del RUT Chileno</h3>
+                <p>
+                  El backend valida matemáticamente mediante el algoritmo Módulo 11 que el RUT provisto por el cliente sea correcto, previniendo errores de facturación.
+                </p>
+              </div>
+
+              <div className="ai-card">
+                <div className="ai-card-icon-wrapper">
+                  <UserCheck size={30} />
+                </div>
+                <h3>Control Humano Activo (HITL)</h3>
+                <p>
+                  Los datos autocompletados se muestran con indicadores visuales claros y te permiten editarlos, revisarlos y verificar la dirección en Google Maps antes de insertarlos al Kanban.
+                </p>
               </div>
             </div>
           </section>
@@ -358,6 +408,80 @@ const Operia = () => {
         </Animation>
       </div>
 
+      {/* [NEW] 6.1 PLANES Y PRECIOS */}
+      <div id="pricing" className="operia-section-dark">
+        <Animation animation="fade-up">
+          <section className="operia-pricing">
+            <h2>Planes flexibles para cada etapa</h2>
+            <p className="section-subtitle">Comienza gratis y escala a medida que tu equipo crece</p>
+
+            <div className="pricing-grid">
+              {/* Plan 1 */}
+              <div className="pricing-card">
+                <div className="pricing-header">
+                  <h3 className="pricing-name">Starter</h3>
+                  <div className="pricing-price">Gratis</div>
+                  <p className="pricing-description">Para freelancers y pequeños equipos que empiezan.</p>
+                </div>
+                <ul className="pricing-features-list">
+                  <li><Check size={18} /> 5 usuarios</li>
+                  <li><Check size={18} /> 100 clientes</li>
+                  <li><Check size={18} /> 500 MB almacenamiento</li>
+                  <li><Check size={18} /> Tareas ilimitadas</li>
+                  <li><Check size={18} /> Soporte por email</li>
+                </ul>
+                <a href="https://operia.cl/signup.html" target="_blank" rel="noopener noreferrer" className="pricing-cta">
+                  Comenzar Gratis
+                </a>
+              </div>
+
+              {/* Plan 2 */}
+              <div className="pricing-card popular-card">
+                <div className="popular-badge">Recomendado</div>
+                <div className="pricing-header">
+                  <h3 className="pricing-name">Professional</h3>
+                  <div className="pricing-price">Prueba Gratis</div>
+                  <p className="pricing-description">Para equipos en crecimiento que necesitan control total.</p>
+                </div>
+                <ul className="pricing-features-list">
+                  <li><Check size={18} /> 25 usuarios</li>
+                  <li><Check size={18} /> 500 clientes</li>
+                  <li><Check size={18} /> 5 GB almacenamiento</li>
+                  <li><Check size={18} /> Tareas ilimitadas</li>
+                  <li><Check size={18} /> Branding personalizado</li>
+                  <li><Check size={18} /> Reportes avanzados</li>
+                  <li><Check size={18} /> Soporte prioritario</li>
+                </ul>
+                <a href="https://operia.cl/signup.html" target="_blank" rel="noopener noreferrer" className="pricing-cta">
+                  Comenzar Prueba
+                </a>
+              </div>
+
+              {/* Plan 3 */}
+              <div className="pricing-card">
+                <div className="pricing-header">
+                  <h3 className="pricing-name">Enterprise</h3>
+                  <div className="pricing-price">Ventas</div>
+                  <p className="pricing-description">Para organizaciones que necesitan seguridad y control avanzado.</p>
+                </div>
+                <ul className="pricing-features-list">
+                  <li><Check size={18} /> 100 usuarios</li>
+                  <li><Check size={18} /> 2,000 clientes</li>
+                  <li><Check size={18} /> 20 GB almacenamiento</li>
+                  <li><Check size={18} /> Todo lo del plan Professional</li>
+                  <li><Check size={18} /> Acceso a API completo</li>
+                  <li><Check size={18} /> SSO & Auditoría avanzada</li>
+                  <li><Check size={18} /> Soporte 24/7</li>
+                </ul>
+                <a href="https://operia.cl/signup.html" target="_blank" rel="noopener noreferrer" className="pricing-cta">
+                  Contactar Ventas
+                </a>
+              </div>
+            </div>
+          </section>
+        </Animation>
+      </div>
+
       {/* 7. COMPARACIÓN COMPETITIVA */}
       <div className="operia-section-dark">
         <Animation animation="fade-up">
@@ -524,13 +648,18 @@ const Operia = () => {
       <div className="operia-section-dark">
         <Animation animation="fade-up">
           <section className="operia-cta-final">
-            <h2>¿Listo para digitalizar tu operación?</h2>
+            <h2>¿Listo para transformar tu productividad?</h2>
             <p>
-              Agenda una demostración gratuita y sin compromiso de Operia, y conversemos sobre cómo podemos construir la solución que tu empresa realmente necesita.
+              Únete a cientos de equipos que ya confían en Operia. Regístrate gratis en nuestra plataforma SaaS o contáctanos para una personalización a medida.
             </p>
-            <Link to="/contact" className="operia-cta-primary">
-              Agendar un Demo
-            </Link>
+            <div className="operia-cta-buttons-container">
+              <a href="https://operia.cl/signup.html" target="_blank" rel="noopener noreferrer" className="operia-cta-primary">
+                Comenzar Gratis (SaaS)
+              </a>
+              <a href="https://operia.cl/login.html" target="_blank" rel="noopener noreferrer" className="operia-cta-secondary">
+                Iniciar Sesión
+              </a>
+            </div>
           </section>
         </Animation>
       </div>

@@ -56,7 +56,7 @@ El frontend está desarrollado sobre **React 18** y está estructurado para ofre
 5.  **`/contact` (Contacto)**: Formulario de contacto con validaciones de campos que se comunica con el servidor para el envío de correos electrónicos corporativos.
 6.  **`/blog` (Blog)**: Listado dinámico de artículos publicados, ordenados cronológicamente.
 7.  **`/blog/:slug` (Entrada de Blog)**: Vista completa de cada artículo. Incluye meta-etiquetas SEO dinámicas (título, descripción, palabras clave), botones de compartir en redes sociales y un formulario de suscripción al newsletter.
-8.  **`/operia` (Operia)**: Landing page enfocada en soluciones para Operia (Enterprise / IPTV Hub).
+8.  **`/operia` (Operia)**: Landing page enfocada en soluciones para la plataforma SaaS Operia (Gestión de Tareas para Equipos).
 9.  **`/cato` (CATO: LIFE OS)**: Landing page del producto gamificado de productividad. Incorpora un modal emergente que se activa automáticamente al hacer scroll (`CatoModal`) animando a los usuarios a descargar la aplicación móvil.
 10. **`/tools` (Herramientas)**: Panel interactivo con herramientas gratuitas para emprendedores chilenos (ver sección de Herramientas).
 11. **`/admin` (CMS Panel)**: Panel de administración protegido para gestionar el contenido del blog y los suscriptores.

@@ -21,9 +21,9 @@ const Portfolio = () => {
   const projects = [
     {
       img: operiaImg,
-      title: "Operia - Software Integral de RRHH",
-      link: "https://operia.synapsedev.cl/",
-      description: "Plataforma SaaS integral para la gestión de recursos humanos y control de asistencia."
+      title: "Operia - Gestión de Tareas para Equipos",
+      link: "https://operia.cl/",
+      description: "Plataforma SaaS de gestión operativa para equipos, con ingesta inteligente de tareas potenciada por IA."
     },
     {
       img: catoImg,

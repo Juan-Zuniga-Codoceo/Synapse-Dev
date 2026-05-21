@@ -19,8 +19,8 @@ const LastProjects = () => {
   const projects = [
     {
       img: operiaImg,
-      title: "Operia - Software Integral de RRHH",
-      link: "https://operia.synapsedev.cl/",
+      title: "Operia - Gestión de Tareas para Equipos",
+      link: "https://operia.cl/",
     },
     {
       img: catoImg,
