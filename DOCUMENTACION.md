@@ -202,6 +202,57 @@ REACT_APP_API_URL=https://www.synapsedev.cl
 
 ---
 
+## 🤖 Agente RAG B2B de Soporte con Juez de Veracidad
+
+Se ha implementado una solución de soporte técnico automatizado mediante IA, que recupera información de los manuales comerciales de Synapse Dev y verifica la fidelidad de las respuestas antes de mostrarlas para erradicar las alucinaciones en producción.
+
+### 📐 Arquitectura y Pipeline RAG:
+
+1.  **Ingesta de Datos y Chunking**:
+    *   La base de conocimiento de texto plano se aloja en `backend/data/knowledge.txt`.
+    *   El script `backend/scripts/seedKnowledge.js` implementa un algoritmo de **ventana deslizante** (sliding window de 500 caracteres, overlap de 100 caracteres) para segmentar el archivo en bloques coherentes.
+2.  **Vectorización y Persistencia (MongoDB)**:
+    *   Cada bloque se vectoriza usando el SDK de Gemini con el modelo `text-embedding-004` (768 dimensiones).
+    *   Los fragmentos resultantes y sus embeddings se almacenan en MongoDB bajo el modelo Mongoose `KnowledgeChunk` (`backend/models/KnowledgeChunk.js`).
+3.  **Búsqueda Semántica Portable (Similitud Coseno)**:
+    *   Al recibir una consulta, el servidor genera el embedding de la pregunta del usuario.
+    *   Se recuperan los fragmentos de la base de datos y se calcula la **similitud coseno** en memoria directamente en JavaScript.
+    *   Se filtran los fragmentos con una similitud menor al **40% (umbral >= 0.4)** y se seleccionan los **top 3** resultados más relevantes. Esto permite total independencia de infraestructura, evitando tener que configurar manualmente índices vectoriales en MongoDB Atlas.
+4.  **Draft Node (Generación de Respuesta)**:
+    *   Un modelo Gemini 2.5 Flash con temperatura 0.0 genera una respuesta utilizando de manera estricta y exclusiva el contexto recuperado.
+    *   En caso de que el contexto no responda la pregunta, el modelo devuelve obligatoriamente: *"No cuento con información oficial para responder."*
+5.  **Judge Node (Juez de Veracidad - Control de Alucinaciones)**:
+    *   Un segundo modelo Gemini 2.5 Flash con temperatura 0.0 evalúa el borrador de respuesta comparándolo contra el contexto original.
+    *   Utiliza **Structured Outputs** (MIME `application/json`) bajo un esquema estructurado que devuelve un score numérico de fidelidad (de 0.0 a 1.0) y un texto descriptivo del veredicto.
+6.  **Filtro de Control (Gating)**:
+    *   **Paso Exitoso (Score >= 0.8)**: La respuesta se aprueba y se envía al frontend junto con el puntaje de veracidad.
+    *   **Intercepción (Score < 0.8)**: Se descarta la respuesta por posible alucinación, enviando un mensaje defensivo predeterminado con un botón interactivo para derivar al usuario al soporte humano por WhatsApp.
+
+### 📡 Endpoints de la API (`backend/routes/knowledgeRoutes.js`):
+
+*   **`POST /api/knowledge/search`**: Búsqueda semántica simple.
+    *   *Body*: `{ "query": "..." }`
+*   **`POST /api/knowledge/chat`**: Pipeline de chat completo con el RAG y el Juez de Veracidad.
+    *   *Body*: `{ "question": "..." }`
+
+### 🎨 Componente de Interfaz de Usuario (React 18):
+
+*   El widget de chat se ubica en `frontend/src/components/layout/ChatbotWidget/` y se monta globalmente en `frontend/src/App.js` para los visitantes de la landing page.
+*   **Características visuales**:
+    *   Estilos oscuros premium con glows naranja (#FF6600) que integran el branding corporativo de Synapse Dev.
+    *   Efecto de desenfoque de fondo (glassmorphic blur).
+    *   Spinner dinámico de carga con texto de telemetría (`🤖 Validando respuesta...`).
+    *   Insignia de verificación verde (`✓ verificado`) mostrando el porcentaje de fidelidad.
+    *   Acción de derivación directa por WhatsApp a través del número oficial (+56940413646) en caso de fallos.
+
+### 🔌 Comando de Sembrado de Conocimiento:
+Para recargar o actualizar la base de conocimientos, edita el archivo `backend/data/knowledge.txt` y ejecuta en la carpeta del backend:
+```bash
+node scripts/seedKnowledge.js
+```
+
+---
+
 ## 🚀 Despliegue en Vercel (Configuración de Monorepo)
 
 El archivo `vercel.json` en la raíz del proyecto permite desplegar tanto el backend como el frontend en un único proyecto de Vercel de la siguiente manera:
