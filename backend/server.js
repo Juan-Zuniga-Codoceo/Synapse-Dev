@@ -1,4 +1,5 @@
-require('dotenv').config();
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const express = require('express');
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
@@ -8,7 +9,6 @@ const mongoose = require('mongoose');
 
 // Inicializar express
 const app = express();
-const path = require('path');
 const fs = require('fs');
 const { SitemapStream, streamToPromise } = require('sitemap');
 const cron = require('node-cron');
@@ -17,6 +17,7 @@ const uploadRoutes = require('./routes/uploadRoutes');
 const authRoutes = require('./routes/authRoutes');
 const newsletterRoutes = require('./routes/newsletterRoutes');
 const pitchRoutes = require('./routes/pitchRoutes');
+const knowledgeRoutes = require('./routes/knowledgeRoutes');
 const Post = require('./models/Post');
 
 // Conexión a MongoDB
@@ -257,6 +258,9 @@ app.use('/api', pitchRoutes);
 
 // Ruta de API para Subida de Imágenes
 app.use('/api/upload', uploadRoutes);
+
+// Rutas de Base de Conocimiento RAG
+app.use('/api/knowledge', knowledgeRoutes);
 
 // Cron job: publicar posts programados cada minuto
 cron.schedule('* * * * *', async () => {

@@ -1,0 +1,20 @@
+Synapse Dev es una agencia boutique chilena de desarrollo de software a medida, aplicaciones móviles y marketing digital. Liderada por el desarrollador full-stack y fundador Juan Zúñiga, la agencia se enfoca en entregar soluciones de alta velocidad, posicionamiento en motores de búsqueda (SEO) y automatización para pymes y corporaciones en Chile. Canales oficiales de contacto de Synapse Dev: el correo corporativo es contacto@synapsedev.cl, el teléfono y WhatsApp de contacto es +56 9 4041 3646 (enlace de chat directo https://wa.me/56940413646), y el sitio web oficial es https://synapsedev.cl.
+
+Servicios y Precios oficiales de Synapse Dev:
+1. Creación de Landing Pages (páginas de aterrizaje) simples: planes que comienzan desde los $70.000 CLP.
+2. Diseño y desarrollo de páginas web corporativas rápidas y optimizadas para SEO: los planes comienzan desde los $249.990 CLP + IVA (pago único).
+3. Diseño y configuración de tiendas online (E-commerce) autogestionables en Shopify o WooCommerce: los planes comienzan desde los $99.990 CLP + IVA.
+4. Optimización de motores de búsqueda mensual (Posicionamiento SEO) y mantenimiento web integral: planes mensuales desde los $39.990 CLP/mes.
+5. Automatizaciones, desarrollo de chatbots interactivos a medida y configuración de correos corporativos seguros con Zoho Mail o Google Workspace.
+
+CATO: LIFE OS es una aplicación móvil Android de productividad gamificada e independiente creada y distribuida por Synapse Dev. Esta plataforma convierte la gestión de metas diarias y tareas rutinarias en una experiencia de juego de rol (RPG), motivando al usuario a mantenerse enfocado. El archivo ejecutable Android APK de CATO: LIFE OS se puede descargar gratis directamente desde la landing page en https://synapsedev.cl/cato o pulsando el botón de descarga que redirige a https://synapsedev.cl/download-cato.
+
+Operia es un sistema SaaS de gestión de tareas operativas y delegación de actividades en tiempo real desarrollado por Synapse Dev para pequeñas y medianas empresas. Ayuda a simplificar los procesos, reducir los tiempos desperdiciados en tareas manuales e integrar la colaboración ágil en el equipo. La información detallada sobre Operia está disponible en la sección de soluciones en https://synapsedev.cl/operia.
+
+Herramientas gratuitas para emprendedores disponibles en el portal de herramientas de Synapse Dev (https://synapsedev.cl/tools):
+1. Analizador de Velocidad Web: Evalúa el desempeño y SEO usando PageSpeed Insights de Google de forma segura.
+2. Generador de Pitch Comercial con IA: Crea discursos comerciales creativos adaptados al público objetivo y con modismos chilenos usando Gemini 2.5 Flash en streaming.
+3. Generador de Enlaces de WhatsApp: Permite crear de forma rápida enlaces wa.me con textos preestablecidos.
+4. Optimizador WebP Global: Convierte imágenes PNG/JPG a WebP en el navegador usando canvas, reduciendo un 80% su peso sin pérdida apreciable de calidad.
+5. Generador de Políticas de Privacidad: Crea textos de políticas alineados a la Ley Chilena Nº 19.628 sobre protección de la vida privada.
+6. Calculadora de Eficiencia: Estima las horas y presupuesto desperdiciado en tareas de gestión manual en pymes.

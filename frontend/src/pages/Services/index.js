@@ -64,15 +64,25 @@ const services = [
       clients: "+30 landings",
       satisfaction: "95% satisfacción",
     },
-    price: "Desde $149.990 CLP + IVA",
+    price: "Desde $70.000 CLP",
     plans: [
+      {
+        title: "Plan Express (Simple)",
+        price: "$70.000 CLP",
+        features: [
+          "Diseño de una sola sección simple",
+          "Información de contacto y redes sociales",
+          "Diseño responsive estándar",
+          "Ideal para presupuestos acotados",
+        ],
+      },
       {
         title: "Plan Básico",
         price: "$149.990 CLP",
         features: [
-          "Sección principal optimizada",
+          "Sección principal optimizada para conversión",
           "Formulario de contacto",
-          "Diseño responsive",
+          "Diseño responsive premium",
           "Optimización básica",
         ],
       },

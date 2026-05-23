@@ -15,6 +15,7 @@ import BlogPost from './pages/BlogPost';
 import Operia from './pages/Operia';
 import Cato from './pages/Cato';
 import CatoModal from './components/layout/CatoModal';
+import ChatbotWidget from "./components/layout/ChatbotWidget";
 import Tools from './pages/Tools';
 import Admin from './pages/Admin';
 
@@ -39,6 +40,7 @@ const AppContent = () => {
         <Route path="/tools" element={<Tools />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
+      {!isAdmin && <ChatbotWidget />}
       {!isAdmin && <WhatsAppButton />}
       {!isAdmin && <ScrollToTopButton />}
       {!isAdmin && <Footer />}
