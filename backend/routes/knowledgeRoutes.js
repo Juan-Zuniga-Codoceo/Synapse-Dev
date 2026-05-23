@@ -85,11 +85,7 @@ router.post('/search', async (req, res) => {
 
     } catch (error) {
         console.error('❌ Error en búsqueda semántica:', error);
-        return res.status(500).json({ 
-            error: 'Error al procesar la búsqueda semántica en la base de conocimientos.',
-            message: error.message,
-            stack: error.stack
-        });
+        return res.status(500).json({ error: 'Error al procesar la búsqueda semántica en la base de conocimientos.' });
     }
 });
 
@@ -247,11 +243,7 @@ Borrador de respuesta a evaluar:
 
     } catch (error) {
         console.error('❌ Error en chat de conocimiento:', error);
-        return res.status(500).json({ 
-            error: 'Error al procesar el chat inteligente con la base de conocimientos.',
-            message: error.message,
-            stack: error.stack
-        });
+        return res.status(500).json({ error: 'Error al procesar el chat inteligente con la base de conocimientos.' });
     }
 });
 
