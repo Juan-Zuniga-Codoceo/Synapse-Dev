@@ -9,7 +9,8 @@ import {
   faCheck,
   faClock,
   faStar,
-  faRobot
+  faRobot,
+  faComments
 } from '@fortawesome/free-solid-svg-icons';
 import './styles.css';
 
@@ -81,6 +82,21 @@ const ServicesSection = () => {
     },
     {
       id: 5,
+      title: "Chat con IA para tu Web",
+      description: "Integra un asistente conversacional inteligente entrenado con la información de tu negocio directamente en tu sitio web. Responde preguntas, captura leads y aumenta conversiones de forma autónoma.",
+      icon: faComments,
+      features: [
+        "Entrenado con tu contenido y FAQ",
+        "Widget listo para cualquier web",
+        "Captura de leads automática"
+      ],
+      stats: {
+        performance: "Respuestas en segundos",
+        time: "< 1 semana implementación"
+      }
+    },
+    {
+      id: 6,
       title: "Asesoría Web",
       description: "Guiamos tu presencia digital con estrategias efectivas para aumentar ventas y potenciar tu marca en internet.",
       icon: faLightbulb,

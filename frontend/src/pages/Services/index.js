@@ -1,7 +1,7 @@
 // src/pages/Services/index.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaCheck, FaArrowRight, FaTimes } from "react-icons/fa";
+import { FaCheck, FaArrowRight, FaTimes, FaRobot, FaComments } from "react-icons/fa";
 import Animation from "../../components/layout/Animation";
 import TechnologiesSection from "../../components/home/TechnologiesSection";
 import ContactSection from "../../components/shared/ContactSection";
@@ -215,6 +215,88 @@ const services = [
           "Backups diarios",
           "Soporte prioritario",
           "2 horas de desarrollo",
+        ],
+        recommended: true,
+      },
+    ],
+  },
+  {
+    id: "bots-ia",
+    title: "Bots con IA para Empresas",
+    icon: FaRobot,
+    description:
+      "Desarrollamos asistentes virtuales inteligentes y chatbots a medida integrados con la base de datos de tu empresa (RAG) para automatizar soporte, ventas y procesos internos.",
+    features: [
+      "Integración con tus datos (RAG)",
+      "Automatización en Web y WhatsApp",
+      "Atención al cliente y ventas 24/7",
+      "Panel de monitoreo de conversaciones",
+    ],
+    stats: {
+      clients: "Proyectos activos",
+      satisfaction: "100% uptime",
+    },
+    price: "Desde $199.990 CLP",
+    plans: [
+      {
+        title: "Plan Starter",
+        price: "$199.990 CLP",
+        features: [
+          "Bot entrenado con tus datos",
+          "Widget web integrado",
+          "Hasta 500 consultas/mes",
+          "Soporte por 1 mes",
+        ],
+      },
+      {
+        title: "Plan Empresa",
+        price: "$399.990 CLP",
+        features: [
+          "Todo del plan Starter",
+          "Integración WhatsApp Business",
+          "Consultas ilimitadas",
+          "Soporte prioritario 3 meses",
+        ],
+        recommended: true,
+      },
+    ],
+  },
+  {
+    id: "chat-ia",
+    title: "Chat con IA para tu Web",
+    icon: FaComments,
+    description:
+      "Integra un asistente conversacional inteligente entrenado con la información de tu negocio directamente en tu sitio web. Responde preguntas, captura leads y aumenta conversiones de forma autónoma.",
+    features: [
+      "Entrenado con tu contenido y FAQ",
+      "Widget listo para cualquier web",
+      "Captura de leads automática",
+      "Integración con Google Analytics",
+    ],
+    stats: {
+      clients: "Disponible ahora",
+      satisfaction: "Respuestas instantáneas",
+    },
+    price: "Desde $79.990 CLP",
+    plans: [
+      {
+        title: "Plan Básico",
+        price: "$79.990 CLP",
+        features: [
+          "Widget de chat en tu web",
+          "Entrenado con tu FAQ",
+          "Hasta 300 consultas/mes",
+          "Soporte inicial incluido",
+        ],
+      },
+      {
+        title: "Plan Pro",
+        price: "$149.990 CLP",
+        features: [
+          "Todo del plan básico",
+          "Consultas ilimitadas",
+          "Integración con CRM",
+          "Dashboard de analíticas",
         ],
         recommended: true,
       },

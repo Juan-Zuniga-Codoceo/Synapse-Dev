@@ -354,3 +354,57 @@
     background: rgba(255, 255, 255, 0.03);
   }
 }
+
+/* Scholar-flow / Featured Project with dual gallery */
+.project-featured {
+  grid-column: span 2;
+  border-color: rgba(255, 102, 0, 0.25) !important;
+  box-shadow: 0 4px 24px rgba(255, 102, 0, 0.08);
+}
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.project-gallery .gallery-main,
+.project-gallery .gallery-secondary {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-featured:hover .gallery-main,
+.project-featured:hover .gallery-secondary {
+  transform: scale(1.04);
+}
+
+@media (max-width: 1200px) {
+  .project-featured {
+    grid-column: span 2;
+  }
+
+  .project-gallery {
+    height: 230px;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-featured {
+    grid-column: span 1;
+  }
+
+  .project-gallery {
+    grid-template-columns: 1fr;
+    height: 200px;
+  }
+
+  .project-gallery .gallery-secondary {
+    display: none;
+  }
+}

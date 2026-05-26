@@ -16,9 +16,18 @@ import elrincondetodo from '../../assets/images/projects/elrincondetodo.webp';
 import operiaImg from '../../assets/images/projects/operia.webp';
 import patitasImg from '../../assets/images/projects/mispatitasfelices.webp';
 import catoImg from '../../assets/images/projects/cato.webp';
+import scholarFlowDashboard from '../../assets/images/projects/scholar-flow-dashboard.png';
+import scholarFlowHorarios from '../../assets/images/projects/scholar-flow-horarios.png';
 
 const Portfolio = () => {
   const projects = [
+    {
+      img: scholarFlowDashboard,
+      imgExtra: scholarFlowHorarios,
+      title: "Scholar-flow - Sistema Académico con IA",
+      link: "https://scholarflow.cl/",
+      description: "Plataforma SaaS para la gestión académica de colegios, con planificación automática de horarios y procesamiento de licencias médicas usando Inteligencia Artificial (Gemini)."
+    },
     {
       img: operiaImg,
       title: "Operia - Gestión de Tareas para Equipos",
@@ -118,7 +127,7 @@ const Portfolio = () => {
 
         <div className="projects-grid-renamed">
           {projects.map((project, index) => (
-            <div key={index} className="project-item-renamed">
+            <div key={index} className={`project-item-renamed ${project.imgExtra ? 'project-featured' : ''}`}>
               <div className="link-overlay-renamed">
                 <a
                   href={project.link}
@@ -128,7 +137,14 @@ const Portfolio = () => {
                   Ir a la web
                 </a>
               </div>
-              <img src={project.img} alt={project.title} loading="lazy" />
+              {project.imgExtra ? (
+                <div className="project-gallery">
+                  <img src={project.img} alt={`${project.title} - Dashboard`} loading="lazy" className="gallery-main" />
+                  <img src={project.imgExtra} alt={`${project.title} - Horarios`} loading="lazy" className="gallery-secondary" />
+                </div>
+              ) : (
+                <img src={project.img} alt={project.title} loading="lazy" />
+              )}
               <h3>{project.title}</h3>
               <p>{project.description}</p>
             </div>
