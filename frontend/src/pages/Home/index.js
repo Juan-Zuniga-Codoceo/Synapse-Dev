@@ -10,6 +10,7 @@ import StatisticsSection from "../../components/home/StatisticsSection";
 import BlogPosts from "../../components/home/BlogPosts";
 import SercotecBanner from "../../components/home/SercotecBanner";
 import ToolsPreview from "../../components/home/ToolsPreview";
+import FeaturedProducts from "../../components/home/FeaturedProducts";
 
 const Home = () => {
   return (
@@ -41,6 +42,10 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <div className="home-section home-section--dark">
+        <FeaturedProducts />
+      </div>
 
       <div className="home-section home-section--light">
         <ServicesSection />

@@ -52,7 +52,10 @@ const Navbar = () => {
             <Link to="/cato">CATO</Link>
           </li>
           <li className="main-navbar-item">
-            <Link to="/operia">Demo Operia</Link>
+            <Link to="/operia">Operia</Link>
+          </li>
+          <li className="main-navbar-item scholar-highlight">
+            <a href="https://scholarflow.operia.cl" target="_blank" rel="noopener noreferrer">Scholar-flow</a>
           </li>
           <li className="main-navbar-item">
             <Link to="/contact">Contacto</Link>
@@ -106,7 +109,10 @@ const Navbar = () => {
               <Link to="/cato" onClick={() => setMenuOpen(false)}>CATO</Link>
             </li>
             <li className="main-navbar-item">
-              <Link to="/operia" onClick={() => setMenuOpen(false)}>Demo Operia</Link>
+              <Link to="/operia" onClick={() => setMenuOpen(false)}>Operia</Link>
+            </li>
+            <li className="main-navbar-item scholar-highlight">
+              <a href="https://scholarflow.operia.cl" target="_blank" rel="noopener noreferrer" onClick={() => setMenuOpen(false)}>Scholar-flow</a>
             </li>
             <li className="main-navbar-item">
               <Link to="/contact" onClick={() => setMenuOpen(false)}>Contacto</Link>

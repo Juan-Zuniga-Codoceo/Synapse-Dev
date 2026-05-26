@@ -84,6 +84,16 @@
   color: #ff4500;
 }
 
+/* Scholar-flow Highlight */
+.main-navbar-item.scholar-highlight a {
+  color: #a78bfa;
+  font-weight: 600;
+}
+
+.main-navbar-item.scholar-highlight a:hover {
+  color: #c4b5fd;
+}
+
 .navbar-cta-button {
   background-color: #ff6600;
   padding: 10px 32px;
