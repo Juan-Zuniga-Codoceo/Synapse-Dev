@@ -1,11 +1,51 @@
+/* Global Design System variables */
+:root {
+  /* Colors */
+  --primary-bg: #102532;
+  --primary-bg-light: #163245;
+  --primary-bg-gradient: linear-gradient(135deg, #102532 0%, #17384e 100%);
+  
+  --accent-orange: #ff6600;
+  --accent-orange-hover: #ff4500;
+  --accent-orange-glow: rgba(255, 102, 0, 0.15);
+  
+  --text-white: #ffffff;
+  --text-gray-light: #f8fafc;
+  --text-gray: #cbd5e1;
+  --text-gray-dark: #64748b;
+  --text-dark: #0f172a;
+  
+  --card-bg: rgba(22, 50, 69, 0.65);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-border-hover: rgba(255, 102, 0, 0.35);
+  
+  /* Fonts */
+  --font-title: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Shadows & Glows */
+  --glow-shadow: 0 0 25px rgba(255, 102, 0, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Base Styles */
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
+  font-family: var(--font-body);
+  background-color: var(--primary-bg);
+  color: var(--text-gray);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  color: var(--text-white);
   margin: 0;
   padding: 0;
 }
@@ -13,4 +53,14 @@ h1, h2, h3, h4, h5, h6 {
 a {
   text-decoration: none;
   color: inherit;
+  transition: var(--transition-fast);
+}
+
+/* Glassmorphism utility */
+.glass-effect {
+  background: rgba(22, 50, 69, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--glass-shadow);
 }
