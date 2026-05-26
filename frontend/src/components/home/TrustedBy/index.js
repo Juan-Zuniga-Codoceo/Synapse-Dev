@@ -24,7 +24,7 @@ const TrustedBySection = () => {
       id: 2,
       name: "Scholar-flow",
       logo: scholarFlowLogo,
-      link: "https://scholarflow.cl",
+      link: "https://scholarflow.operia.cl",
       tag: "Plataforma Educativa"
     }
   ];

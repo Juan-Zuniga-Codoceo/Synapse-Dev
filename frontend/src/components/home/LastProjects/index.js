@@ -5,15 +5,12 @@ import Animation from '../../layout/Animation/index';
 import LazyImage from '../../shared/LazyImage/index';
 
 // Importación de imágenes
-import semillaNegra from '../../../assets/images/projects/misemillanegra.netlify.app_.png';
-import project5 from '../../../assets/images/projects/proyecto5.webp';
 import operiaImg from '../../../assets/images/projects/operia.webp';
-import patitasImg from '../../../assets/images/projects/mispatitasfelices.webp';
 import catoImg from '../../../assets/images/projects/cato.webp';
-import scholarFlowImg from '../../../assets/images/projects/scholar-flow.png';
+import scholarFlowImg from '../../../assets/images/projects/scholar-flow-dashboard.png';
 
 const LastProjects = () => {
-  // Los 6 proyectos más importantes
+  // Los 3 proyectos más destacados
   const projects = [
     {
       img: operiaImg,
@@ -23,27 +20,12 @@ const LastProjects = () => {
     {
       img: scholarFlowImg,
       title: "Scholar-flow - Sistema Académico con IA",
-      link: "https://scholarflow.cl/",
+      link: "https://scholarflow.operia.cl/",
     },
     {
       img: catoImg,
       title: "CATO App - Sistema Táctico",
       link: "https://synapsedev.cl/cato",
-    },
-    {
-      img: patitasImg,
-      title: "Mis Patitas Felices - E-commerce",
-      link: "https://mispatitasfelices.cl/",
-    },
-    {
-      img: project5,
-      title: "Spend Shield - Gestor de finanzas personales",
-      link: "https://spendshield.netlify.app/",
-    },
-    {
-      img: semillaNegra,
-      title: "Mi Semilla Negra - Salsas Orientales",
-      link: "https://misemillanegra.netlify.app/",
     },
   ];
 

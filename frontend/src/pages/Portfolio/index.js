@@ -25,7 +25,7 @@ const Portfolio = () => {
       img: scholarFlowDashboard,
       imgExtra: scholarFlowHorarios,
       title: "Scholar-flow - Sistema Académico con IA",
-      link: "https://scholarflow.cl/",
+      link: "https://scholarflow.operia.cl/",
       description: "Plataforma SaaS para la gestión académica de colegios, con planificación automática de horarios y procesamiento de licencias médicas usando Inteligencia Artificial (Gemini)."
     },
     {
