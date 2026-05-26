@@ -609,11 +609,6 @@ const Tools = () => {
           </div>
         </Animation>
       </main>
-
-      {/* Floating CTA */}
-      <a href={CONTACT_INFO.whatsappLink} target="_blank" rel="noopener noreferrer" className="floating-cta">
-        🚀 Consultoría Gratis
-      </a>
     </div>
   );
 };
