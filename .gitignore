@@ -50,3 +50,6 @@ Thumbs.db
 .vscode/
 *.sublime-workspace
 *.sublime-project
+
+# Credentials and deployment info
+DEPLOYMENT_PRODUCTION.md
