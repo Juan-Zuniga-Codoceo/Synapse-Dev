@@ -1,26 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css';
 import Animation from '../../layout/Animation/index';
 import LazyImage from '../../shared/LazyImage/index';
 
 // Importación de imágenes
-
-import project3 from '../../../assets/images/projects/project3.webp';
-import project4 from '../../../assets/images/projects/abogado.webp';
-import project5 from '../../../assets/images/projects/proyecto5.webp';
 import semillaNegra from '../../../assets/images/projects/misemillanegra.netlify.app_.png';
-import matronaNaty from '../../../assets/images/projects/matronanaty.png';
-import elrincondetodo from '../../../assets/images/projects/elrincondetodo.webp';
+import project5 from '../../../assets/images/projects/proyecto5.webp';
 import operiaImg from '../../../assets/images/projects/operia.webp';
 import patitasImg from '../../../assets/images/projects/mispatitasfelices.webp';
 import catoImg from '../../../assets/images/projects/cato.webp';
+import scholarFlowImg from '../../../assets/images/projects/scholar-flow.png';
 
 const LastProjects = () => {
+  // Los 6 proyectos más importantes
   const projects = [
     {
       img: operiaImg,
       title: "Operia - Gestión de Tareas para Equipos",
       link: "https://operia.cl/",
+    },
+    {
+      img: scholarFlowImg,
+      title: "Scholar-flow - Sistema Académico con IA",
+      link: "https://scholarflow.cl/",
     },
     {
       img: catoImg,
@@ -33,36 +36,15 @@ const LastProjects = () => {
       link: "https://mispatitasfelices.cl/",
     },
     {
-      img: elrincondetodo,
-      title: "El Rincón de Todo - Tienda Dropshipping",
-      link: "https://elrincondetodo.cl/",
+      img: project5,
+      title: "Spend Shield - Gestor de finanzas personales",
+      link: "https://spendshield.netlify.app/",
     },
     {
       img: semillaNegra,
       title: "Mi Semilla Negra - Salsas Orientales",
       link: "https://misemillanegra.netlify.app/",
     },
-    {
-      img: matronaNaty,
-      title: "Matrona Naty - Cuidado especializado de la mujer",
-      link: "https://www.matronanaty.cl/",
-    },
-    {
-      img: project5,
-      title: "Spend Shield - Gestor de finanzas personales",
-      link: "https://spendshield.netlify.app/",
-    },
-    {
-      img: project4,
-      title: "Landing Page - Abogado Andrés González",
-      link: "https://abogadoandresgonzalez.rf.gd/",
-    },
-    {
-      img: project3,
-      title: "Synapse Dev - Pizzería",
-      link: "https://synapsedev-pizzeria.netlify.app/",
-    },
-
   ];
 
   return (
@@ -71,7 +53,7 @@ const LastProjects = () => {
         <div className="last-projects-heading">
           <h2>Últimos Proyectos</h2>
           <p className="last-projects-subtitle">
-            Explora algunos de nuestros trabajos más recientes
+            Explora algunos de nuestros trabajos más recientes y destacados
           </p>
         </div>
       </Animation>
@@ -109,6 +91,14 @@ const LastProjects = () => {
           </Animation>
         ))}
       </div>
+
+      <Animation animation="fade-up" delay={400}>
+        <div className="portfolio-cta-container">
+          <Link to="/portfolio" className="btn-portfolio-cta">
+            Ver Todos los Proyectos
+          </Link>
+        </div>
+      </Animation>
     </section>
   );
 };

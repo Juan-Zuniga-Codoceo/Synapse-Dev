@@ -39,6 +39,15 @@
   margin: 0 auto;
 }
 
+@media (min-width: 993px) {
+  .home-services__item:last-child:nth-child(odd) {
+    grid-column: span 2;
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
 /* Estilos base para las cards */
 .home-services__item {
   background: #ffffff;

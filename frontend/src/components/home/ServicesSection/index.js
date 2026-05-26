@@ -8,7 +8,8 @@ import {
   faLightbulb,
   faCheck,
   faClock,
-  faStar 
+  faStar,
+  faRobot
 } from '@fortawesome/free-solid-svg-icons';
 import './styles.css';
 
@@ -65,6 +66,21 @@ const ServicesSection = () => {
     },
     {
       id: 4,
+      title: "Creación de Bots con IA",
+      description: "Desarrollamos asistentes virtuales inteligentes y chatbots a la medida integrados con tu base de datos (RAG) para automatizar soporte y ventas en tu web o WhatsApp.",
+      icon: faRobot,
+      features: [
+        "Integración con tus datos (RAG)",
+        "Automatización en Web y WhatsApp",
+        "Atención al cliente y ventas 24/7"
+      ],
+      stats: {
+        performance: "100% respuestas rápidas",
+        time: "1-2 semanas entrega"
+      }
+    },
+    {
+      id: 5,
       title: "Asesoría Web",
       description: "Guiamos tu presencia digital con estrategias efectivas para aumentar ventas y potenciar tu marca en internet.",
       icon: faLightbulb,
