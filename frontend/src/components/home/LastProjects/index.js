@@ -16,16 +16,19 @@ const LastProjects = () => {
       img: operiaImg,
       title: "Operia - Gestión de Tareas para Equipos",
       link: "https://operia.cl/",
+      accentClass: "operia"
     },
     {
       img: scholarFlowImg,
       title: "Scholar-flow - Sistema Académico con IA",
       link: "https://scholarflow.operia.cl/",
+      accentClass: "scholar"
     },
     {
       img: catoImg,
       title: "CATO App - Sistema Táctico",
       link: "https://synapsedev.cl/cato",
+      accentClass: "cato"
     },
   ];
 
@@ -48,7 +51,7 @@ const LastProjects = () => {
             delay={200 + index * 100}
             className={index === 0 ? "project-featured-wrapper" : ""}
           >
-            <div className="project-item">
+            <div className={`project-item project-item--${project.accentClass}`}>
               <div className="project-image-container">
                 <LazyImage
                   src={project.img}

@@ -142,6 +142,11 @@
   box-shadow: 0 10px 30px rgba(255, 193, 7, 0.12);
 }
 
+.tech-main-item[data-category="IA"]:hover {
+  border-color: #8b5cf6;
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.12);
+}
+
 /* Icon Styles */
 .tech-main-icon-wrapper {
   width: 55px;
@@ -206,6 +211,11 @@
 [data-category="E-COMMERCE"] {
   color: #FFC107;
   background: rgba(255, 193, 7, 0.08);
+}
+
+[data-category="IA"] {
+  color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.08);
 }
 
 .tech-main-description {

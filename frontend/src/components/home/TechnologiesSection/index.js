@@ -283,6 +283,8 @@ import nodeIcon from "../../../assets/icons/technologies/node.svg";
 import expressIcon from "../../../assets/icons/technologies/Express.svg";
 import tailwindIcon from "../../../assets/icons/technologies/tailwind.svg";
 import postgresIcon from "../../../assets/icons/technologies/postgres-icon.png";
+import pythonIcon from "../../../assets/icons/technologies/python.svg";
+import aiIcon from "../../../assets/icons/technologies/openai.svg";
 
 const TechnologiesSection = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -381,6 +383,20 @@ const TechnologiesSection = () => {
       icon: postgresIcon,
       description: "Base de datos SQL",
     },
+    {
+      id: 13,
+      name: "Python",
+      category: "BACKEND",
+      icon: pythonIcon,
+      description: "Inteligencia Artificial y scripting",
+    },
+    {
+      id: 14,
+      name: "Inteligencia Artificial",
+      category: "IA",
+      icon: aiIcon,
+      description: "Modelos GPT, LLMs e integración AI",
+    },
   ];
 
   const getStaggeredDelay = (index) => {
@@ -395,6 +411,7 @@ const TechnologiesSection = () => {
     if (activeFilter === "BACKEND") return tech.category === "BACKEND";
     if (activeFilter === "DATABASE") return tech.category === "DATABASE";
     if (activeFilter === "PLATFORMS") return tech.category === "CMS" || tech.category === "E-COMMERCE";
+    if (activeFilter === "IA") return tech.category === "IA";
     return true;
   });
 
@@ -444,6 +461,12 @@ const TechnologiesSection = () => {
             onClick={() => setActiveFilter("PLATFORMS")}
           >
             CMS & E-Commerce
+          </button>
+          <button 
+            className={`tech-filter-btn ${activeFilter === "IA" ? "active" : ""}`}
+            onClick={() => setActiveFilter("IA")}
+          >
+            Inteligencia Artificial (IA)
           </button>
         </div>
       </AnimatedSection>
