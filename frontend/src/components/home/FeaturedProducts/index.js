@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Animation from '../../layout/Animation/index';
 import LazyImage from '../../shared/LazyImage/index';
-import operiaImg from '../../../assets/images/projects/operia.webp';
+import operiaImg from '../../../assets/images/operia/operia-kanban.png';
 import scholarFlowImg from '../../../assets/images/projects/scholar-flow-dashboard.png';
 import './styles.css';
 

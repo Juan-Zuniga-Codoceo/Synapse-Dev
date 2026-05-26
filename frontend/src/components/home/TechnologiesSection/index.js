@@ -286,6 +286,7 @@ import postgresIcon from "../../../assets/icons/technologies/postgres-icon.png";
 
 const TechnologiesSection = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [activeFilter, setActiveFilter] = useState("TODAS");
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -385,10 +386,17 @@ const TechnologiesSection = () => {
   const getStaggeredDelay = (index) => {
     const row = Math.floor(index / 6);
     const col = index % 6;
-    return row * 100 + col * 50;
+    return row * 80 + col * 40;
   };
 
- 
+  const filteredTechnologies = technologies.filter(tech => {
+    if (activeFilter === "TODAS") return true;
+    if (activeFilter === "FRONTEND") return tech.category === "FRONTEND";
+    if (activeFilter === "BACKEND") return tech.category === "BACKEND";
+    if (activeFilter === "DATABASE") return tech.category === "DATABASE";
+    if (activeFilter === "PLATFORMS") return tech.category === "CMS" || tech.category === "E-COMMERCE";
+    return true;
+  });
 
   if (isLoading) {
     return <TechnologiesSkeleton />;
@@ -405,15 +413,50 @@ const TechnologiesSection = () => {
         </div>
       </AnimatedSection>
 
+      <AnimatedSection animation="fade-up" delay={150}>
+        <div className="tech-filters">
+          <button 
+            className={`tech-filter-btn ${activeFilter === "TODAS" ? "active" : ""}`}
+            onClick={() => setActiveFilter("TODAS")}
+          >
+            Todas
+          </button>
+          <button 
+            className={`tech-filter-btn ${activeFilter === "FRONTEND" ? "active" : ""}`}
+            onClick={() => setActiveFilter("FRONTEND")}
+          >
+            Frontend
+          </button>
+          <button 
+            className={`tech-filter-btn ${activeFilter === "BACKEND" ? "active" : ""}`}
+            onClick={() => setActiveFilter("BACKEND")}
+          >
+            Backend
+          </button>
+          <button 
+            className={`tech-filter-btn ${activeFilter === "DATABASE" ? "active" : ""}`}
+            onClick={() => setActiveFilter("DATABASE")}
+          >
+            Bases de Datos
+          </button>
+          <button 
+            className={`tech-filter-btn ${activeFilter === "PLATFORMS" ? "active" : ""}`}
+            onClick={() => setActiveFilter("PLATFORMS")}
+          >
+            CMS & E-Commerce
+          </button>
+        </div>
+      </AnimatedSection>
+
       <div className="tech-main-grid">
-        {technologies.map((tech, index) => (
+        {filteredTechnologies.map((tech, index) => (
           <AnimatedSection
             key={tech.id}
             animation="scale-up"
             delay={getStaggeredDelay(index)}
             threshold={0.1}
           >
-            <div className="tech-main-item">
+            <div className="tech-main-item" data-category={tech.category}>
               <div className="tech-main-icon-wrapper">
                 <LazyImage
                   src={tech.icon}

@@ -13,7 +13,7 @@ import project5 from '../../assets/images/projects/proyecto5.webp';
 import semillaNegra from '../../assets/images/projects/misemillanegra.netlify.app_.png';
 import matronaNaty from '../../assets/images/projects/matronanaty.png';
 import elrincondetodo from '../../assets/images/projects/elrincondetodo.webp';
-import operiaImg from '../../assets/images/projects/operia.webp';
+import operiaImg from '../../assets/images/operia/operia-kanban.png';
 import patitasImg from '../../assets/images/projects/mispatitasfelices.webp';
 import catoImg from '../../assets/images/projects/cato.webp';
 import scholarFlowDashboard from '../../assets/images/projects/scholar-flow-dashboard.png';

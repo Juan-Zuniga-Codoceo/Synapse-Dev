@@ -5,7 +5,7 @@ import Animation from '../../layout/Animation/index';
 import LazyImage from '../../shared/LazyImage/index';
 
 // Importación de imágenes
-import operiaImg from '../../../assets/images/projects/operia.webp';
+import operiaImg from '../../../assets/images/operia/operia-kanban.png';
 import catoImg from '../../../assets/images/projects/cato.webp';
 import scholarFlowImg from '../../../assets/images/projects/scholar-flow-dashboard.png';
 
