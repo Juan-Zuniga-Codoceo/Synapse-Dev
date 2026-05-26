@@ -1,7 +1,23 @@
 .trusted-by {
-  padding: 80px 20px;
-  background-color: #102532;
+  padding: 100px 20px;
+  background-color: var(--primary-bg);
   position: relative;
+  overflow: hidden;
+}
+
+/* Background gradient orb for the Trusted By section */
+.trusted-by::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 102, 0, 0.04) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .trusted-by::before {
@@ -11,141 +27,266 @@
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
+  max-width: 1200px;
   height: 1px;
   background: linear-gradient(
       90deg,
       rgba(255, 102, 0, 0) 0%,
-      rgba(255, 102, 0, 0.3) 50%,
+      rgba(255, 102, 0, 0.2) 50%,
       rgba(255, 102, 0, 0) 100%
   );
 }
 
 .trusted-by-container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .trusted-by h2 {
-  font-size: 42px;
-  color: #ff6600;
-  font-weight: 700;
-  margin-bottom: 15px;
+  font-family: var(--font-title);
+  font-size: 2.75rem;
+  color: var(--text-white);
+  font-weight: 800;
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
 }
 
 .trusted-by-subtitle {
-  font-size: 16px;
-  color: #6b7280;
-  max-width: 600px;
-  margin: 0 auto 50px;
-  line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  color: var(--text-gray);
+  max-width: 700px;
+  margin: 0 auto 60px;
+  line-height: 1.6;
 }
 
+/* Headings between grids */
+.logos-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.logos-section-title::before,
+.logos-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.3), transparent);
+  max-width: 200px;
+}
+
+.logos-section-title span {
+  font-family: var(--font-title);
+  font-size: 1.25rem;
+  color: var(--accent-orange);
+  font-weight: 700;
+  padding: 0 20px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.logos-section-title.secondary-title span {
+  color: var(--text-gray);
+  font-size: 1.1rem;
+}
+
+.logos-section-title.secondary-title::before,
+.logos-section-title.secondary-title::after {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* Grids Layout */
 .logos-grid {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 25px;
   margin: 0 auto;
-  max-width: 1200px;
+}
+
+.featured-grid {
+  margin-bottom: 70px;
+  max-width: 700px;
+}
+
+.standard-grid {
+  max-width: 1100px;
+  flex-wrap: wrap;
 }
 
 .logo-wrapper {
-  flex: 0 1 200px;
+  flex: 1 1 200px;
+  max-width: 240px;
   text-decoration: none;
 }
 
+.featured-wrapper {
+  flex: 1 1 300px;
+  max-width: 320px;
+}
+
+/* Logo Cards Styling */
 .logo-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
   padding: 25px;
-  aspect-ratio: 16/9;
+  height: 110px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .logo-card:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.05);
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
+/* Featured Logo Cards */
+.logo-card.featured-card {
+  background: rgba(255, 102, 0, 0.03);
+  border: 1px solid rgba(255, 102, 0, 0.2);
+  height: 160px;
+  flex-direction: column;
+  padding: 35px 25px 25px;
+  box-shadow: 0 4px 20px rgba(255, 102, 0, 0.05);
+}
+
+.logo-card.featured-card:hover {
+  background: rgba(255, 102, 0, 0.06);
+  border-color: var(--accent-orange);
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 102, 0, 0.15);
+}
+
+/* Card badges */
+.card-badge {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-orange);
+  color: var(--text-white);
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(255, 102, 0, 0.3);
+}
+
+.featured-tag {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-gray);
+  margin-top: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Logos Images */
 .client-logo {
   max-width: 100%;
-  height: auto;
+  max-height: 100%;
+  object-fit: contain;
   transition: all 0.3s ease;
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 .logo-card:hover .client-logo {
   opacity: 1;
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
 
-/* Estilos específicos para cada logo */
+.logo-card.featured-card .client-logo {
+  max-height: 55px;
+  opacity: 0.9;
+}
+
+.logo-card.featured-card:hover .client-logo {
+  opacity: 1;
+}
+
+/* Specific Logo sizing and filters */
 .corfo-logo {
-  width: 120px;
-  filter: none;
+  max-height: 45px;
 }
 
 .mi-semilla-negra-logo {
-  width: 140px;
+  max-height: 55px;
   filter: brightness(0) invert(1);
 }
 
 .spendshield-logo {
-  width: 140px;
+  max-height: 50px;
   filter: brightness(0) invert(1);
 }
 
 .matrona-naty-logo {
-  width: 100px;
-  filter: none;
+  max-height: 60px;
   border-radius: 50%;
 }
 
 .abogado-andrés-gonzález-logo {
-  width: 140px;
+  max-height: 48px;
   filter: brightness(0) invert(1);
 }
 
-/* Media Queries */
+.operia-logo {
+  max-height: 45px;
+}
+
+.scholar-flow-logo {
+  max-height: 50px;
+}
+
+/* Responsive adjustments */
 @media (max-width: 1200px) {
-  .logos-grid {
-      padding: 0 20px;
-  }
-  
-  .logo-wrapper {
-      flex: 0 1 180px;
+  .trusted-by-container {
+    padding: 0 20px;
   }
 }
 
 @media (max-width: 992px) {
   .logos-grid {
-      flex-wrap: wrap;
-      gap: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
   }
 }
 
 @media (max-width: 768px) {
   .trusted-by {
-      padding: 60px 15px;
+    padding: 80px 15px;
   }
 
   .trusted-by h2 {
-      font-size: 32px;
+    font-size: 2.25rem;
   }
 
   .logo-wrapper {
-      flex: 0 1 calc(50% - 10px);
+    flex: 1 1 calc(50% - 10px);
+    max-width: none;
+  }
+
+  .featured-wrapper {
+    flex: 1 1 100%;
+    max-width: none;
   }
 }
 
 @media (max-width: 480px) {
   .logo-wrapper {
-      flex: 0 1 100%;
+    flex: 1 1 100%;
   }
 }
