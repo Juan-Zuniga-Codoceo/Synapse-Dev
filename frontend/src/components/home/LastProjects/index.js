@@ -46,6 +46,7 @@ const LastProjects = () => {
             key={index}
             animation="fade-up"
             delay={200 + index * 100}
+            className={index === 0 ? "project-featured-wrapper" : ""}
           >
             <div className="project-item">
               <div className="project-image-container">

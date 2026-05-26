@@ -4,6 +4,71 @@ import Slider from 'react-slick';
 import Animation from '../../layout/Animation';
 import './styles.css';
 
+const AnimatedCounter = ({ target, duration = 2000 }) => {
+  const [count, setCount] = React.useState(0);
+  const elementRef = React.useRef(null);
+  const [hasStarted, setHasStarted] = React.useState(false);
+
+  // Parse numeric target and suffix
+  const numericMatch = target.match(/^(\d+)(.*)$/);
+  const targetVal = numericMatch ? parseInt(numericMatch[1], 10) : 0;
+  const suffix = numericMatch ? numericMatch[2] : "";
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasStarted(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentRef = elementRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (!hasStarted) return;
+
+    let start = 0;
+    const end = targetVal;
+    if (start === end) return;
+
+    const totalSteps = 45;
+    const stepTime = Math.max(Math.floor(duration / totalSteps), 18);
+    const increment = Math.ceil(end / totalSteps);
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(start);
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [hasStarted, targetVal, duration]);
+
+  return (
+    <span ref={elementRef}>
+      {count}
+      {suffix}
+    </span>
+  );
+};
+
 const StatisticsSection = () => {
     const stats = [
         {
@@ -88,7 +153,9 @@ const StatisticsSection = () => {
                         {stats.map((stat, index) => (
                             <div key={index} className="stat-item">
                                 {stat.icon}
-                                <h3 className="stat-number">{stat.number}</h3>
+                                <h3 className="stat-number">
+                                    <AnimatedCounter target={stat.number} />
+                                </h3>
                                 <p className="stat-label">{stat.label}</p>
                             </div>
                         ))}

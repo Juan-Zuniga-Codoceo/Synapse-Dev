@@ -77,6 +77,12 @@ const Navbar = () => {
           <div className="bar"></div>
         </div>
 
+        {/* Backdrop for mobile drawer */}
+        <div 
+          className={`main-drawer-backdrop ${menuOpen ? 'open' : ''}`} 
+          onClick={() => setMenuOpen(false)} 
+        />
+
         {/* Menú Móvil */}
         <div className={`main-menu-overlay ${menuOpen ? 'open' : ''}`}>
           <div className="main-close-menu-container">

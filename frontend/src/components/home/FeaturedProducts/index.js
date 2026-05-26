@@ -11,6 +11,8 @@ const FeaturedProducts = () => {
     {
       id: 'operia',
       name: 'Operia',
+      number: '01',
+      status: 'ACTIVO',
       tagline: 'Gestión operativa inteligente para equipos',
       description:
         'Plataforma SaaS que transforma la forma en que los equipos gestionan sus tareas y operaciones. Con ingesta de tareas por lenguaje natural e IA, tus equipos trabajan más rápido y con mayor claridad.',
@@ -25,6 +27,8 @@ const FeaturedProducts = () => {
     {
       id: 'scholar-flow',
       name: 'Scholar-flow',
+      number: '02',
+      status: 'ACTIVO',
       tagline: 'Sistema académico con IA para colegios',
       description:
         'Plataforma educativa que automatiza la planificación de horarios semanales y el procesamiento de licencias médicas usando Inteligencia Artificial (Gemini). Diseñada para directores académicos y jefes de UTP.',
@@ -56,6 +60,9 @@ const FeaturedProducts = () => {
         {products.map((product, index) => (
           <Animation key={product.id} animation="fade-up" delay={200 + index * 150}>
             <div className={`featured-product-card featured-product-card--${product.accentClass}`}>
+              {/* Decorative Number */}
+              <div className="featured-product-card__number">{product.number}</div>
+
               {/* Image */}
               <div className="featured-product-card__image-wrapper">
                 <LazyImage
@@ -69,6 +76,9 @@ const FeaturedProducts = () => {
               {/* Content */}
               <div className="featured-product-card__content">
                 <div className="featured-product-card__badges">
+                  <span className="featured-product-card__status">
+                    <span className="pulse-dot"></span> {product.status}
+                  </span>
                   {product.badges.map((b) => (
                     <span key={b} className="featured-product-card__badge">{b}</span>
                   ))}

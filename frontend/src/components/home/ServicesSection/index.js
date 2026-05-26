@@ -112,6 +112,9 @@ const ServicesSection = () => {
     }
   ];
 
+  const [activeTab, setActiveTab] = React.useState(0);
+  const activeService = services[activeTab];
+
   return (
     <section className="home-services">
       <div className="home-services__heading">
@@ -121,56 +124,70 @@ const ServicesSection = () => {
         </p>
       </div>
       
-      <div className="home-services__grid">
-        {services.map((service) => (
-          <div 
-            key={service.id} 
-            className={`home-services__item ${service.id === 2 ? 'featured' : ''}`}
-          >
-            <div className="home-services__content">
-              <div className="home-services__icon-wrapper">
-                <FontAwesomeIcon icon={service.icon} className="home-services__icon" />
-              </div>
-              <h3 className="home-services__item-title">{service.title}</h3>
-              <p className="home-services__description">{service.description}</p>
-              
-              <div className="home-services__features">
-                {service.features.map((feature, index) => (
-                  <div key={index} className="home-services__feature">
-                    <FontAwesomeIcon icon={faCheck} className="home-services__check-icon" />
-                    <span>{feature}</span>
-                  </div>
-                ))}
-              </div>
+      <div className="home-services__container">
+        {/* Left Column: Interactive Active Service Preview */}
+        <div className="home-services__preview">
+          <div key={activeService.id} className="home-services__preview-card animate-fade-in-up">
+            <div className="home-services__preview-icon-wrapper">
+              <FontAwesomeIcon icon={activeService.icon} className="home-services__preview-icon" />
+            </div>
+            <h3 className="home-services__preview-title">{activeService.title}</h3>
+            <p className="home-services__preview-description">{activeService.description}</p>
+            
+            <div className="home-services__preview-features">
+              {activeService.features.map((feature, index) => (
+                <div key={index} className="home-services__preview-feature">
+                  <FontAwesomeIcon icon={faCheck} className="home-services__preview-check" />
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </div>
 
-              {service.id === 2 && service.pricing && (
-                <div className="pricing-info">
-                  <div className="price">{service.pricing.amount}</div>
-                  <div className="price-description">{service.pricing.description}</div>
-                </div>
-              )}
+            {activeService.id === 2 && activeService.pricing && (
+              <div className="home-services__preview-pricing">
+                <div className="price">{activeService.pricing.amount}</div>
+                <div className="price-description">{activeService.pricing.description}</div>
+              </div>
+            )}
 
-              <div className="home-services__stats">
-                <div className="home-services__stat">
-                  <FontAwesomeIcon icon={faStar} className="home-services__stat-icon" />
-                  <span>{Object.values(service.stats)[0]}</span>
-                </div>
-                <div className="home-services__stat">
-                  <FontAwesomeIcon icon={faClock} className="home-services__stat-icon" />
-                  <span>{Object.values(service.stats)[1]}</span>
-                </div>
+            <div className="home-services__preview-stats">
+              <div className="home-services__preview-stat">
+                <FontAwesomeIcon icon={faStar} className="home-services__preview-stat-icon" />
+                <span>{Object.values(activeService.stats)[0]}</span>
+              </div>
+              <div className="home-services__preview-stat">
+                <FontAwesomeIcon icon={faClock} className="home-services__preview-stat-icon" />
+                <span>{Object.values(activeService.stats)[1]}</span>
               </div>
             </div>
 
             <Link 
               to="/services" 
-              className="home-services__button"
-              aria-label={`Ver más sobre ${service.title}`}
+              className="home-services__preview-button"
+              aria-label={`Ver más sobre ${activeService.title}`}
             >
-              {service.id === 2 ? 'Crear Mi Tienda Online' : 'Ver Más Detalles'}
+              {activeService.id === 2 ? 'Crear Mi Tienda Online' : 'Ver Más Detalles'}
             </Link>
           </div>
-        ))}
+        </div>
+
+        {/* Right Column: Tab List */}
+        <div className="home-services__tabs">
+          {services.map((service, index) => (
+            <button
+              key={service.id}
+              className={`home-services__tab-item ${index === activeTab ? 'active' : ''}`}
+              onClick={() => setActiveTab(index)}
+              aria-label={`Seleccionar servicio: ${service.title}`}
+            >
+              <div className="home-services__tab-left">
+                <FontAwesomeIcon icon={service.icon} className="home-services__tab-icon" />
+                <span className="home-services__tab-title">{service.title}</span>
+              </div>
+              <span className="home-services__tab-arrow">→</span>
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
