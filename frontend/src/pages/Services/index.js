@@ -322,44 +322,44 @@ const services = [
 const ServiceCard = ({ service, onSelect }) => {
   const IconComponent = service.icon || FaGlobe;
   return (
-    <div className={`service-item ${service.featured ? "featured" : ""} service-item--${service.id}`}>
-      <div className="service-icon-wrapper">
-        <IconComponent className="service-card-icon" />
+    <div className={`services-page-card ${service.featured ? "featured" : ""} services-page-card--${service.id}`}>
+      <div className="services-icon-wrapper">
+        <IconComponent className="services-card-icon" />
       </div>
       <h3>{service.title}</h3>
       <p>{service.description}</p>
 
-      <ul className="features-list">
+      <ul className="services-features-list">
         {service.features.map((feature, index) => (
           <li key={index}>
-            <FaCheck className="feature-icon" />
+            <FaCheck className="services-feature-icon" />
             <span>{feature}</span>
           </li>
         ))}
       </ul>
 
-      <div className="service-stats">
+      <div className="services-card-stats">
         <span>{service.stats.clients}</span>
         <span>{service.stats.satisfaction}</span>
       </div>
 
-      <p className="price">{service.price}</p>
-      <button className="details-button" onClick={() => onSelect(service)}>
+      <p className="services-card-price">{service.price}</p>
+      <button className="services-details-button" onClick={() => onSelect(service)}>
         Ver Detalles <FaArrowRight />
       </button>
     </div>
   );
 };
 
-const PlanCard = ({ plan }) => (
-  <div className={`plan-card ${plan.recommended ? "recommended" : ""}`}>
-    {plan.recommended && <span className="recommended-badge">Recomendado</span>}
+const PlanCard = ({ plan, serviceId }) => (
+  <div className={`services-plan-card ${plan.recommended ? "recommended" : ""} services-plan-card--${serviceId}`}>
+    {plan.recommended && <span className="services-recommended-badge">Recomendado</span>}
     <h3>{plan.title}</h3>
-    <p className="plan-price">{plan.price}</p>
-    <ul className="plan-features">
+    <p className="services-plan-price">{plan.price}</p>
+    <ul className="services-plan-features">
       {plan.features.map((feature, index) => (
         <li key={index}>
-          <FaCheck className="feature-icon" />
+          <FaCheck className="services-plan-feature-icon" />
           <span>{feature}</span>
         </li>
       ))}
@@ -394,20 +394,20 @@ const Services = () => {
   return (
     <div className="services-page">
       <header className="services-hero">
-        <div className="hero-background">
+        <div className="services-hero-background">
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="hero-video-bg"
+            className="services-hero-video-bg"
           >
             <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
           </video>
         </div>
-        <div className="hero-overlay"></div>
+        <div className="services-hero-overlay"></div>
         <Animation animation="fade-up">
-          <div className="hero-content">
+          <div className="services-hero-content">
             <h1>
               <span className="gradient-text-anim">Impulsa tu Negocio Online</span>
               <span>Con Soluciones Profesionales</span>
@@ -418,7 +418,7 @@ const Services = () => {
             </p>
           </div>
         </Animation>
-        <div className="hero-scroll-indicator" onClick={handleScrollDown}>
+        <div className="services-hero-scroll-indicator" onClick={handleScrollDown}>
           <div className="mouse">
             <div className="wheel"></div>
           </div>
@@ -439,24 +439,24 @@ const Services = () => {
       </div>
 
       {selectedService && (
-        <div className="modal-overlay" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
+        <div className="services-modal-overlay" onClick={closeModal}>
+          <div className="services-modal-content" onClick={(e) => e.stopPropagation()}>
+            <div className="services-modal-header">
               <h2>{selectedService.title}</h2>
-              <button className="close-button" onClick={closeModal}>
+              <button className="services-close-button" onClick={closeModal}>
                 <FaTimes />
               </button>
             </div>
 
-            <div className="plans-grid">
+            <div className="services-plans-grid">
               {selectedService.plans.map((plan, index) => (
-                <PlanCard key={index} plan={plan} />
+                <PlanCard key={index} plan={plan} serviceId={selectedService.id} />
               ))}
             </div>
 
-            <p className="price-note">*Los precios no incluyen IVA</p>
+            <p className="services-price-note">*Los precios no incluyen IVA</p>
 
-            <Link to="/contact" className="contact-button" onClick={closeModal}>
+            <Link to="/contact" className="services-contact-button" onClick={closeModal}>
               Solicitar Cotización
             </Link>
           </div>

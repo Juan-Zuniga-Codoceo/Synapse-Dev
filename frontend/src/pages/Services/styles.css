@@ -1,15 +1,15 @@
 /* Services Page Styles */
 .services-page {
   padding-top: 0;
-  background-color: #0a1820; /* Fondo oscuro premium para integrarse con la web */
+  background-color: #0a1820; /* Fondo oscuro premium */
   min-height: 100vh;
   color: white;
   overflow-x: hidden;
   position: relative;
 }
 
-/* Hero Section with Video Background */
-.services-hero {
+/* Hero Section with Video Background (Fully Isolated) */
+.services-page .services-hero {
   position: relative;
   height: 80vh;
   min-height: 500px;
@@ -18,9 +18,10 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background-color: #0a1820;
 }
 
-.hero-background {
+.services-page .services-hero-background {
   position: absolute;
   top: 0;
   left: 0;
@@ -29,14 +30,46 @@
   z-index: 0;
 }
 
-.hero-video-bg {
+/* Video opacity and filter set properly to avoid collisions */
+.services-page .services-hero-video-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.65) saturate(1.1);
+  opacity: 0.65 !important;
+  filter: brightness(0.6) saturate(1.1);
+  display: block;
 }
 
-.hero-overlay {
+/* Tech Grid Overlay inside Services Hero */
+.services-page .services-hero-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  z-index: 1;
+}
+
+/* Laser scan animation line */
+.services-page .services-hero-background::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.25), transparent);
+  animation: scan-line 6s linear infinite;
+  z-index: 2;
+}
+
+.services-page .services-hero-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -44,14 +77,14 @@
   height: 100%;
   background: linear-gradient(
     to bottom,
-    rgba(10, 24, 32, 0.4) 0%,
-    rgba(10, 24, 32, 0.9) 80%,
+    rgba(10, 24, 32, 0.3) 0%,
+    rgba(10, 24, 32, 0.85) 80%,
     #0a1820 100%
   );
   z-index: 1;
 }
 
-.hero-content {
+.services-page .services-hero-content {
   text-align: center;
   position: relative;
   z-index: 2;
@@ -60,20 +93,34 @@
   margin-top: 60px;
 }
 
-.hero-content h1 {
+/* Contrast title set explicitly to white */
+.services-page .services-hero-content h1 {
   font-family: var(--font-title);
   font-size: 3.5rem;
   font-weight: 800;
   line-height: 1.25;
   margin-bottom: 25px;
+  color: #ffffff !important;
   letter-spacing: -0.02em;
 }
 
-.hero-content h1 span {
+.services-page .services-hero-content h1 span {
+  display: block;
+  color: #ffffff !important;
+}
+
+/* Gradient animated text rule */
+.services-page .services-hero-content h1 span.gradient-text-anim {
+  background: linear-gradient(90deg, #ff6600, #a78bfa, #ff6600);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s linear infinite;
   display: block;
 }
 
-.hero-content p {
+.services-page .services-hero-content p {
   font-family: var(--font-body);
   font-size: 1.25rem;
   color: #cbd5e1;
@@ -83,8 +130,8 @@
   letter-spacing: -0.01em;
 }
 
-/* Scroll Indicator */
-.hero-scroll-indicator {
+/* Hero Scroll Indicator */
+.services-page .services-hero-scroll-indicator {
   position: absolute;
   bottom: 30px;
   left: 50%;
@@ -97,7 +144,7 @@
   gap: 8px;
 }
 
-.hero-scroll-indicator .mouse {
+.services-page .services-hero-scroll-indicator .mouse {
   width: 26px;
   height: 42px;
   border: 2px solid rgba(255, 255, 255, 0.6);
@@ -107,7 +154,7 @@
   padding-top: 6px;
 }
 
-.hero-scroll-indicator .mouse .wheel {
+.services-page .services-hero-scroll-indicator .mouse .wheel {
   width: 4px;
   height: 8px;
   background-color: #ff6600;
@@ -115,13 +162,13 @@
   animation: scroll-wheel 1.6s infinite ease-in-out;
 }
 
-.hero-scroll-indicator .arrows {
+.services-page .services-hero-scroll-indicator .arrows {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.hero-scroll-indicator .arrow-down {
+.services-page .services-hero-scroll-indicator .arrow-down {
   display: block;
   width: 10px;
   height: 10px;
@@ -131,37 +178,7 @@
   animation: scroll-arrow 1.6s infinite ease-in-out;
 }
 
-@keyframes scroll-wheel {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(8px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes scroll-arrow {
-  0% {
-    opacity: 0.3;
-    transform: rotate(45deg) translate(-2px, -2px);
-  }
-  50% {
-    opacity: 1;
-    transform: rotate(45deg) translate(0, 0);
-  }
-  100% {
-    opacity: 0.3;
-    transform: rotate(45deg) translate(-2px, -2px);
-  }
-}
-
-/* Services Grids and Wrapper */
+/* Grid Wrapper & Background decoration bubbles */
 .services-content-wrapper {
   padding: 80px 20px;
   background: #0a1820;
@@ -169,7 +186,6 @@
   z-index: 1;
 }
 
-/* Background radial gradient bubbles */
 .services-content-wrapper::before {
   content: '';
   position: absolute;
@@ -192,6 +208,7 @@
   pointer-events: none;
 }
 
+/* Services grid structure */
 .services-content {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -201,8 +218,15 @@
   align-items: stretch;
 }
 
-/* Glassmorphic Service Card Item */
-.service-item {
+/* STRETCH grid cells: ensures Animation containers stretch */
+.services-content > div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glassmorphic card styling (strictly prefixed) */
+.services-page-card {
   background: rgba(255, 255, 255, 0.015);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px;
@@ -213,46 +237,47 @@
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  height: 100%;
+  flex: 1; /* Stretch properly inside Animation wrapper */
+  height: auto;
 }
 
-.service-item:hover {
+.services-page-card:hover {
   transform: translateY(-8px);
   background: rgba(255, 255, 255, 0.03);
 }
 
-/* Dynamic glowing border and overlay styles for different service types */
-.service-item--web:hover {
+/* Dynamic neon glow hover styling for cards */
+.services-page-card--web:hover {
   border-color: #ff6600;
   box-shadow: 0 15px 35px rgba(255, 102, 0, 0.12);
 }
-.service-item--landing:hover {
+.services-page-card--landing:hover {
   border-color: #ec4899;
   box-shadow: 0 15px 35px rgba(236, 72, 153, 0.12);
 }
-.service-item--shopify:hover {
+.services-page-card--shopify:hover {
   border-color: #10b981;
   box-shadow: 0 15px 35px rgba(16, 185, 129, 0.12);
 }
-.service-item--ecommerce:hover {
+.services-page-card--ecommerce:hover {
   border-color: #06b6d4;
   box-shadow: 0 15px 35px rgba(6, 182, 212, 0.12);
 }
-.service-item--maintenance:hover {
+.services-page-card--maintenance:hover {
   border-color: #f59e0b;
   box-shadow: 0 15px 35px rgba(245, 158, 11, 0.12);
 }
-.service-item--bots-ia:hover {
+.services-page-card--bots-ia:hover {
   border-color: #8b5cf6;
   box-shadow: 0 15px 35px rgba(139, 92, 246, 0.12);
 }
-.service-item--chat-ia:hover {
+.services-page-card--chat-ia:hover {
   border-color: #14b8a6;
   box-shadow: 0 15px 35px rgba(20, 184, 166, 0.12);
 }
 
-/* Service Card Icon Badges */
-.service-icon-wrapper {
+/* Circular Icon Badge Wrapper */
+.services-icon-wrapper {
   width: 55px;
   height: 55px;
   border-radius: 12px;
@@ -265,30 +290,30 @@
   transition: all 0.4s ease;
 }
 
-.service-card-icon {
+.services-card-icon {
   font-size: 1.5rem;
   transition: transform 0.4s ease;
 }
 
 /* Category colors for icons */
-.service-item--web .service-card-icon { color: #ff6600; }
-.service-item--landing .service-card-icon { color: #ec4899; }
-.service-item--shopify .service-card-icon { color: #10b981; }
-.service-item--ecommerce .service-card-icon { color: #06b6d4; }
-.service-item--maintenance .service-card-icon { color: #f59e0b; }
-.service-item--bots-ia .service-card-icon { color: #8b5cf6; }
-.service-item--chat-ia .service-card-icon { color: #14b8a6; }
+.services-page-card--web .services-card-icon { color: #ff6600; }
+.services-page-card--landing .services-card-icon { color: #ec4899; }
+.services-page-card--shopify .services-card-icon { color: #10b981; }
+.services-page-card--ecommerce .services-card-icon { color: #06b6d4; }
+.services-page-card--maintenance .services-card-icon { color: #f59e0b; }
+.services-page-card--bots-ia .services-card-icon { color: #8b5cf6; }
+.services-page-card--chat-ia .services-card-icon { color: #14b8a6; }
 
-.service-item:hover .service-icon-wrapper {
+.services-page-card:hover .services-icon-wrapper {
   transform: scale(1.1);
 }
 
-.service-item:hover .service-card-icon {
+.services-page-card:hover .services-card-icon {
   transform: scale(1.05);
 }
 
-/* Card titles and texts */
-.service-item h3 {
+/* Typography styles */
+.services-page-card h3 {
   font-family: var(--font-title);
   color: white;
   font-size: 1.35rem;
@@ -297,7 +322,7 @@
   letter-spacing: -0.01em;
 }
 
-.service-item p {
+.services-page-card p {
   font-family: var(--font-body);
   color: #8b95a1;
   font-size: 0.95rem;
@@ -305,7 +330,7 @@
   margin: 0 0 25px 0;
 }
 
-.features-list {
+.services-features-list {
   list-style: none;
   padding: 0;
   margin: 0 0 25px 0;
@@ -314,7 +339,7 @@
   gap: 12px;
 }
 
-.features-list li {
+.services-features-list li {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -323,22 +348,22 @@
   line-height: 1.4;
 }
 
-/* Category colors for checks */
-.service-item--web .feature-icon { color: #ff6600; }
-.service-item--landing .feature-icon { color: #ec4899; }
-.service-item--shopify .feature-icon { color: #10b981; }
-.service-item--ecommerce .feature-icon { color: #06b6d4; }
-.service-item--maintenance .feature-icon { color: #f59e0b; }
-.service-item--bots-ia .feature-icon { color: #8b5cf6; }
-.service-item--chat-ia .feature-icon { color: #14b8a6; }
+/* Category colors for features list checks */
+.services-page-card--web .services-feature-icon { color: #ff6600; }
+.services-page-card--landing .services-feature-icon { color: #ec4899; }
+.services-page-card--shopify .services-feature-icon { color: #10b981; }
+.services-page-card--ecommerce .services-feature-icon { color: #06b6d4; }
+.services-page-card--maintenance .services-feature-icon { color: #f59e0b; }
+.services-page-card--bots-ia .services-feature-icon { color: #8b5cf6; }
+.services-page-card--chat-ia .services-feature-icon { color: #14b8a6; }
 
-.feature-icon {
+.services-feature-icon {
   flex-shrink: 0;
   font-size: 11px;
 }
 
-/* Service Stats Box */
-.service-stats {
+/* Stats panel */
+.services-card-stats {
   display: flex;
   justify-content: space-between;
   padding: 16px 0;
@@ -350,7 +375,7 @@
   font-weight: 500;
 }
 
-.price {
+.services-card-price {
   color: white;
   font-size: 1.15rem;
   font-weight: 700;
@@ -360,8 +385,8 @@
   letter-spacing: -0.01em;
 }
 
-/* Details button */
-.details-button {
+/* Card details button */
+.services-details-button {
   background: transparent;
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -380,53 +405,53 @@
   margin-top: auto;
 }
 
-.details-button svg {
+.services-details-button svg {
   transition: transform 0.3s ease;
 }
 
-.details-button:hover svg {
+.services-details-button:hover svg {
   transform: translateX(4px);
 }
 
-/* Dynamic colors for details buttons on hover */
-.service-item--web .details-button:hover {
+/* Dynamic details button colors on hover */
+.services-page-card--web .services-details-button:hover {
   background: #ff6600;
   border-color: #ff6600;
   box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
 }
-.service-item--landing .details-button:hover {
+.services-page-card--landing .services-details-button:hover {
   background: #ec4899;
   border-color: #ec4899;
   box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
 }
-.service-item--shopify .details-button:hover {
+.services-page-card--shopify .services-details-button:hover {
   background: #10b981;
   border-color: #10b981;
   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
-.service-item--ecommerce .details-button:hover {
+.services-page-card--ecommerce .services-details-button:hover {
   background: #06b6d4;
   border-color: #06b6d4;
   box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
 }
-.service-item--maintenance .details-button:hover {
+.services-page-card--maintenance .services-details-button:hover {
   background: #f59e0b;
   border-color: #f59e0b;
   box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
 }
-.service-item--bots-ia .details-button:hover {
+.services-page-card--bots-ia .services-details-button:hover {
   background: #8b5cf6;
   border-color: #8b5cf6;
   box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
-.service-item--chat-ia .details-button:hover {
+.services-page-card--chat-ia .services-details-button:hover {
   background: #14b8a6;
   border-color: #14b8a6;
   box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
 }
 
-/* Premium Modal Styles */
-.modal-overlay {
+/* Plans Modal Design Updates */
+.services-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -442,8 +467,8 @@
   padding: 20px;
 }
 
-.modal-content {
-  background: #0d1f2d; /* Color oscuro profundo */
+.services-modal-content {
+  background: #0d1f2d;
   border-radius: 24px;
   padding: 40px;
   width: 100%;
@@ -451,11 +476,11 @@
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  border: 1px solid rgba(255, 102, 0, 0.15);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 102, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
 }
 
-.modal-header {
+.services-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -464,7 +489,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.modal-header h2 {
+.services-modal-header h2 {
   font-family: var(--font-title);
   color: white;
   font-size: 1.85rem;
@@ -472,7 +497,7 @@
   margin: 0;
 }
 
-.close-button {
+.services-close-button {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 50%;
@@ -486,22 +511,22 @@
   transition: all 0.3s ease;
 }
 
-.close-button:hover {
+.services-close-button:hover {
   color: white;
   border-color: #ff6600;
   background: rgba(255, 102, 0, 0.1);
   transform: rotate(90deg);
 }
 
-.plans-grid {
+.services-plans-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 25px;
   margin: 30px 0;
 }
 
-/* Glassmorphic Plan Card */
-.plan-card {
+/* Glassmorphic Plan Card (prefixed & themed) */
+.services-plan-card {
   background: rgba(255, 255, 255, 0.015);
   padding: 35px 30px;
   border-radius: 20px;
@@ -512,21 +537,55 @@
   transition: all 0.4s ease;
 }
 
-.plan-card:hover {
+.services-plan-card:hover {
   transform: translateY(-4px);
   background: rgba(255, 255, 255, 0.025);
 }
 
-.plan-card.recommended {
+/* Plan Card Hover border and shadow dynamic highlights */
+.services-plan-card--web:hover { border-color: #ff6600; }
+.services-plan-card--landing:hover { border-color: #ec4899; }
+.services-plan-card--shopify:hover { border-color: #10b981; }
+.services-plan-card--ecommerce:hover { border-color: #06b6d4; }
+.services-plan-card--maintenance:hover { border-color: #f59e0b; }
+.services-plan-card--bots-ia:hover { border-color: #8b5cf6; }
+.services-plan-card--chat-ia:hover { border-color: #14b8a6; }
+
+/* Theming Recommended cards with specific glowing shadows */
+.services-plan-card.recommended.services-plan-card--web {
   border-color: #ff6600;
-  background: rgba(255, 102, 0, 0.02);
+  box-shadow: 0 0 25px rgba(255, 102, 0, 0.08);
+}
+.services-plan-card.recommended.services-plan-card--landing {
+  border-color: #ec4899;
+  box-shadow: 0 0 25px rgba(236, 72, 153, 0.08);
+}
+.services-plan-card.recommended.services-plan-card--shopify {
+  border-color: #10b981;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.08);
+}
+.services-plan-card.recommended.services-plan-card--ecommerce {
+  border-color: #06b6d4;
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.08);
+}
+.services-plan-card.recommended.services-plan-card--maintenance {
+  border-color: #f59e0b;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.08);
+}
+.services-plan-card.recommended.services-plan-card--bots-ia {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.08);
+}
+.services-plan-card.recommended.services-plan-card--chat-ia {
+  border-color: #14b8a6;
+  box-shadow: 0 0 25px rgba(20, 184, 166, 0.08);
 }
 
-.recommended-badge {
+/* Theming Recommended Badges */
+.services-recommended-badge {
   position: absolute;
   top: -14px;
   right: 25px;
-  background: #ff6600;
   color: white;
   padding: 6px 16px;
   border-radius: 30px;
@@ -534,10 +593,38 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.35);
 }
 
-.plan-card h3 {
+.services-plan-card--web .services-recommended-badge {
+  background: #ff6600;
+  box-shadow: 0 4px 12px rgba(255, 102, 0, 0.35);
+}
+.services-plan-card--landing .services-recommended-badge {
+  background: #ec4899;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.35);
+}
+.services-plan-card--shopify .services-recommended-badge {
+  background: #10b981;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+}
+.services-plan-card--ecommerce .services-recommended-badge {
+  background: #06b6d4;
+  box-shadow: 0 4px 12px rgba(6, 182, 212, 0.35);
+}
+.services-plan-card--maintenance .services-recommended-badge {
+  background: #f59e0b;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+}
+.services-plan-card--bots-ia .services-recommended-badge {
+  background: #8b5cf6;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35);
+}
+.services-plan-card--chat-ia .services-recommended-badge {
+  background: #14b8a6;
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.35);
+}
+
+.services-plan-card h3 {
   font-family: var(--font-title);
   color: white;
   font-size: 1.25rem;
@@ -545,18 +632,25 @@
   margin: 0 0 15px 0;
 }
 
-.plan-price {
-  color: #ff6600;
+.services-plan-price {
   font-size: 2rem;
   font-weight: 800;
   text-align: center;
   margin: 20px 0;
   font-family: var(--font-title);
-  text-shadow: 0 2px 8px rgba(255, 102, 0, 0.15);
   letter-spacing: -0.01em;
 }
 
-.plan-features {
+/* Plan price colors by category */
+.services-plan-card--web .services-plan-price { color: #ff6600; text-shadow: 0 2px 8px rgba(255, 102, 0, 0.15); }
+.services-plan-card--landing .services-plan-price { color: #ec4899; text-shadow: 0 2px 8px rgba(236, 72, 153, 0.15); }
+.services-plan-card--shopify .services-plan-price { color: #10b981; text-shadow: 0 2px 8px rgba(16, 185, 129, 0.15); }
+.services-plan-card--ecommerce .services-plan-price { color: #06b6d4; text-shadow: 0 2px 8px rgba(6, 182, 212, 0.15); }
+.services-plan-card--maintenance .services-plan-price { color: #f59e0b; text-shadow: 0 2px 8px rgba(245, 158, 11, 0.15); }
+.services-plan-card--bots-ia .services-plan-price { color: #8b5cf6; text-shadow: 0 2px 8px rgba(139, 92, 246, 0.15); }
+.services-plan-card--chat-ia .services-plan-price { color: #14b8a6; text-shadow: 0 2px 8px rgba(20, 184, 166, 0.15); }
+
+.services-plan-features {
   list-style: none;
   padding: 0;
   margin: 20px 0;
@@ -565,7 +659,7 @@
   gap: 12px;
 }
 
-.plan-features li {
+.services-plan-features li {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -573,18 +667,23 @@
   font-size: 0.9rem;
 }
 
-.plan-features .feature-icon {
-  color: #ff6600;
-}
+/* Feature checklist check colors by category */
+.services-plan-card--web .services-plan-feature-icon { color: #ff6600; }
+.services-plan-card--landing .services-plan-feature-icon { color: #ec4899; }
+.services-plan-card--shopify .services-plan-feature-icon { color: #10b981; }
+.services-plan-card--ecommerce .services-plan-feature-icon { color: #06b6d4; }
+.services-plan-card--maintenance .services-plan-feature-icon { color: #f59e0b; }
+.services-plan-card--bots-ia .services-plan-feature-icon { color: #8b5cf6; }
+.services-plan-card--chat-ia .services-plan-feature-icon { color: #14b8a6; }
 
-.price-note {
+.services-price-note {
   text-align: center;
   color: #8b95a1;
   font-size: 0.85rem;
   margin: 20px 0;
 }
 
-.contact-button {
+.services-contact-button {
   display: block;
   width: 100%;
   background: #ff6600;
@@ -603,30 +702,30 @@
   box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
 }
 
-.contact-button:hover {
+.services-contact-button:hover {
   background: #ff7c24;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 102, 0, 0.45);
 }
 
-/* Responsive Styles */
+/* Responsive styles */
 @media (max-width: 1200px) {
   .services-content {
     grid-template-columns: repeat(2, 1fr);
     max-width: 800px;
   }
 
-  .hero-content h1 {
+  .services-page .services-hero-content h1 {
     font-size: 3rem;
   }
 }
 
 @media (max-width: 768px) {
-  .services-hero {
+  .services-page .services-hero {
     height: 70vh;
   }
 
-  .hero-content h1 {
+  .services-page .services-hero-content h1 {
     font-size: 2.5rem;
   }
 
@@ -636,26 +735,26 @@
     gap: 25px;
   }
 
-  .plans-grid {
+  .services-plans-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
 
-  .modal-content {
+  .services-modal-content {
     padding: 30px 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .services-hero {
+  .services-page .services-hero {
     height: 60vh;
   }
 
-  .hero-content h1 {
+  .services-page .services-hero-content h1 {
     font-size: 2rem;
   }
 
-  .hero-content p {
+  .services-page .services-hero-content p {
     font-size: 1.05rem;
   }
 
@@ -663,17 +762,17 @@
     padding: 50px 15px;
   }
 
-  .service-item {
+  .services-page-card {
     padding: 25px 20px;
   }
 
-  .service-stats {
+  .services-card-stats {
     flex-direction: column;
     gap: 8px;
     align-items: flex-start;
   }
 
-  .modal-header h2 {
+  .services-modal-header h2 {
     font-size: 1.4rem;
   }
 }
