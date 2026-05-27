@@ -99,7 +99,7 @@
   text-align: center;
 }
 
-.blog-page .blog-title {
+.blog-page .blog-hero-title {
   font-family: var(--font-title);
   font-size: 3.5rem;
   font-weight: 800;
@@ -108,7 +108,7 @@
   letter-spacing: -0.02em;
 }
 
-.blog-page .blog-title span.gradient-text-anim {
+.blog-page .blog-hero-title span.gradient-text-anim {
   background: linear-gradient(90deg, #ff6600, #a78bfa, #ff6600);
   background-size: 200% auto;
   -webkit-background-clip: text;

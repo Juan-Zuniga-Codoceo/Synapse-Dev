@@ -44,7 +44,7 @@ const BlogPage = () => {
         <div className="blog-hero-content-wrapper-relative">
           <Animation animation="fade-up">
             <div className="hero-content">
-              <h1 className="blog-title">
+              <h1 className="blog-hero-title">
                 <span className="gradient-text-anim">Blog y Recursos</span>
               </h1>
               <p className="blog-description">
