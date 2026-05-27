@@ -1,17 +1,28 @@
 // src/pages/Services/index.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaCheck, FaArrowRight, FaTimes, FaRobot, FaComments } from "react-icons/fa";
+import { 
+  FaCheck, 
+  FaArrowRight, 
+  FaTimes, 
+  FaRobot, 
+  FaComments, 
+  FaGlobe, 
+  FaRocket, 
+  FaShoppingCart, 
+  FaStore, 
+  FaTools 
+} from "react-icons/fa";
 import Animation from "../../components/layout/Animation";
 import TechnologiesSection from "../../components/home/TechnologiesSection";
 import ContactSection from "../../components/shared/ContactSection";
-import heroImage from "../../assets/images/heroes/portafolio.webp";
 import "./styles.css";
 
 const services = [
   {
     id: "web",
     title: "Páginas Web Profesionales",
+    icon: FaGlobe,
     description:
       "Creamos páginas web que convierten visitantes en clientes. Diseño profesional optimizado para resultados.",
     features: [
@@ -52,6 +63,7 @@ const services = [
   {
     id: "landing",
     title: "Landing Page",
+    icon: FaRocket,
     description:
       "Diseño y desarrollo de páginas de aterrizaje optimizadas para convertir visitas en clientes potenciales.",
     features: [
@@ -102,6 +114,7 @@ const services = [
   {
     id: "shopify",
     title: "Tiendas Shopify",
+    icon: FaShoppingCart,
     description:
       "Desarrollo de tiendas online profesionales con Shopify. La solución perfecta para vender en internet.",
     features: [
@@ -143,6 +156,7 @@ const services = [
   {
     id: "ecommerce",
     title: "E-commerce Personalizado",
+    icon: FaStore,
     description:
       "Tiendas online personalizadas y escalables. Soluciones completas para vender más en internet.",
     features: [
@@ -183,6 +197,7 @@ const services = [
   {
     id: "maintenance",
     title: "Mantención Web",
+    icon: FaTools,
     description:
       "Mantén tu sitio web actualizado y seguro. Soporte técnico profesional y respaldo permanente.",
     features: [
@@ -304,31 +319,37 @@ const services = [
   },
 ];
 
-const ServiceCard = ({ service, onSelect }) => (
-  <div className={`service-item ${service.featured ? "featured" : ""}`}>
-    <h3>{service.title}</h3>
-    <p>{service.description}</p>
+const ServiceCard = ({ service, onSelect }) => {
+  const IconComponent = service.icon || FaGlobe;
+  return (
+    <div className={`service-item ${service.featured ? "featured" : ""} service-item--${service.id}`}>
+      <div className="service-icon-wrapper">
+        <IconComponent className="service-card-icon" />
+      </div>
+      <h3>{service.title}</h3>
+      <p>{service.description}</p>
 
-    <ul className="features-list">
-      {service.features.map((feature, index) => (
-        <li key={index}>
-          <FaCheck className="feature-icon" />
-          <span>{feature}</span>
-        </li>
-      ))}
-    </ul>
+      <ul className="features-list">
+        {service.features.map((feature, index) => (
+          <li key={index}>
+            <FaCheck className="feature-icon" />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
 
-    <div className="service-stats">
-      <span>{service.stats.clients}</span>
-      <span>{service.stats.satisfaction}</span>
+      <div className="service-stats">
+        <span>{service.stats.clients}</span>
+        <span>{service.stats.satisfaction}</span>
+      </div>
+
+      <p className="price">{service.price}</p>
+      <button className="details-button" onClick={() => onSelect(service)}>
+        Ver Detalles <FaArrowRight />
+      </button>
     </div>
-
-    <p className="price">{service.price}</p>
-    <button className="details-button" onClick={() => onSelect(service)}>
-      Ver Detalles <FaArrowRight />
-    </button>
-  </div>
-);
+  );
+};
 
 const PlanCard = ({ plan }) => (
   <div className={`plan-card ${plan.recommended ? "recommended" : ""}`}>
@@ -359,44 +380,62 @@ const Services = () => {
     document.body.style.overflow = "hidden";
   };
 
+  const handleScrollDown = () => {
+    const contentSection = document.querySelector(".services-content");
+    if (contentSection) {
+      contentSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   useEffect(() => {
     document.title = "Servicios de Desarrollo Web | Synapse Dev";
   }, []);
 
   return (
     <div className="services-page">
-      <header
-        className="services-hero"
-        style={{
-          backgroundImage: `linear-gradient(
-           to bottom,
-           rgba(16, 37, 50, 0.95),
-           rgba(16, 37, 50, 0.85)
-         ), url(${heroImage})`,
-        }}
-      >
+      <header className="services-hero">
+        <div className="hero-background">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="hero-video-bg"
+          >
+            <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div className="hero-overlay"></div>
         <Animation animation="fade-up">
           <div className="hero-content">
             <h1>
-              <span>Impulsa tu Negocio Online</span>
-              <span>Con una Página Web</span>
-              <span>Profesional</span>
+              <span className="gradient-text-anim">Impulsa tu Negocio Online</span>
+              <span>Con Soluciones Profesionales</span>
             </h1>
             <p>
-              Creamos sitios web que convierten visitantes en clientes.
-              Especialistas en desarrollo web para emprendedores y pequeños
-              negocios en Chile.
+              Creamos sitios web de alto impacto, plataformas a medida y asistentes
+              virtuales con Inteligencia Artificial optimizados para convertir visitantes en clientes reales.
             </p>
           </div>
         </Animation>
+        <div className="hero-scroll-indicator" onClick={handleScrollDown}>
+          <div className="mouse">
+            <div className="wheel"></div>
+          </div>
+          <div className="arrows">
+            <span className="arrow-down"></span>
+          </div>
+        </div>
       </header>
 
-      <div className="services-content">
-        {services.map((service) => (
-          <Animation key={service.id} animation="fade-up">
-            <ServiceCard service={service} onSelect={openModal} />
-          </Animation>
-        ))}
+      <div className="services-content-wrapper">
+        <div className="services-content">
+          {services.map((service) => (
+            <Animation key={service.id} animation="fade-up">
+              <ServiceCard service={service} onSelect={openModal} />
+            </Animation>
+          ))}
+        </div>
       </div>
 
       {selectedService && (
@@ -417,7 +456,7 @@ const Services = () => {
 
             <p className="price-note">*Los precios no incluyen IVA</p>
 
-            <Link to="/contact" className="contact-button">
+            <Link to="/contact" className="contact-button" onClick={closeModal}>
               Solicitar Cotización
             </Link>
           </div>
