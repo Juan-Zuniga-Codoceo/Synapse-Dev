@@ -406,18 +406,20 @@ const Services = () => {
           </video>
         </div>
         <div className="services-hero-overlay"></div>
-        <Animation animation="fade-up">
-          <div className="services-hero-content">
-            <h1>
-              <span className="gradient-text-anim">Impulsa tu Negocio Online</span>
-              <span>Con Soluciones Profesionales</span>
-            </h1>
-            <p>
-              Creamos sitios web de alto impacto, plataformas a medida y asistentes
-              virtuales con Inteligencia Artificial optimizados para convertir visitantes en clientes reales.
-            </p>
-          </div>
-        </Animation>
+        <div className="services-hero-content-wrapper-relative">
+          <Animation animation="fade-up">
+            <div className="services-hero-content">
+              <h1>
+                <span className="gradient-text-anim">Impulsa tu Negocio Online</span>
+                <span>Con Soluciones Profesionales</span>
+              </h1>
+              <p>
+                Creamos sitios web de alto impacto, plataformas a medida y asistentes
+                virtuales con Inteligencia Artificial optimizados para convertir visitantes en clientes reales.
+              </p>
+            </div>
+          </Animation>
+        </div>
         <div className="services-hero-scroll-indicator" onClick={handleScrollDown}>
           <div className="mouse">
             <div className="wheel"></div>

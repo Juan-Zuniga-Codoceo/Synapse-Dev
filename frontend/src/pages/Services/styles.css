@@ -84,6 +84,14 @@
   z-index: 1;
 }
 
+.services-page .services-hero-content-wrapper-relative {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .services-page .services-hero-content {
   text-align: center;
   position: relative;
