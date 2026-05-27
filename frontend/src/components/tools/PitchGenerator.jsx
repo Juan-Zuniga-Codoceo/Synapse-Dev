@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Copy, CheckCircle, Sparkles, AlertTriangle } from 'lucide-react';
 
-const PitchGenerator = () => {
+const PitchGenerator = ({ className = '' }) => {
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
   // Estados para controlar el formulario
@@ -83,7 +83,7 @@ const PitchGenerator = () => {
   };
 
   return (
-    <div className="tool-card tool-card-featured">
+    <div className={`tool-card tool-card-featured ${className}`}>
       <div className="tool-card-header">
         <div className="icon-wrapper">
           <Sparkles />

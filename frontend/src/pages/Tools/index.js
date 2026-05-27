@@ -1,3 +1,4 @@
+// src/pages/Tools/index.js
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/layout/Navbar';
@@ -48,6 +49,14 @@ const Tools = () => {
   const [psLoading, setPsLoading] = useState(false);
   const [psResult, setPsResult] = useState(null);
   const [psError, setPsError] = useState('');
+
+  // --- Scroll Down logic ---
+  const handleScrollDown = () => {
+    const contentSection = document.querySelector('.tools-main');
+    if (contentSection) {
+      contentSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // --- WhatsApp Gen Logic ---
   const handleGenerateWaLink = (e) => {
@@ -228,23 +237,48 @@ const Tools = () => {
     <div className="tools-page">
       <Navbar />
 
-      <main className="tools-main">
-        <Animation animation="fade-up">
-          <div className="tools-header">
-            <h1 className="tools-title">
-              Herramientas Gratuitas para <span className="text-accent">Emprendedores</span>
-            </h1>
-            <p className="tools-description">
-              Potencia tu negocio con estas utilidades diseñadas para ahorrarte tiempo y mejorar la experiencia de tus clientes.
-            </p>
+      <header className="tools-hero">
+        <div className="tools-hero-background">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="tools-hero-video-bg"
+          >
+            <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div className="tools-hero-overlay"></div>
+        <div className="tools-hero-content-wrapper-relative">
+          <Animation animation="fade-up">
+            <div className="tools-hero-content">
+              <h1 className="tools-title">
+                <span className="gradient-text-anim">Herramientas Gratuitas</span>
+                <span>Para Emprendedores</span>
+              </h1>
+              <p className="tools-description">
+                Potencia tu negocio con estas utilidades diseñadas para ahorrarte tiempo y mejorar la experiencia de tus clientes.
+              </p>
+            </div>
+          </Animation>
+        </div>
+        <div className="tools-hero-scroll-indicator" onClick={handleScrollDown}>
+          <div className="mouse">
+            <div className="wheel"></div>
           </div>
-        </Animation>
+          <div className="arrows">
+            <span className="arrow-down"></span>
+          </div>
+        </div>
+      </header>
 
+      <main className="tools-main">
         <div className="tools-grid">
 
           {/* Speed Analyzer Card (Featured) */}
           <Animation animation="fade-up" delay={100}>
-            <div className="tool-card tool-card-featured">
+            <div className="tool-card tool-card-featured tool-card--speed">
               <div className="tool-card-header">
                 <div className="icon-wrapper">
                   <Activity />
@@ -334,12 +368,12 @@ const Tools = () => {
 
           {/* Pitch Generator Card (AI Powered) */}
           <Animation animation="fade-up" delay={150}>
-            <PitchGenerator />
+            <PitchGenerator className="tool-card--pitch" />
           </Animation>
 
           {/* WhatsApp Generator Card */}
           <Animation animation="fade-up" delay={200}>
-            <div className="tool-card">
+            <div className="tool-card tool-card--whatsapp">
               <div className="tool-card-header">
                 <div className="icon-wrapper">
                   <Smartphone />
@@ -392,7 +426,7 @@ const Tools = () => {
 
           {/* WebP Optimizer Card */}
           <Animation animation="fade-up" delay={300}>
-            <div className="tool-card">
+            <div className="tool-card tool-card--webp">
               <div className="tool-card-header">
                 <div className="icon-wrapper">
                   <UploadCloud />
@@ -452,7 +486,7 @@ const Tools = () => {
 
           {/* Privacy Policy Generator Card */}
           <Animation animation="fade-up" delay={400}>
-            <div className="tool-card">
+            <div className="tool-card tool-card--privacy">
               <div className="tool-card-header">
                 <div className="icon-wrapper">
                   <ShieldCheck />
@@ -526,7 +560,7 @@ const Tools = () => {
 
           {/* Efficiency Calculator Card */}
           <Animation animation="fade-up" delay={500}>
-            <div className="tool-card">
+            <div className="tool-card tool-card--efficiency">
               <div className="tool-card-header">
                 <div className="icon-wrapper">
                   <Calculator />
