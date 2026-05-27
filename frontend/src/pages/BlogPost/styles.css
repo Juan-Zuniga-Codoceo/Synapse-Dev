@@ -137,16 +137,19 @@
 /* Body Content Typography */
 .blog-post-content {
   color: #e2e8f0;
-  line-height: 1.75;
+  line-height: 1.6;
   font-size: 1.05rem;
   font-family: var(--font-body);
   letter-spacing: -0.01em;
 }
 
 /* Inside content headings */
+.blog-post-content h1,
 .blog-post-content h2,
 .blog-post-content h3,
-.blog-post-content h4 {
+.blog-post-content h4,
+.blog-post-content h5,
+.blog-post-content h6 {
   font-family: var(--font-title);
   color: #ffffff;
   font-weight: 700;
@@ -171,8 +174,9 @@
   font-size: 1.2rem;
 }
 
+/* Paragraphs */
 .blog-post-content p {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 /* Links inside article */
