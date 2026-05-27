@@ -179,6 +179,12 @@
   margin-bottom: 1rem;
 }
 
+/* Hide empty QuillJS paragraphs to keep spacing clean */
+.blog-post-content p:has(br:only-child),
+.blog-post-content p:empty {
+  display: none !important;
+}
+
 /* Links inside article */
 .blog-post-content a {
   color: #ff8533;
