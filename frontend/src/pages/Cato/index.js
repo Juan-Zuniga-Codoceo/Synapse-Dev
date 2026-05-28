@@ -307,65 +307,86 @@ const Cato = () => {
         }
     ];
 
-
-
     return (
         <div className="cato-page">
 
-            {/* Sección Hero */}
-            <Animation animation="fade-in">
-                <section className="cato-hero">
-                    <div className="cato-hero-content">
-                        <div className="cato-badge">
-                            <Smartphone size={20} />
-                            <span>Disponible en Google Play</span>
-                        </div>
-                        <h1 className="cato-title">CATO: LIFE OS</h1>
-                        <p className="cato-subtitle">
-                            El Sistema Operativo para tu Vida. Gamifica cada aspecto de tu existencia, gestiona finanzas con precisión militar,
-                            construye hábitos imparables y convierte responsabilidades en misiones épicas.
-                        </p>
+            {/* Sección Hero con Video de Fondo */}
+            <section className="cato-hero-section-wrapper">
+                <div className="cato-video-bg-container">
+                    <video className="cato-video-bg" autoPlay loop muted playsInline>
+                        <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
+                    </video>
+                    <div className="cato-video-overlay-grid"></div>
+                    <div className="cato-laser-scanline"></div>
+                </div>
 
-                        <div className="cato-hero-actions">
-                            <div className="cato-download-wrapper">
-                                {/* Código QR para Google Play */}
-                                <div className="cato-qr-section">
-                                    <div className="cato-qr-badge">
-                                        <span>Escanea para Descargar</span>
-                                    </div>
-                                    <img src={qrCodeImg} alt="QR Code para Google Play" className="cato-qr-image" />
+                <Animation animation="fade-in">
+                    <div className="cato-hero">
+                        <div className="cato-hero-content">
+                            <div className="cato-badge">
+                                <Smartphone size={20} />
+                                <span>Disponible en Google Play</span>
+                            </div>
+                            <h1 className="cato-title">CATO: LIFE OS</h1>
+                            <p className="cato-subtitle">
+                                El Sistema Operativo para tu Vida. Gamifica cada aspecto de tu existencia, gestiona finanzas con precisión militar,
+                                construye hábitos imparables y convierte responsabilidades en misiones épicas.
+                            </p>
 
-                                    {/* Botón de Google Play */}
-                                    <a
-                                        href="https://play.google.com/store/apps/details?id=cl.synapsedev.cato"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="google-play-button"
-                                    >
-                                        <img src={googlePlayLogo} alt="Google Play" className="google-play-button-logo" />
-                                        <div className="google-play-button-text">
-                                            <span className="google-play-button-label">Descarga en</span>
-                                            <span className="google-play-button-store">Google Play</span>
+                            <div className="cato-hero-actions">
+                                <div className="cato-download-wrapper">
+                                    {/* Código QR para Google Play */}
+                                    <div className="cato-qr-section">
+                                        <div className="cato-qr-badge">
+                                            <span>Escanea para Descargar</span>
                                         </div>
-                                    </a>
+                                        <img src={qrCodeImg} alt="QR Code para Google Play" className="cato-qr-image" />
+
+                                        {/* Botón de Google Play */}
+                                        <a
+                                            href="https://play.google.com/store/apps/details?id=cl.synapsedev.cato"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="google-play-button"
+                                        >
+                                            <img src={googlePlayLogo} alt="Google Play" className="google-play-button-logo" />
+                                            <div className="google-play-button-text">
+                                                <span className="google-play-button-label">Descarga en</span>
+                                                <span className="google-play-button-store">Google Play</span>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                    </div>
-                    <div className="cato-hero-image">
-                        <div className="cato-phone-mockup">
-                            <div className="phone-screen">
-                                <img src={dashboardDark} alt="CATO Dashboard" className="dashboard-screenshot" />
-                                <div className="screen-glow"></div>
+                        <div className="cato-hero-image">
+                            <div className="cato-phone-mockup">
+                                <div className="phone-screen">
+                                    <img src={dashboardDark} alt="CATO Dashboard" className="dashboard-screenshot" />
+                                    <div className="screen-glow"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </section>
-            </Animation>
+                </Animation>
+
+                {/* Indicador de scroll down táctico */}
+                <div className="cato-scroll-indicator" onClick={() => {
+                    const nextSection = document.querySelector('.cato-what-is-section');
+                    if (nextSection) {
+                        nextSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }}>
+                    <div className="mouse-wheel-icon">
+                        <span className="wheel-dot"></span>
+                    </div>
+                    <span className="arrow-down-chevron"></span>
+                </div>
+            </section>
 
             {/* ¿Qué es CATO? */}
-            <div className="cato-section-light">
+            <div className="cato-what-is-section">
                 <Animation animation="fade-up">
                     <section className="cato-what-is">
                         <div className="section-header">
@@ -374,7 +395,7 @@ const Cato = () => {
                         </div>
                         <p className="cato-what-is-text">
                             <strong>CATO: LIFE OS</strong> (Command And Tactical Operations: Life Operating System) es una aplicación móvil integral
-                            de gestión de vida diseñada específicamente para hombres modernos que buscan optimizar todos los aspectos de su existencia
+                            de gestión de vida diseñada específicamente para personas modernas que buscan optimizar todos los aspectos de su existencia
                             personal, profesional y social.
                         </p>
                         <p className="cato-what-is-text">
@@ -441,7 +462,7 @@ const Cato = () => {
             </Animation>
 
             {/* Beneficios Clave */}
-            <div className="cato-section-light">
+            <div className="cato-benefits-section">
                 <Animation animation="fade-up">
                     <section className="cato-benefits">
                         <div className="section-header">
@@ -472,7 +493,7 @@ const Cato = () => {
                         <div className="header-line"></div>
                     </div>
                     <p className="section-subtitle">
-                        CATO está diseñado específicamente para hombres de 20-40 años que valoran la productividad,
+                        CATO está diseñado específicamente para quienes valoran la productividad,
                         optimización personal y gamificación seria.
                     </p>
                     <div className="cato-audience-grid">
@@ -489,7 +510,7 @@ const Cato = () => {
             </Animation>
 
             {/* Impacto a Largo Plazo */}
-            <div className="cato-section-light">
+            <div className="cato-impact-section">
                 <Animation animation="fade-up">
                     <section className="cato-impact">
                         <div className="section-header">
@@ -552,7 +573,7 @@ const Cato = () => {
             </Animation>
 
             {/* Propuesta de Valor */}
-            <div className="cato-section-light">
+            <div className="cato-value-prop-section">
                 <Animation animation="fade-up">
                     <section className="cato-value-prop">
                         <div className="section-header">
@@ -578,9 +599,9 @@ const Cato = () => {
                                 </div>
                                 <div className="value-item">
                                     <Shield size={32} />
-                                    <h4>Específicamente Masculino</h4>
+                                    <h4>Estética Inmersiva</h4>
                                     <p>Estética militar/táctica, lenguaje técnico, y módulos (Garage, Exterior) resuenan con
-                                        la psicología masculina moderna.</p>
+                                        quienes buscan un orden estructural y de alta eficiencia.</p>
                                 </div>
                                 <div className="value-item">
                                     <Sparkles size={32} />

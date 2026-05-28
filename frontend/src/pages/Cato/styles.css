@@ -1,64 +1,146 @@
 /* frontend/src/pages/Cato/styles.css */
 
 .cato-page {
-  background-color: #102532;
-  color: #cbd5e1;
+  background-color: #070f15;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(255, 102, 0, 0.05) 0px, transparent 50%),
+    radial-gradient(at 50% 0%, rgba(16, 37, 50, 0.3) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(255, 102, 0, 0.05) 0px, transparent 50%);
+  color: #e2e8f0;
+  font-family: 'Inter', sans-serif;
   overflow-x: hidden;
 }
 
-/* ========== SECCIÓN HERO ========== */
+/* ========== HERO CON VIDEO DE FONDO ========== */
+.cato-hero-section-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 120px 20px 80px 20px;
+}
+
+.cato-video-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.cato-video-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  filter: contrast(1.1) brightness(0.8) saturate(0.9);
+}
+
+.cato-video-overlay-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(rgba(7, 15, 21, 0.4) 0%, #070f15 100%),
+    linear-gradient(90deg, rgba(7, 15, 21, 0.1) 0%, rgba(7, 15, 21, 0.8) 100%),
+    radial-gradient(circle at center, transparent 30%, #070f15 90%);
+  background-size: cover;
+  z-index: 2;
+}
+
+/* Efecto de escaneo láser */
+.cato-laser-scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, rgba(255, 102, 0, 0.6), transparent);
+  box-shadow: 0 0 15px rgba(255, 102, 0, 0.8);
+  animation: laser-scan 8s linear infinite;
+  z-index: 3;
+}
+
+@keyframes laser-scan {
+  0% {
+    top: -5%;
+  }
+  100% {
+    top: 105%;
+  }
+}
+
 .cato-hero {
+  position: relative;
+  z-index: 4;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
   align-items: center;
   gap: 60px;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 140px 20px 80px 20px;
-  min-height: auto;
 }
 
 .cato-hero-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
 }
 
 .cato-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 102, 0, 0.1);
-  border: 1px solid rgba(255, 102, 0, 0.3);
+  background: rgba(255, 133, 51, 0.08);
+  border: 1px solid rgba(255, 133, 51, 0.3);
   padding: 8px 16px;
   border-radius: 30px;
-  color: #ff6600;
-  font-size: 0.9rem;
+  color: #ff8533;
+  font-size: 0.88rem;
   font-weight: 600;
+  letter-spacing: 0.5px;
   margin-bottom: 24px;
+  box-shadow: 0 0 15px rgba(255, 133, 51, 0.1);
+  font-family: 'Space Mono', monospace;
+}
+
+.cato-badge svg {
+  color: #ff8533;
+  filter: drop-shadow(0 0 5px rgba(255, 133, 51, 0.5));
 }
 
 .cato-title {
-  font-size: 3.8rem;
-  font-weight: 700;
-  color: #ff6600;
+  font-size: 4rem;
+  font-weight: 800;
+  font-family: 'Outfit', sans-serif;
+  background: linear-gradient(135deg, #ffffff 30%, #ff8533 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   line-height: 1.1;
   margin-bottom: 24px;
-  text-shadow: 0 0 30px rgba(255, 102, 0, 0.3);
+  filter: drop-shadow(0 0 30px rgba(255, 133, 51, 0.15));
 }
 
 .cato-subtitle {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   line-height: 1.7;
-  margin-bottom: 32px;
-  color: #cbd5e1;
+  margin-bottom: 35px;
+  color: #94a3b8;
 }
 
 .cato-hero-actions {
   display: flex;
   align-items: center;
   gap: 30px;
-  margin-bottom: 20px;
 }
 
 .cato-download-wrapper {
@@ -67,142 +149,91 @@
   align-items: flex-start;
 }
 
-.cato-download-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: linear-gradient(135deg, #ff6600, #ff4500);
-  color: white;
-  padding: 18px 36px;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 8px 20px rgba(255, 102, 0, 0.3);
-}
-
-.cato-download-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(255, 102, 0, 0.4);
-}
-
-.cato-version-info {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 12px;
-  font-size: 0.85rem;
-  color: #94a3b8;
-  font-family: monospace;
-}
-
-/* ========== QR CODE SECTION ========== */
+/* ========== QR CODE GLASS SECTION ========== */
 .cato-qr-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 24px;
-  padding: 30px 24px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 102, 0, 0.3);
-  border-radius: 16px;
-  max-width: 320px;
-  position: relative;
-  animation: qr-pulse 3s ease-in-out infinite;
+  padding: 24px;
+  background: rgba(16, 37, 50, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 133, 51, 0.25);
+  border-radius: 20px;
+  width: 280px;
   box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(255, 102, 0, 0.1);
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(255, 133, 51, 0.05);
+  transition: all 0.3s ease;
 }
 
-@keyframes qr-pulse {
-
-  0%,
-  100% {
-    box-shadow:
-      0 8px 25px rgba(0, 0, 0, 0.3),
-      0 0 40px rgba(255, 102, 0, 0.1);
-  }
-
-  50% {
-    box-shadow:
-      0 8px 25px rgba(0, 0, 0, 0.3),
-      0 0 50px rgba(255, 102, 0, 0.25);
-  }
+.cato-qr-section:hover {
+  border-color: rgba(255, 133, 51, 0.45);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.6),
+    0 0 40px rgba(255, 133, 51, 0.15);
 }
 
 .cato-qr-badge {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(255, 102, 0, 0.2), rgba(255, 69, 0, 0.15));
-  border: 1px solid rgba(255, 102, 0, 0.4);
-  padding: 10px 20px;
+  background: rgba(255, 133, 51, 0.1);
+  border: 1px solid rgba(255, 133, 51, 0.3);
+  padding: 8px 16px;
   border-radius: 20px;
-  margin-bottom: 20px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #ff6600;
+  margin-bottom: 16px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #ff8533;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-}
-
-.google-play-logo {
-  height: 20px;
-  width: auto;
-  object-fit: contain;
+  letter-spacing: 1px;
+  font-family: 'Space Mono', monospace;
 }
 
 .cato-qr-image {
-  width: 220px;
-  height: 220px;
+  width: 170px;
+  height: 170px;
   object-fit: contain;
   border-radius: 12px;
   background: white;
   padding: 10px;
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    0 0 30px rgba(255, 102, 0, 0.2);
-  transition: all 0.3s ease;
-  position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cato-qr-image:hover {
-  transform: scale(1.08);
-  box-shadow:
-    0 6px 30px rgba(0, 0, 0, 0.4),
-    0 0 50px rgba(255, 102, 0, 0.4);
+  transform: scale(1.05);
 }
 
-/* Google Play Button */
+/* Google Play Button Glassmorphism */
 .google-play-button {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(135deg, rgba(255, 102, 0, 0.15), rgba(255, 69, 0, 0.1));
-  border: 2px solid rgba(255, 102, 0, 0.4);
-  padding: 12px 24px;
-  border-radius: 8px;
-  margin-top: 20px;
+  background: rgba(255, 133, 51, 0.06);
+  border: 1px solid rgba(255, 133, 51, 0.3);
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-top: 18px;
   text-decoration: none;
   transition: all 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
 }
 
 .google-play-button:hover {
-  background: linear-gradient(135deg, rgba(255, 102, 0, 0.25), rgba(255, 69, 0, 0.18));
-  border-color: rgba(255, 102, 0, 0.6);
+  background: rgba(255, 133, 51, 0.15);
+  border-color: rgba(255, 133, 51, 0.6);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 102, 0, 0.4);
+  box-shadow: 0 5px 15px rgba(255, 133, 51, 0.2);
 }
 
 .google-play-button-logo {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
-  flex-shrink: 0;
 }
 
 .google-play-button-text {
@@ -213,225 +244,19 @@
 }
 
 .google-play-button-label {
-  font-size: 0.7rem;
-  color: #cbd5e1;
+  font-size: 0.65rem;
+  color: #94a3b8;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
 }
 
 .google-play-button-store {
-  font-size: 1.05rem;
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-}
-
-@media (max-width: 768px) {
-  .cato-qr-section {
-    max-width: 100%;
-    padding: 24px 20px;
-  }
-
-  .cato-qr-image {
-    width: 180px;
-    height: 180px;
-  }
-
-  .cato-qr-text {
-    font-size: 0.88rem;
-  }
-
-  .cato-qr-badge {
-    font-size: 0.8rem;
-    padding: 6px 14px;
-  }
-}
-
-/* ========== INDICADOR DE DESPLIEGUE TÁCTICO ========== */
-.cato-deployment-status {
-  margin-top: 24px;
-  padding: 16px 20px;
-  background: rgba(255, 102, 0, 0.05);
-  border-left: 3px dotted #ff6600;
-  border-radius: 8px;
-  font-family: 'Courier New', monospace;
-  text-align: left;
-  max-width: 400px;
-}
-
-.deployment-loading {
-  color: #ff6600;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-shadow: 0 0 8px rgba(255, 102, 0, 0.4);
-}
-
-.loading-indicator {
-  animation: blink 1s infinite;
-  font-size: 1.2rem;
-}
-
-@keyframes blink {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.3;
-  }
-}
-
-.deployment-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 12px;
-}
-
-.deployment-label {
-  font-size: 0.75rem;
-  color: #94a3b8;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.deployment-count {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ff6600;
-  text-shadow: 0 0 12px rgba(255, 102, 0, 0.5);
-  letter-spacing: 2px;
-}
-
-.deployment-phase {
-  font-size: 0.8rem;
-  color: #cbd5e1;
-  letter-spacing: 0.5px;
-}
-
-.deployment-progress-bar {
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 2px;
-  overflow: hidden;
-  position: relative;
-}
-
-.deployment-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #ff6600, #ff8c00);
-  border-radius: 2px;
-  transition: width 0.8s ease;
-  position: relative;
-  box-shadow: 0 0 10px rgba(255, 102, 0, 0.6);
-}
-
-.progress-glow {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 30px;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4));
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-30px);
-  }
-
-  100% {
-    transform: translateX(30px);
-  }
-}
-
-/* QR Placeholder */
-.cato-qr-placeholder {
-  display: none;
-  /* Oculto por defecto, visible en desktop */
-}
-
-@media (min-width: 992px) {
-  .cato-qr-placeholder {
-    display: block;
-  }
-}
-
-.qr-box {
-  width: 100px;
-  height: 100px;
-  border: 2px solid rgba(255, 102, 0, 0.3);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: white;
-  padding: 5px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.qr-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.qr-label {
-  display: block;
-  font-size: 0.75rem;
-  color: #ff6600;
-  text-align: center;
-  margin-top: 8px;
-  font-weight: 600;
-}
-
-/* ========== SECURITY CALLOUT ========== */
-.cato-security-callout {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  background: rgba(16, 37, 50, 0.8);
-  /* Azul oscuro */
-  border: 1px solid rgba(255, 102, 0, 0.3);
-  border-radius: 12px;
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto 50px;
-  text-align: left;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.security-callout-icon {
-  color: #ff6600;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.security-callout-text h4 {
-  color: white;
-  margin-bottom: 6px;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
-.security-callout-text p {
-  color: #cbd5e1;
   font-size: 0.95rem;
-  line-height: 1.5;
-  margin: 0;
+  color: #ffffff;
+  font-weight: 700;
 }
 
-.security-callout-text strong {
-  color: #ff6600;
-}
-
-/* Phone Mockup with Dashboard Screenshot */
+/* ========== PHONE MOCKUP ========== */
 .cato-hero-image {
   display: flex;
   justify-content: center;
@@ -440,21 +265,32 @@
 
 .cato-phone-mockup {
   position: relative;
-  width: 340px;
-  height: 700px;
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  border-radius: 45px;
-  padding: 12px;
+  width: 320px;
+  height: 640px;
+  background: linear-gradient(135deg, #0e1e28, #070f15);
+  border-radius: 40px;
+  padding: 10px;
   box-shadow:
-    0 0 0 12px #334155,
-    0 25px 60px rgba(0, 0, 0, 0.6);
+    0 0 0 10px #1e293b,
+    0 25px 60px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(255, 133, 51, 0.1);
+  border: 1px solid rgba(255, 133, 51, 0.2);
+  transition: all 0.4s ease;
+}
+
+.cato-phone-mockup:hover {
+  transform: translateY(-5px) rotate(1deg);
+  box-shadow:
+    0 0 0 10px #1e293b,
+    0 30px 70px rgba(0, 0, 0, 0.8),
+    0 0 55px rgba(255, 133, 51, 0.25);
 }
 
 .phone-screen {
   width: 100%;
   height: 100%;
   background: #000;
-  border-radius: 35px;
+  border-radius: 32px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -465,11 +301,11 @@
 .dashboard-screenshot {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   position: relative;
   z-index: 1;
-  border-radius: 35px;
+  border-radius: 32px;
 }
 
 .screen-glow {
@@ -478,111 +314,252 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, rgba(255, 102, 0, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(255, 133, 51, 0.2) 0%, transparent 70%);
   pointer-events: none;
   z-index: 2;
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
 @keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
 
-  0%,
-  100% {
-    opacity: 0.3;
+/* ========== INDICADOR DE SCROLL DOWN ========== */
+.cato-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.cato-scroll-indicator:hover {
+  opacity: 1;
+  transform: translateX(-50%) translateY(3px);
+}
+
+.mouse-wheel-icon {
+  width: 24px;
+  height: 40px;
+  border: 2px solid #ff8533;
+  border-radius: 12px;
+  position: relative;
+}
+
+.wheel-dot {
+  display: block;
+  width: 4px;
+  height: 8px;
+  background-color: #ff8533;
+  border-radius: 2px;
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: scroll-wheel 1.6s ease infinite;
+}
+
+@keyframes scroll-wheel {
+  0% {
+    top: 6px;
+    opacity: 1;
+    height: 8px;
   }
-
   50% {
-    opacity: 0.6;
+    top: 18px;
+    opacity: 0.2;
+    height: 4px;
+  }
+  100% {
+    top: 6px;
+    opacity: 1;
+    height: 8px;
   }
 }
 
-/* ========== SECCIÓN DE CARACTERÍSTICAS (FONDO CLARO) ========== */
-.cato-section-light {
-  background-color: #ffffff;
-  color: #333;
-  padding: 80px 20px;
+.arrow-down-chevron {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #ff8533;
+  border-bottom: 2px solid #ff8533;
+  transform: rotate(45deg);
+  animation: bounce-chevron 1.6s infinite;
 }
 
-.cato-features {
-  max-width: 1200px;
+@keyframes bounce-chevron {
+  0%, 100% { transform: translateY(0) rotate(45deg); }
+  50% { transform: translateY(5px) rotate(45deg); }
+}
+
+
+/* ========== ESTILOS DE SECCIÓN DARK CONTINUOS ========== */
+.cato-what-is-section,
+.cato-benefits-section,
+.cato-impact-section,
+.cato-value-prop-section {
+  background-color: #050b0f;
+  padding: 100px 20px;
+  border-top: 1px solid rgba(255, 133, 51, 0.08);
+  border-bottom: 1px solid rgba(255, 133, 51, 0.08);
+  position: relative;
+}
+
+/* ¿Qué es CATO? */
+.cato-what-is {
+  max-width: 900px;
   margin: 0 auto;
   text-align: center;
 }
 
-.cato-features h2 {
-  font-size: 3rem;
-  color: #ff6600;
-  margin-bottom: 16px;
-  font-weight: 700;
-}
-
-.cato-features-subtitle {
-  font-size: 1.2rem;
-  line-height: 1.7;
-  color: #4b5563;
-  max-width: 700px;
-  margin: 0 auto 60px;
-}
-
-.cato-features-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  margin-top: 60px;
-}
-
-.cato-feature-card {
-  background: #f8f9fa;
-  border: 2px solid #e0e0e0;
-  padding: 40px;
-  border-radius: 16px;
+.cato-what-is-text {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #94a3b8;
+  margin-bottom: 24px;
   text-align: left;
-  transition: all 0.3s ease;
 }
 
-.cato-feature-card:hover {
-  transform: translateY(-5px);
-  border-color: #ff6600;
-  box-shadow: 0 10px 30px rgba(255, 102, 0, 0.15);
-}
-
-.feature-icon {
-  color: #ff6600;
-  margin-bottom: 20px;
-}
-
-.cato-feature-card h3 {
-  font-size: 1.5rem;
-  color: #102532;
-  margin-bottom: 12px;
+.cato-what-is-text strong {
+  color: #ff8533;
   font-weight: 600;
 }
 
-.cato-feature-card p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #4b5563;
-}
-
-/* ========== SISTEMAS CRÍTICOS (FONDO OSCURO) ========== */
-.cato-critical-systems {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 20px;
+/* ========== HEADERS DE SECCIÓN ========== */
+.section-header {
   text-align: center;
+  margin-bottom: 24px;
 }
 
-.cato-critical-systems h2 {
-  font-size: 3rem;
-  color: #ff6600;
-  margin-bottom: 16px;
+.section-header h2 {
+  font-size: 2.8rem;
+  font-family: 'Outfit', sans-serif;
+  color: #ffffff;
+  margin-bottom: 12px;
   font-weight: 700;
 }
 
-.cato-systems-subtitle {
-  font-size: 1.2rem;
+.header-line {
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff8533, transparent);
+  margin: 0 auto;
+  box-shadow: 0 0 10px rgba(255, 133, 51, 0.5);
+}
+
+.section-subtitle {
+  font-size: 1.15rem;
   line-height: 1.7;
-  color: #cbd5e1;
+  color: #94a3b8;
+  max-width: 800px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+/* ========== 15 MÓDULOS (GLASS CARDS) ========== */
+.cato-modules {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px;
+}
+
+.cato-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.cato-module-card {
+  background: rgba(16, 37, 50, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 35px 30px;
+  border-radius: 20px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.cato-module-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 133, 51, 0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.cato-module-card:hover::before {
+  opacity: 1;
+}
+
+.cato-module-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 133, 51, 0.35);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 133, 51, 0.12);
+}
+
+.module-icon {
+  color: #ff8533;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.cato-module-card h3 {
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin-bottom: 6px;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 1px;
+}
+
+.cato-module-card h4 {
+  font-size: 0.85rem;
+  color: rgba(255, 133, 51, 0.8);
+  margin-bottom: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.cato-module-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+/* ========== SISTEMAS CRÍTICOS ========== */
+.cato-critical-systems {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.cato-systems-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #94a3b8;
   max-width: 700px;
   margin: 0 auto 60px;
 }
@@ -595,48 +572,52 @@
 }
 
 .cato-system-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 30px 24px;
-  border-radius: 16px;
+  background: rgba(16, 37, 50, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 35px 24px;
+  border-radius: 20px;
   text-align: center;
-  /* Centered content for compact cards looks better */
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .cato-system-card:hover {
   transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 102, 0, 0.3);
+  border-color: rgba(255, 133, 51, 0.35);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 133, 51, 0.12);
 }
 
 .system-icon {
-  color: #ff6600;
-  margin-bottom: 16px;
+  color: #ff8533;
+  margin-bottom: 20px;
   display: inline-block;
 }
 
 .system-content h3 {
   font-size: 1.4rem;
-  color: white;
+  color: #ffffff;
   margin-bottom: 12px;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
 }
 
 .system-content p {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: #cbd5e1;
-  margin-bottom: 20px;
+  color: #94a3b8;
+  margin-bottom: 24px;
 }
 
 .system-image {
   width: 100%;
   margin-top: auto;
-  /* Pushes image to bottom if content varies */
 }
 
 .system-image img {
@@ -644,520 +625,16 @@
   max-width: 100%;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  animation: float-in 0.6s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .cato-system-card:hover .system-image img {
-  transform: scale(1.05);
-  box-shadow: 0 12px 35px rgba(255, 102, 0, 0.2);
+  transform: scale(1.03);
+  box-shadow: 0 12px 30px rgba(255, 133, 51, 0.15);
 }
 
-@keyframes float-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ========== GUÍA DE INSTALACIÓN (FONDO OSCURO) ========== */
-.cato-installation {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 100px 20px;
-  text-align: center;
-}
-
-.cato-installation h2 {
-  font-size: 3rem;
-  color: #ff6600;
-  margin-bottom: 16px;
-  font-weight: 700;
-}
-
-.cato-install-subtitle {
-  font-size: 1.2rem;
-  line-height: 1.7;
-  color: #cbd5e1;
-  max-width: 700px;
-  margin: 0 auto 60px;
-}
-
-.cato-install-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  margin-top: 60px;
-}
-
-.cato-install-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 40px 30px;
-  border-radius: 16px;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.cato-install-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 102, 0, 0.3);
-}
-
-.install-number {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #ff6600, #ff4500);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: white;
-  box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
-}
-
-.install-icon {
-  color: #ff6600;
-  margin: 30px auto 20px;
-  display: flex;
-  justify-content: center;
-}
-
-.cato-install-card h3 {
-  font-size: 1.3rem;
-  color: white;
-  margin-bottom: 12px;
-  font-weight: 600;
-}
-
-.cato-install-card p {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #cbd5e1;
-}
-
-/* ========== NOTA DE SEGURIDAD (FONDO CLARO) ========== */
-.cato-security {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px;
-  background: #fff3e0;
-  border: 2px solid #ff9800;
-  border-radius: 16px;
-}
-
-.security-content {
-  display: flex;
-  gap: 24px;
-  align-items: flex-start;
-}
-
-.security-icon {
-  color: #ff6600;
-  flex-shrink: 0;
-}
-
-.security-text h3 {
-  font-size: 1.5rem;
-  color: #102532;
-  margin-bottom: 12px;
-  font-weight: 600;
-}
-
-.security-text p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #4b5563;
-}
-
-.security-text strong {
-  color: #ff6600;
-  font-weight: 600;
-}
-
-/* ========== CTA FINAL (FONDO OSCURO) ========== */
-.cato-cta-final {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 100px 20px;
-  text-align: center;
-}
-
-.cato-cta-final h2 {
-  font-size: 3rem;
-  color: #ff6600;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
-.cato-cta-final p {
-  font-size: 1.25rem;
-  line-height: 1.7;
-  margin-bottom: 40px;
-  color: #cbd5e1;
-}
-
-.cato-download-btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: transparent;
-  color: white;
-  padding: 16px 32px;
-  border: 2px solid #ff6600;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.cato-download-btn-secondary:hover {
-  background: #ff6600;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(255, 102, 0, 0.3);
-}
-
-.cato-stats {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 40px;
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #94a3b8;
-  font-size: 1rem;
-}
-
-.stat-item svg {
-  color: #10b981;
-}
-
-/* ========== SEPARADOR DE SECCIONES ========== */
-.cato-section-divider {
-  width: 100%;
-  max-width: 800px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #ff6600, transparent);
-  margin: 0 auto;
-  opacity: 0.5;
-  box-shadow: 0 0 10px rgba(255, 102, 0, 0.3);
-}
-
-/* ========== RESPONSIVIDAD ========== */
-
-@media (max-width: 992px) {
-  .cato-hero {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding-top: 90px;
-  }
-
-  .cato-hero-content {
-    align-items: center;
-  }
-
-  .cato-hero-actions {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .cato-download-wrapper {
-    align-items: center;
-  }
-
-  .cato-hero-image {
-    order: -1;
-  }
-
-  .cato-phone-mockup {
-    width: 320px;
-    height: 640px;
-  }
-
-  .cato-features-grid,
-  .cato-systems-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .cato-install-steps {
-    grid-template-columns: 1fr;
-  }
-
-  .security-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .security-icon {
-    margin: 0 auto;
-  }
-}
-
-@media (max-width: 768px) {
-  .cato-hero {
-    padding-top: 85px;
-  }
-
-  .cato-title {
-    font-size: 2.8rem;
-  }
-
-  /* Deployment Status Responsive */
-  .cato-deployment-status {
-    max-width: 100%;
-    padding: 14px 16px;
-    margin-top: 20px;
-  }
-
-  .deployment-count {
-    font-size: 1.3rem;
-    letter-spacing: 1px;
-  }
-
-  .deployment-phase {
-    font-size: 0.75rem;
-  }
-
-  .cato-features h2,
-  .cato-critical-systems h2,
-  .cato-installation h2,
-  .cato-cta-final h2 {
-    font-size: 2.2rem;
-  }
-
-  .cato-subtitle,
-  .cato-features-subtitle,
-  .cato-systems-subtitle,
-  .cato-install-subtitle {
-    font-size: 1.1rem;
-  }
-
-  .cato-section-light,
-  .cato-critical-systems,
-  .cato-installation,
-  .cato-cta-final {
-    padding: 80px 20px;
-  }
-
-  .system-image img {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .cato-hero {
-    padding-top: 80px;
-  }
-
-  .cato-title {
-    font-size: 2.2rem;
-  }
-
-  .cato-download-btn {
-    width: 100%;
-    justify-content: center;
-    padding: 16px 24px;
-  }
-
-  /* Deployment Status - Small Mobile */
-  .cato-deployment-status {
-    padding: 12px 14px;
-    margin-top: 16px;
-  }
-
-  .deployment-label {
-    font-size: 0.7rem;
-  }
-
-  .deployment-count {
-    font-size: 1.2rem;
-  }
-
-  .deployment-phase {
-    font-size: 0.7rem;
-    line-height: 1.3;
-  }
-
-  .cato-phone-mockup {
-    width: 240px;
-    height: 480px;
-  }
-
-  .cato-features h2,
-  .cato-critical-systems h2,
-  .cato-installation h2,
-  .cato-cta-final h2 {
-    font-size: 1.8rem;
-  }
-
-  .cato-feature-card,
-  .cato-system-card,
-  .cato-install-card {
-    padding: 30px 20px;
-  }
-
-  .cato-stats {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .cato-security {
-    padding: 24px;
-  }
-}
-
-/* ========== NUEVAS SECCIONES ========== */
-
-/* Header estándar para secciones */
-.section-header {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.section-header h2 {
-  font-size: 3rem;
-  color: #ff6600;
-  margin-bottom: 12px;
-  font-weight: 700;
-  text-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
-}
-
-.header-line {
-  width: 120px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #ff6600, transparent);
-  margin: 0 auto;
-  box-shadow: 0 0 10px rgba(255, 102, 0, 0.4);
-}
-
-.section-subtitle {
-  font-size: 1.2rem;
-  line-height: 1.7;
-  color: #cbd5e1;
-  max-width: 800px;
-  margin: 0 auto 60px;
-  text-align: center;
-}
-
-/* ========== ¿QUÉ ES CATO? ========== */
-.cato-what-is {
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: left;
-}
-
-.cato-what-is-text {
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: #4b5563;
-  margin-bottom: 24px;
-}
-
-.cato-what-is-text strong {
-  color: #ff6600;
-  font-weight: 600;
-}
-
-/* ========== 15 MÓDULOS DE COMANDO ========== */
-.cato-modules {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 20px;
-}
-
-.cato-modules-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-top: 60px;
-}
-
-.cato-module-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 102, 0, 0.2);
-  padding: 30px;
-  border-radius: 16px;
-  text-align: center;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.cato-module-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(255, 102, 0, 0.05), transparent);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-
-.cato-module-card:hover::before {
-  opacity: 1;
-}
-
-.cato-module-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 102, 0, 0.5);
-  box-shadow: 0 10px 30px rgba(255, 102, 0, 0.2);
-}
-
-.module-icon {
-  color: #ff6600;
-  margin-bottom: 16px;
-  display: flex;
-  justify-content: center;
-}
-
-.cato-module-card h3 {
-  font-size: 1.3rem;
-  color: white;
-  margin-bottom: 6px;
-  font-weight: 700;
-  font-family: 'Space Mono', monospace;
-  letter-spacing: 1px;
-}
-
-.cato-module-card h4 {
-  font-size: 0.9rem;
-  color: #ff6600;
-  margin-bottom: 12px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.cato-module-card p {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: #cbd5e1;
-}
-
-/* ========== BENEFICIOS TRANSFORMACIONALES ========== */
+/* ========== BENEFICIOS (GLASS CARDS) ========== */
 .cato-benefits {
   max-width: 1200px;
   margin: 0 auto;
@@ -1166,124 +643,116 @@
 .cato-benefits-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-  margin-top: 60px;
+  gap: 30px;
+  margin-top: 50px;
 }
 
 .cato-benefit-card {
-  background: linear-gradient(135deg, #f8f9fa, #ffffff);
-  border: 2px solid #e0e0e0;
-  padding: 36px;
-  border-radius: 16px;
+  background: rgba(16, 37, 50, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 35px;
+  border-radius: 20px;
   text-align: left;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   position: relative;
-  overflow: hidden;
-}
-
-.cato-benefit-card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  background: radial-gradient(circle, rgba(255, 102, 0, 0.1), transparent);
-  border-radius: 50%;
-  transform: translate(30%, -30%);
-  transition: all 0.3s ease;
-}
-
-.cato-benefit-card:hover::after {
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(circle, rgba(255, 102, 0, 0.15), transparent);
 }
 
 .cato-benefit-card:hover {
   transform: translateY(-5px);
-  border-color: #ff6600;
-  box-shadow: 0 12px 30px rgba(255, 102, 0, 0.15);
+  border-color: rgba(255, 133, 51, 0.35);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 133, 51, 0.12);
 }
 
 .benefit-icon {
-  color: #ff6600;
+  color: #ff8533;
   margin-bottom: 20px;
   display: inline-block;
 }
 
 .cato-benefit-card h3 {
-  font-size: 1.4rem;
-  color: #102532;
+  font-size: 1.35rem;
+  color: #ffffff;
   margin-bottom: 12px;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
 }
 
 .cato-benefit-card p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #94a3b8;
 }
 
 /* ========== PÚBLICO OBJETIVO ========== */
 .cato-audience {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 20px;
+  padding: 100px 20px;
 }
 
 .cato-audience-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-  margin-top: 60px;
+  gap: 30px;
+  margin-top: 50px;
 }
 
 .cato-audience-card {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 102, 0, 0.2);
-  padding: 36px;
-  border-radius: 16px;
+  background: rgba(16, 37, 50, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 35px;
+  border-radius: 20px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .cato-audience-card:hover {
   transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 102, 0, 0.5);
-  box-shadow: 0 10px 30px rgba(255, 102, 0, 0.2);
+  border-color: rgba(255, 133, 51, 0.35);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 133, 51, 0.12);
 }
 
 .audience-icon {
-  color: #ff6600;
+  color: #ff8533;
   margin-bottom: 16px;
   display: flex;
   justify-content: center;
 }
 
 .cato-audience-card h3 {
-  font-size: 1.4rem;
-  color: white;
+  font-size: 1.35rem;
+  color: #ffffff;
   margin-bottom: 8px;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
 }
 
 .audience-age {
-  font-size: 0.95rem;
-  color: #ff6600;
+  font-size: 0.9rem;
+  color: #ff8533;
   margin-bottom: 16px;
-  font-weight: 500;
+  font-weight: 600;
   font-family: 'Space Mono', monospace;
+  letter-spacing: 0.5px;
 }
 
 .cato-audience-card p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #94a3b8;
 }
 
-/* ========== IMPACTO A LARGO PLAZO ========== */
+/* ========== EVOLUCIÓN TÁCTICA (IMPACT) ========== */
 .cato-impact {
   max-width: 1200px;
   margin: 0 auto;
@@ -1292,55 +761,44 @@
 .cato-impact-timeline {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  margin-top: 60px;
+  gap: 30px;
+  margin-top: 50px;
 }
 
 .cato-impact-card {
-  background: linear-gradient(135deg, #ffffff, #f8f9fa);
-  border: 2px solid #e0e0e0;
-  padding: 36px 28px;
-  border-radius: 16px;
+  background: rgba(16, 37, 50, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px 28px;
+  border-radius: 20px;
   text-align: center;
-  transition: all 0.3s ease;
-  position: relative;
-}
-
-.cato-impact-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 4px;
-  height: 0;
-  background: linear-gradient(180deg, #ff6600, #ff4500);
-  border-radius: 4px 0 0 4px;
-  transition: height 0.4s ease;
-}
-
-.cato-impact-card:hover::before {
-  height: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .cato-impact-card:hover {
   transform: translateY(-8px);
-  border-color: #ff6600;
-  box-shadow: 0 15px 40px rgba(255, 102, 0, 0.2);
+  border-color: rgba(255, 133, 51, 0.35);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(255, 133, 51, 0.15);
 }
 
 .impact-icon {
-  color: #ff6600;
+  color: #ff8533;
   margin: 0 auto 20px;
   display: flex;
   justify-content: center;
 }
 
 .cato-impact-card h3 {
-  font-size: 1.6rem;
-  color: #ff6600;
+  font-size: 1.5rem;
+  color: #ff8533;
   margin-bottom: 24px;
   font-weight: 700;
   font-family: 'Space Mono', monospace;
+  letter-spacing: 0.5px;
 }
 
 .impact-list {
@@ -1355,9 +813,9 @@
   align-items: flex-start;
   gap: 12px;
   margin-bottom: 12px;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.6;
-  color: #4b5563;
+  color: #94a3b8;
 }
 
 .impact-list li svg {
@@ -1370,7 +828,7 @@
 .cato-technical {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 80px 20px;
+  padding: 100px 20px;
   text-align: center;
 }
 
@@ -1382,8 +840,10 @@
 }
 
 .cato-technical-item {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 102, 0, 0.2);
+  background: rgba(16, 37, 50, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   padding: 24px 20px;
   border-radius: 12px;
   text-align: center;
@@ -1391,24 +851,25 @@
 }
 
 .cato-technical-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 102, 0, 0.4);
+  background: rgba(16, 37, 50, 0.6);
+  border-color: rgba(255, 133, 51, 0.35);
   transform: translateY(-3px);
 }
 
 .technical-label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #94a3b8;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   margin-bottom: 8px;
-  font-weight: 500;
+  font-weight: 600;
+  font-family: 'Space Mono', monospace;
 }
 
 .technical-value {
   font-size: 1.1rem;
-  color: white;
-  font-weight: 600;
+  color: #ffffff;
+  font-weight: 700;
   font-family: 'Space Mono', monospace;
 }
 
@@ -1424,20 +885,20 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 102, 0, 0.1);
-  border: 1px solid rgba(255, 102, 0, 0.3);
+  background: rgba(255, 133, 51, 0.06);
+  border: 1px solid rgba(255, 133, 51, 0.25);
   padding: 12px 24px;
   border-radius: 30px;
-  color: #ff6600;
+  color: #ff8533;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: all 0.3s ease;
 }
 
 .tech-badge:hover {
-  background: rgba(255, 102, 0, 0.15);
-  border-color: rgba(255, 102, 0, 0.5);
-  transform: scale(1.05);
+  background: rgba(255, 133, 51, 0.12);
+  border-color: rgba(255, 133, 51, 0.5);
+  transform: scale(1.03);
 }
 
 /* ========== PROPUESTA DE VALOR ========== */
@@ -1451,136 +912,397 @@
 }
 
 .value-tagline {
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1.4;
-  color: #ff6600;
+  color: #ffffff;
   text-align: center;
   margin-bottom: 60px;
   font-weight: 700;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  font-family: 'Outfit', sans-serif;
 }
 
 .value-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 36px;
+  gap: 30px;
 }
 
 .value-item {
-  background: linear-gradient(135deg, #f8f9fa, #ffffff);
-  border: 2px solid #e0e0e0;
-  padding: 36px;
-  border-radius: 16px;
+  background: rgba(16, 37, 50, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 35px;
+  border-radius: 20px;
   text-align: left;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .value-item:hover {
   transform: translateY(-5px);
-  border-color: #ff6600;
-  box-shadow: 0 12px 30px rgba(255, 102, 0, 0.15);
+  border-color: rgba(255, 133, 51, 0.35);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 133, 51, 0.12);
 }
 
 .value-item svg {
-  color: #ff6600;
-  margin-bottom: 16px;
+  color: #ff8533;
+  margin-bottom: 18px;
 }
 
 .value-item h4 {
-  font-size: 1.4rem;
-  color: #102532;
+  font-size: 1.35rem;
+  color: #ffffff;
   margin-bottom: 12px;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
 }
 
 .value-item p {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #4b5563;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #94a3b8;
 }
 
-/* ========== FOOTER TAGLINE ========== */
+/* ========== SEPARADOR VISUAL ========== */
+.cato-section-divider {
+  width: 100%;
+  max-width: 800px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 133, 51, 0.3), transparent);
+  margin: 0 auto;
+  opacity: 0.6;
+  box-shadow: 0 0 15px rgba(255, 133, 51, 0.2);
+}
+
+/* ========== GUÍA DE INSTALACIÓN ========== */
+.cato-installation {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.cato-install-subtitle {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #94a3b8;
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+/* Aviso de Seguridad */
+.cato-security-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: rgba(16, 37, 50, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 133, 51, 0.25);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto 60px;
+  text-align: left;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.security-callout-icon {
+  color: #ff8533;
+  flex-shrink: 0;
+  margin-top: 2px;
+  filter: drop-shadow(0 0 8px rgba(255, 133, 51, 0.4));
+}
+
+.security-callout-text h4 {
+  color: #ffffff;
+  margin-bottom: 6px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+}
+
+.security-callout-text p {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.security-callout-text strong {
+  color: #ff8533;
+}
+
+.cato-install-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.cato-install-card {
+  background: rgba(16, 37, 50, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: 20px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.cato-install-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 133, 51, 0.35);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 133, 51, 0.12);
+}
+
+.install-number {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #ff8533, #ff5500);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 133, 51, 0.4);
+  font-family: 'Space Mono', monospace;
+}
+
+.install-icon {
+  color: #ff8533;
+  margin: 20px auto 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.cato-install-card h3 {
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin-bottom: 12px;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+}
+
+.cato-install-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #94a3b8;
+}
+
+/* ========== CTA FINAL ========== */
+.cato-cta-final {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 100px 20px;
+  text-align: center;
+}
+
+.cato-cta-final h2 {
+  font-size: 3rem;
+  font-family: 'Outfit', sans-serif;
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.cato-cta-final p {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  color: #94a3b8;
+}
+
+.cato-download-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #ff8533, #ff5500);
+  color: #ffffff;
+  padding: 16px 36px;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(255, 133, 51, 0.3);
+}
+
+.cato-download-btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 15px 30px rgba(255, 133, 51, 0.45),
+    0 0 20px rgba(255, 133, 51, 0.2);
+}
+
+.cato-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-family: 'Space Mono', monospace;
+}
+
+.stat-item svg {
+  color: #10b981;
+  filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.4));
+}
+
 .cato-footer-tagline {
   margin-top: 50px;
   padding-top: 30px;
-  border-top: 1px solid rgba(255, 102, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .cato-footer-tagline p {
-  font-size: 1.1rem;
-  color: #cbd5e1;
+  font-size: 1.05rem;
+  color: #94a3b8;
   font-style: italic;
   margin-bottom: 8px;
 }
 
 .footer-dev {
-  font-size: 0.95rem;
-  color: #94a3b8;
-  font-style: normal;
+  font-size: 0.9rem;
+  color: #64748b !important;
+  font-style: normal !important;
 }
 
 .footer-dev strong {
-  color: #ff6600;
+  color: #ff8533;
   font-weight: 600;
 }
 
-/* ========== RESPONSIVIDAD PARA NUEVAS SECCIONES ========== */
+/* ========== RESPONSIVIDAD ========== */
 
 @media (max-width: 992px) {
+  .cato-hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding-top: 60px;
+    gap: 40px;
+  }
+
+  .cato-hero-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .cato-hero-actions {
+    justify-content: center;
+  }
+
+  .cato-download-wrapper {
+    align-items: center;
+  }
+
+  .cato-hero-image {
+    order: -1;
+  }
+
+  .cato-phone-mockup {
+    width: 280px;
+    height: 560px;
+  }
+
   .cato-modules-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .cato-systems-grid,
   .cato-benefits-grid,
   .cato-audience-grid,
-  .value-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .cato-impact-timeline {
+  .cato-impact-timeline,
+  .cato-technical-grid,
+  .value-grid,
+  .cato-install-steps {
     grid-template-columns: 1fr;
     gap: 30px;
   }
 
-  .cato-technical-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .cato-install-steps {
+    gap: 50px;
   }
 }
 
 @media (max-width: 768px) {
-  .section-header h2 {
+  .cato-title {
+    font-size: 2.8rem;
+  }
+
+  .section-header h2,
+  .cato-cta-final h2 {
     font-size: 2.2rem;
   }
 
-  .cato-modules-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .cato-technical-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .value-tagline {
-    font-size: 1.6rem;
-  }
-
-  .cato-what-is-text {
+  .cato-subtitle,
+  .section-subtitle,
+  .cato-install-subtitle,
+  .cato-cta-final p {
     font-size: 1.05rem;
   }
 
+  .cato-what-is-section,
+  .cato-benefits-section,
+  .cato-impact-section,
+  .cato-value-prop-section,
   .cato-modules,
+  .cato-critical-systems,
   .cato-audience,
-  .cato-technical {
-    padding: 60px 20px;
+  .cato-technical,
+  .cato-installation,
+  .cato-cta-final {
+    padding: 70px 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .section-header h2 {
-    font-size: 1.8rem;
+  .cato-title {
+    font-size: 2.2rem;
+  }
+
+  .cato-badge {
+    font-size: 0.78rem;
+    padding: 6px 12px;
+  }
+
+  .cato-qr-section {
+    width: 100%;
+  }
+
+  .cato-phone-mockup {
+    width: 230px;
+    height: 460px;
+  }
+
+  .cato-modules-grid {
+    grid-template-columns: 1fr;
   }
 
   .value-tagline {
@@ -1588,20 +1310,19 @@
   }
 
   .cato-module-card,
+  .cato-system-card,
   .cato-benefit-card,
   .cato-audience-card,
   .cato-impact-card,
-  .value-item {
-    padding: 24px 20px;
+  .cato-technical-item,
+  .value-item,
+  .cato-install-card {
+    padding: 30px 20px;
   }
 
-  .cato-tech-badges {
+  .cato-stats {
     flex-direction: column;
+    gap: 12px;
     align-items: center;
-  }
-
-  .tech-badge {
-    width: 100%;
-    justify-content: center;
   }
 }
