@@ -9,13 +9,13 @@
 /* ==================== HERO SECTION ==================== */
 .operia-hero-section-wrapper {
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  padding: 120px 20px 80px 20px;
+  padding: 120px 20px 40px 20px;
 }
 
 .operia-hero-section-wrapper .animate-section {
@@ -144,6 +144,11 @@
   color: #cbd5e1;
   padding: 100px 20px;
   border-top: 1px solid rgba(255, 102, 0, 0.05);
+}
+
+.operia-hero-section-wrapper + .operia-section-light {
+  padding-top: 40px;
+  border-top: none;
 }
 
 .operia-section-dark {
