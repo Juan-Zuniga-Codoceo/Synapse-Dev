@@ -9,7 +9,7 @@
 /* ==================== HERO SECTION ==================== */
 .operia-hero-section-wrapper {
   position: relative;
-  min-height: 80vh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
