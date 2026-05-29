@@ -1,5 +1,5 @@
 // frontend/src/pages/Operia/index.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 
@@ -15,31 +15,44 @@ import {
 } from 'lucide-react';
 
 const Operia = () => {
+  useEffect(() => {
+    document.title = "Operia | Gestión Operativa Inteligente - Synapse Dev";
+  }, []);
+
   return (
     <div className="operia-page">
 
       {/* 1. SECCIÓN HÉROE */}
-      <Animation animation="fade-in">
-        <section className="operia-hero">
-          <div className="operia-hero-content">
-            <h1 className="operia-title">Gestiona tus tareas como nunca antes</h1>
-            <p className="operia-subtitle">
-              La plataforma SaaS de gestión operativa para equipos que buscan simplicidad, potencia e inteligencia real. Centraliza todo tu flujo en un sistema visual e inteligente.
-            </p>
-            <div className="operia-hero-buttons">
-              <a href="https://operia.cl/signup.html" target="_blank" rel="noopener noreferrer" className="operia-cta-primary">
-                Comenzar Gratis (SaaS)
-              </a>
-              <a href="#pricing" className="operia-cta-secondary-hero">
-                Ver Planes
-              </a>
+      <section className="operia-hero-section-wrapper">
+        <div className="operia-video-bg-container">
+          <video className="operia-video-bg" autoPlay loop muted playsInline>
+            <source src="/assets/video/hero-bg.mp4" type="video/mp4" />
+          </video>
+          <div className="operia-video-overlay-grid"></div>
+        </div>
+
+        <Animation animation="fade-in">
+          <div className="operia-hero">
+            <div className="operia-hero-content">
+              <h1 className="operia-title">Gestiona tus tareas como nunca antes</h1>
+              <p className="operia-subtitle">
+                La plataforma SaaS de gestión operativa para equipos que buscan simplicidad, potencia e inteligencia real. Centraliza todo tu flujo en un sistema visual e inteligente.
+              </p>
+              <div className="operia-hero-buttons">
+                <a href="https://operia.cl/signup.html" target="_blank" rel="noopener noreferrer" className="operia-cta-primary">
+                  Comenzar Gratis (SaaS)
+                </a>
+                <a href="#pricing" className="operia-cta-secondary-hero">
+                  Ver Planes
+                </a>
+              </div>
+            </div>
+            <div className="operia-hero-image">
+              <img src={operiaHero} alt="Dashboard de Operia" />
             </div>
           </div>
-          <div className="operia-hero-image">
-            <img src={operiaHero} alt="Dashboard de Operia" />
-          </div>
-        </section>
-      </Animation>
+        </Animation>
+      </section>
 
       {/* 2. ¿QUÉ ES OPERIA? */}
       <div className="operia-section-light">
